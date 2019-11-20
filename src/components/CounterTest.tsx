@@ -44,13 +44,3 @@ type CounterTestProps = ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterTest);
-
-// const $list = [...document.querySelectorAll(".rules-list li")];
-// const obj = $list.reduce((obj, item) => {
-//   const $strong = item.querySelector("strong");
-//   return {
-//     ...obj,
-//     ...($strong ? {[`"${$strong.innerText}"`]: "off"} : {})
-//   }
-// }, {})
-// console.log(obj)
