@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { actionIncrement } from 'actions';
+import React from 'react';
 import { connect } from 'react-redux';
+import { actionIncrement } from 'actions';
 
-class CounterTest extends Component<CounterTestProps> {
+class CounterTest extends React.Component<CounterTestProps> {
   _renderContent = () => {
     const { counter } = this.props;
     const { status, data } = counter;
@@ -44,3 +44,13 @@ type CounterTestProps = ReturnType<typeof mapStateToProps> &
   typeof mapDispatchToProps;
 
 export default connect(mapStateToProps, mapDispatchToProps)(CounterTest);
+
+// const $list = [...document.querySelectorAll(".rules-list li")];
+// const obj = $list.reduce((obj, item) => {
+//   const $strong = item.querySelector("strong");
+//   return {
+//     ...obj,
+//     ...($strong ? {[`"${$strong.innerText}"`]: "off"} : {})
+//   }
+// }, {})
+// console.log(obj)

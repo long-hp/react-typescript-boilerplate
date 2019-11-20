@@ -1,11 +1,5 @@
-//
-import React, { Component } from 'react';
-
-// type Props = {
-//   aaa: string,
-// };
-
-export default class Demojs extends Component {
+import React from 'react';
+export default class Demojs extends React.Component {
   static defaultProps = {
     aaa: '',
   };
