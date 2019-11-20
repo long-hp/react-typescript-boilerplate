@@ -1,0 +1,88 @@
+{
+  "name": "react-typescript",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-redux-i18n": "^1.9.3",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
+    "redux-saga": "^1.1.3"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint src",
+    "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
+    "prettier": "prettier --ignore-path .eslintignore --parser json --write",
+    "stylelint": "stylelint --ignore-path .eslintignore --syntax scss --fix",
+    "test-all": "yarn lint && yarn test:nowatch",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
+    "release": "func() { yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip; }; func"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint src",
+      "git add"
+    ],
+    "{*.json,.{babelrc,eslintrc,prettierrc}}": [
+      "prettier --ignore-path .eslintignore --parser json --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run test:nowatch"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.23",
+    "@types/node": "12.12.9",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/react-redux-i18n": "^0.0.11",
+    "@types/redux-logger": "^3.0.7",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "cross-env": "^6.0.3",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-flowtype": "^4.4.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-react": "^7.16.0",
+    "flow-bin": "^0.112.0",
+    "husky": "^3.1.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "node-sass": "^4.13.0",
+    "prettier": "^1.19.1",
+    "react-app-rewired": "^2.1.5",
+    "react-test-renderer": "^16.12.0",
+    "tslint": "^5.20.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-import-rules": "^0.3.0",
+    "tslint-lines-between-class-members": "^1.3.6",
+    "tslint-react": "^4.1.0",
+    "typescript": "3.7.2",
+    "yarn": "^1.19.1"
+  }
+}
