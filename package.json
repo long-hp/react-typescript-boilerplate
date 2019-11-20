@@ -18,7 +18,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "lint": "eslint src",
+    "lint": "tslint src",
     "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
     "prettier": "prettier --ignore-path .eslintignore --parser json --write",
     "stylelint": "stylelint --ignore-path .eslintignore --syntax scss --fix",
@@ -29,7 +29,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "eslint src",
+      "tslint src",
       "git add"
     ],
     "{*.json,.{babelrc,eslintrc,prettierrc}}": [
@@ -72,6 +72,7 @@
     "eslint-plugin-react": "^7.16.0",
     "flow-bin": "^0.112.0",
     "husky": "^3.1.0",
+    "lint-staged": "8.1.7",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
