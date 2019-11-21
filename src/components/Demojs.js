@@ -1,5 +1,5 @@
-import React from 'react';
-export default class Demojs extends React.Component {
+import React, { Component } from 'react';
+export default class Demojs extends Component {
   static defaultProps = {
     aaa: '',
   };

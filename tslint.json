@@ -1,3 +1,5 @@
+// disable all rules
+// using "tir-newline-after-import" and "lines-between-class-members because typescript-eslint doesn't have this feature yet
 {
   "rulesDirectory": [
     "node_modules/tslint-import-rules/dist/rules",

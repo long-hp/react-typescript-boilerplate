@@ -9,7 +9,7 @@ interface IncrementSuccess {
 export type IncrementPayload = IncrementPending & IncrementSuccess;
 
 const actionIncrement = {
-  increment(step: number = 0): Action<IncrementPending> {
+  increment(step = 0): Action<IncrementPending> {
     return {
       type: 'INCREMENT',
       payload: {

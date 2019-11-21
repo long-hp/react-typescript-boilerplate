@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { actionIncrement } from 'actions';
 
-class CounterTest extends React.Component<CounterTestProps> {
+class CounterTest extends Component<CounterTestProps> {
   _renderContent = () => {
     const { counter } = this.props;
     const { status, data } = counter;

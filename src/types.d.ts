@@ -6,27 +6,27 @@ declare global {
   declare interface ActionOnlyType {
     type: ActionTypes;
   }
-  declare interface Action<Payload> {
+  declare interface Action<TPayload> {
     type: ActionTypes;
-    payload: Payload;
+    payload: TPayload;
   }
   declare type AppState = Reducers;
   declare type GetState = () => AppState;
-  declare type PromiseAction<Payload> = Promise<Action<Payload>>;
-  declare type ThunkAction<Payload> = (
-    dispatch: Dispatch<Payload>,
+  declare type PromiseAction<TPayload> = Promise<Action<TPayload>>;
+  declare type ThunkAction<TPayload> = (
+    dispatch: Dispatch<TPayload>,
     getState: GetState,
   ) => any;
-  declare type Dispatch<Payload> = (
+  declare type Dispatch<TPayload> = (
     action:
-      | Action<Payload>
-      | ThunkAction<Payload>
-      | PromiseAction<Payload>
-      | Array<Action<Payload>>,
+      | Action<TPayload>
+      | ThunkAction<TPayload>
+      | PromiseAction<TPayload>
+      | Action<TPayload>[],
   ) => any;
   // declare type Connect<S, D> = ReturnType<S> & D;
 
-  declare interface ReducerState<D> {
+  declare interface ReducerState<TData> {
     status:
       | 'loading'
       | 'success'
@@ -35,20 +35,27 @@ declare global {
       | 'loadmore_success'
       | 'loadmore_failed';
     message: string;
-    data: D;
+    data: TData;
   }
 
   // Axios
-  declare interface AxiosData<Data> {
+  declare interface AxiosData<TData> {
     status: 'success' | 'error';
     error: string;
-    data: Data;
+    data: TData;
   }
-  declare interface AxiosResponse<Data> {
+  declare interface AxiosResponse<TData> {
     status: number;
-    data: AxiosData<Data>;
+    data: AxiosData<TData>;
   }
   declare interface AxiosError {
     response: object;
   }
+
+  // Support flowtype
+  declare type React$Node = React.ReactNode;
+  declare type $Shape = Partial;
+
+  // Others
+  declare type Timeout = NodeJS.Timeout;
 }

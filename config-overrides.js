@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const EditRuntimeFile = require('./webpack-plugins/EditRuntimeFile');
 const CreateLazyComponent = require('./webpack-plugins/CreateLazyComponent');
@@ -45,6 +46,7 @@ function rewireProduction(config, type) {
         filename: 'build/static/js/runtime.js',
         pathChange: '__HSBLOG__.templateURL',
       }),
+      new webpack.IgnorePlugin(/redux-logger/),
     ],
     optimization: {
       runtimeChunk: 'single',
