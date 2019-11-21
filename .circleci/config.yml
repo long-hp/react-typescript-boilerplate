@@ -1,0 +1,118 @@
+defaults: &defaults
+  #working_directory: ./circleci
+  docker:
+    - image: circleci/node:8
+
+version: 2
+jobs:
+  prepare:
+    <<: *defaults
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - persist_to_workspace:
+          root: .
+          paths:
+            - node_modules
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build
+  lint:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run lint
+  flow:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run flow
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: npm run test:nowatch
+  deploy-github:
+    <<: *defaults
+    environment:
+      - SOURCE_BRANCH: master
+      - TARGET_BRANCH: gh-pages
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - deploy:
+          name: Deploy to GitHub Pages
+          command: |
+            if [ $CIRCLE_BRANCH == $SOURCE_BRANCH ]; then
+              git config --global user.email $GITHUB_EMAIL
+              git config --global user.name $GITHUB_USERNAME
+              git config --global github.token $GITHUB_TOKEN
+
+              git clone $CIRCLE_REPOSITORY_URL out
+
+              cd out
+              git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
+              git rm -rf .
+              cd ..
+
+              npm run build
+
+              cp -a build/. out/.
+
+              mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
+              cd out
+
+              git add -A
+              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+              git push origin $TARGET_BRANCH
+            fi
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - prepare:
+          filters:
+            branches:
+              ignore: gh-pages
+      - lint:
+          requires:
+            - prepare
+      - test:
+          requires:
+            - prepare
+      - flow:
+          requires:
+            - prepare
+      - build:
+          requires:
+            - lint
+      - deploy-github:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master

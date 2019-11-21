@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { actionIncrement } from 'actions';
 import { connect } from 'react-redux';
+import { actionIncrement } from 'actions';
 
 class CounterTest extends Component<CounterTestProps> {
   _renderContent = () => {
