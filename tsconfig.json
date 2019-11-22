@@ -1,11 +1,8 @@
 {
+  "extends": "./wil.tsconfig.json",
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,15 +19,8 @@
     "noUnusedParameters": true,
     "noEmitHelpers": true,
     "noImplicitReturns": true,
-    "sourceMap": false,
-    "baseUrl": "./src"
+    "sourceMap": false
   },
-  "exclude": [
-    "node_modules",
-    "build",
-    "**/*.js"
-  ],
-  "include": [
-    "src"
-  ]
+  "exclude": ["node_modules", "build", "**/*.js"],
+  "include": ["src"]
 }

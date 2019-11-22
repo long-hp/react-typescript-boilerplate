@@ -94,54 +94,7 @@ function rewireDevelopment(config) {
         autoDeleteFileEnabled: true,
       }),
     ],
-    // resolve: {
-    //   ...config.resolve,
-    //   alias: {
-    //     ...config.resolve.alias,
-    //     "@components": resolve("src/components"),
-    //     "@utils": resolve("src/utils"),
-    //     "@constants": resolve("src/constants")
-    //   }
-    // }
   };
-  // return {
-  //   ...config,
-  //   module: {
-  //     ...config.module,
-  //     rules: config.module.rules.map(rule => {
-  //       if (!rule.oneOf) {
-  //         return rule;
-  //       }
-  //       return {
-  //         ...rule,
-  //         oneOf: rule.oneOf.map(item => {
-  //           const condition =
-  //             item.test && item.test.toString().includes("/\\.(scss|sass)$/");
-  //           if (!condition) {
-  //             return item;
-  //           }
-  //           return {
-  //             ...item,
-  //             use: item.use.map(useItem => {
-  //               if (
-  //                 !(useItem.loader && useItem.loader.includes("sass-loader"))
-  //               ) {
-  //                 return useItem;
-  //               }
-  //               return {
-  //                 ...useItem,
-  //                 options: {
-  //                   importLoaders: 2,
-  //                   sourceMap: true
-  //                 }
-  //               };
-  //             })
-  //           };
-  //         })
-  //       };
-  //     })
-  //   }
-  // };
 }
 
 module.exports = function override(config, env) {

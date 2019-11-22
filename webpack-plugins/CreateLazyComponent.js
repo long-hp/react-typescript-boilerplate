@@ -1,15 +1,15 @@
 /* eslint-disable */
-const fs = require("fs");
-const path = require("path");
-const chokidar = require("chokidar");
+const fs = require('fs');
+const path = require('path');
+const chokidar = require('chokidar');
 
 function getFileLazy(componentName, importFileName) {
   return `// @flow
 import { lazy } from "react";
 
-const ${componentName}: any = lazy((): any => {
+const ${componentName} = lazy(() => {
   return import(
-    /* webpackChunkName: "components/${componentName}", webpackPrefetch: true */ "${importFileName}"
+    /* webpackChunkName: "components/${componentName}" */ "${importFileName}"
   );
 });
 
@@ -20,7 +20,7 @@ export default ${componentName};
 class CreateLazyComponent {
   constructor(opt) {
     const defaultOpt = {
-      autoDeleteFileEnabled: false
+      autoDeleteFileEnabled: false,
     };
     this.opts = { ...defaultOpt, ...opt };
     this._handleEmit = this._handleEmit.bind(this);
@@ -32,7 +32,7 @@ class CreateLazyComponent {
   _deleteFolderRecursive(path) {
     if (fs.existsSync(path)) {
       fs.readdirSync(path).forEach((file, index) => {
-        const curPath = path + "/" + file;
+        const curPath = path + '/' + file;
         if (fs.lstatSync(curPath).isDirectory()) {
           deleteFolderRecursive(curPath);
         } else {
@@ -47,23 +47,23 @@ class CreateLazyComponent {
     const { output } = this.opts;
     const componentName = pathName
       .match(/.*(?=(\/|\\))/g)[0]
-      .replace(/.*(\/|\\)/g, "");
+      .replace(/.*(\/|\\)/g, '');
     const componentNameLazy = `${componentName}Lazy`;
     const componentFolderLazy = path.resolve(
       __dirname,
-      "../",
+      '../',
       output,
-      componentNameLazy
+      componentNameLazy,
     );
     const importFileName = `${path.relative(
       componentFolderLazy,
-      pathName.match(/.*(\/|\\)/g)[0]
+      pathName.match(/.*(\/|\\)/g)[0],
     )}/${componentName}`;
     if (!fs.existsSync(componentFolderLazy)) {
       fs.mkdirSync(componentFolderLazy);
       fs.writeFileSync(
-        `${componentFolderLazy}/${componentNameLazy}.js`,
-        getFileLazy(componentNameLazy, importFileName.replace(/\\/g, "/"))
+        `${componentFolderLazy}/${componentNameLazy}.ts`,
+        getFileLazy(componentNameLazy, importFileName.replace(/\\/g, '/')),
       );
     }
   }
@@ -74,15 +74,15 @@ class CreateLazyComponent {
       const { output, autoDeleteFileEnabled } = this.opts;
       const componentName = pathName
         .match(/.*(?=(\/|\\))/g)[0]
-        .replace(/.*(\/|\\)/g, "");
+        .replace(/.*(\/|\\)/g, '');
       const componentNameLazy = `${componentName}Lazy`;
       const componentFolderLazy = path.resolve(
         __dirname,
-        "../",
+        '../',
         output,
-        componentNameLazy
+        componentNameLazy,
       );
-      if (content.includes("@lazy")) {
+      if (content.includes('@lazy')) {
         this._handleComponentHasLazy(pathName, content);
       } else {
         if (autoDeleteFileEnabled) {
@@ -93,21 +93,21 @@ class CreateLazyComponent {
   }
 
   _handleFolderInputWatch(pathName) {
-    fs.readFile(pathName, "utf-8", this._handleReadFile(pathName));
+    fs.readFile(pathName, 'utf-8', this._handleReadFile(pathName));
   }
 
   _handleEmit(conpilation, callback) {
     const { input } = this.opts;
-    const folderInput = path.resolve(__dirname, "../", input);
+    const folderInput = path.resolve(__dirname, '../', input);
 
     const watcher = chokidar.watch(folderInput);
-    watcher.on("change", this._handleFolderInputWatch);
+    watcher.on('change', this._handleFolderInputWatch);
 
     callback();
   }
 
   apply(compiler) {
-    compiler.plugin("emit", this._handleEmit);
+    compiler.plugin('emit', this._handleEmit);
   }
 }
 
