@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
-import watchIncrement from 'sagas/sagaIncrement/sagaIncrement';
+import watchTodolist from 'sagas/sagaTodolist/sagaTodolist';
 
 export default function* sagas() {
-  yield all([watchIncrement()]);
+  yield all([watchTodolist()]);
 }

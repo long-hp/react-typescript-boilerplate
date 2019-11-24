@@ -1,7 +1,7 @@
-import counter from 'reducers/reducerCounter/reducerCounter';
+import todolist from 'reducers/reducerTodolist/reducerTodolist';
 
 const reducers = {
-  counter,
+  todolist,
 };
 
 export default reducers;

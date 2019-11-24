@@ -1,8 +1,9 @@
 import { Reducers } from 'configureStore';
-import { ActionTypes } from 'types/actionTypes';
+import { ActionTypes as _ActionTypes } from 'types/actionTypes';
 
 declare global {
   // Redux
+  declare type ActionTypes = _ActionTypes;
   declare interface ActionOnlyType {
     type: ActionTypes;
   }
