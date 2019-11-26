@@ -4,12 +4,12 @@ import { TodolistProps } from 'containers/TodolistContainer/TodolistContainer';
 export default class Todolist extends Component<TodolistProps> {
   _handleTodolistSuccessExample = () => {
     const { getTodolist } = this.props;
-    getTodolist({ endpoint: 'todolist' });
+    getTodolist('todolist');
   };
 
   _handleTodolistFailedExample = () => {
     const { getTodolist } = this.props;
-    getTodolist({ endpoint: 'todolist_error' });
+    getTodolist('todolist_error');
   };
 
   _renderContent = () => {

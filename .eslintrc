@@ -24,6 +24,7 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
+    "react/jsx-uses-vars": "error",
     "react/jsx-boolean-value": "off",
     "react/forbid-prop-types": "off",
     "react/prefer-stateless-function": "off",
@@ -86,6 +87,8 @@
       }
     ],
 
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/no-empty-interface": "off",
@@ -104,7 +107,14 @@
     "@typescript-eslint/strict-boolean-expressions": "off",
     "@typescript-eslint/typedef": "off",
     "@typescript-eslint/unbound-method": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^_|React",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "@typescript-eslint/no-untyped-public-signature": "off",
     "@typescript-eslint/no-unused-expressions": [
       "error",

@@ -14,27 +14,17 @@ declare global {
   declare type AppState = Reducers;
   declare type GetState = () => AppState;
   declare type PromiseAction<TPayload> = Promise<Action<TPayload>>;
-  declare type ThunkAction<TPayload> = (
-    dispatch: Dispatch<TPayload>,
-    getState: GetState,
-  ) => any;
+  declare type ThunkAction<TPayload> = (dispatch: Dispatch<TPayload>, getState: GetState) => any;
   declare type Dispatch<TPayload> = (
-    action:
-      | Action<TPayload>
-      | ThunkAction<TPayload>
-      | PromiseAction<TPayload>
-      | Action<TPayload>[],
+    action: Action<TPayload> | ThunkAction<TPayload> | PromiseAction<TPayload> | Action<TPayload>[],
   ) => any;
-  // declare type Connect<S, D> = ReturnType<S> & D;
+  declare type Connect<TTypeOfMapStateToProps, TTypeOfMapDispatchToProps> = ReturnType<
+    TTypeOfMapStateToProps
+  > &
+    TTypeOfMapDispatchToProps;
 
   declare interface ReducerState<TData> {
-    status:
-      | 'loading'
-      | 'success'
-      | 'failed'
-      | 'loadmore'
-      | 'loadmore_success'
-      | 'loadmore_failed';
+    status: 'loading' | 'success' | 'failed' | 'loadmore' | 'loadmore_success' | 'loadmore_failed';
     message: string;
     data: TData;
   }

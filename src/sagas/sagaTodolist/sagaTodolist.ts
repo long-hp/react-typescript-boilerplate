@@ -4,19 +4,20 @@ import {
   getTodolist,
   getTodolistSuccess,
   getTodolistFailed,
-  Todolist,
 } from 'actions/actionTodolist/actionTodolist';
 
-function* sagaTodolist({ payload }: Action<Todolist>) {
+type TodolistPendingAction = ReturnType<typeof getTodolist>;
+
+function* sagaTodolist({ payload }: TodolistPendingAction) {
   try {
     const { data } = yield call(axios.get, payload.endpoint);
-    yield put(getTodolistSuccess({ data }));
+    yield put(getTodolistSuccess(data));
   } catch (err) {
-    yield put(getTodolistFailed({ message: 'Loi cmmnr' }));
+    yield put(getTodolistFailed('Loi cmmnr'));
   }
 }
 
 export default function* watchTodolist() {
-  const { type } = getTodolist({ endpoint: '' });
+  const { type } = getTodolist('');
   yield takeLatest(type, sagaTodolist);
 }

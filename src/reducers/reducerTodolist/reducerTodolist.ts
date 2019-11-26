@@ -1,13 +1,11 @@
-import {
-  Todolist,
-  TodolistSuccess,
-  TodolistFailed,
-} from 'actions/actionTodolist/actionTodolist';
+import { getTodolistSuccess, getTodolistFailed } from 'actions/actionTodolist/actionTodolist';
 import { TodolistData } from 'models/Todolist';
+import { createReducer, handleAction } from 'utils/functions/reduxActions';
+
+type TodolistSuccessAction = ReturnType<typeof getTodolistSuccess>;
+type TodolistFailedAction = ReturnType<typeof getTodolistFailed>;
 
 type TodolistState = ReducerState<TodolistData[]>;
-
-type TodolistAll = Todolist & TodolistSuccess & TodolistFailed;
 
 const initialState: TodolistState = {
   status: 'success',
@@ -15,49 +13,22 @@ const initialState: TodolistState = {
   message: '',
 };
 
-function handleGetTodolist(
-  state: TodolistState,
-  _action: Action<Todolist>,
-): TodolistState {
-  return {
+const todoList = createReducer<TodolistState>(initialState, [
+  handleAction('@getTodolist', state => ({
     ...state,
     status: 'loading',
-  };
-}
-
-function handleGetTodolistSuccess(
-  _state: TodolistState,
-  { payload }: Action<TodolistSuccess>,
-): TodolistState {
-  return {
-    ...initialState,
-    data: payload.data,
-  };
-}
-
-function handleGetTodolistFailed(
-  _state: TodolistState,
-  { payload }: Action<TodolistFailed>,
-): TodolistState {
-  return {
-    ...initialState,
+  })),
+  handleAction('@getTodolistSuccess', (state, action: TodolistSuccessAction) => ({
+    ...state,
+    status: 'success',
+    data: action.payload.data,
+  })),
+  handleAction('@getTodolistFailed', (state, action: TodolistFailedAction) => ({
+    ...state,
     status: 'failed',
-    message: payload.message,
-  };
-}
+    data: [],
+    message: action.payload.message,
+  })),
+]);
 
-export default function todolist(
-  state = initialState,
-  action: Action<TodolistAll>,
-): TodolistState {
-  switch (action.type) {
-    case '@getTodolist':
-      return handleGetTodolist(state, action);
-    case '@getTodolistSuccess':
-      return handleGetTodolistSuccess(state, action);
-    case '@getTodolistFailed':
-      return handleGetTodolistFailed(state, action);
-    default:
-      return state;
-  }
-}
+export default todoList;

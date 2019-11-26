@@ -1,44 +1,14 @@
 import { TodolistData } from 'models/Todolist';
+import { createAction } from 'utils/functions/reduxActions';
 
-export interface Todolist {
-  endpoint: string;
-}
+export const getTodolist = createAction('@getTodolist', (endpoint: string) => ({
+  endpoint,
+}));
 
-export interface TodolistSuccess {
-  data: TodolistData[];
-}
-
-export interface TodolistFailed {
-  message: string;
-}
-
-export function getTodolist({ endpoint }: Todolist): Action<Todolist> {
-  return {
-    type: '@getTodolist',
-    payload: {
-      endpoint,
-    },
-  };
-}
-
-export function getTodolistSuccess({
+export const getTodolistSuccess = createAction('@getTodolistSuccess', (data: TodolistData[]) => ({
   data,
-}: TodolistSuccess): Action<TodolistSuccess> {
-  return {
-    type: '@getTodolistSuccess',
-    payload: {
-      data,
-    },
-  };
-}
+}));
 
-export function getTodolistFailed({
+export const getTodolistFailed = createAction('@getTodolistFailed', (message: string) => ({
   message,
-}: TodolistFailed): Action<TodolistFailed> {
-  return {
-    type: '@getTodolistFailed',
-    payload: {
-      message,
-    },
-  };
-}
+}));
