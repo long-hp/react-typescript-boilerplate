@@ -1,7 +1,11 @@
-import counter from 'reducers/reducerCounter/reducerCounter';
+import todolist from 'reducers/reducerTodolist/reducerTodolist';
+import video from 'reducers/reducerVideo/reducerVideo';
+import postTest from 'reducers/reducerGetPost/reducerGetPost';
 
 const reducers = {
-  counter,
+  todolist,
+  video,
+  postTest,
 };
 
 export default reducers;

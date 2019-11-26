@@ -1,6 +1,12 @@
 export type ActionTypes =
-  | 'GET_TODOLIST_REJECTED'
-  | 'GET_TODOLIST_FULFILLED'
-  | 'GET_TODOLIST'
-  | 'INCREMENT'
-  | 'INCREMENT_SUCCESS';
+  | '@getPost'
+  | '@getPostSuccess'
+  | '@getPostFailed'
+  | '@getVideo'
+  | '@getVideoSuccess'
+  | '@getVideoFailed'
+  | '@getTodolist'
+  | '@getTodolistSuccess'
+  | '@getTodolistFailed'
+  | '@increment'
+  | '@incrementSuccess';
