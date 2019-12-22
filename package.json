@@ -23,11 +23,15 @@
     "{*.json,.{babelrc,eslintrc,prettierrc}}": [
       "prettier --ignore-path .eslintignore --parser json --write",
       "git add"
+    ],
+    "*.{test.ts,test.tsx}": [
+      "yarn test:nowatch",
+      "git add"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn test:nowatch"
+      "pre-commit": "lint-staged"
     }
   },
   "browserslist": {
