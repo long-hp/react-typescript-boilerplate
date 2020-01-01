@@ -9,6 +9,7 @@ import VideoContainer from 'containers/VideoContainer/VideoContainer';
 import Button from 'components/atoms/Button/Button';
 import PostTestContainer from 'containers/PostTestContainer/PostTestContainer';
 import GridGeneric from 'components/molecules/GridGeneric/GridGeneric';
+import FuncComp from 'components/molecules/FuncComp/FuncComp';
 
 // Axios defaults
 axios.defaults.baseURL = configureApp.baseUrl;
@@ -24,6 +25,8 @@ function App() {
         <Button className="aaa" style={{ margin: 0 }}>
           aaa
         </Button>
+
+        <h2>Grid generic type</h2>
         <GridGeneric
           data={[
             { id: 'id1', name: 'foo' },
@@ -33,6 +36,8 @@ function App() {
             return <div>{item.name}</div>;
           }}
         />
+        <h2>Function commponent</h2>
+        <FuncComp title="title" text="function component text" />
       </PersistGate>
     </Provider>
   );
