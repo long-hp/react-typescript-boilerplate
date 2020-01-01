@@ -29,20 +29,6 @@ declare global {
     data: TData;
   }
 
-  // Axios
-  declare interface AxiosData<TData> {
-    status: 'success' | 'error';
-    error: string;
-    data: TData;
-  }
-  declare interface AxiosResponse<TData> {
-    status: number;
-    data: AxiosData<TData>;
-  }
-  declare interface AxiosError {
-    response: object;
-  }
-
   // Support flowtype
   declare type React$Node = React.ReactNode;
   declare type $Shape = Partial;

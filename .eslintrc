@@ -16,7 +16,7 @@
   "parserOptions": {
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "import"],
+  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "import", "react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -28,18 +28,14 @@
     "react/jsx-boolean-value": "off",
     "react/forbid-prop-types": "off",
     "react/prefer-stateless-function": "off",
+    "react/destructuring-assignment": "error",
     "react/default-props-match-prop-types": [
       "error",
       {
         "allowRequiredDefaults": true
       }
     ],
-    "react/prop-types": [
-      "error",
-      {
-        "ignore": ["strings"]
-      }
-    ],
+    "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/jsx-wrap-multilines": "off",
     "react/sort-comp": [
@@ -86,6 +82,8 @@
         }
       }
     ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
 
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-require-imports": "off",
