@@ -4,7 +4,7 @@ import { createReducer, handleAction, ActionTypes } from 'utils/functions/reduxA
 
 type VideoAction = ActionTypes<typeof getVideo>;
 
-type VideoState = ReducerState<Video>;
+type VideoState = ReducerState<Partial<Video>>;
 
 const initialState: VideoState = {
   data: {},
