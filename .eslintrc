@@ -41,15 +41,7 @@
     "react/sort-comp": [
       1,
       {
-        "order": [
-          "static-methods",
-          "static-variables",
-          "instance-variables",
-          "type-annotations",
-          "lifecycle",
-          "everything-else",
-          "render"
-        ],
+        "order": ["static-methods", "static-variables", "instance-variables", "type-annotations", "lifecycle", "everything-else", "render"],
         "groups": {
           "lifecycle": [
             "displayName",
@@ -85,6 +77,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
 
+    "@typescript-eslint/unified-signatures": "off",
+    "@typescript-eslint/no-throw-literal": "off",
     "@typescript-eslint/member-ordering": "off",
     "@typescript-eslint/no-require-imports": "off",
     "@typescript-eslint/camelcase": "off",

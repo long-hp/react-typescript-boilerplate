@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const EditRuntimeFile = require('./webpack-plugins/EditRuntimeFile');
 const CreateLazyComponent = require('./webpack-plugins/CreateLazyComponent');
 
 const configuration = {
@@ -28,13 +27,7 @@ function rewireProduction(config, type) {
     },
     plugins: [
       ...config.plugins.map((item, index) => {
-        if (
-          !(
-            item.options &&
-            item.options.filename &&
-            item.options.filename.includes('.css')
-          )
-        ) {
+        if (!(item.options && item.options.filename && item.options.filename.includes('.css'))) {
           return item;
         }
         return new MiniCssExtractPlugin({
@@ -42,11 +35,6 @@ function rewireProduction(config, type) {
           chunkFilename: configuration.cssOutput.chunkFilename,
         });
       }),
-      new EditRuntimeFile({
-        filename: 'build/static/js/runtime.js',
-        pathChange: '__HSBLOG__.templateURL',
-      }),
-      new webpack.IgnorePlugin(/redux-logger/),
     ],
     optimization: {
       runtimeChunk: 'single',
@@ -69,12 +57,8 @@ function rewireProduction(config, type) {
                 .split('/')
                 .reduceRight(item => item);
               const allChunksNames = chunks.map(item => item.name).join('~');
-              const packageName = module.context.match(
-                /[\\/]node_modules[\\/](.*?)([\\/]|$)/,
-              )[1];
-              return type === 'function'
-                ? `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`
-                : packageName.replace('@', '');
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return type === 'function' ? `${cacheGroupKey}-${allChunksNames}-${moduleFileName}` : packageName.replace('@', '');
             },
           },
         },
@@ -90,7 +74,7 @@ function rewireDevelopment(config) {
       ...config.plugins,
       new CreateLazyComponent({
         input: 'src/components',
-        output: 'src/components/lazies',
+        output: 'src/lazy',
         autoDeleteFileEnabled: true,
       }),
     ],

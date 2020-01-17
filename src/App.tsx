@@ -1,19 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import axios from 'axios';
 import { store, persistor } from './configureStore';
-import configureApp from 'configureApp.json';
 import TodolistContainer from 'containers/TodolistContainer/TodolistContainer';
 import VideoContainer from 'containers/VideoContainer/VideoContainer';
-import Button from 'components/atoms/Button/Button';
+import Button from 'components/Button/Button';
 import PostTestContainer from 'containers/PostTestContainer/PostTestContainer';
-import GridGeneric from 'components/molecules/GridGeneric/GridGeneric';
-import FuncComp from 'components/molecules/FuncComp/FuncComp';
-
-// Axios defaults
-axios.defaults.baseURL = configureApp.baseUrl;
-axios.defaults.timeout = configureApp.timeout;
+import GridGeneric from 'components/GridGeneric/GridGeneric';
+import FuncComp from 'components/FuncComp/FuncComp';
 
 function App() {
   return (

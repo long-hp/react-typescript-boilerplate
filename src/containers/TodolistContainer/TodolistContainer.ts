@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getTodolist } from 'actions/actionTodolist/actionTodolist';
-import Todolist from 'components/molecules/Todolist/Todolist';
+import { getTodolist } from 'store/actions/actionTodolist/actionTodolist';
+import Todolist from 'components/Todolist/Todolist';
 
 function mapStateToProps({ todolist }: AppState) {
   return {
@@ -9,7 +9,7 @@ function mapStateToProps({ todolist }: AppState) {
 }
 
 const mapDispatchToProps = {
-  getTodolist,
+  getTodolistRequest: getTodolist.request,
 };
 
 export type TodolistProps = Connect<typeof mapStateToProps, typeof mapDispatchToProps>;

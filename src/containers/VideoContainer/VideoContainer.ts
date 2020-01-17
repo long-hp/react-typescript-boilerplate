@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { getVideo } from 'actions/actionVideo/actionVideo';
-import Video from 'components/molecules/Video/Video';
+import { getVideo } from 'store/actions/actionVideo/actionVideo';
+import Video from 'components/Video/Video';
 
 function mapStateToProps({ video }: AppState) {
   return {
@@ -9,7 +9,7 @@ function mapStateToProps({ video }: AppState) {
 }
 
 const mapDispatchToProps = {
-  getVideo,
+  getVideoRequest: getVideo.request,
 };
 
 export type VideoProps = Connect<typeof mapStateToProps, typeof mapDispatchToProps>;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import PostTest from 'components/molecules/PostTest/PostTest';
-import { getPost } from 'actions/actionGetPost/actionGetPost';
+import PostTest from 'components/PostTest/PostTest';
+import { getPostRequest } from 'store/actions/actionGetPost/actionGetPost';
 
 function mapStateToProps({ postTest }: AppState) {
   return {
@@ -9,7 +9,7 @@ function mapStateToProps({ postTest }: AppState) {
 }
 
 const mapDispatchToProps = {
-  getPost,
+  getPostRequest,
 };
 
 export type PostTestProps = Connect<typeof mapStateToProps, typeof mapDispatchToProps>;
