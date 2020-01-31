@@ -28,7 +28,7 @@ if (isDev) {
 
 const store = createStore(reducers, undefined, composeEnhancers(applyMiddleware(...middlewares)));
 sagaMiddleware.run(rootSaga);
-const persistor = persistStore(store);
+const persistor = persistStore(store as any);
 
 export type Reducers = ReturnType<typeof _combineReducers>;
 
