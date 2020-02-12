@@ -1,9 +1,7 @@
 import { all, call, spawn, delay } from 'redux-saga/effects';
-import watchTodolist from 'store/sagas/sagaTodolist/sagaTodolist';
-import watchVideo from 'store/sagas/sagaVideo/sagaVideo';
-import watchGetPost from 'store/sagas/sageGetPost/sageGetPost';
+import { sagaHome } from 'pages/HomePage/sagas/sagaHome';
 
-const sagas = [watchTodolist, watchVideo, watchGetPost];
+const sagas = [...sagaHome];
 
 // https://github.com/redux-saga/redux-saga/issues/760#issuecomment-273737022
 const makeRestartable = (saga: any) => {
