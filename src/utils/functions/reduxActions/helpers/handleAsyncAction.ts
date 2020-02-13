@@ -17,17 +17,17 @@ import { Action, HandleActionCallback } from '../types';
  * const homePage = createReducer<HomeState, HomeAction>(initialState, [
  *   handleAction('getHomeRequest', state => ({
  *     ...state,
- *     status: 'loading',
+ *     isLoading: true,
  *   })),
  *   handleAction('getHomeSuccess', (state, action) => ({
  *     ...state,
- *     status: 'success',
+ *     isLoading: false,
  *     data: action.payload,
  *   })),
  *   handleAction('getHomeFailure', (state, action) => ({
  *     ...state,
- *     status: 'failure',
- *     message: action.payload,
+ *     isLoading: false,
+ *     errorMessage: action.payload,
  *   })),
  * ]);
  * ```
@@ -51,21 +51,21 @@ export function handleAsyncAction<
       ? { [types[0]]: asyncActionOverride.request }
       : handleAction<TState, TAction, TAction['type']>(types[0], state => ({
           ...state,
-          status: 'loading',
+          isLoading: true,
         })),
     !!asyncActionOverride?.success
       ? { [types[1]]: asyncActionOverride.success }
       : handleAction<TState, TAction, TAction['type']>(types[1], (state, action) => ({
           ...state,
-          status: 'success',
+          isLoading: false,
           data: action.payload,
         })),
     !!asyncActionOverride?.failure
       ? { [types[2]]: asyncActionOverride.failure }
       : handleAction<TState, TAction, TAction['type']>(types[2], (state, action) => ({
           ...state,
-          status: 'failure',
-          message: action.payload,
+          isLoading: false,
+          errorMessage: action.payload,
         })),
   ];
 }
