@@ -7,7 +7,7 @@ import { getTodolist } from 'pages/HomePage/actions/actionTodolist';
 
 function* sagaTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
   try {
-    const res: AxiosResponse<TodolistItem[]> = yield call(fetchAPI, { method: 'GET', url: payload });
+    const res: AxiosResponse<TodolistItem[]> = yield call(fetchAPI.request, { url: payload });
     yield put(getTodolist.success(res.data));
   } catch (err) {
     yield put(getTodolist.failure('Loi cmmnr'));
