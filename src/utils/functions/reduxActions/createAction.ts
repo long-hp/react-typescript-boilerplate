@@ -41,7 +41,7 @@ export function createAction<TActionType extends Type, TCallbackParams extends a
   callback: ((...payload: TCallbackParams) => TCallbackReturn) | undefined,
 ) {
   return (...payload: TCallbackParams) => {
-    if (typeof callback !== 'function') {
+    if (typeof callback !== 'function' || payload.length === 0) {
       return {
         type,
       };

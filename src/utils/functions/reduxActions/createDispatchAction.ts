@@ -1,9 +1,4 @@
-import { useDispatch } from 'react-redux';
-
-function Dispatcher<TPayload extends any[], TAction>(action: (...payload: TPayload) => TAction) {
-  const dispatch = useDispatch();
-  return (...payload: TPayload) => dispatch(action(...payload));
-}
+import { Dispatcher } from './dispatcher';
 
 export function createDispatchAction<TPayload, TAction>(action: () => TAction): () => () => TAction;
 
