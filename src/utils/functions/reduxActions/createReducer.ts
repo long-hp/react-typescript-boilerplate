@@ -1,6 +1,16 @@
 import { Action, HandleAction } from './types';
 import { getObjectFromHandleActions } from './getObjectFromHandleActions';
 
+export function createReducer<TState, TAction extends Action>(
+  initialState: TState,
+  handleActions: HandleAction<TState, TAction>[],
+): (state: TState | undefined, action: Extract<TAction, { type: TAction['type'] }>) => TState;
+
+export function createReducer<TState, TAction extends Action>(
+  initialState: TState,
+  objectAction: HandleAction<TState, TAction>,
+): (state: TState | undefined, action: Extract<TAction, { type: TAction['type'] }>) => TState;
+
 /**
  * @description Redux create reducer
  * @param initialState Reducer state
@@ -21,6 +31,7 @@ import { getObjectFromHandleActions } from './getObjectFromHandleActions';
  *  title: 'example title',
  * }
  *
+ * // using with handleAction and handleActions
  * const reducer = createReducer<ExampleState, ExampleAction>(initialState, [
  *  handleAction('type', (state, action) => ({
  *    ...state,
@@ -31,10 +42,25 @@ import { getObjectFromHandleActions } from './getObjectFromHandleActions';
  *    ...
  *  }))
  * ])
+ *
+ * // using with object action
+ * const reducer = createReducer<ExampleState, ExampleAction>(initialState, {
+ *  type: (state, action) => ({
+ *    ...state,
+ *    ...
+ *  }),
+ *  type_2: (state, action) => ({
+ *    ...state,
+ *    ...
+ *  })
+ * })
  * ```
  */
-export function createReducer<TState, TAction extends Action>(initialState: TState, handleActions: HandleAction<TState, TAction>[]) {
-  const objectActions = getObjectFromHandleActions(handleActions);
+export function createReducer<TState, TAction extends Action>(
+  initialState: TState,
+  handleActions: HandleAction<TState, TAction> | HandleAction<TState, TAction>[],
+) {
+  const objectActions = Array.isArray(handleActions) ? getObjectFromHandleActions(handleActions) : handleActions;
   return (state = initialState, action: Extract<TAction, { type: TAction['type'] }>): TState => {
     const { type } = action;
     const callback = objectActions[type];
