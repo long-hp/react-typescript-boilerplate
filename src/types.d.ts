@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Reducers } from './configureStore';
+import { Reducers } from './store/configureStore';
 
 declare global {
   declare type AppState = Reducers;

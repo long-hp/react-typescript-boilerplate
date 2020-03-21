@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CreateLazyComponent = require('./webpack-plugins/CreateLazyComponent');
 
 const configuration = {
   jsOutput: {
@@ -68,17 +67,7 @@ function rewireProduction(config, type) {
 }
 
 function rewireDevelopment(config) {
-  return {
-    ...config,
-    plugins: [
-      ...config.plugins,
-      new CreateLazyComponent({
-        input: 'src/components',
-        output: 'src/lazy',
-        autoDeleteFileEnabled: true,
-      }),
-    ],
-  };
+  return config;
 }
 
 module.exports = function override(config, env) {

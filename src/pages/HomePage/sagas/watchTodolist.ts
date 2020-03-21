@@ -5,7 +5,7 @@ import fetchAPI from 'utils/functions/fetchAPI';
 import { getActionType } from 'utils/functions/reduxActions';
 import { getTodolist } from 'pages/HomePage/actions/actionTodolist';
 
-function* sagaTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
+function* handleTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
   try {
     const res: AxiosResponse<TodolistItem[]> = yield call(fetchAPI.request, { url: payload });
     yield put(getTodolist.success(res.data));
@@ -15,5 +15,5 @@ function* sagaTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
 }
 
 export default function* watchTodolist() {
-  yield takeLatest(getActionType(getTodolist.request), sagaTodolist);
+  yield takeLatest(getActionType(getTodolist.request), handleTodolist);
 }
