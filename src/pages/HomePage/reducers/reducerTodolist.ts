@@ -7,7 +7,7 @@ type TodolistAction = ActionTypes<typeof getTodolist>;
 interface TodolistState {
   isLoading: boolean;
   errorMessage: string;
-  data: Partial<TodolistItem>[];
+  data: TodolistItem[];
 }
 
 const initialState: TodolistState = {
