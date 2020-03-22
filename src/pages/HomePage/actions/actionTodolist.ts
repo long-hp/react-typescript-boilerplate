@@ -3,9 +3,9 @@ import { createAsyncAction, createDispatchAction } from 'utils/functions/reduxAc
 import { TodolistEndpoint } from 'api/Endpoint';
 
 export const getTodolist = createAsyncAction(['@getTodolistRequest', '@getTodolistSuccess', '@getTodolistFailure'])<
-  TodolistEndpoint,
-  TodolistItem[],
-  string
+  { endpoint: TodolistEndpoint },
+  { data: TodolistItem[] },
+  { message: string }
 >();
 
 export const useGetTodolistRequest = createDispatchAction(getTodolist.request);

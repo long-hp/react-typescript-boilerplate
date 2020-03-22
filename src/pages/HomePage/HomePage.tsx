@@ -10,7 +10,7 @@ const HomePage: FC = () => {
   const getTodolistRequest = useGetTodolistRequest();
 
   const handleGetTodolist = () => {
-    getTodolistRequest('todolist');
+    getTodolistRequest({ endpoint: 'todolist' });
   };
 
   if (todolist.isLoading) {

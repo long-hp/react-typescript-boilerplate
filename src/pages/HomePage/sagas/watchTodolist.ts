@@ -7,10 +7,12 @@ import { getTodolist } from 'pages/HomePage/actions/actionTodolist';
 
 function* handleTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
   try {
-    const res: AxiosResponse<TodolistItem[]> = yield call(fetchAPI.request, { url: payload });
-    yield put(getTodolist.success(res.data));
+    const res: AxiosResponse<TodolistItem[]> = yield call(fetchAPI.request, {
+      url: payload.endpoint,
+    });
+    yield put(getTodolist.success({ data: res.data }));
   } catch (err) {
-    yield put(getTodolist.failure('Loi cmmnr'));
+    yield put(getTodolist.failure({ message: 'Loi cmmnr' }));
   }
 }
 
