@@ -1,5 +1,6 @@
 import { Action, HandleAction } from './types';
 import { getObjectFromHandleActions } from './getObjectFromHandleActions';
+import { immutableState } from './immutableState';
 
 export function createReducer<TState, TAction extends Action>(
   initialState: TState,
@@ -64,6 +65,6 @@ export function createReducer<TState, TAction extends Action>(
   return (state = initialState, action: Extract<TAction, { type: TAction['type'] }>): TState => {
     const { type } = action;
     const callback = objectActions[type];
-    return typeof callback === 'function' ? callback(state, action) : state;
+    return typeof callback === 'function' ? callback(immutableState(state), action) : state;
   };
 }
