@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import HomePage from 'pages/HomePage/HomePage';
-import AboutPage from 'pages/AboutPage/AboutPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+
+const HomePage = lazy(() => import(/* webpackChunkName: "HomePage" */ 'containers/HomePage/HomePage'));
+const AboutPage = lazy(() => import(/* webpackChunkName: "AboutPage" */ 'containers/AboutPage/AboutPage'));
+const NotFoundPage = lazy(() => import(/* webpackChunkName: "NotFoundPage" */ 'containers/NotFoundPage/NotFoundPage'));
 
 const Routes = () => {
   return (
@@ -14,13 +15,19 @@ const Routes = () => {
       <main>
         <Switch>
           <Route path="/" exact>
-            <HomePage />
+            <Suspense fallback={<div>Loading...</div>}>
+              <HomePage />
+            </Suspense>
           </Route>
           <Route path="/about">
-            <AboutPage />
+            <Suspense fallback={<div>Loading...</div>}>
+              <AboutPage />
+            </Suspense>
           </Route>
           <Route>
-            <NotFoundPage />
+            <Suspense fallback={<div>Loading...</div>}>
+              <NotFoundPage />
+            </Suspense>
           </Route>
         </Switch>
       </main>

@@ -1,4 +1,4 @@
-export function immutableState<T extends any>(state: T): T;
+export function immutableState<T>(state: T): T;
 
 /**
  * Redux immutable state
@@ -9,7 +9,7 @@ export function immutableState<T extends any>(state: T): T;
  * const newState = immutableState(state);
  * ```
  */
-export function immutableState<T extends any>(state: T) {
+export function immutableState<T>(state: T) {
   if (Array.isArray(state)) {
     return [...state];
   }
