@@ -1,5 +1,3 @@
-import { Middleware, Reducer, StateFromReducersMapObject } from 'redux';
-
 export type Type = string;
 
 export interface Action {
@@ -29,16 +27,3 @@ export type ActionTypes<TTypeOfActions extends any> = TTypeOfActions extends Act
   : TTypeOfActions extends infer R
   ? never
   : never;
-
-export interface ConfigureStoreParams<R> {
-  reducer: R;
-  middlewares: Middleware[];
-  devTools: boolean;
-  persist?: {
-    persistReducer: Function;
-    persistStore: Function;
-    config: any;
-  };
-}
-
-export type ReducerType<R extends object> = ReturnType<Reducer<StateFromReducersMapObject<R>>>;
