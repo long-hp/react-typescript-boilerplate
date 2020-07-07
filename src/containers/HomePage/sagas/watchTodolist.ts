@@ -3,7 +3,7 @@ import { AxiosResponse } from 'axios';
 import { TodolistItem } from 'api/Todolist';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { getActionType } from 'utils/functions/reduxActions';
-import { getTodolist } from 'pages/HomePage/actions/actionTodolist';
+import { getTodolist } from 'containers/HomePage/actions/actionTodolist';
 
 function* handleTodolist({ payload }: ReturnType<typeof getTodolist.request>) {
   try {

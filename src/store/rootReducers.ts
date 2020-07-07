@@ -1,4 +1,4 @@
-import { todolist } from 'pages/HomePage/reducers/reducerTodolist';
+import { todolist } from 'containers/HomePage/reducers/reducerTodolist';
 
 const reducers = {
   todolist,
