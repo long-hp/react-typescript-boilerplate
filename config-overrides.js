@@ -51,6 +51,10 @@ function rewireProduction(config, type) {
               return chunk.name === 'main';
             },
             name(module, chunks, cacheGroupKey) {
+              // check import module in styles
+              if (module.context.includes('src/styles')) {
+                return '_vendors';
+              }
               const moduleFileName = module
                 .identifier()
                 .split('/')
