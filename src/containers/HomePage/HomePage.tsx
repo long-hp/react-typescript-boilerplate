@@ -13,20 +13,24 @@ const HomePage: FC = () => {
     getTodolistRequest({ endpoint: 'todolist' });
   };
 
-  if (todolist.isLoading) {
-    return <h2>Loading...</h2>;
-  }
+  const renderTodolist = () => {
+    if (todolist.isLoading) {
+      return <h2>Loading...</h2>;
+    }
 
-  if (!!todolist.errorMessage) {
-    return <h2>{todolist.errorMessage}</h2>;
-  }
+    if (!!todolist.errorMessage) {
+      return <h2>{todolist.errorMessage}</h2>;
+    }
+
+    return <div>{JSON.stringify(todolist.data)}</div>;
+  };
 
   return (
     <div>
       <h1>HomePage</h1>
       <button onClick={handleGetTodolist}>Get todolist</button>
       <h2>Grid generic type</h2>
-      <div>{JSON.stringify(todolist.data)}</div>
+      {renderTodolist()}
       <GridGeneric
         data={[
           { id: 'id1', name: 'foo' },
