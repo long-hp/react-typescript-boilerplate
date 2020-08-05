@@ -1,6 +1,10 @@
 import { Action, HandleAction, HandleActionCallback } from './types';
 import { COMMA } from './constants';
 
+export function joinKeyName<TAction extends Action>(key: TAction['type'], name: string) {
+  return `${!!name ? `${name}/` : ''}${key}`;
+}
+
 /**
  * @description array `handleAction` function -> object with `key = handleAction type` and `value = handleAction callback`
  * @param handleActions array `handleAction` function
@@ -34,6 +38,7 @@ import { COMMA } from './constants';
  */
 export function getObjectFromHandleActions<TState, TAction extends Action>(
   handleActions: HandleAction<TState, TAction>[],
+  name = '',
 ): HandleAction<TState, TAction> {
   return handleActions.reduce((acc, handleAction) => {
     const [key]: TAction['type'][] = Object.keys(handleAction);
@@ -42,7 +47,7 @@ export function getObjectFromHandleActions<TState, TAction extends Action>(
     if (!key.includes(COMMA)) {
       return {
         ...acc,
-        [key]: callback,
+        [joinKeyName(key, name)]: callback,
       };
     }
     return {
@@ -50,7 +55,7 @@ export function getObjectFromHandleActions<TState, TAction extends Action>(
       ...key.split(COMMA).reduce(
         (acc, key) => ({
           ...acc,
-          [key]: callback,
+          [joinKeyName(key, name)]: callback,
         }),
         {},
       ),

@@ -17,16 +17,16 @@ const initialState: TodolistState = {
 };
 
 export const todolist = createReducer<TodolistState, TodolistAction>(initialState, [
-  handleAction('@getTodolistRequest', state => ({
+  handleAction('@getTodolistRequest', ({ state }) => ({
     ...state,
     isLoading: true,
   })),
-  handleAction('@getTodolistSuccess', (state, action) => ({
+  handleAction('@getTodolistSuccess', ({ state, action }) => ({
     ...state,
     isLoading: false,
     data: action.payload.data,
   })),
-  handleAction('@getTodolistFailure', (state, action) => ({
+  handleAction('@getTodolistFailure', ({ state, action }) => ({
     ...state,
     isLoading: false,
     errorMessage: action.payload.message,

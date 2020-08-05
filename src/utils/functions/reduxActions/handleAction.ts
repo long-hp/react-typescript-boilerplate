@@ -7,7 +7,7 @@ import { Action, HandleActionCallback } from './types';
  * @example
  * ```typescript
  * const reducer = createReducer<ExampleState, ExampleAction>(initialState, [
- *  handleAction('type', (state, action) => ({
+ *  handleAction('type', ({ state, action }) => ({
  *    ...state,
  *    ...
  *  })),

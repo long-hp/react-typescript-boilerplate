@@ -8,7 +8,7 @@ import { COMMA } from './constants';
  * @example
  * ```typescript
  * const reducer = createReducer<ExampleState, ExampleAction>(initialState, [
- *  handleActions(['type_1', 'type_2'], (state, action) => ({
+ *  handleActions(['type_1', 'type_2'], ({ state, action }) => ({
  *    ...state,
  *    ...
  *  })),

@@ -7,10 +7,13 @@ export interface Action {
 
 export type CreateActionCallBack = undefined | (() => void);
 
-export type HandleActionCallback<TState, TAction extends Action, TKey extends TAction['type']> = (
-  state: TState,
-  action: Extract<TAction, { type: TKey }>,
-) => TState;
+export type HandleActionCallback<TState, TAction extends Action, TKey extends TAction['type']> = ({
+  state,
+  action,
+}: {
+  state: TState;
+  action: Extract<TAction, { type: TKey }>;
+}) => TState;
 
 export type HandleAction<TState, TAction extends Action> = {
   [TKey in TAction['type']]?: HandleActionCallback<TState, TAction, TKey>;

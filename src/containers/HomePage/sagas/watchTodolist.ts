@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { AxiosResponse } from 'axios';
 import { TodolistItem } from 'api/Todolist';
+import { AxiosResponse } from 'axios';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { getActionType } from 'utils/functions/reduxActions';
 import { getTodolist } from 'containers/HomePage/actions/actionTodolist';
