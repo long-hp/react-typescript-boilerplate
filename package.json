@@ -7,7 +7,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
-    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx",
+    "eslint": "eslint src/**/*.{js,jsx,ts,tsx} --quiet --fix",
     "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
     "prettier": "prettier --ignore-path .eslintignore --parser json --write",
     "test-all": "yarn eslint && yarn test:nowatch",

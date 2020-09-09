@@ -1,9 +1,15 @@
 {
+  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "import", "react-hooks", "prettier"],
   "env": {
     "es6": true,
     "node": true
   },
-  "extends": ["plugin:@typescript-eslint/all"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
@@ -16,7 +22,6 @@
   "parserOptions": {
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "react", "jsx-a11y", "import", "react-hooks"],
   "rules": {
     "react/jsx-filename-extension": [
       1,
@@ -77,6 +82,9 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
 
+    "import/order": ["error", { "groups": ["builtin", "internal", "external", "index", "parent", "sibling"] }],
+    "@typescript-eslint/prefer-reduce-type-parameter": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
     "@typescript-eslint/no-invalid-this": "off",
     "@typescript-eslint/init-declarations": "off",
     "@typescript-eslint/method-signature-style": "off",
