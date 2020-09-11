@@ -1,9 +1,22 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import HomePage from 'containers/HomePage/HomePage';
+import AboutPage from 'containers/AboutPage/AboutPage';
+import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
+import { Page } from './types';
 
-const HomePage = lazy(() => import(/* webpackChunkName: "HomePage" */ 'containers/HomePage/HomePage'));
-const AboutPage = lazy(() => import(/* webpackChunkName: "AboutPage" */ 'containers/AboutPage/AboutPage'));
-const NotFoundPage = lazy(() => import(/* webpackChunkName: "NotFoundPage" */ 'containers/NotFoundPage/NotFoundPage'));
+export const pages: Page[] = [
+  {
+    path: '/',
+    exact: true,
+    component: HomePage,
+  },
+  {
+    path: '/about',
+    exact: true,
+    component: AboutPage,
+  },
+];
 
 const Routes = () => {
   return (
@@ -14,21 +27,10 @@ const Routes = () => {
       </header>
       <main>
         <Switch>
-          <Route path="/" exact>
-            <Suspense fallback={<div>Loading...</div>}>
-              <HomePage />
-            </Suspense>
-          </Route>
-          <Route path="/about">
-            <Suspense fallback={<div>Loading...</div>}>
-              <AboutPage />
-            </Suspense>
-          </Route>
-          <Route>
-            <Suspense fallback={<div>Loading...</div>}>
-              <NotFoundPage />
-            </Suspense>
-          </Route>
+          {pages.map(({ component, path, exact }) => {
+            return <Route key={path} component={component} exact={exact} path={path} />;
+          })}
+          <Route component={NotFoundPage} />
         </Switch>
       </main>
       <footer></footer>

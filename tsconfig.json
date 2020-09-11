@@ -1,5 +1,5 @@
 {
-  "extends": "./wil.tsconfig.json",
+  "extends": "./tsconfig.custom.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

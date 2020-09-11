@@ -1,6 +1,7 @@
 const webpack = require('webpack');
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const alias = require('./webpack.alias');
+const alias = require('./webpack.alias.json');
 
 const configuration = {
   jsOutput: {
@@ -76,7 +77,10 @@ function rewireDevelopment(config) {
     ...config,
     resolve: {
       ...config.resolve,
-      alias
+      alias: Object.entries(alias).reduce((obj, [key, value]) => ({
+        ...obj,
+        [key]: path.resolve(__dirname, value)
+      }), {})
     }
   };
 }
