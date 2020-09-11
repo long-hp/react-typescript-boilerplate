@@ -1,6 +1,6 @@
+import configureApp from 'configureApp.json';
 import qs from 'qs';
 import { CANCEL } from 'redux-saga';
-import configureApp from 'configureApp.json';
 import ConfigureAxios from './ConfigureAxios';
 
 interface RefreshTokenResponseData {

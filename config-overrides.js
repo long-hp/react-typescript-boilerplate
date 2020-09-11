@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const alias = require('./webpack.alias');
 
 const configuration = {
   jsOutput: {
@@ -71,7 +72,13 @@ function rewireProduction(config, type) {
 }
 
 function rewireDevelopment(config) {
-  return config;
+  return {
+    ...config,
+    resolve: {
+      ...config.resolve,
+      alias
+    }
+  };
 }
 
 module.exports = function override(config, env) {
