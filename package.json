@@ -8,13 +8,16 @@
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "eslint": "eslint src/**/*.{ts,tsx} --quiet --fix",
-    "test:nowatch": "cross-env CI=true react-scripts test --env=jsdom",
+    "test:nowatch": "cross-env CI=true yarn test --env=jsdom",
     "prettier": "prettier --ignore-path .eslintignore --parser json --write",
     "test-all": "yarn eslint && yarn test:nowatch",
     "tsc": "tsc",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "release": "yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip"
+    "release": "yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "storybook-docs": "start-storybook --docs"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -63,6 +66,20 @@
     "reselect": "^4.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-docs": "^5.3.19",
+    "@storybook/addon-jest": "5.3.19",
+    "@storybook/addon-knobs": "^6.0.3",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addon-storysource": "5.3.19",
+    "@storybook/addon-viewport": "^6.0.4",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/components": "^5.3.19",
+    "@storybook/preset-create-react-app": "^3.1.4",
+    "@storybook/preset-typescript": "^3.0.0",
+    "@storybook/react": "^5.3.19",
+    "@storybook/source-loader": "5.3.19",
+    "@storybook/theming": "^6.0.21",
     "@types/axios": "^0.14.0",
     "@types/jest": "24.0.23",
     "@types/node": "12.12.9",
@@ -81,6 +98,7 @@
     "@typescript-eslint/eslint-plugin": "^2.8.0",
     "@typescript-eslint/parser": "^2.8.0",
     "@typescript-eslint/typescript-estree": "^2.8.0",
+    "chromatic": "^5.1.0",
     "cross-env": "^6.0.3",
     "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",

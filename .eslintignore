@@ -46,5 +46,4 @@ package.json
 .travis.yml
 .cỉcleci
 config-overrides.js
-webpack.alias.js
 webpack-plugins

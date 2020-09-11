@@ -2,6 +2,7 @@ import React from 'react';
 import { hydrate, render } from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
+import './styles/main.scss';
 
 const isDev = process.env.NODE_ENV === 'development';
 const rootElement = document.getElementById('root') as HTMLElement;

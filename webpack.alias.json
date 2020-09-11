@@ -11,5 +11,6 @@
   "templates": "./src/templates",
   "layouts": "./src/layouts",
   "shared": "./src/shared",
+  "stories": "./src/stories",
   "configureApp.json": "./src/configureApp.json"
 }
