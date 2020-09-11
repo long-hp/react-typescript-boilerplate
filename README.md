@@ -1,16 +1,25 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## React typescript boilerplate (overrides [Create React App](https://github.com/facebook/create-react-app))
 
-In the project directory, you can run:
+Reactjs, redux, redux-saga, redux-persist, redux-logger, react-router, axios, typescript, storybook
 
-### `yarn start`
+## Start project
+
+### `yarn start` or `npm start`
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
+
+### `yarn storybook` or `npm run storybook`
+
+Runs the [Storybook](https://storybook.js.org).<br />
+Open [http://localhost:9009](http://localhost:9009) to view it in the browser.
+
+Deploy storybook and check UI with Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-jyemwbgkan.chromatic.com/?path=/story/start-welcome--to-storybook)
 
 ### `yarn test`
 

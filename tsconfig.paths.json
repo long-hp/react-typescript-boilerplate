@@ -5,6 +5,9 @@
     "experimentalDecorators": true,
     "isolatedModules": false,
     "jsx": "react",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["./@types/*", "*"]
+    }
   }
 }

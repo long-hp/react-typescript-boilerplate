@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import GridGeneric from 'components/GridGeneric/GridGeneric';
-import FuncComp from 'components/FuncComp/FuncComp';
 import { useSelector } from 'react-redux';
 import { todolistSelector } from './selectors';
 import { useGetTodolistRequest } from './actions/actionTodolist';
@@ -40,8 +39,6 @@ const HomePage: FC = () => {
           return <div>{item.name}</div>;
         }}
       />
-      <h2>Function commponent</h2>
-      <FuncComp title="title" text="function component text" />
     </div>
   );
 };
