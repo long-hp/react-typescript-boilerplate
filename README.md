@@ -19,6 +19,8 @@ You will also see any lint errors in the console.
 Runs the [Storybook](https://storybook.js.org).<br />
 Open [http://localhost:9009](http://localhost:9009) to view it in the browser.
 
+Deploy storybook and check UI with Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-jyemwbgkan.chromatic.com/?path=/story/start-welcome--to-storybook)
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
