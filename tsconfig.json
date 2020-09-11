@@ -1,5 +1,5 @@
 {
-  "extends": "./tsconfig.custom.json",
+  "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
