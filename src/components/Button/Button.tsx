@@ -19,7 +19,6 @@ export interface ButtonProps {
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 
-/** Component `button` có thể là thẻ a hoặc thẻ button */
 const Button: FC<ButtonProps> = ({ children, href, style, className, type = 'button', onClick, size = 'medium' }) => {
   const generalProps = { style, className: classNames(styles.container, className, styles[size]) };
   if (!!href) {
