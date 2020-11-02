@@ -1,5 +1,5 @@
 import { ActionTypes, createReducer, handleAction } from 'utils/functions/reduxActions';
-import { TodolistItem } from 'utils/api/Todolist';
+import { TodolistItem } from 'types/api/Todolist';
 import { getTodolist } from '../actions/actionTodolist';
 
 type TodolistAction = ActionTypes<typeof getTodolist>;

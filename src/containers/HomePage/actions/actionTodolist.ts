@@ -1,6 +1,6 @@
-import { TodolistItem } from 'utils/api/Todolist';
+import { TodolistItem } from 'types/api/Todolist';
 import { createAsyncAction, createDispatchAction } from 'utils/functions/reduxActions';
-import { TodolistEndpoint } from 'utils/api/Endpoint';
+import { TodolistEndpoint } from 'types/api/Endpoint';
 
 export const getTodolist = createAsyncAction(['@getTodolistRequest', '@getTodolistSuccess', '@getTodolistFailure'])<
   { endpoint: TodolistEndpoint },
