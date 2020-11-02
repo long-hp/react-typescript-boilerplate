@@ -24,10 +24,6 @@
       "yarn eslint",
       "git add"
     ],
-    "{*.json,.{babelrc,eslintrc,prettierrc}}": [
-      "prettier --ignore-path .eslintignore --parser json --write",
-      "git add"
-    ],
     "*.{test.ts,test.tsx}": [
       "yarn test:nowatch",
       "git add"
@@ -109,7 +105,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.3.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^3.1.0",
     "lint-staged": "8.1.7",
     "node-sass": "^4.13.0",
