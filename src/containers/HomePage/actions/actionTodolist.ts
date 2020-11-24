@@ -1,6 +1,6 @@
-import { TodolistItem } from 'types/api/Todolist';
+import { TodolistItem } from 'models/Todolist';
 import { createAsyncAction, createDispatchAction } from 'wiloke-react-core/utils';
-import { TodolistEndpoint } from 'types/api/Endpoint';
+import { TodolistEndpoint } from 'models/Endpoint';
 
 export const getTodolist = createAsyncAction(['@getTodolistRequest', '@getTodolistSuccess', '@getTodolistFailure'])<
   { endpoint: TodolistEndpoint },

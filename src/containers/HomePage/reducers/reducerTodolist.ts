@@ -1,5 +1,5 @@
 import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
-import { TodolistItem } from 'types/api/Todolist';
+import { TodolistItem } from 'models/Todolist';
 import { getTodolist } from '../actions/actionTodolist';
 
 type TodolistAction = ActionTypes<typeof getTodolist>;
