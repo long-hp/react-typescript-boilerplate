@@ -40,10 +40,10 @@ function rewireProduction(config, type) {
       runtimeChunk: 'single',
       splitChunks: {
         maxInitialRequests: Infinity,
-        minSize: 10000,
-        chunks(chunk) {
-          return !chunk.name.includes('Lazy');
-        },
+        minSize: 40000,
+        // chunks(chunk) {
+        //   return !chunk.name.includes('Lazy');
+        // },
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,

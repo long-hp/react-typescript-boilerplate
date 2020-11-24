@@ -1,0 +1,24 @@
+@import "styles/abstracts/abstracts.scss";
+
+.iconWrap {
+  position: relative;
+  width: px(92);
+  height: px(92);
+  border-radius: 50%;
+  margin-bottom: px(20);
+}
+
+.icon {
+  @include autoDirection((
+    margin-left: px(24)
+  ))
+}
+
+.quote {
+  font-size: px(16);
+  margin-bottom: px(28);
+}
+
+.cite {
+  font-size: px(15);
+}

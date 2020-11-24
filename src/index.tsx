@@ -3,6 +3,10 @@ import { hydrate, render } from 'react-dom';
 import * as serviceWorker from 'serviceWorker';
 import App from 'App';
 import './styles/main.scss';
+import { useDispatch } from 'react-redux';
+import { getUseDispatchRedux } from 'wiloke-react-core/utils';
+
+getUseDispatchRedux(useDispatch);
 
 const isDev = process.env.NODE_ENV === 'development';
 const rootElement = document.getElementById('root') as HTMLElement;

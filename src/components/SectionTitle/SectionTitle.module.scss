@@ -1,0 +1,13 @@
+@import 'styles/abstracts/abstracts.scss';
+
+.title {
+  @include pfs('font-size', (
+    1200px: 40px,
+    400px: 20px
+  ))
+}
+
+.text {
+  font-size: px(16);
+  margin-top: px(10);
+}

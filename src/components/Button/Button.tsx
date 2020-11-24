@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC, ReactNode, ButtonHTMLAttributes, DOMAttributes } from 'react';
-import classNames from 'utils/functions/classNames';
+import { classNames } from 'wiloke-react-core/utils';
 import styles from './Button.module.scss';
 
 export interface ButtonProps {

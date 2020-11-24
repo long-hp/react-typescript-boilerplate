@@ -1,0 +1,10 @@
+@import 'styles/abstracts/abstracts.scss';
+
+body {
+  font-family: $font-primary;
+  font-size: px(14);
+  line-height: 1.5;
+  color: $color-dark-4;
+  font-weight: 400;
+  background-color: $color-light;
+}
