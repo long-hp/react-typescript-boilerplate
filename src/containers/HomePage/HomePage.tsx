@@ -279,7 +279,7 @@ const HomePage: FC = () => {
                 text="Có đủ các thể loại màu social có sẵn trong các components"
               />
             </View>
-            <View tachyons={['flex', 'justify-center', 'items-center']}>
+            <View tachyons={['flex', 'flex-wrap', 'justify-center', 'items-center']}>
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="facebook">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
