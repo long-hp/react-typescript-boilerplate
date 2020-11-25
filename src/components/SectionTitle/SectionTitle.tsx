@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, ViewProps } from 'wiloke-react-core';
+import { View, Text, ViewProps, useResponsive } from 'wiloke-react-core';
 import styles from './SectionTitle.module.scss';
 
 export interface SectionTitleProps extends ViewProps {
@@ -8,13 +8,15 @@ export interface SectionTitleProps extends ViewProps {
 }
 
 const SectionTitle: FC<SectionTitleProps> = ({ title, text, nightModeBlacklist, ...rest }) => {
+  const { ref, size } = useResponsive({ maxWidth: 700 });
+
   return (
-    <View {...rest} nightModeBlacklist={nightModeBlacklist}>
-      <Text tagName="h2" className={styles.title} color="dark1" nightModeBlacklist={nightModeBlacklist}>
+    <View {...rest} nightModeBlacklist={nightModeBlacklist} ref={ref}>
+      <Text tagName="h2" color="dark1" size={size(40)} nightModeBlacklist={nightModeBlacklist}>
         {title}
       </Text>
       {!!text && (
-        <Text className={styles.text} color="dark3" nightModeBlacklist={nightModeBlacklist}>
+        <Text className={styles.text} color="dark3" tachyons="mt2" nightModeBlacklist={nightModeBlacklist}>
           {text}
         </Text>
       )}

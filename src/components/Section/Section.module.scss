@@ -11,10 +11,11 @@
 }
 
 .background {
-  composes: absolute absolute--fill from global;
   z-index: -1;
-  margin: 0 px(15);
   border-radius: px(40);
+  @include media('>lg') {
+    margin: 0 px(15);
+  }
 }
 
 .left {

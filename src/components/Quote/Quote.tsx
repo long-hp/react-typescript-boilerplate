@@ -3,11 +3,8 @@ import { View, LineAwesome, Text, Divider } from 'wiloke-react-core';
 import styles from './Quote.module.scss';
 
 export interface QuoteProps {
-  /** #### Đoạn quote */
   quote: string;
-  /** #### Tên người viết */
   cite: string;
-  /** #### Màu nền cho icon quote */
   iconBackgroundColor?: string;
 }
 

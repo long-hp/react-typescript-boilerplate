@@ -12,7 +12,7 @@ export interface SectionProps {
 const Section: FC<SectionProps> = ({ children, backgroundColor, backgroundType = 'full' }) => {
   return (
     <View tagName="section" className={styles.container}>
-      <View className={classNames(styles.background, styles[backgroundType])} style={{ backgroundColor }} />
+      <View className={classNames(styles.background, styles[backgroundType])} style={{ backgroundColor }} tachyons={['absolute', 'absolute--fill']} />
       {children}
     </View>
   );

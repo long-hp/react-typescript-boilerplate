@@ -1,26 +1,21 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { LineAwesome, View, Text, LineAwesomeName } from 'wiloke-react-core';
-import styles from './IconTextLarge.module.scss';
 
 export interface IconTextLargeProps {
-  /** #### Màu icon */
   iconColor?: string;
-  /** #### Tên icon */
   iconName: LineAwesomeName;
-  /** #### Title của component */
   title: string;
-  /** #### Text của component */
   text: string;
 }
 
 const IconTextLarge: FC<IconTextLargeProps> = ({ iconColor = '#FD9B9B', iconName, title, text }) => {
   return (
-    <View radius={20} backgroundColor="light" className={styles.container}>
-      <View className={styles.icon} tachyons={['flex', 'justify-center', 'items-center', 'br-pill']}>
-        <View className={styles.iconBg} tachyons={['absolute', 'absolute--fill']} style={{ backgroundColor: iconColor }} />
+    <View radius="round" backgroundColor="light" tachyons="pa4">
+      <View tachyons={['flex', 'justify-center', 'items-center', 'br-pill', 'overflow-hidden', 'relative', 'z-5', 'w3', 'h3', 'mb3']}>
+        <View tachyons={['absolute', 'absolute--fill', 'z-0', 'o-20']} style={{ backgroundColor: iconColor }} />
         <LineAwesome name={iconName} size={34} style={{ color: iconColor }} />
       </View>
-      <Text tagName="h2" className={styles.title}>
+      <Text tagName="h2" tachyons={['mb2', 'f4']}>
         {title}
       </Text>
       <Text>{text}</Text>
@@ -28,4 +23,4 @@ const IconTextLarge: FC<IconTextLargeProps> = ({ iconColor = '#FD9B9B', iconName
   );
 };
 
-export default IconTextLarge;
+export default memo(IconTextLarge);

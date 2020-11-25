@@ -1,6 +1,6 @@
 const styles = ``;
 const actions = `
-import { createAsyncAction, createDispatchAsyncAction } from 'wiloke-react-core';
+import { createAsyncAction, createDispatchAsyncAction } from 'wiloke-react-core/utils';
 
 export const action = createAsyncAction(['@Page/actionRequest', '@Page/actionSuccess', '@Page/actionFailure'])<
   { endpoint: string },
@@ -11,7 +11,7 @@ export const action = createAsyncAction(['@Page/actionRequest', '@Page/actionSuc
 export const useAction = createDispatchAsyncAction(action);
 `;
 const reducers = `
-import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core';
+import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
 import { action } from '../actions/actions';
 
 type Action = ActionTypes<typeof action>;
@@ -50,7 +50,7 @@ export default reducer;
 const sagas = `
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { AxiosResponse } from 'axios';
-import { getActionType } from 'wiloke-react-core';
+import { getActionType } from 'wiloke-react-core/utils';
 import fetchAPI from 'utils/functions/fetchAPI';
 import { action } from '../actions/actions';
 
@@ -69,11 +69,7 @@ export default function* watchAction() {
   yield takeLatest(getActionType(action.request), handle);
 }
 `;
-const componentContent = `
-    <div className={styles.container}>
-      Content
-    </div>
-`;
+const componentContent = ``;
 const thunks = ``;
 
 const config = {
