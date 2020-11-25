@@ -283,40 +283,50 @@ const HomePage: FC = () => {
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="facebook">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-                    <LineAwesome name="facebook" tachyons="mr2" />
-                    <Text>Facebook</Text>
+                    <LineAwesome name="facebook" tachyons="mr2" color="light" nightModeBlacklist="color" />
+                    <Text color="light" nightModeBlacklist="color">
+                      Facebook
+                    </Text>
                   </View>
                 </Button>
               </View>
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="twitter">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-                    <LineAwesome name="twitter" tachyons="mr2" />
-                    <Text>Twitter</Text>
+                    <LineAwesome name="twitter" tachyons="mr2" color="light" nightModeBlacklist="color" />
+                    <Text color="light" nightModeBlacklist="color">
+                      Twitter
+                    </Text>
                   </View>
                 </Button>
               </View>
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="dribbble">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-                    <LineAwesome name="dribbble" tachyons="mr2" />
-                    <Text>Dribbble</Text>
+                    <LineAwesome name="dribbble" tachyons="mr2" color="light" nightModeBlacklist="color" />
+                    <Text color="light" nightModeBlacklist="color">
+                      Dribbble
+                    </Text>
                   </View>
                 </Button>
               </View>
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="youtube">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-                    <LineAwesome name="youtube" tachyons="mr2" />
-                    <Text>Youtube</Text>
+                    <LineAwesome name="youtube" tachyons="mr2" color="light" nightModeBlacklist="color" />
+                    <Text color="light" nightModeBlacklist="color">
+                      Youtube
+                    </Text>
                   </View>
                 </Button>
               </View>
               <View tachyons="pa1">
                 <Button radius="round" backgroundColor="tumblr">
                   <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-                    <LineAwesome name="tumblr" tachyons="mr2" />
-                    <Text>Tumblr</Text>
+                    <LineAwesome name="tumblr" tachyons="mr2" color="light" nightModeBlacklist="color" />
+                    <Text color="light" nightModeBlacklist="color">
+                      Tumblr
+                    </Text>
                   </View>
                 </Button>
               </View>
