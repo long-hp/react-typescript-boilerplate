@@ -268,6 +268,62 @@ const HomePage: FC = () => {
             </View>
           </View>
         </Section>
+
+        <Section>
+          <View container>
+            <View row tachyons="justify-center">
+              <SectionTitle
+                columns={[12, 10, 8]}
+                tachyons={['tc', 'mb3', 'mb4-l']}
+                title="Các màu social có sẵn"
+                text="Có đủ các thể loại màu social có sẵn trong các components"
+              />
+            </View>
+            <View tachyons={['flex', 'justify-center', 'items-center']}>
+              <View tachyons="pa1">
+                <Button radius="round" backgroundColor="facebook">
+                  <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
+                    <LineAwesome name="facebook" tachyons="mr2" />
+                    <Text>Facebook</Text>
+                  </View>
+                </Button>
+              </View>
+              <View tachyons="pa1">
+                <Button radius="round" backgroundColor="twitter">
+                  <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
+                    <LineAwesome name="twitter" tachyons="mr2" />
+                    <Text>Twitter</Text>
+                  </View>
+                </Button>
+              </View>
+              <View tachyons="pa1">
+                <Button radius="round" backgroundColor="dribbble">
+                  <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
+                    <LineAwesome name="dribbble" tachyons="mr2" />
+                    <Text>Dribbble</Text>
+                  </View>
+                </Button>
+              </View>
+              <View tachyons="pa1">
+                <Button radius="round" backgroundColor="youtube">
+                  <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
+                    <LineAwesome name="youtube" tachyons="mr2" />
+                    <Text>Youtube</Text>
+                  </View>
+                </Button>
+              </View>
+              <View tachyons="pa1">
+                <Button radius="round" backgroundColor="tumblr">
+                  <View tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
+                    <LineAwesome name="tumblr" tachyons="mr2" />
+                    <Text>Tumblr</Text>
+                  </View>
+                </Button>
+              </View>
+              <Text>Còn nữa...</Text>
+            </View>
+          </View>
+        </Section>
       </View>
     </View>
   );

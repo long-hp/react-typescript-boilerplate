@@ -27,5 +27,5 @@ export const Default = () => {
     action('onChange');
   };
 
-  return <Switch onChange={_handleClick} size={size} checked={checkedState} loading={loading} disabled={disabled} />;
+  return <Switch onChange={_handleClick} size={size} checked={checked} loading={loading} disabled={disabled} />;
 };
