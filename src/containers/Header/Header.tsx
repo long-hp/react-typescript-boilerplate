@@ -1,11 +1,13 @@
 import React, { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Sticky, Switch, SwitchProps, Text, View, ViewProps } from 'wiloke-react-core';
+import { NightModeBlacklist, Sticky, Switch, SwitchProps, Text, View } from 'wiloke-react-core';
 import { useSetNightMode } from './actions/actionNightMode';
 import { useSetDirection } from './slice/sliceDirection';
 
-export interface HeaderProps extends Pick<ViewProps, 'nightModeBlacklist'> {}
+export interface HeaderProps {
+  nightModeBlacklist?: NightModeBlacklist;
+}
 
 const Header: FC<HeaderProps> = ({ nightModeBlacklist }) => {
   const nightMode = useSelector((state: AppState) => state.nightMode);
