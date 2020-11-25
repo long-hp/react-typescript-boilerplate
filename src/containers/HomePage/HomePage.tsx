@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { View, Text, Button, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome } from 'wiloke-react-core';
 import Section from 'components/Section/Section';
-import IconTextLarge from 'components/IconTextLarge/IconTextLarge';
+import IconText from 'components/IconText/IconText';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
-import Quote from 'components/Quote/Quote';
 import { useSelector } from 'react-redux';
 import { range } from 'ramda';
 import { Endpoints } from 'types/Endpoints';
 import Header from 'containers/Header/Header';
+import PostCard from 'components/PostCard/PostCard';
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 
@@ -26,7 +26,7 @@ const HomePage: FC = () => {
 
   return (
     <View>
-      <Header nightModeBlacklist="all" />
+      <Header />
       <View tagName="main">
         <Section>
           <View container>
@@ -43,29 +43,31 @@ const HomePage: FC = () => {
                   <Space size={size(40)} />
                   <Text size={18} color="dark3">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quia animi inventore maxime voluptate asperiores laboriosam
-                    voluptatum voluptas et? Ab inventore odio ipsa suscipit, consequuntur obcaecati corporis eaque ea dolorum?
+                    voluptatum voluptas et? Ab inventore odio ipsa suscipit?
                   </Text>
                   <Space size={size(40)} />
                 </View>
-                <GridSmart columnWidth={200} columnCount={2}>
-                  <Button
-                    loading={todolist.isLoading}
-                    block
-                    radius="round"
-                    size="large"
-                    backgroundColor="primary"
-                    nightModeBlacklist="color"
-                    onClick={_getTodolist}
-                  >
-                    Get Todolist
-                  </Button>
-                  <Button block radius="round" size="large" backgroundColor="gray2" color="dark2">
-                    <View tachyons={['flex', 'items-center', 'justify-center']}>
-                      <Text>Tutorial</Text>
-                      <LineAwesome name="play" tachyons="ml3" size={22} color="tertiary" />
-                    </View>
-                  </Button>
-                </GridSmart>
+                <View tachyons="mw6-l">
+                  <GridSmart columnWidth={200} columnCount={2}>
+                    <Button
+                      loading={todolist.isLoading}
+                      block
+                      radius="round"
+                      size="large"
+                      backgroundColor="primary"
+                      nightModeBlacklist="color"
+                      onClick={_getTodolist}
+                    >
+                      Get Todolist
+                    </Button>
+                    <Button block radius="round" size="large" backgroundColor="gray2" color="dark2">
+                      <View tachyons={['flex', 'items-center', 'justify-center']}>
+                        <Text>Tutorial</Text>
+                        <LineAwesome name="play" tachyons="ml3" size={22} color="tertiary" />
+                      </View>
+                    </Button>
+                  </GridSmart>
+                </View>
               </View>
 
               <Image src="https://image.freepik.com/free-vector/business-agreement-illustration-cartoon-happy-businessman-meeting-with-partner-shaking-hands-with-agreed-contract-document-white_213110-485.jpg" />
@@ -78,7 +80,7 @@ const HomePage: FC = () => {
             <View row tachyons="justify-center">
               <SectionTitle
                 columns={[12, 10, 8]}
-                tachyons={['tc', 'mb4', 'mb5-l']}
+                tachyons={['tc', 'mb3', 'mb4-l']}
                 title="Todolist API"
                 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
               />
@@ -113,89 +115,107 @@ const HomePage: FC = () => {
           </View>
         </Section>
 
-        <Section backgroundColor="#F0F9FE" backgroundType="left">
+        <Section backgroundColor="gray2">
           <View container>
-            <View gridEqual colXs={2}>
-              <View />
-              <Quote
-                quote="Only five stars! and this despite the fact that the topic is still under improvement. I hope future updates will help her become even better. A great team with a great idea of the catalog."
-                cite="Dustin Barnes"
+            <SectionTitle
+              tachyons={['tl', 'mb3', 'mb4-l']}
+              title="Popular Posts"
+              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
+            />
+            <GridSmart columnWidth={300} columnCount={4}>
+              <PostCard
+                imageSrc={`https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                title="Contrary to popular"
+                category="Travel"
               />
-            </View>
+              <PostCard
+                imageSrc={`https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                title="There are many variations"
+                category="Lifestyle"
+              />
+              <PostCard
+                imageSrc={`https://images.pexels.com/photos/3575449/pexels-photo-3575449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                title="All the Lorem Ipsum"
+                category="Hotel"
+              />
+              <PostCard
+                imageSrc={`https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                title="It is a long established"
+                category="Tech"
+              />
+            </GridSmart>
           </View>
         </Section>
-
-        <Space size={30} />
 
         <Section>
           <View container>
             <View row tachyons="justify-center">
               <SectionTitle
                 columns={[12, 10, 8]}
-                tachyons={['tc', 'mb4', 'mb5-l']}
-                title="Grid Smart"
+                tachyons={['tc', 'mb3', 'mb4-l']}
+                title="Gallery"
                 text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
               />
             </View>
-            <GridSmart columnWidth={200} columnCount={4} columnGap={20}>
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
-              <Image src={`https://images.pexels.com/photos/450441/pexels-photo-450441.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940`} />
+            <GridSmart columnWidth={200} columnCount={4}>
+              <Image src={`https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/2226900/pexels-photo-2226900.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/941744/pexels-photo-941744.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/3575449/pexels-photo-3575449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/238622/pexels-photo-238622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/3009324/pexels-photo-3009324.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
+              <Image src={`https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`} />
             </GridSmart>
           </View>
         </Section>
 
-        <Section backgroundColor="#FCF3EC">
+        <Section backgroundColorNative="#FCF3EC">
           <View container>
             <View row tachyons="justify-center">
               <SectionTitle
                 columns={[12, 10, 8]}
-                tachyons={['tc', 'mb4', 'mb5-l']}
+                tachyons={['tc', 'mb3', 'mb4-l']}
                 title="Màu background tự sét"
-                text="Use one of 20.000+ templates and simple drag & drop design tools to help you create beautiful designs in minutes."
+                text="Màu tự sét ( không thuộc màu sắc trong themes ) sẽ không thể tự động thay đổi theo nightMode"
                 nightModeBlacklist="all"
               />
             </View>
             <GridSmart columnWidth={300} columnCount={3}>
-              <IconTextLarge
+              <IconText
                 iconColor="#FD9B9B"
                 iconName="heart-o"
-                title="Favorite Posts"
+                title="Adipisicing elit"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
               />
-              <IconTextLarge
+              <IconText
                 iconColor="#B06BF1"
                 iconName="history"
-                title="Recently Viewed"
+                title="Latin literature"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
               />
-              <IconTextLarge
+              <IconText
                 iconColor="#45CCDB"
-                iconName="archive"
-                title="Awesome Mega Menu"
+                iconName="info"
+                title="Many variations"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
               />
-              <IconTextLarge
+              <IconText
+                iconColor="#e756d4"
+                iconName="archive"
+                title="Desktop publishing"
+                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
+              />
+              <IconText
                 iconColor="#45CCDB"
-                iconName="archive"
-                title="Awesome Mega Menu"
+                iconName="music"
+                title="Veniam possimus"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
               />
-              <IconTextLarge
-                iconColor="#45CCDB"
-                iconName="archive"
-                title="Awesome Mega Menu"
-                text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
-              />
-              <IconTextLarge
-                iconColor="#45db95"
+              <IconText
+                iconColor="#42266e"
                 iconName="hourglass-end"
-                title="Awesome Mega Menu"
+                title="Simply dummy"
                 text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, veniam possimus. Qui beatae enim aliquam culpa quia, ea dolorum aperiam temporibus?"
               />
             </GridSmart>

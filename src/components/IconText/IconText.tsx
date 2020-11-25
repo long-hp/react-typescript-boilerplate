@@ -1,14 +1,14 @@
 import React, { FC, memo } from 'react';
 import { LineAwesome, View, Text, LineAwesomeName } from 'wiloke-react-core';
 
-export interface IconTextLargeProps {
+export interface IconTextProps {
   iconColor?: string;
   iconName: LineAwesomeName;
   title: string;
   text: string;
 }
 
-const IconTextLarge: FC<IconTextLargeProps> = ({ iconColor = '#FD9B9B', iconName, title, text }) => {
+const IconText: FC<IconTextProps> = ({ iconColor = '#FD9B9B', iconName, title, text }) => {
   return (
     <View radius="round" backgroundColor="light" tachyons="pa4">
       <View tachyons={['flex', 'justify-center', 'items-center', 'br-pill', 'overflow-hidden', 'relative', 'z-5', 'w3', 'h3', 'mb3']}>
@@ -23,4 +23,4 @@ const IconTextLarge: FC<IconTextLargeProps> = ({ iconColor = '#FD9B9B', iconName
   );
 };
 
-export default memo(IconTextLarge);
+export default memo(IconText);

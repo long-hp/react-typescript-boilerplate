@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { getUseDispatchRedux } from 'wiloke-react-core/utils';
 import { useDispatch } from 'react-redux';
 import { ThemeProvider } from 'wiloke-react-core';
-import { themeOverrides } from 'App';
+import { themeOverrides } from 'containers/AppContent/AppContent';
 
 getUseDispatchRedux(useDispatch);
 import { store, persistor } from 'store/configureStore';
