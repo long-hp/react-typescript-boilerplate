@@ -6,19 +6,29 @@ import '!style-loader!css-loader!sass-loader!styles/main.scss';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { getUseDispatchRedux } from 'wiloke-react-core/utils';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'wiloke-react-core';
 import { themeOverrides } from 'containers/AppContent/AppContent';
 
 getUseDispatchRedux(useDispatch);
 import { store, persistor } from 'store/configureStore';
 
+const AppContent: FC = ({ children }) => {
+  const nightMode = useSelector((state: AppState) => state.nightMode);
+  const direction = useSelector((state: AppState) => state.direction);
+  return (
+    <ThemeProvider themeOverrides={{ ...themeOverrides, nightMode, direction }}>
+      <MemoryRouter>{children}</MemoryRouter>
+    </ThemeProvider>
+  );
+};
+
 const withThemeContext = storyFn => (
   <Provider store={store}>
     <PersistGate loading={<div />} persistor={persistor}>
-      <ThemeProvider themeOverrides={themeOverrides}>
+      <AppContent>
         <MemoryRouter>{storyFn()}</MemoryRouter>
-      </ThemeProvider>
+      </AppContent>
     </PersistGate>
   </Provider>
 );
