@@ -1,11 +1,12 @@
-import { TodolistItem } from 'utils/api/Todolist';
-import { createAsyncAction, createDispatchAction } from 'utils/functions/reduxActions';
-import { TodolistEndpoint } from 'utils/api/Endpoint';
+import { Todolist } from 'models/Todolist';
+import { createAsyncAction, createDispatchAsyncAction } from 'wiloke-react-core/utils';
+import { Endpoints } from 'types/Endpoints';
 
-export const getTodolist = createAsyncAction(['@getTodolistRequest', '@getTodolistSuccess', '@getTodolistFailure'])<
-  { endpoint: TodolistEndpoint },
-  { data: TodolistItem[] },
-  { message: string }
->();
+export const getTodolist = createAsyncAction([
+  '@HomePage/getTodolistRequest',
+  '@HomePage/getTodolistSuccess',
+  '@HomePage/getTodolistFailure',
+  '@HomePage/getTodolistCancel',
+])<{ endpoint: Endpoints.Todolist }, { data: Todolist }, { message: string }>();
 
-export const useGetTodolistRequest = createDispatchAction(getTodolist.request);
+export const useGetTodolist = createDispatchAsyncAction(getTodolist);

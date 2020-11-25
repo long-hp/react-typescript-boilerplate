@@ -1,0 +1,14 @@
+$NODE_ENV: 'production'; // production ? size px : size rem
+
+$container-max-width: 1100;
+$root-font-size-percent: 100;
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+
+$breakpoints: (
+  'xxs': 320px,
+  'xs': 480px,
+  'sm': 768px,
+  'md': 992px,
+  'lg': 1300px
+);

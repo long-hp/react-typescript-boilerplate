@@ -17,7 +17,9 @@
     "release": "yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "storybook-docs": "start-storybook --docs"
+    "storybook-docs": "start-storybook --docs",
+    "stories-eject": "stories-eject",
+    "rcg": "rc-generate"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -59,7 +61,8 @@
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "wiloke-react-core": "0.0.1-30"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^5.3.19",
@@ -110,6 +113,7 @@
     "lint-staged": "8.1.7",
     "node-sass": "^4.13.0",
     "prettier": "^1.19.1",
+    "rc-generate": "^0.5.0",
     "react-app-rewired": "^2.1.5",
     "react-test-renderer": "^16.12.0",
     "redux-logger": "^3.0.6",
