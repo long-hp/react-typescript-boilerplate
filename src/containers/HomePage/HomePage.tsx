@@ -33,7 +33,7 @@ const HomePage: FC = () => {
             <GridSmart columnWidth={450} columnCount={2} columnGap={30}>
               <View>
                 <View ref={ref}>
-                  <Text tagName="h2" color="dark1" size={size(66)}>
+                  <Text tagName="h2" color="gray9" size={size(66)}>
                     Lorem{' '}
                     <TextUnderline lineSize={size(25)} lineBottomSpace={size(50)} color="primary" lineColor="#e4e6e5">
                       Ipsum
@@ -41,7 +41,7 @@ const HomePage: FC = () => {
                     Dolor Sit Amet
                   </Text>
                   <Space size={size(40)} />
-                  <Text size={18} color="dark3">
+                  <Text size={18} color="gray7">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quia animi inventore maxime voluptate asperiores laboriosam
                     voluptatum voluptas et? Ab inventore odio ipsa suscipit?
                   </Text>
@@ -60,7 +60,7 @@ const HomePage: FC = () => {
                     >
                       Get Todolist
                     </Button>
-                    <Button block radius="round" size="large" backgroundColor="gray2" color="dark2">
+                    <Button block radius="round" size="large" backgroundColor="gray2" color="gray8">
                       <View tachyons={['flex', 'items-center', 'justify-center']}>
                         <Text>Tutorial</Text>
                         <LineAwesome name="play" tachyons="ml3" size={22} color="tertiary" />
@@ -97,7 +97,7 @@ const HomePage: FC = () => {
               >
                 Get Todolist
               </Button>
-              <Button radius="round" size="medium" color="dark2" backgroundColor="gray2" tachyons="ml2" onClick={_cancelTodolist}>
+              <Button radius="round" size="medium" color="gray8" backgroundColor="gray2" tachyons="ml2" onClick={_cancelTodolist}>
                 Cancel Todolist
               </Button>
             </View>
@@ -115,7 +115,7 @@ const HomePage: FC = () => {
           </View>
         </Section>
 
-        <Section backgroundColor="gray2">
+        <Section backgroundColor="gray1">
           <View container>
             <SectionTitle
               tachyons={['tl', 'mb3', 'mb4-l']}
@@ -143,6 +143,150 @@ const HomePage: FC = () => {
                 title="It is a long established"
                 category="Tech"
               />
+            </GridSmart>
+          </View>
+        </Section>
+
+        <Section>
+          <View container>
+            <SectionTitle
+              tachyons={['tc', 'mb3', 'mb4-l']}
+              title="Theme Colors"
+              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
+            />
+            <Text tagName="h3" tachyons="mb3">
+              Color Primary, Secondary, Quaternary, Tertiary, Quinary
+            </Text>
+            <GridSmart columnWidth={300} columnCount={3}>
+              <View backgroundColor="primary" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: primary | scss: $color-primary
+              </View>
+              <View backgroundColor="secondary" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: secondary | scss: $color-secondary
+              </View>
+              <View backgroundColor="quaternary" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: quaternary | scss: $color-quaternary
+              </View>
+              <View backgroundColor="tertiary" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: tertiary | scss: $color-tertiary
+              </View>
+              <View backgroundColor="quinary" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: quinary | scss: $color-quinary
+              </View>
+            </GridSmart>
+            <Space size={30} />
+            <Text tagName="h3" tachyons="mb3">
+              Color Warning, Danger...
+            </Text>
+            <GridSmart columnWidth={300} columnCount={3}>
+              <View backgroundColor="danger" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: danger | scss: $color-danger
+              </View>
+              <View backgroundColor="warning" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: warning | scss: $color-warning
+              </View>
+              <View backgroundColor="success" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: success | scss: $color-success
+              </View>
+              <View backgroundColor="info" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: info | scss: $color-info
+              </View>
+              <View backgroundColor="heart" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: heart | scss: $color-heart
+              </View>
+            </GridSmart>
+            <Space size={30} />
+            <Text tagName="h3" tachyons="mb3">
+              Color Social
+            </Text>
+            <GridSmart columnWidth={300} columnCount={3}>
+              <View backgroundColor="facebook" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: facebook | scss: $color-facebook
+              </View>
+              <View backgroundColor="twitter" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: twitter | scss: $color-twitter
+              </View>
+              <View backgroundColor="dribbble" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: dribbble | scss: $color-dribbble
+              </View>
+              <View backgroundColor="youtube" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: youtube | scss: $color-youtube
+              </View>
+              <View backgroundColor="instagram" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: instagram | scss: $color-instagram
+              </View>
+              <View backgroundColor="tumblr" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: tumblr | scss: $color-tumblr
+              </View>
+              <View backgroundColor="vimeo" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: vimeo | scss: $color-vimeo
+              </View>
+              <View backgroundColor="vk" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: vk | scss: $color-vk
+              </View>
+              <View backgroundColor="digg" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: digg | scss: $color-digg
+              </View>
+              <View backgroundColor="github" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: github | scss: $color-github
+              </View>
+              <View backgroundColor="linkedin" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: linkedin | scss: $color-linkedin
+              </View>
+              <View backgroundColor="reddit" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: reddit | scss: $color-reddit
+              </View>
+              <View backgroundColor="stumbleupon" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: stumbleupon | scss: $color-stumbleupon
+              </View>
+              <View backgroundColor="pinterest" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: pinterest | scss: $color-pinterest
+              </View>
+              <View backgroundColor="behance" color="light" tachyons={['ph3', 'pv4']} radius="round" nightModeBlacklist="all">
+                react: behance | scss: $color-behance
+              </View>
+            </GridSmart>
+            <Space size={30} />
+            <Text tagName="h3" tachyons="mb3">
+              Color Gray, Dark, Light
+            </Text>
+            <GridSmart columnWidth={300} columnCount={3}>
+              <View backgroundColor="transparent" tachyons={['ph3', 'pv4']} radius="round">
+                react: transparent | scss: $color-transparent
+              </View>
+              <View backgroundColor="light" tachyons={['ph3', 'pv4']} radius="round">
+                react: light | scss: $color-light
+              </View>
+              <View backgroundColor="gray1" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray1 | scss: $color-gray-1
+              </View>
+              <View backgroundColor="gray2" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray2 | scss: $color-gray-2
+              </View>
+              <View backgroundColor="gray3" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray3 | scss: $color-gray-3
+              </View>
+              <View backgroundColor="gray4" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray4 | scss: $color-gray-4
+              </View>
+              <View backgroundColor="gray5" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray5 | scss: $color-gray-5
+              </View>
+              <View backgroundColor="gray6" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray6 | scss: $color-gray-6
+              </View>
+              <View backgroundColor="gray7" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray7 | scss: $color-gray-7
+              </View>
+              <View backgroundColor="gray8" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray8 | scss: $color-gray-8
+              </View>
+              <View backgroundColor="gray9" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+                react: gray9 | scss: $color-gray-9
+              </View>
+              <View backgroundColor="dark" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+                react: dark | scss: $color-dark
+              </View>
             </GridSmart>
           </View>
         </Section>
@@ -244,7 +388,7 @@ const HomePage: FC = () => {
         <Section>
           <View container>
             <View
-              backgroundColor="dark2"
+              backgroundColor="gray8"
               radius="round"
               tachyons={['flex-l', 'items-center', 'justify-between', 'pa5-l', 'pa4']}
               nightModeBlacklist="all"
@@ -275,8 +419,8 @@ const HomePage: FC = () => {
               <SectionTitle
                 columns={[12, 10, 8]}
                 tachyons={['tc', 'mb3', 'mb4-l']}
-                title="Các màu social có sẵn"
-                text="Có đủ các thể loại màu social có sẵn trong các components"
+                title="Test socials"
+                text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, hic?"
               />
             </View>
             <View tachyons={['flex', 'flex-wrap', 'justify-center', 'items-center']}>

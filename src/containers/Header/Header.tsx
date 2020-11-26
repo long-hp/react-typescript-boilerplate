@@ -28,26 +28,26 @@ const Header: FC<HeaderProps> = () => {
         <View tagName="header" tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
           <View tachyons={['mr2', 'mr4-l']}>
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <Text tagName="span" color="dark2" colorHover="primary">
+              <Text tagName="span" color="gray8" colorHover="primary">
                 Home
               </Text>
             </Link>
           </View>
           <View tachyons={['mr2', 'mr4-l']}>
             <Link to="/about" style={{ textDecoration: 'none' }}>
-              <Text tagName="span" color="dark2" colorHover="primary">
+              <Text tagName="span" color="gray8" colorHover="primary">
                 About
               </Text>
             </Link>
           </View>
           <View tachyons={['flex', 'items-center', 'mr2', 'mr4-l']}>
-            <Text color="dark2" tachyons="mr2">
+            <Text color="gray8" tachyons="mr2">
               NightMode
             </Text>
             <Switch checked={nightMode} onChange={_handleNightMode} nightModeBlacklist="all" />
           </View>
           <View tachyons={['flex', 'items-center']}>
-            <Text color="dark2" tachyons="mr2">
+            <Text color="gray8" tachyons="mr2">
               RTL
             </Text>
             <Switch checked={direction === 'rtl'} onChange={_handleDirection} nightModeBlacklist="all" />

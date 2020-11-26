@@ -21,11 +21,11 @@ export const Default = () => {
   );
   return (
     <View>
-      <View color="dark1" style={type === 'horizontal' ? { display: 'inline-block' } : {}}>
+      <View color="gray9" style={type === 'horizontal' ? { display: 'inline-block' } : {}}>
         Box 1
       </View>
       <Space size={size} type={type} />
-      <View color="dark1" style={type === 'horizontal' ? { display: 'inline-block' } : {}}>
+      <View color="gray9" style={type === 'horizontal' ? { display: 'inline-block' } : {}}>
         Box 2
       </View>
     </View>

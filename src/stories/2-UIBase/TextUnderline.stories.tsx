@@ -14,7 +14,7 @@ export const Default = () => {
   const lineSize = number('Line Size', 20, { range: true, min: 20, max: 100 });
   const lineBottomSpace = number('Line Bottom Space', 40, { range: true, min: 20, max: 100 });
   const lineColor = color('Line Color', '#94fbd1');
-  const colorProps = select('Color', getOptions(defaultColors), 'dark2');
+  const colorProps = select('Color', getOptions(defaultColors), 'gray8');
   const children = text('Children', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit');
   return (
     <View>
