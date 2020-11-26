@@ -5,13 +5,13 @@ import { getTodolist } from '../actions/actionTodolist';
 type TodolistAction = ActionTypes<typeof getTodolist>;
 
 interface TodolistState {
-  isLoading: boolean;
+  status: Status;
   errorMessage: string;
   data: Todolist;
 }
 
 const initialState: TodolistState = {
-  isLoading: false,
+  status: 'idle',
   errorMessage: '',
   data: [],
 };
@@ -19,21 +19,21 @@ const initialState: TodolistState = {
 const reducerTodolist = createReducer<TodolistState, TodolistAction>(initialState, [
   handleAction('@HomePage/getTodolistRequest', ({ state }) => ({
     ...state,
-    isLoading: true,
+    status: 'loading',
   })),
   handleAction('@HomePage/getTodolistSuccess', ({ state, action }) => ({
     ...state,
-    isLoading: false,
+    status: 'success',
     data: action.payload.data,
   })),
   handleAction('@HomePage/getTodolistFailure', ({ state, action }) => ({
     ...state,
-    isLoading: false,
+    status: 'failure',
     errorMessage: action.payload.message,
   })),
   handleAction('@HomePage/getTodolistCancel', ({ state }) => {
     // mutable test
-    state.isLoading = false;
+    state.status = 'idle';
     return state;
   }),
 ]);

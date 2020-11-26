@@ -50,7 +50,7 @@ const HomePage: FC = () => {
                 <View tachyons="mw6-l">
                   <GridSmart columnWidth={200} columnCount={2}>
                     <Button
-                      loading={todolist.isLoading}
+                      loading={todolist.status === 'loading'}
                       block
                       radius="round"
                       size="large"
@@ -87,7 +87,7 @@ const HomePage: FC = () => {
             </View>
             <View tachyons={['flex', 'justify-center', 'mb4']}>
               <Button
-                loading={todolist.isLoading}
+                loading={todolist.status === 'loading'}
                 radius="round"
                 size="medium"
                 backgroundColor="secondary"
@@ -102,7 +102,7 @@ const HomePage: FC = () => {
               </Button>
             </View>
             <GridSmart columnWidth={200} columnCount={4}>
-              {todolist.isLoading
+              {todolist.status === 'loading'
                 ? range(0, 8).map(item => {
                     return <Skeleton key={item} textNumberLines={2} imageAspectRatioPercent={56.25} />;
                   })
@@ -124,22 +124,26 @@ const HomePage: FC = () => {
             />
             <GridSmart columnWidth={300} columnCount={4}>
               <PostCard
-                imageSrc={`https://images.pexels.com/photos/2174656/pexels-photo-2174656.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-4x2.jpg"
+                imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-1280x798.jpg"
                 title="Contrary to popular"
                 category="Travel"
               />
               <PostCard
-                imageSrc={`https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jp"
+                imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-1280x853.jpg"
                 title="There are many variations"
                 category="Lifestyle"
               />
               <PostCard
-                imageSrc={`https://images.pexels.com/photos/3575449/pexels-photo-3575449.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv005-4x3.jpg"
+                imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv005-1280x854.jpg"
                 title="All the Lorem Ipsum"
                 category="Hotel"
               />
               <PostCard
-                imageSrc={`https://images.pexels.com/photos/2474690/pexels-photo-2474690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260`}
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv006-4x3.jpg"
+                imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv006-1280x854.jpg"
                 title="It is a long established"
                 category="Tech"
               />
@@ -269,22 +273,22 @@ const HomePage: FC = () => {
               <View backgroundColor="gray4" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray4 | scss: $color-gray-4
               </View>
-              <View backgroundColor="gray5" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="gray5" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray5 | scss: $color-gray-5
               </View>
-              <View backgroundColor="gray6" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="gray6" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray6 | scss: $color-gray-6
               </View>
-              <View backgroundColor="gray7" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="gray7" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray7 | scss: $color-gray-7
               </View>
-              <View backgroundColor="gray8" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="gray8" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray8 | scss: $color-gray-8
               </View>
-              <View backgroundColor="gray9" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="gray9" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: gray9 | scss: $color-gray-9
               </View>
-              <View backgroundColor="dark" color="gray3" tachyons={['ph3', 'pv4']} radius="round">
+              <View backgroundColor="dark" color="light" tachyons={['ph3', 'pv4']} radius="round">
                 react: dark | scss: $color-dark
               </View>
             </GridSmart>

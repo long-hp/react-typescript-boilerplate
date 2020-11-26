@@ -3,14 +3,15 @@ import { Image, LineAwesome, Text, View } from 'wiloke-react-core';
 
 export interface PostCardProps {
   title: string;
+  previewSrc: string;
   imageSrc: string;
   category: string;
 }
 
-const PostCard: FC<PostCardProps> = ({ title, imageSrc, category }) => {
+const PostCard: FC<PostCardProps> = ({ title, previewSrc, imageSrc, category }) => {
   return (
     <View backgroundColor="light" radius="round" tachyons={['relative', 'overflow-hidden']}>
-      <Image src={imageSrc} aspectRatioInPercent={56.25} />
+      <Image previewSrc={previewSrc} src={imageSrc} lazyLoad aspectRatioInPercent={56.25} />
       <View backgroundColor="tertiary" color="light" radius={4} tachyons={['absolute', 'top-1', 'left-1', 'ph3', 'pv1']} nightModeBlacklist="all">
         {category}
       </View>
