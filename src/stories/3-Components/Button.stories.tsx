@@ -3,8 +3,8 @@ import { action } from '@storybook/addon-actions';
 import { text, select, boolean, number } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import getWithStylesProps, { generalGroup } from 'stories/utils/getWithStylesProps';
-import { LineAwesome, Text, View, ButtonProps, Size } from 'wiloke-react-core';
-import Button from './base/Button';
+import { LineAwesome, Text, View, Size } from 'wiloke-react-core';
+import Button, { ButtonProps } from 'components/Button/Button';
 
 export default {
   title: 'UI Base/Button',

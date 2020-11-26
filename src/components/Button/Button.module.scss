@@ -1,0 +1,87 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$button-padding-extra-small-y: 8;
+$button-padding-extra-small-x: 15;
+$button-padding-small-y: 12;
+$button-padding-small-x: 18;
+$button-padding-medium-y: 13;
+$button-padding-medium-x: 22;
+$button-padding-large-y: 20;
+$button-padding-large-x: 28;
+$button-font-weight: 500;
+
+@function paddingCalc($padding, $borderWidth) {
+  @return ($padding - $borderWidth) * 1px;
+}
+
+.container {
+  display: inline-block;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  line-height: 1.5;
+  font-weight: $button-font-weight;
+  transition: all 0.3s ease;
+}
+
+.loading {
+  vertical-align: middle;
+  margin-right: px(8);
+  * {
+    color: inherit !important;
+  }
+}
+
+.text {
+  vertical-align: middle;
+}
+
+.extra-small {
+  font-size: px(12);
+  padding: px($button-padding-extra-small-y) px($button-padding-extra-small-x);
+}
+
+.small {
+  font-size: px(14);
+  padding: px($button-padding-small-y) px($button-padding-small-x);
+}
+
+.medium {
+  font-size: px(15);
+  padding: px($button-padding-medium-y) px($button-padding-medium-x);
+}
+
+.large {
+  font-size: px(16);
+  padding: px($button-padding-large-y) px($button-padding-large-x);
+}
+
+@for $borderWidth from 0 through 6 {
+  :global(.ui-border-width-#{$borderWidth}) {
+    &.extra-small {
+      padding: paddingCalc($button-padding-extra-small-y, $borderWidth) paddingCalc($button-padding-extra-small-x, $borderWidth);
+    }
+
+    &.small {
+      padding: paddingCalc($button-padding-small-y, $borderWidth) paddingCalc($button-padding-small-x, $borderWidth);
+    }
+
+    &.medium {
+      padding: paddingCalc($button-padding-medium-y, $borderWidth) paddingCalc($button-padding-medium-x, $borderWidth);
+    }
+
+    &.large {
+      padding: paddingCalc($button-padding-large-y, $borderWidth) paddingCalc($button-padding-large-x, $borderWidth);
+    }
+  }
+}
+
+.block {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: no-drop;
+}

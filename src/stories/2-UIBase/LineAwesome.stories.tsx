@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import lineAwesome from 'stories/utils/lineAwesome';
 import { select, number } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
-import { View, defaultColors, LineAwesomeName, GridSmart, Text, Button } from 'wiloke-react-core';
+import { View, defaultColors, LineAwesomeName, GridSmart, Text } from 'wiloke-react-core';
 import { range } from 'ramda';
 import LineAwesome from './base/LineAwesome';
 
@@ -48,9 +48,7 @@ export const Default = () => {
       </GridSmart>
       {icons.length <= 80 && (
         <View tachyons={['tc', 'mt4']}>
-          <Button radius="round" onClick={() => setIcons(range(0, lineAwesome.length))}>
-            View All Icons
-          </Button>
+          <button onClick={() => setIcons(range(0, lineAwesome.length))}>View All Icons</button>
         </View>
       )}
     </View>

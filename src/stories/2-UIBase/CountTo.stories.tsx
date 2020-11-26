@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import { number, optionsKnob, text } from '@storybook/addon-knobs';
-import { Button, View } from 'wiloke-react-core';
+import { View } from 'wiloke-react-core';
 import getOptions from 'stories/utils/getOptions';
 import CountTo from './base/CountTo';
 
@@ -28,7 +28,7 @@ export const Default = () => {
   const animationDuration = number('animationDuration', 2000, { range: true, min: 0, max: 10000 });
   return (
     <View>
-      <Button onClick={countStart}>Start</Button>
+      <button onClick={countStart}>Start</button>
       <CountTo
         start={start}
         targetNumber={targetNumber}
