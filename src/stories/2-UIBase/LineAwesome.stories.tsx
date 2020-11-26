@@ -15,7 +15,7 @@ export const Default = () => {
   const [searchValue, setSearchValue] = useState('');
   const [icons, setIcons] = useState(range(0, 80));
   const size = number('Size', 30, { range: true, min: 5, max: 50 });
-  const color = select('Color', getOptions(defaultColors), 'dark2');
+  const color = select('Color', getOptions(defaultColors), 'gray8');
 
   const _renderIconText = (iconName: LineAwesomeName, index: number) => {
     if (!icons.includes(index)) {

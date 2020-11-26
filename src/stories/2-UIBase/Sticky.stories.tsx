@@ -200,7 +200,7 @@ export const Example2 = () => {
             </Sticky>
           </View>
           <View columns={[6, 6, 6, 6]}>
-            <View backgroundColor="dark5" tachyons="pa3">
+            <View backgroundColor="gray5" tachyons="pa3">
               <Text tagName="h1" tachyons={['pa4', 'mb3']}>
                 Main Content
               </Text>

@@ -12,11 +12,11 @@ const SectionTitle: FC<SectionTitleProps> = ({ title, text, nightModeBlacklist, 
 
   return (
     <View {...rest} nightModeBlacklist={nightModeBlacklist} ref={ref}>
-      <Text tagName="h2" color="dark1" size={size(40)} nightModeBlacklist={nightModeBlacklist}>
+      <Text tagName="h2" color="gray9" size={size(40)} nightModeBlacklist={nightModeBlacklist}>
         {title}
       </Text>
       {!!text && (
-        <Text className={styles.text} color="dark3" tachyons="mt2" nightModeBlacklist={nightModeBlacklist}>
+        <Text className={styles.text} color="gray7" tachyons="mt2" nightModeBlacklist={nightModeBlacklist}>
           {text}
         </Text>
       )}
