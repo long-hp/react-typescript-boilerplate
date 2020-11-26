@@ -9,6 +9,5 @@ declare global {
 
   declare type ValueOf<T> = T[keyof T];
 
-  // Others
-  declare type Timeout = NodeJS.Timeout;
+  declare type Status = 'idle' | 'loading' | 'success' | 'failure';
 }
