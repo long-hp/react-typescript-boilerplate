@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Button, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome } from 'wiloke-react-core';
+import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome } from 'wiloke-react-core';
 import Section from 'components/Section/Section';
 import IconText from 'components/IconText/IconText';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
@@ -8,6 +8,7 @@ import { range } from 'ramda';
 import { Endpoints } from 'types/Endpoints';
 import Header from 'containers/Header/Header';
 import PostCard from 'components/PostCard/PostCard';
+import Button from 'components/Button/Button';
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 

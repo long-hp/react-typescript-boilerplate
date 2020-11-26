@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import materialIcon from 'stories/utils/materialIcon';
 import { select, number, optionsKnob } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
-import { View, defaultColors, MaterialIconName, GridSmart, Text, Button } from 'wiloke-react-core';
+import { View, defaultColors, MaterialIconName, GridSmart, Text } from 'wiloke-react-core';
 import { range } from 'ramda';
 import MaterialIcon from './base/MaterialIcon';
 
@@ -51,9 +51,7 @@ export const Default = () => {
       </GridSmart>
       {icons.length <= 80 && (
         <View tachyons={['tc', 'mt4']}>
-          <Button radius="round" onClick={() => setIcons(range(0, materialIcon.length))}>
-            View All Icons
-          </Button>
+          <button onClick={() => setIcons(range(0, materialIcon.length))}>View All Icons</button>
         </View>
       )}
     </View>

@@ -3,7 +3,7 @@ import { Size } from 'wiloke-react-core';
 import { boolean, select } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
-import Switch from './base/Switch';
+import Switch from 'components/Switch/Switch';
 
 export default {
   title: 'UI Base/Switch',
