@@ -17411,10 +17411,10 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-wiloke-react-core@0.0.1-39:
-  version "0.0.1-39"
-  resolved "https://registry.yarnpkg.com/wiloke-react-core/-/wiloke-react-core-0.0.1-39.tgz#594bec04896508c27ff32ba0c8411bba8cf37dfd"
-  integrity sha512-2B6uDpbNIUuZXBW8KRRgezApNuFVDNaDHSoq3YyRtknu/CzhAcpKVxJy5Vy0npjJIN92ucEfG2vh9faxCHXcRw==
+wiloke-react-core@0.0.1-40:
+  version "0.0.1-40"
+  resolved "https://registry.yarnpkg.com/wiloke-react-core/-/wiloke-react-core-0.0.1-40.tgz#3c0b4826b336ca7d3a920d847b8881ab228a901f"
+  integrity sha512-pdoMruuVYLpBcTtKsFDO8kkXU/jhXeZX2GGeOvPNxyNJM2ymId1YLPuoYg/Wc+Rskuy8vN+SFgEEfYfOi/xCIQ==
   dependencies:
     fs-extra "^9.0.1"
     inquirer "^7.3.3"

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome } from 'wiloke-react-core';
+import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome, useTheme } from 'wiloke-react-core';
 import Section from 'components/Section/Section';
 import IconText from 'components/IconText/IconText';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
@@ -16,6 +16,7 @@ const HomePage: FC = () => {
   const todolist = useSelector(todolistSelector);
   const getTodolist = useGetTodolist();
   const { size, ref } = useResponsive({ maxWidth: 600 });
+  const { colors } = useTheme();
 
   const _getTodolist = () => {
     getTodolist.request({ endpoint: Endpoints.Todolist });
@@ -35,9 +36,8 @@ const HomePage: FC = () => {
               <View>
                 <View ref={ref}>
                   <Text tagName="h2" color="gray9" size={size(66)}>
-                    Lorem{' '}
-                    <TextUnderline lineSize={size(25)} lineBottomSpace={size(50)} color="primary" lineColor="#e4e6e5">
-                      Ipsum
+                    <TextUnderline lineSize={size(20)} lineBottomSpace={size(43)} color="secondary" lineColor={`rgba(${colors.rgbSecondary}, 0.4)`}>
+                      Lorem Ipsum
                     </TextUnderline>{' '}
                     Dolor Sit Amet
                   </Text>
