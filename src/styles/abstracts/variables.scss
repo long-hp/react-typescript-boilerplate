@@ -1,10 +1,8 @@
 $NODE_ENV: 'production'; // production ? size px : size rem
 
-$container-max-width: 1100;
 $root-font-size-percent: 100;
-$font-primary: 'Roboto', sans-serif;
-$font-secondary: 'Poppins', sans-serif;
 
+// Breakpoints for @include media
 $breakpoints: (
   'xxs': 320px,
   'xs': 480px,

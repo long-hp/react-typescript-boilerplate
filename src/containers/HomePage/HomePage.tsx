@@ -116,7 +116,7 @@ const HomePage: FC = () => {
           </View>
         </Section>
 
-        <Section backgroundColor="gray1">
+        <Section backgroundColor="gray2">
           <View container>
             <SectionTitle
               tachyons={['tl', 'mb3', 'mb4-l']}
@@ -293,6 +293,28 @@ const HomePage: FC = () => {
                 react: dark | scss: $color-dark
               </View>
             </GridSmart>
+          </View>
+        </Section>
+
+        <Section>
+          <View container>
+            <SectionTitle
+              tachyons={['tc', 'mb3', 'mb4-l']}
+              title="Font Family"
+              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
+            />
+            <Text fontFamily="primary" tagName="h2" tachyons="mb4">
+              Font Primary: prop: fontfamily="primary" | scss: $font-primary
+            </Text>
+            <Text fontFamily="secondary" tagName="h2" tachyons="mb4">
+              Font Secondary: prop: fontfamily="secondary" | scss: $font-secondary
+            </Text>
+            <Text fontFamily="tertiary" tagName="h2" tachyons="mb4">
+              Font Tertiary: prop: fontfamily="tertiary" | scss: $font-tertiary
+            </Text>
+            <Text fontFamily="quaternary" tagName="h2" tachyons="mb4">
+              Font Quaternary: prop: fontfamily="quaternary" | scss: $font-quaternary
+            </Text>
           </View>
         </Section>
 

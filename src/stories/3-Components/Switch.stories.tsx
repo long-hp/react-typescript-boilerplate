@@ -6,7 +6,7 @@ import { action } from '@storybook/addon-actions';
 import Switch from 'components/Switch/Switch';
 
 export default {
-  title: 'UI Base/Switch',
+  title: 'Components/Switch',
   component: Switch,
 };
 
