@@ -1,9 +1,9 @@
-import React, { forwardRef, ReactNode, CSSProperties } from 'react';
-import { LineAwesome, LineAwesomeName, Text, View, withTachyons, WithTachyonsProps } from 'wiloke-react-core';
+import React, { forwardRef, ReactNode } from 'react';
+import { LineAwesome, LineAwesomeName, Text, View, withStyles, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Alert.module.scss';
 
-export interface AlertProps extends WithTachyonsProps {
+export interface AlertProps extends WithStylesProps {
   /** #### Bật tắt nút ( X ) */
   closable?: boolean;
   /** #### Đoạn text mô tả */
@@ -19,9 +19,7 @@ export interface AlertProps extends WithTachyonsProps {
   /** #### Chọn kích thước */
   size?: 'small' | 'medium' | 'large';
   /** #### Render Icon */
-  renderIcon?: ReactNode;
-  /** #### Chỉnh sửa border radius */
-  radius?: 'square' | 'round' | 'pill' | number;
+  Icon?: ReactNode;
   /** #### Bấm nút close */
   onClose?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
@@ -36,7 +34,6 @@ const getIconName = (type: string): LineAwesomeName => {
       return 'exclamation-triangle';
     case 'danger':
       return 'times-circle';
-
     default:
       return 'info';
   }
@@ -44,40 +41,24 @@ const getIconName = (type: string): LineAwesomeName => {
 
 const AlertComponent = forwardRef<HTMLElement, AlertProps>(
   (
-    {
-      closable = true,
-      description,
-      disableBorder,
-      radius = 'square',
-      message,
-      className,
-      showIcon = true,
-      type = 'info',
-      size = 'medium',
-      renderIcon,
-      onClose,
-      ...rest
-    },
+    { closable = true, description, disableBorder, message, className, showIcon = true, type = 'info', size = 'medium', Icon, onClose, ...rest },
     ref,
   ) => {
     const sizeClass = styles[size];
-    const radiusClass = typeof radius === 'string' ? styles[radius] : '';
     const disableBorderClass = disableBorder ? styles.disableBorder : '';
     const closableClass = closable ? styles.enableClose : '';
     const showIconClass = showIcon ? styles.showIcon : '';
-    const containerClass = classNames(sizeClass, radiusClass, disableBorderClass, closableClass, showIconClass, styles.container, className);
-
-    const radiusStyle: CSSProperties = typeof radius === 'number' ? { borderRadius: radius } : {};
+    const containerClass = classNames(sizeClass, disableBorderClass, closableClass, showIconClass, styles.container, className);
     const iconName = getIconName(type);
 
     const renderAlertIcon = () => {
       if (!showIcon) {
         return null;
       }
-      if (renderIcon) {
-        return renderIcon;
+      if (Icon) {
+        return Icon;
       }
-      return <LineAwesome className={styles.icon} backgroundColor={type} tachyons={['absolute', 'left-1', 'pointer']} name={iconName} />;
+      return <LineAwesome className={styles.icon} color={type} tachyons={['absolute', 'left-1', 'pointer']} name={iconName} />;
     };
 
     const renderClose = () => {
@@ -97,7 +78,7 @@ const AlertComponent = forwardRef<HTMLElement, AlertProps>(
     };
 
     return (
-      <View {...rest} ref={ref} className={containerClass} backgroundColor={type} style={radiusStyle}>
+      <View {...rest} ref={ref} className={containerClass} borderColor={type} borderWidth="1/6" borderStyle="solid">
         {renderAlertIcon()}
         <Text className={styles.message} color="gray9">
           {message}
@@ -114,6 +95,6 @@ const AlertComponent = forwardRef<HTMLElement, AlertProps>(
   },
 );
 
-const Alert = withTachyons<HTMLElement, AlertProps>(AlertComponent);
+const Alert = withStyles<HTMLElement, AlertProps>(AlertComponent);
 
 export default Alert;
