@@ -23,6 +23,9 @@ export const WithStyles = () => {
 };
 
 export const WithTagName = () => {
+  const numberOfLines = number('Number of lines', 5, { range: true, min: 1, max: 10 });
+  const size = number('Size (Demo tag p)', 15, { range: true, min: 8, max: 100 });
+
   return (
     <View>
       <Text tagName="h1">Heading 1</Text>
@@ -32,7 +35,7 @@ export const WithTagName = () => {
       <Text tagName="h5">Heading 5</Text>
       <Text tagName="h6">Heading 6</Text>
       <br />
-      <Text tagName="p" size={number('Size (Demo tag p)', 15, { range: true, min: 8, max: 100 })}>
+      <Text tagName="p" size={size} numberOfLines={numberOfLines}>
         p: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum soluta fugit suscipit odio accusantium quas nostrum expedita tempora debitis
         blanditiis minus consequatur, nam eius sunt numquam nesciunt, quidem illum. Earum alias ea a explicabo. Explicabo corporis voluptatum
         repellendus itaque vero? Nam iste praesentium exercitationem recusandae dolorem. Quidem illum quod dolorem accusantium, modi iure non nisi

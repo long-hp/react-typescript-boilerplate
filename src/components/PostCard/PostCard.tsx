@@ -16,7 +16,7 @@ const PostCard: FC<PostCardProps> = ({ title, previewSrc, imageSrc, category }) 
         {category}
       </View>
       <View tachyons={['pa3', 'flex', 'justify-between', 'items-center']}>
-        <Text tagName="h4" tachyons={['w-80', 'nowrap']}>
+        <Text numberOfLines={1} tagName="h2" tachyons={['w-80', 'nowrap', 'f6']}>
           {title}
         </Text>
         <LineAwesome name="share" size={20} />

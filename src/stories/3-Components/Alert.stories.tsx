@@ -6,7 +6,7 @@ import { Radius } from 'wiloke-react-core';
 import Alert, { AlertProps } from 'components/Alert/Alert';
 
 export default {
-  title: 'UI Base/Alert',
+  title: 'Components/Alert',
   component: Alert,
 };
 

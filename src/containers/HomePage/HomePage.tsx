@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome } from 'wiloke-react-core';
+import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome, useTheme } from 'wiloke-react-core';
 import Section from 'components/Section/Section';
 import IconText from 'components/IconText/IconText';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
@@ -16,6 +16,7 @@ const HomePage: FC = () => {
   const todolist = useSelector(todolistSelector);
   const getTodolist = useGetTodolist();
   const { size, ref } = useResponsive({ maxWidth: 600 });
+  const { colors } = useTheme();
 
   const _getTodolist = () => {
     getTodolist.request({ endpoint: Endpoints.Todolist });
@@ -35,9 +36,8 @@ const HomePage: FC = () => {
               <View>
                 <View ref={ref}>
                   <Text tagName="h2" color="gray9" size={size(66)}>
-                    Lorem{' '}
-                    <TextUnderline lineSize={size(25)} lineBottomSpace={size(50)} color="primary" lineColor="#e4e6e5">
-                      Ipsum
+                    <TextUnderline lineSize={size(20)} lineBottomSpace={size(43)} color="secondary" lineColor={`rgba(${colors.rgbSecondary}, 0.4)`}>
+                      Lorem Ipsum
                     </TextUnderline>{' '}
                     Dolor Sit Amet
                   </Text>
@@ -116,7 +116,7 @@ const HomePage: FC = () => {
           </View>
         </Section>
 
-        <Section backgroundColor="gray1">
+        <Section backgroundColor="gray2">
           <View container>
             <SectionTitle
               tachyons={['tl', 'mb3', 'mb4-l']}
@@ -293,6 +293,28 @@ const HomePage: FC = () => {
                 react: dark | scss: $color-dark
               </View>
             </GridSmart>
+          </View>
+        </Section>
+
+        <Section>
+          <View container>
+            <SectionTitle
+              tachyons={['tc', 'mb3', 'mb4-l']}
+              title="Font Family"
+              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
+            />
+            <Text fontFamily="primary" tagName="h2" tachyons="mb4">
+              Font Primary: prop: fontfamily="primary" | scss: $font-primary
+            </Text>
+            <Text fontFamily="secondary" tagName="h2" tachyons="mb4">
+              Font Secondary: prop: fontfamily="secondary" | scss: $font-secondary
+            </Text>
+            <Text fontFamily="tertiary" tagName="h2" tachyons="mb4">
+              Font Tertiary: prop: fontfamily="tertiary" | scss: $font-tertiary
+            </Text>
+            <Text fontFamily="quaternary" tagName="h2" tachyons="mb4">
+              Font Quaternary: prop: fontfamily="quaternary" | scss: $font-quaternary
+            </Text>
           </View>
         </Section>
 

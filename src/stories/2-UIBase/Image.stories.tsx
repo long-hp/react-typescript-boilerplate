@@ -77,7 +77,7 @@ export const WithLazyLoad = () => {
   };
   const previewSrc = 'https://highspeedblog.com/wp-content/uploads/2020/06/pexels-photo-3653124-4x3.jpeg';
   return (
-    <View>
+    <View container>
       <View style={{ marginBottom: 500 }}>
         <Text tagName="h2">Image 1 + Width Height</Text>
         <GridSmart columnWidth={300} columnCount={2}>
@@ -93,7 +93,12 @@ export const WithLazyLoad = () => {
       </View>
       <View style={{ marginBottom: 500 }}>
         <Text tagName="h2">Image 3 + Width Heiht</Text>
-        <Image src={srcSet} previewSrc={previewSrc} width={1024} height={683} />
+        <GridSmart columnWidth={300} columnCount={2}>
+          <Image src={srcSet} previewSrc={previewSrc} width={1024} height={683} />
+          <Image src={srcSet} previewSrc={previewSrc} width={1024} height={683} aspectRatioInPercent={50} />
+          <Image src={srcSet} previewSrc={previewSrc} width={1024} height={683} />
+          <Image src={srcSet} previewSrc={previewSrc} width={1024} height={683} aspectRatioInPercent={50} />
+        </GridSmart>
       </View>
       <View style={{ marginBottom: 500 }}>
         <Text tagName="h2">Image 4</Text>

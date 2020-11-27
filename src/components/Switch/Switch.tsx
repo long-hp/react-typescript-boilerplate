@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { ActivityIndicator, View, ColorKey, Size, WithStylesProps, WithTachyonsProps, withTachyons } from 'wiloke-react-core';
+import { ActivityIndicator, View, ColorNames, Size, WithStylesProps, WithTachyonsProps, withTachyons } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Switch.module.scss';
 
@@ -46,7 +46,7 @@ const SwitchComponent = ({
   if (size === 'medium') loadingSize = 12;
   if (size === 'large') loadingSize = 14;
 
-  const containerBgColor: ColorKey = checkedState ? 'primary' : 'gray4';
+  const containerBgColor: ColorNames = checkedState ? 'primary' : 'gray4';
 
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (loading || disabled) {
