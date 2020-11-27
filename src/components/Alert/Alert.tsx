@@ -4,23 +4,23 @@ import { classNames } from 'wiloke-react-core/utils';
 import styles from './Alert.module.scss';
 
 export interface AlertProps extends WithStylesProps {
-  /** #### Bật tắt nút ( X ) */
+  /** Bật tắt nút ( X ) */
   closable?: boolean;
-  /** #### Đoạn text mô tả */
+  /** Đoạn text mô tả */
   description?: string;
-  /** #### Đoạn text size to giống title */
+  /** Đoạn text size to giống title */
   message: string;
-  /** #### Bật tắt icon phía bên trái */
+  /** Bật tắt icon phía bên trái */
   showIcon?: boolean;
-  /** #### Bật tắt border cho component */
+  /** Bật tắt border cho component */
   disableBorder?: boolean;
-  /** #### Chọn kiểu alert */
+  /** Chọn kiểu alert */
   type?: 'success' | 'info' | 'warning' | 'danger';
-  /** #### Chọn kích thước */
+  /** Chọn kích thước */
   size?: 'small' | 'medium' | 'large';
-  /** #### Render Icon */
+  /** Render Icon */
   Icon?: ReactNode;
-  /** #### Bấm nút close */
+  /** Bấm nút close */
   onClose?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 

@@ -12,9 +12,9 @@ export interface SwitchProps extends WithTachyonsProps, Pick<WithStylesProps, 'n
   checkedChildren?: ReactNode;
   /** children của khi unactive */
   unCheckedChildren?: ReactNode;
-  /** #### Khi bật disabled thì nút mờ đi và không thể thực hiện event */
+  /** Khi bật disabled thì nút mờ đi và không thể thực hiện event */
   disabled?: boolean;
-  /** #### Khi bật loading thì nút sẽ ở trạng thái loading và không thể thực hiện event */
+  /** Khi bật loading thì nút sẽ ở trạng thái loading và không thể thực hiện event */
   loading?: boolean;
   /** Kích thước component */
   size?: Size;
