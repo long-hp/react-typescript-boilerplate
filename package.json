@@ -20,7 +20,8 @@
     "storybook-docs": "start-storybook --docs",
     "stories-eject": "stories-eject",
     "ce": "components-eject src",
-    "rcg": "rc-generate"
+    "rcg": "rc-generate",
+    "chromatic": "npx chromatic --project-token wci1uu0pbi9"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

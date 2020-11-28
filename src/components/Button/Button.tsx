@@ -1,5 +1,5 @@
-import React, { ReactNode, DOMAttributes, HTMLAttributes, ButtonHTMLAttributes, forwardRef, Ref } from 'react';
-import { WithStylesProps, withStyles, ActivityIndicator, Size, Text } from 'wiloke-react-core';
+import React, { ButtonHTMLAttributes, DOMAttributes, forwardRef, HTMLAttributes, ReactNode, Ref } from 'react';
+import { ActivityIndicator, Size, Text, withStyles, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Button.module.scss';
 
