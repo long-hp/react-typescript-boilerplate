@@ -118,11 +118,7 @@ const HomePage: FC = () => {
 
         <Section backgroundColor="gray2">
           <View container>
-            <SectionTitle
-              tachyons={['tl', 'mb3', 'mb4-l']}
-              title="Popular Posts"
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
-            />
+            <SectionTitle tachyons={['tl', 'mb3', 'mb4-l']} title="Popular Posts" text="Image test lazyload with previewSrc" />
             <GridSmart columnWidth={300} columnCount={4}>
               <PostCard
                 previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-4x2.jpg"
@@ -131,7 +127,7 @@ const HomePage: FC = () => {
                 category="Travel"
               />
               <PostCard
-                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jp"
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jpg"
                 imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-1280x853.jpg"
                 title="There are many variations"
                 category="Lifestyle"

@@ -102,7 +102,7 @@ export const WithLazyLoad = () => {
       </View>
       <View style={{ marginBottom: 500 }}>
         <Text tagName="h2">Image 4</Text>
-        <Image src={srcSet} previewSrc={previewSrc} />
+        <Image src={srcSet} previewSrc={previewSrc} aspectRatioInPercent={100} />
       </View>
       <View style={{ marginBottom: 500 }}>
         <Text tagName="h2">Image 5</Text>

@@ -4,6 +4,7 @@ import { select, number } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { View, defaultColors, LineAwesomeName, GridSmart, Text } from 'wiloke-react-core';
 import { range } from 'ramda';
+import Button from 'components/Button/Button';
 import LineAwesome from './base/LineAwesome';
 
 export default {
@@ -48,7 +49,9 @@ export const Default = () => {
       </GridSmart>
       {icons.length <= 80 && (
         <View tachyons={['tc', 'mt4']}>
-          <button onClick={() => setIcons(range(0, lineAwesome.length))}>View All Icons</button>
+          <Button radius="round" onClick={() => setIcons(range(0, lineAwesome.length))}>
+            View All Icons
+          </Button>
         </View>
       )}
     </View>
