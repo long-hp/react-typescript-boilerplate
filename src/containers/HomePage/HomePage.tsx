@@ -6,7 +6,7 @@ import SectionTitle from 'components/SectionTitle/SectionTitle';
 import { useSelector } from 'react-redux';
 import { range } from 'ramda';
 import { Endpoints } from 'types/Endpoints';
-import Header from 'containers/Header/Header';
+import { Header } from 'containers/Header';
 import PostCard from 'components/PostCard/PostCard';
 import Button from 'components/Button/Button';
 import { useGetTodolist } from './actions/actionTodolist';

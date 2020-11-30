@@ -1,6 +1,6 @@
-import Section from 'components/Section/Section';
-import Header from 'containers/Header/Header';
 import React from 'react';
+import Section from 'components/Section/Section';
+import { Header } from 'containers/Header';
 import { Text, View } from 'wiloke-react-core';
 
 const AboutPage = () => {
