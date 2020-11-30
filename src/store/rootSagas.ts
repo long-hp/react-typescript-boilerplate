@@ -1,5 +1,5 @@
 import { all, call, spawn, delay } from 'redux-saga/effects';
-import sagaHomePage from 'containers/HomePage/sagas/sagaHomePage';
+import { sagaHomePage } from 'containers/HomePage';
 
 const sagas = [...sagaHomePage];
 
