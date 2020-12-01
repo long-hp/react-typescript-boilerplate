@@ -1,9 +1,9 @@
 @import '../abstracts/abstracts.scss';
 
-$slider-handle-width: 14;
-$slider-handle-height: 14;
+$slider-handle-width: 20;
+$slider-handle-height: 20;
 
-$rail-height: 2;
+$rail-height: 4;
 $rail-radius: 6;
 
 $track-height: 4;
@@ -48,14 +48,13 @@ $tooltip-inner-height: 24;
     height: px($track-height);
     border-radius: px($track-radius);
     background-color: $color-primary;
-    margin-top: px(-2);
     // top: 50%;
     // transform: translateY(-50%);
   }
 
   .rc-slider-handle {
     position: absolute;
-    margin-top: px(-$slider-handle-width / 2);
+    margin-top: px(-$slider-handle-width / 2.25);
 
     width: px($slider-handle-width);
     height: px($slider-handle-height);
@@ -129,7 +128,7 @@ $tooltip-inner-height: 24;
 
   .rc-slider-dot {
     position: absolute;
-    bottom: -0;
+    bottom: -2px;
     margin-left: -4px;
     width: px($dot-width);
     height: px($dot-height);
