@@ -4,25 +4,25 @@ import { classNames } from 'wiloke-react-core/utils';
 import styles from './Button.module.scss';
 
 export interface ButtonProps extends WithStylesProps {
-  /** #### React children */
+  /** React children */
   children: ReactNode;
-  /** #### Các kích thước của button */
+  /** Các kích thước của button */
   size?: Size;
-  /** #### Bật lên sẽ dài full 100% */
+  /** Bật lên sẽ dài full 100% */
   block?: boolean;
-  /** #### Thuộc tính href của thẻ a */
+  /** Thuộc tính href của thẻ a */
   href?: string;
-  /** #### Thuộc tính target của thẻ a nhưng bỏ "_" ở trước */
+  /** Thuộc tính target của thẻ a nhưng bỏ "_" ở trước */
   target?: 'blank' | 'self' | 'parent' | 'top';
-  /** #### Set css font-size */
+  /** Set css font-size */
   fontSize?: number;
-  /** #### Khi bật disabled thì nút mờ đi và không thể thực hiện event */
+  /** Khi bật disabled thì nút mờ đi và không thể thực hiện event */
   disabled?: boolean;
-  /** #### Khi bật lên thì sẽ hiển thị icon loading bên trái */
+  /** Khi bật lên thì sẽ hiển thị icon loading bên trái */
   loading?: boolean;
-  /** #### Thuộc tính type của thẻ button */
+  /** Thuộc tính type của thẻ button */
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  /** #### Sự kiện click */
+  /** Sự kiện click */
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 

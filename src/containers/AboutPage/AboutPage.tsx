@@ -13,6 +13,7 @@ const STEP = 1;
 const MIN = 1;
 const MAX = 10;
 
+
 const AboutPage = () => {
   const [value, setValue] = useState('');
   const [valueNumber, setValueNumber] = useState(1);
