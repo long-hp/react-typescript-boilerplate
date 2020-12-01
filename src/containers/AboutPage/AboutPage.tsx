@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from 'components/Section/Section';
+import Section from 'components/Section';
 import { Header } from 'containers/Header';
 import { Text, View } from 'wiloke-react-core';
 
