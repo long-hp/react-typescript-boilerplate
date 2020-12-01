@@ -1,4 +1,4 @@
-import Section from 'components/Section/Section';
+import Section from 'components/Section';
 import { Header } from 'containers/Header';
 import React from 'react';
 import { Text, View } from 'wiloke-react-core';
