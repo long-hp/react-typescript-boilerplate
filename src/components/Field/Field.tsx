@@ -1,40 +1,35 @@
-import React, { CSSProperties, FC, ReactElement, ReactNode } from 'react';
-import { Text, View, WithStylesProps, withTachyons, WithTachyonsProps } from 'wiloke-react-core';
+import React, { CSSProperties, FC, ReactNode } from 'react';
+import { Text, View, withStyles, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Field.module.scss';
 
-interface LabelOptions {
-  text: string;
-  link?: ReactElement;
-}
-export interface FieldProps extends WithTachyonsProps {
+export interface FieldProps extends WithStylesProps {
   children: ReactNode;
   /** Label của field có thể có hoặc không */
-  label?: string;
+  label?: ReactNode;
   /** style inline field */
   style?: CSSProperties;
-  /** override className của field */
-  className?: string;
-  /** Màu chữ của label */
-  color?: WithStylesProps['color'];
   /** Font-size của label */
   fontSize?: number;
+  /** Note của Field */
+  note?: string;
 }
 
-const FieldComponent: FC<FieldProps> = ({ label, children, style, className, color, fontSize = 14 }) => {
+const FieldComponent: FC<FieldProps> = ({ label, children, style, className, color, fontSize = 14, note, ...rest }) => {
   const combineProps = { style, className: classNames(styles.container, className) };
   return (
-    <View {...combineProps}>
+    <View {...rest} {...combineProps}>
       {!!label && (
         <Text color={color} tagName="p" className={styles.label} tachyons="mb2" style={{ fontSize: `${fontSize}px` }}>
           {label}
         </Text>
       )}
       {children}
+      <Text className={styles.note}>{note}</Text>
     </View>
   );
 };
 
-const Field = withTachyons<HTMLElement, FieldProps>(FieldComponent);
+const Field = withStyles<HTMLElement, FieldProps>(FieldComponent);
 
 export default Field;

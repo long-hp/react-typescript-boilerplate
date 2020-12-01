@@ -1,36 +1,89 @@
-import FanyButton from 'components/FancyButton';
 import Field from 'components/Field';
-import Input from 'components/Input';
+import NumberInput from 'components/NumberInput';
+import { Slider } from 'components/Range';
 import Section from 'components/Section/Section';
+import TextInput from 'components/TextInput';
 import Header from 'containers/Header/Header';
-import React from 'react';
-import { View } from 'wiloke-react-core';
+import { range } from 'ramda';
+import React, { useState } from 'react';
+import 'styles/abstracts/abstracts.scss';
+import { GridSmart, Text, View } from 'wiloke-react-core';
+
+const STEP = 1;
+const MIN = 1;
+const MAX = 10;
 
 const AboutPage = () => {
+  const [value, setValue] = useState('');
+  const [valueNumber, setValueNumber] = useState(1);
+
+  const _onChangeText = (text: string) => {
+    setValue(text);
+  };
+
+  const _onChangeRange = (value: number) => {
+    setValueNumber(value);
+  };
+
   return (
     <View>
       <Header />
       <View container>
         <Section>
-          <FanyButton tachyons="flex" color="danger" backgroundColor="facebook" radius="pill" fontSize={16}>
-            <View>
-              <span>J</span>
-              <span>U</span>
-              <span>M</span>
-              <span>P</span>
-            </View>
-          </FanyButton>
+          <View tachyons={['w-40', 'pa3']} backgroundColor="gray2" radius="round">
+            <Field
+              className="aaaaaaaa"
+              color="danger"
+              fontSize={20}
+              label={
+                <Text>
+                  <a href="#">Link</a>
+                </Text>
+              }
+            >
+              <TextInput radius="round" value={value} onChangeText={_onChangeText} />
+            </Field>
+            <Field color="dark" fontSize={20} label="Field title">
+              <TextInput radius={5} block type="text" disabled />
+            </Field>
 
-          <View tachyons={['w-40']}>
-            <Field color="dark" fontSize={20} label="Field title">
-              <Input borderRadius={5} />
+            <Field
+              label="Range with rc-slider"
+              note="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eaque provident temporibus modi accusantium dignissimos"
+              fontSize={20}
+              color="dark"
+            >
+              <View row tachyons={['items-center', 'mt3', 'mb3']}>
+                <View columns={[9, 9, 9]}>
+                  <Slider
+                    value={valueNumber}
+                    min={MIN}
+                    max={MAX}
+                    step={STEP}
+                    className="aaaaa"
+                    trackStyle={{ backgroundColor: 'aquamarine' }}
+                    handleStyle={{ backgroundColor: '#fff' }}
+                    railStyle={{ backgroundColor: '#ccc' }}
+                    onChange={_onChangeRange}
+                  />
+                </View>
+                <View columns={[3, 3, 3]}>
+                  <NumberInput value={valueNumber} onChangeNumber={_onChangeRange} inputProps={{ min: MIN, max: MAX, step: STEP }} />
+                </View>
+              </View>
             </Field>
-            <Field color="dark" fontSize={20} label="Field title">
-              <Input borderRadius={5} />
-            </Field>
-            <Field color="dark" fontSize={20} label="Field title">
-              <Input borderRadius={5} />
-            </Field>
+          </View>
+
+          <View tachyons="mt3">
+            <GridSmart columnWidth={250}>
+              {range(0, valueNumber).map(item => (
+                <View key={item} backgroundColor="gray4" height={200} tachyons={['flex', 'justify-center', 'items-center']}>
+                  <Text tagName="h3" color="gray9">
+                    {item + 1}
+                  </Text>
+                </View>
+              ))}
+            </GridSmart>
           </View>
         </Section>
       </View>
