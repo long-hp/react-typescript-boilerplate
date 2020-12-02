@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, color, number, select } from '@storybook/addon-knobs';
-import NumberInput from 'components/NumberInput';
+import { NumberInput } from 'components/NumberInput';
 import { Range as RangeSlide, RangeComponentProps, Slider as Slide, SliderProps } from 'components/Range';
 import { RangeProps } from 'rc-slider/lib/Range';
 import React, { useState } from 'react';

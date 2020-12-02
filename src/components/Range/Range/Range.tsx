@@ -1,6 +1,6 @@
 import { createSliderWithTooltip, Range } from 'rc-slider';
 import { RangeProps } from 'rc-slider/lib/Range';
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 export interface RangeComponentProps extends RangeProps {
   /** Style của 2(hoặc nhiều) thanh track  */
@@ -20,6 +20,9 @@ export interface RangeComponentProps extends RangeProps {
 
   /** Trạng thái ẩn/hiện của tooltip */
   tooltipVisible?: boolean;
+
+  /** Hàm format tooltip overlay */
+  tipFormatter?: (value: number) => ReactNode;
 }
 
 const RangeWithTooltip = createSliderWithTooltip(Range);
@@ -34,6 +37,7 @@ const RangeComponent: FC<RangeComponentProps> = ({
   min = 0,
   max = 10,
   tooltipPlacement = 'top',
+  tipFormatter,
   onChange,
   ...rest
 }) => {
@@ -48,7 +52,7 @@ const RangeComponent: FC<RangeComponentProps> = ({
         handleStyle={handleStyle}
         onChange={onChange}
         defaultValue={defaultValue}
-        tipFormatter={value => value}
+        tipFormatter={tipFormatter}
         tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }}
       />
     ) : (
