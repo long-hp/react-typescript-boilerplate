@@ -1,14 +1,16 @@
-import React, { FC } from 'react';
-import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome, useTheme } from 'wiloke-react-core';
-import Section from 'components/Section/Section';
-import IconText from 'components/IconText/IconText';
-import SectionTitle from 'components/SectionTitle/SectionTitle';
-import { useSelector } from 'react-redux';
-import { range } from 'ramda';
-import { Endpoints } from 'types/Endpoints';
-import Header from 'containers/Header/Header';
-import PostCard from 'components/PostCard/PostCard';
 import Button from 'components/Button/Button';
+import IconText from 'components/IconText/IconText';
+import PostCard from 'components/PostCard/PostCard';
+import Section from 'components/Section/Section';
+import SectionTitle from 'components/SectionTitle/SectionTitle';
+import Header from 'containers/Header/Header';
+import { range } from 'ramda';
+import React, { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { Endpoints } from 'types/Endpoints';
+
+import { GridSmart, Image, LineAwesome, Skeleton, Space, Text, TextUnderline, useResponsive, useTheme, View } from 'wiloke-react-core';
+
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 
@@ -118,11 +120,7 @@ const HomePage: FC = () => {
 
         <Section backgroundColor="gray2">
           <View container>
-            <SectionTitle
-              tachyons={['tl', 'mb3', 'mb4-l']}
-              title="Popular Posts"
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, laboriosam."
-            />
+            <SectionTitle tachyons={['tl', 'mb3', 'mb4-l']} title="Popular Posts" text="Image test lazyload with previewSrc" />
             <GridSmart columnWidth={300} columnCount={4}>
               <PostCard
                 previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-4x2.jpg"
@@ -131,7 +129,7 @@ const HomePage: FC = () => {
                 category="Travel"
               />
               <PostCard
-                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jp"
+                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jpg"
                 imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-1280x853.jpg"
                 title="There are many variations"
                 category="Lifestyle"

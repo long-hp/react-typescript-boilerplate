@@ -1,0 +1,58 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-default: 14;
+
+$font-size-small: 12;
+$padding-small-vertical: 4;
+$padding-small-horizontal: 8;
+
+$font-size-medium: 16;
+$padding-medium-vertical: 8;
+$padding-medium-horizontal: 10;
+
+$font-size-large: 18;
+$padding-large-vertical: 12;
+$padding-large-horizontal: 12;
+
+.container {
+  margin: 0;
+  position: relative;
+  font-size: px($font-size-default);
+  background-color: $color-light;
+  transition: all .3s;
+
+  &:focus {
+    outline: unset;
+  }
+}
+
+.container::-webkit-outer-spin-button,
+.container::-webkit-inner-spin-button {
+  appearance: textfield;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.small {
+  padding: px($padding-small-vertical) px($padding-small-horizontal);
+  font-size: px($font-size-small);
+}
+
+.medium {
+  padding: px($padding-medium-vertical) px($padding-medium-horizontal);
+  font-size: px($font-size-medium);
+}
+
+.large {
+  padding: px($padding-large-vertical) px($padding-large-horizontal);
+  font-size: px($font-size-large);
+}
+
+.block {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: no-drop;
+}

@@ -3,7 +3,6 @@
 .container {
   padding: px(15);
   margin-bottom: px(15);
-  border: 1px solid;
   position: relative;
   overflow: hidden;
 }
@@ -24,8 +23,6 @@
   border: none;
 }
 
-//
-
 .message {
   display: block;
   font-size: px(16);
@@ -42,7 +39,6 @@
   opacity: 0.05;
 }
 
-// small' | 'medium' | 'large';
 .small {
   padding-top: px(8);
   padding-bottom: px(8);

@@ -1,5 +1,5 @@
-import reducersHeader from 'containers/Header/reducers/reducers';
-import reducersHomePage from 'containers/HomePage/reducers/reducers';
+import { reducersHeader } from 'containers/Header';
+import { reducersHomePage } from 'containers/HomePage';
 
 const reducers = {
   ...reducersHomePage,

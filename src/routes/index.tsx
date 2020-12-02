@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomePage from 'containers/HomePage/HomePage';
-import AboutPage from 'containers/AboutPage/AboutPage';
-import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
+import { HomePage } from 'containers/HomePage';
+import { AboutPage } from 'containers/AboutPage';
+import { NotFoundPage } from 'containers/NotFoundPage';
 import { Page } from './types';
 
 export const pages: Page[] = [
