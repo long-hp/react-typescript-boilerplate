@@ -1,8 +1,8 @@
 import Field from 'components/Field';
-import NumberInput from 'components/NumberInput';
+import { NumberInput } from 'components/NumberInput';
 import { Slider } from 'components/Range';
 import Section from 'components/Section/Section';
-import TextInput from 'components/TextInput';
+import { TextInput } from 'components/TextInput';
 import Header from 'containers/Header/Header';
 import { range } from 'ramda';
 import React, { useState } from 'react';

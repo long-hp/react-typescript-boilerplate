@@ -132,7 +132,7 @@ $tooltip-inner-height: 24;
     margin-left: -4px;
     width: px($dot-width);
     height: px($dot-height);
-    border: 2px solid #ccc;
+    border: 1px solid $color-gray-4;
     background-color: $color-light;
     cursor: pointer;
     border-radius: 50%;
@@ -140,7 +140,7 @@ $tooltip-inner-height: 24;
   }
 
   .rc-slider-dot-active {
-    border-color: $color-info;
+    border-color: $color-primary;
   }
 
   .rc-slider-dot-reverse {
