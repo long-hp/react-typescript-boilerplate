@@ -39,7 +39,7 @@ const getIconName = (type: string): LineAwesomeName => {
   }
 };
 
-const AlertComponent = forwardRef<HTMLElement, AlertProps>(
+const Alert = forwardRef<HTMLElement, AlertProps>(
   (
     { closable = true, description, disableBorder, message, className, showIcon = true, type = 'info', size = 'medium', Icon, onClose, ...rest },
     ref,
@@ -95,6 +95,4 @@ const AlertComponent = forwardRef<HTMLElement, AlertProps>(
   },
 );
 
-const Alert = withStyles<HTMLElement, AlertProps>(AlertComponent);
-
-export default Alert;
+export default withStyles<HTMLElement, AlertProps>(Alert);
