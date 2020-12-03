@@ -1,3 +1,4 @@
+import ColorPicker from 'components/ColorPicker';
 import Field from 'components/Field';
 import { NumberInput } from 'components/NumberInput';
 import { Slider } from 'components/Range';
@@ -6,17 +7,30 @@ import { TextInput } from 'components/TextInput';
 import Header from 'containers/Header/Header';
 import { range } from 'ramda';
 import React, { useState } from 'react';
-import 'styles/abstracts/abstracts.scss';
+import { ColorResult, HSLColor, RGBColor } from 'react-color';
+import { decimalToHex } from 'utils/functions/decimalToHex';
 import { GridSmart, Text, View } from 'wiloke-react-core';
 
 const STEP = 1;
 const MIN = 1;
 const MAX = 10;
 
-
 const AboutPage = () => {
   const [value, setValue] = useState('');
   const [valueNumber, setValueNumber] = useState(1);
+  const [colorPreview, setColorPreview] = useState('#333333');
+  const [colorState, setColorState] = useState<HSLColor>({
+    h: 250,
+    s: 0,
+    l: 0.2,
+    a: 1,
+  });
+  const [rgbColor, setRgbColor] = useState<RGBColor>({
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 0.5,
+  });
 
   const _onChangeText = (text: string) => {
     setValue(text);
@@ -24,6 +38,15 @@ const AboutPage = () => {
 
   const _onChangeRange = (value: number) => {
     setValueNumber(value);
+  };
+
+  const _onChangeColorPicker = (color: ColorResult) => {
+    if (color.hsl !== colorState) {
+      setRgbColor(color.rgb);
+      setColorState(color.hsl);
+      const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
+      setColorPreview(hexCode);
+    }
   };
 
   return (
@@ -49,12 +72,12 @@ const AboutPage = () => {
             </Field>
 
             <Field
-              label="Range with rc-slider"
+              label="Slider with rc-slider"
               note="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat eaque provident temporibus modi accusantium dignissimos"
               fontSize={20}
               color="dark"
             >
-              <View row tachyons={['items-center', 'mt3', 'mb3']}>
+              <View tachyons={['flex', 'items-center', 'mt3', 'mb3']}>
                 <View columns={[9, 9, 9]}>
                   <Slider
                     value={valueNumber}
@@ -71,6 +94,13 @@ const AboutPage = () => {
                 <View columns={[3, 3, 3]}>
                   <NumberInput value={valueNumber} onChangeNumber={_onChangeRange} inputProps={{ min: MIN, max: MAX, step: STEP }} />
                 </View>
+              </View>
+            </Field>
+
+            <Field backgroundColor="light" tachyons="pa2" radius={'round'} borderWidth="2/6" borderColor="gray9">
+              <View tachyons={['flex', 'justify-between', 'items-center']}>
+                <ColorPicker pickerType="sketch" onChange={_onChangeColorPicker} color={colorState} colorPicker={rgbColor} />
+                <Text color="gray6">{colorPreview}</Text>
               </View>
             </Field>
           </View>
