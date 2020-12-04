@@ -1,7 +1,7 @@
 import ColorPicker from 'components/ColorPicker';
 import Field from 'components/Field';
 import { NumberInput } from 'components/NumberInput';
-import { Slider } from 'components/Range';
+import { Slider } from 'components/RangeSlideBeauty';
 import Section from 'components/Section/Section';
 import { TextInput } from 'components/TextInput';
 import Header from 'containers/Header/Header';
