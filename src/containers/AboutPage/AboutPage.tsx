@@ -1,7 +1,7 @@
 import ColorPicker from 'components/ColorPicker';
 import Field from 'components/Field';
 import { NumberInput } from 'components/NumberInput';
-import { Slider } from 'components/Range';
+import { Slider } from 'components/RangeSlideBeauty';
 import Section from 'components/Section/Section';
 import { TextInput } from 'components/TextInput';
 import Header from 'containers/Header/Header';
@@ -55,16 +55,7 @@ const AboutPage = () => {
       <View container>
         <Section>
           <View tachyons={['w-40', 'pa3']} backgroundColor="gray2" radius="round">
-            <Field
-              className="aaaaaaaa"
-              color="danger"
-              fontSize={20}
-              label={
-                <Text>
-                  <a href="#">Link</a>
-                </Text>
-              }
-            >
+            <Field className="aaaaaaaa" color="danger" fontSize={20} label={<Text>ReactNode</Text>}>
               <TextInput radius="round" value={value} onChangeText={_onChangeText} />
             </Field>
             <Field color="dark" fontSize={20} label="Field title">
