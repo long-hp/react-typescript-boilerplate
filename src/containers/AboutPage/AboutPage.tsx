@@ -99,7 +99,14 @@ const AboutPage = () => {
 
             <Field backgroundColor="light" tachyons="pa2" radius={'round'} borderWidth="2/6" borderColor="gray9">
               <View tachyons={['flex', 'justify-between', 'items-center']}>
-                <ColorPicker pickerType="sketch" onChange={_onChangeColorPicker} color={colorState} colorPicker={rgbColor} />
+                <ColorPicker
+                  placement="bottom-start"
+                  pickerType="sketch"
+                  color={colorState}
+                  colorPicker={rgbColor}
+                  onChange={_onChangeColorPicker}
+                  onChangeComplete={_onChangeColorPicker}
+                />
                 <Text color="gray6">{colorPreview}</Text>
               </View>
             </Field>

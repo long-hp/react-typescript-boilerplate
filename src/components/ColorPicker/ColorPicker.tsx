@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { ChromePicker, Color, ColorChangeHandler, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
+import { ChromePicker, Color, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
 import { View } from 'wiloke-react-core';
@@ -8,9 +8,26 @@ import styles from './ColorPicker.module.scss';
 
 export type ColorPickerType = 'chrome' | 'sketch' | 'photoshop';
 export type PresetColor = { color: string; title: string } | string;
+export type Placement =
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end';
+
+export type Strategy = 'fixed' | 'absolute';
+
+type FunctionColorChange = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
 
 export interface ColorPickerProps {
-  /** Giao diện của color picker: 'chrome' | 'sketch' | 'photoshop' | 'material' | 'compact' | 'swatches' */
+  /** Giao diện của color picker platform: 'chrome' | 'sketch' | 'photoshop' | 'material' | 'compact' | 'swatches' */
   pickerType: ColorPickerType;
 
   /** Đầu vào cùa color: hex | hsl | rgb */
@@ -19,25 +36,38 @@ export interface ColorPickerProps {
   /** Background picker */
   colorPicker?: ColorResult['rgb'];
 
-  /** Thuộc tính disable alpha của các picker: 'chrome' | 'sketch */
+  /** Thuộc tính disable alpha của các platform: 'chrome' | 'sketch */
   disableAlpha?: boolean;
 
-  /**  */
+  /** bảng màu ở phía dưới của platform: sketch */
   presetColor?: PresetColor[];
 
+  /** className của color picker */
   className?: string;
 
-  /** Sự kiện onChange */
-  onChange?: ColorChangeHandler;
+  /** Position của color picker board */
+  strategy?: Strategy;
+
+  /** Chỉ hiện bảng color picker */
+  onlyShowColorBoard?: boolean;
+
+  /** Vị trí của color picker board */
+  placement?: Placement;
 
   /** Sự kiện onChange */
-  onChangeComplete?: ColorChangeHandler;
+  onChange?: FunctionColorChange;
+
+  /** Sự kiện onChangeComplete */
+  onChangeComplete?: FunctionColorChange;
 }
 
 const ColorPicker: FC<ColorPickerProps> = ({
-  pickerType = 'chrome',
-  color,
   disableAlpha = false,
+  onlyShowColorBoard = false,
+  pickerType = 'chrome',
+  placement = 'bottom-start',
+  strategy = 'absolute',
+  color,
   className,
   colorPicker,
   presetColor,
@@ -101,14 +131,13 @@ const ColorPicker: FC<ColorPickerProps> = ({
   };
 
   const _renderColorPicker = () => {
-    // const showPickerClass = showPicker ? '' : '';
     return (
       showPicker &&
       createPortal(
-        <Popper strategy="fixed" placement="bottom-start">
+        <Popper strategy={strategy} placement={placement}>
           {popperProps => {
             return (
-              <View ref={popperProps.ref} style={popperProps.style} className={[styles[popperProps.placement]].join(' ')}>
+              <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
                 <View className={styles.popperInner}>{_handleRenderPickerType()}</View>
                 <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} className={styles.arrow} />
               </View>
@@ -122,10 +151,14 @@ const ColorPicker: FC<ColorPickerProps> = ({
 
   return (
     <View className={styles.container}>
-      <Manager>
-        {_renderTarget()}
-        {_renderColorPicker()}
-      </Manager>
+      {onlyShowColorBoard ? (
+        _handleRenderPickerType()
+      ) : (
+        <Manager>
+          {_renderTarget()}
+          {_renderColorPicker()}
+        </Manager>
+      )}
     </View>
   );
 };
