@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes, useCallback } from 'react';
-import { withStyles, WithStylesProps } from 'wiloke-react-core';
+import { View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
+import TextInputLoading from './TextInputLoading';
 import styles from './TextInput.module.scss';
 
 export type SizeInput = 'small' | 'medium' | 'large';
@@ -23,8 +24,11 @@ export interface InputProps extends WithStylesProps {
   /** Sự kiện onChangeText của input, trả về dữ liệu dạng string(chuỗi) */
   onChangeText?: (text: string) => void;
 }
+interface TextInputFC extends FC<InputProps> {
+  Loading: typeof TextInputLoading;
+}
 
-const InputComponent: FC<InputProps> = ({
+const TextInput: TextInputFC = ({
   className,
   sizeInput = 'medium',
   placeholder = '',
@@ -32,6 +36,11 @@ const InputComponent: FC<InputProps> = ({
   type = 'text',
   value,
   disabled = false,
+  borderColor,
+  borderStyle,
+  borderWidth,
+  color,
+  backgroundColor,
   onChange,
   onChangeText,
   ...rest
@@ -48,15 +57,22 @@ const InputComponent: FC<InputProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <input {...rest} {...generalSetting} type={type} value={value} onChange={_handleChange} placeholder={placeholder} disabled={disabled} />;
+  return (
+    <View
+      {...rest}
+      {...generalSetting}
+      tachyons={['relative', 'overflow-hidden']}
+      color={color}
+      backgroundColor={backgroundColor}
+      borderColor={borderColor}
+      borderWidth={borderWidth}
+      borderStyle={borderStyle}
+    >
+      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.input} onChange={_handleChange} />
+    </View>
+  );
 };
 
-const TextInput = withStyles<HTMLInputElement, InputProps>(InputComponent, {
-  color: 'gray8',
-  backgroundColor: 'light',
-  borderColor: 'gray4',
-  borderWidth: '2/6',
-  borderStyle: 'solid',
-});
+TextInput.Loading = TextInputLoading;
 
 export default TextInput;

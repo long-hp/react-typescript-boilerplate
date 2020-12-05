@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, color, number, select } from '@storybook/addon-knobs';
 import { NumberInput } from 'components/NumberInput';
-import { Range as RangeSlide, RangeComponentProps, Slider as Slide, SliderProps } from 'components/RangeSlideBeauty';
+import { Range as RangeSlide, RangeComponentProps, Slider as Slide, SliderProps } from 'components/RangeSlider';
 import { RangeProps } from 'rc-slider/lib/Range';
 import React, { useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
@@ -19,10 +19,11 @@ export const Slider = () => {
   const reverse = boolean('Reverse', false);
   const tooltip = boolean('Tooltip', true);
   const tooltipVisible = boolean('Tooltip Visible', false);
+  const isLoading = boolean('Loading', false);
 
   const min = number('Min', 0);
   const max = number('Max', 100);
-  const step = number('Step', 10);
+  const step = number('Step', 1);
 
   const trackColor = color('Track Color', '#FD9B9B');
   const handleColor = color('Hanlde Color', '#4A90E2');
@@ -43,26 +44,35 @@ export const Slider = () => {
 
   return (
     <View tachyons="pa4" width={600}>
-      <Text color="dark" tachyons="mb3">
-        Slider value: <NumberInput value={value} onChangeNumber={_handleOnChange} inputProps={{ min: min, max: max, step: step }} />
-      </Text>
+      <View tachyons={['flex', 'mb3']}>
+        <Text color="dark">Slider value:</Text> &nbsp;
+        {isLoading ? (
+          <NumberInput.Loading />
+        ) : (
+          <NumberInput value={value} min={min} max={max} step={step} sizeInput="small" onChangeNumber={_handleOnChange} />
+        )}
+      </View>
 
-      <Slide
-        value={value}
-        dots={dots}
-        min={min}
-        max={max}
-        step={step}
-        disabled={disabled}
-        reverse={reverse}
-        tooltip={tooltip}
-        tooltipPlacement={tooltipPlacement}
-        tooltipVisible={tooltipVisible}
-        trackStyle={{ backgroundColor: `${trackColor}` }}
-        handleStyle={{ backgroundColor: `${handleColor}` }}
-        railStyle={{ backgroundColor: `${railColor}` }}
-        onChange={_handleOnChange}
-      />
+      {isLoading ? (
+        <Slide.Loading />
+      ) : (
+        <Slide
+          value={value}
+          dots={dots}
+          min={min}
+          max={max}
+          step={step}
+          disabled={disabled}
+          reverse={reverse}
+          tooltip={tooltip}
+          tooltipPlacement={tooltipPlacement}
+          tooltipVisible={tooltipVisible}
+          trackStyle={{ backgroundColor: `${trackColor}` }}
+          handleStyle={{ backgroundColor: `${handleColor}` }}
+          railStyle={{ backgroundColor: `${railColor}` }}
+          onChange={_handleOnChange}
+        />
+      )}
     </View>
   );
 };
@@ -75,6 +85,7 @@ export const Range = () => {
   const dots = boolean('Dots', true);
   const tooltip = boolean('Tooltip', true);
   const tooltipVisible = boolean('Tooltip Visible', false);
+  const isLoading = boolean('Loading', false);
 
   const trackColor1 = color('Track Color 1', '#FD9B9B');
   const trackColor2 = color('Track Color 2', '#6EA9FF');
@@ -102,20 +113,24 @@ export const Range = () => {
       <Text color="dark" tachyons="mb3">
         Values of range slide: {convertValue}
       </Text>
-      <RangeSlide
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        dots={dots}
-        tooltip={tooltip}
-        tooltipPlacement={tooltipPlacement}
-        tooltipVisible={tooltipVisible}
-        trackStyle={[{ backgroundColor: `${trackColor1}` }, { backgroundColor: `${trackColor2}` }]}
-        handleStyle={[{ backgroundColor: `${handleColor1}` }, { backgroundColor: `${handleColor2}` }]}
-        railStyle={{ backgroundColor: `${railColor}` }}
-        onChange={_handleOnChange}
-      />
+      {isLoading ? (
+        <RangeSlide.Loading />
+      ) : (
+        <RangeSlide
+          value={value}
+          min={min}
+          max={max}
+          step={step}
+          dots={dots}
+          tooltip={tooltip}
+          tooltipPlacement={tooltipPlacement}
+          tooltipVisible={tooltipVisible}
+          trackStyle={[{ backgroundColor: `${trackColor1}` }, { backgroundColor: `${trackColor2}` }]}
+          handleStyle={[{ backgroundColor: `${handleColor1}` }, { backgroundColor: `${handleColor2}` }]}
+          railStyle={{ backgroundColor: `${railColor}` }}
+          onChange={_handleOnChange}
+        />
+      )}
     </View>
   );
 };

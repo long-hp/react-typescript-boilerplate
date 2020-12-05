@@ -58,12 +58,13 @@ $tooltip-inner-height: 24;
 
     width: px($slider-handle-width);
     height: px($slider-handle-height);
+    border: 2px solid transparent;
 
     cursor: pointer;
     cursor: -webkit-grab;
     cursor: grab;
     border-radius: 50%;
-    background-color: $color-light;
+    background-color: $color-primary;
     touch-action: pan-x;
 
     &:focus {
@@ -71,12 +72,11 @@ $tooltip-inner-height: 24;
     }
 
     &:hover {
-      border-color: tint(#2db7f5, 20%);
+      border: 2px solid rgba($color: $color-primary, $alpha: 0.2);
     }
 
     &:active {
-      border-color: tint(#2db7f5, 20%);
-      box-shadow: 0 0 5px tint(#2db7f5, 20%);
+      box-shadow: 0 0 5px rgba($color: $color-primary, $alpha: 0.2);
       cursor: -webkit-grabbing;
       cursor: grabbing;
     }

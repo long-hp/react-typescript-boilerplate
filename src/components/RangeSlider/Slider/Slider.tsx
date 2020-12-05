@@ -2,6 +2,7 @@ import Slider, { createSliderWithTooltip } from 'rc-slider';
 import { GenericSliderProps } from 'rc-slider/lib/interface';
 import React, { CSSProperties, FC } from 'react';
 import { classNames } from 'wiloke-react-core/utils';
+import RangeSliderLoading from '../RangeSliderLoading';
 import styles from './Slider.module.scss';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
@@ -41,7 +42,11 @@ export interface SliderProps extends GenericSliderProps {
   tooltipVisible?: boolean;
 }
 
-const SliderComponent: FC<SliderProps> = ({
+interface SliderFC extends FC<SliderProps> {
+  Loading: typeof RangeSliderLoading;
+}
+
+const SliderComponent: SliderFC = ({
   value,
   trackStyle,
   handleStyle,
@@ -105,5 +110,7 @@ const SliderComponent: FC<SliderProps> = ({
 
   return _renderSlide();
 };
+
+SliderComponent.Loading = RangeSliderLoading;
 
 export default SliderComponent;

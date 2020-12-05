@@ -1,6 +1,7 @@
 import { createSliderWithTooltip, Range } from 'rc-slider';
 import { RangeProps } from 'rc-slider/lib/Range';
 import React, { FC, ReactNode } from 'react';
+import RangeSliderLoading from '../RangeSliderLoading';
 
 export interface RangeComponentProps extends RangeProps {
   /** Style của 2(hoặc nhiều) thanh track  */
@@ -25,9 +26,13 @@ export interface RangeComponentProps extends RangeProps {
   tipFormatter?: (value: number) => ReactNode;
 }
 
+interface RangeFC extends FC<RangeComponentProps> {
+  Loading: typeof RangeSliderLoading;
+}
+
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
-const RangeComponent: FC<RangeComponentProps> = ({
+const RangeComponent: RangeFC = ({
   tooltip = false,
   tooltipVisible = false,
   handleStyle,
@@ -71,5 +76,7 @@ const RangeComponent: FC<RangeComponentProps> = ({
 
   return _renderRangeSlide();
 };
+
+RangeComponent.Loading = RangeSliderLoading;
 
 export default RangeComponent;
