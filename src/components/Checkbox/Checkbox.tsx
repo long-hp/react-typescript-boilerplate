@@ -1,6 +1,6 @@
-import React, { FC, InputHTMLAttributes, memo, ReactNode, useEffect, useState } from 'react';
+import React, { FC, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
 import { Size, Text, WithTachyonsProps } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
+import { classNames, memoization } from 'wiloke-react-core/utils';
 import styles from './Checkbox.module.scss';
 import CheckboxLoading from './CheckboxLoading';
 
@@ -56,4 +56,4 @@ const Checkbox: CheckboxFC = ({ size = 'medium', checked, defaultChecked = false
 
 Checkbox.Loading = CheckboxLoading;
 
-export default memo(Checkbox);
+export default memoization(Checkbox);

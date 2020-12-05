@@ -16,6 +16,7 @@ export const WithProps = () => {
     getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
     'medium',
   );
+  const isLoading = boolean('Loading', false);
   const checked = boolean('Checked', false);
   const disabled = boolean('Disabled', false);
   const [checkedState, setCheckedState] = useState(checked);
@@ -25,7 +26,9 @@ export const WithProps = () => {
     action('onChange');
   };
 
-  return (
+  return isLoading ? (
+    <Checkbox.Loading />
+  ) : (
     <Checkbox disabled={disabled} size={size} checked={checked} onChange={_handleChange}>
       {text('Children', 'Day la checkbox')}
     </Checkbox>
