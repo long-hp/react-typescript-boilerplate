@@ -10,16 +10,19 @@ $height-control-large: 36;
 
 .container {
   position: relative;
-  display: inline-flex;
   font-size: 14px;
   cursor: pointer;
 }
 
+.container:hover .control {
+  border: 1px solid currentColor;
+}
+
 .checkboxInput {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
 
   input {
     position: absolute;

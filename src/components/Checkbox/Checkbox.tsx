@@ -18,7 +18,7 @@ export interface CheckboxProps extends WithTachyonsProps {
 }
 
 const CheckboxComponent: FC<CheckboxProps> = ({
-  size = 'small',
+  size = 'medium',
   checked = false,
   defaultChecked = false,
   disabled = false,
@@ -47,12 +47,12 @@ const CheckboxComponent: FC<CheckboxProps> = ({
     }
   }, [checked]);
   return (
-    <Text {...rest} tagName="label" className={classes} tachyons={['flex', 'items-center']}>
+    <Text {...rest} tagName="label" className={classes} tachyons={['inline-flex', 'items-center']}>
       <Text tagName="span" className={classNames(styles.checkboxInput, sizeClass, checkedClass, disabledClass)}>
         <input disabled={disabled} checked={checkedState} type="checkbox" onChange={_handleChange} />
         <Text tagName="span" className={styles.control}></Text>
       </Text>
-      <Text tagName="span">{children}</Text>
+      {children && <Text tagName="span">{children}</Text>}
     </Text>
   );
 };
