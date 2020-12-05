@@ -20,9 +20,6 @@ $height-control-large: 36;
 
 .checkboxInput {
   position: relative;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
 
   input {
     position: absolute;
@@ -60,6 +57,7 @@ $height-control-large: 36;
       position: absolute;
       top: 50%;
       left: 0;
+      opacity: 0;
     }
 
     &::before {
@@ -87,6 +85,10 @@ $height-control-large: 36;
   & .control {
     background-color: $color-primary;
     border: none;
+
+    &::before {
+      opacity: 1;
+    }
   }
 }
 

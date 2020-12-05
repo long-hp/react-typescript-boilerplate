@@ -1,7 +1,8 @@
 import React, { FC, InputHTMLAttributes, memo, ReactNode, useEffect, useState } from 'react';
-import { Size, Text, withTachyons, WithTachyonsProps } from 'wiloke-react-core';
+import { Size, Text, WithTachyonsProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Checkbox.module.scss';
+import CheckboxLoading from './CheckboxLoading';
 
 export interface CheckboxProps extends WithTachyonsProps {
   /** Kich thuoc checkbox */
@@ -17,16 +18,11 @@ export interface CheckboxProps extends WithTachyonsProps {
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
 }
 
-const CheckboxComponent: FC<CheckboxProps> = ({
-  size = 'medium',
-  checked = false,
-  defaultChecked = false,
-  disabled = false,
-  children,
-  className,
-  onChange,
-  ...rest
-}) => {
+interface CheckboxFC extends FC<CheckboxProps> {
+  Loading: typeof CheckboxLoading;
+}
+
+const Checkbox: CheckboxFC = ({ size = 'medium', checked, defaultChecked = false, disabled = false, children, className, onChange, ...rest }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.checked : '';
   const sizeClass = styles[size];
@@ -42,10 +38,11 @@ const CheckboxComponent: FC<CheckboxProps> = ({
   };
 
   useEffect(() => {
-    if (checked) {
+    if (typeof checked !== 'undefined') {
       setCheckedState(!!checked);
     }
   }, [checked]);
+
   return (
     <Text {...rest} tagName="label" className={classes} tachyons={['inline-flex', 'items-center']}>
       <Text tagName="span" className={classNames(styles.checkboxInput, sizeClass, checkedClass, disabledClass)}>
@@ -57,6 +54,6 @@ const CheckboxComponent: FC<CheckboxProps> = ({
   );
 };
 
-const Checkbox = withTachyons<HTMLElement, CheckboxProps>(CheckboxComponent);
+Checkbox.Loading = CheckboxLoading;
 
 export default memo(Checkbox);
