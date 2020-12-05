@@ -1,0 +1,61 @@
+@import 'styles/abstracts/abstracts';
+
+$font-size-large: 12;
+$font-size-default: 10;
+$font-size-small: 8;
+$borderWidth: 1;
+$borderStyle: solid;
+$boderColor: $color-dark;
+$boderColorFocus: $color-behance;
+$textInput-padding-small-y: 4;
+$textInput-padding-small-x: 4;
+$textInput-padding-medium-y: 8;
+$textInput-padding-medium-x: 8;
+$textInput-padding-large-y: 10;
+$textInput-padding-large-x: 10;
+
+.container {
+  padding: px($textInput-padding-medium-y) px($textInput-padding-medium-x);
+  height: 38px;
+  position: relative;
+  font-size: px($font-size-default);
+  transition: all .3s;
+  border: none;
+  outline: none;
+  background: none;
+
+  &:focus {
+    border: px($borderWidth) $borderStyle $boderColorFocus;
+  }
+}
+
+.large {
+  padding: px($textInput-padding-large-y) px($textInput-padding-large-x);
+  font-size: px($font-size-large);
+  height: 46px;
+}
+
+.medium {
+  padding: px($textInput-padding-medium-y) px($textInput-padding-medium-x);
+  font-size: px($font-size-default);
+  height: 38px;
+}
+
+.small {
+  padding: px($textInput-padding-small-y) px($textInput-padding-small-x);
+  font-size: px($font-size-small);
+  height: 30px;
+}
+
+.bordered {
+  border: px($borderWidth) $borderStyle $boderColor;
+}
+
+.block {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

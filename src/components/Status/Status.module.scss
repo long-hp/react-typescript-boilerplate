@@ -1,0 +1,23 @@
+@import 'styles/abstracts/abstracts';
+
+.container {
+  font-size: 12px;
+  font-family: "San Francisco Text";
+  font-weight: 400;
+}
+
+.large {
+  font-size: 18px;
+}
+
+.medium {
+  font-size: 12px;
+}
+
+.small {
+  font-size: 8px;
+}
+
+.enable {
+  color: $color-success;
+}

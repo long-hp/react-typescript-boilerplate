@@ -1,4 +1,5 @@
 const styles = `
+@import 'styles/abstracts/abstracts';
 .container {
   color: red;
 }

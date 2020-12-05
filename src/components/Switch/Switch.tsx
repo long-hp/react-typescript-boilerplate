@@ -94,7 +94,7 @@ const SwitchComponent = ({
   return (
     <View
       {...rest}
-      backgroundColor={checkedState ? 'primary' : 'gray4'}
+      backgroundColor={checkedState ? 'behance' : 'gray5'}
       className={containerClassName}
       onClick={handleClick}
       nightModeBlacklist={nightModeBlacklist}
