@@ -26,7 +26,7 @@ export interface ButtonProps extends WithStylesProps {
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 
-const ButtonComponent = forwardRef<HTMLElement, ButtonProps>(
+const Button = forwardRef<HTMLElement, ButtonProps>(
   (
     {
       href,
@@ -80,11 +80,9 @@ const ButtonComponent = forwardRef<HTMLElement, ButtonProps>(
   },
 );
 
-const Button = withStyles<HTMLElement, ButtonProps>(ButtonComponent, {
+export default withStyles<HTMLElement, ButtonProps>(Button, {
   color: 'light',
   backgroundColor: 'primary',
   radius: 'square',
   borderWidth: '0/6',
 });
-
-export default Button;
