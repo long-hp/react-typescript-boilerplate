@@ -1,0 +1,211 @@
+@import 'styles/abstracts/abstracts';
+
+$width-control-small: 24;
+$height-control-small: 24;
+$width-control-medium: 30;
+$height-control-medium: 30;
+$width-control-large: 36;
+$height-control-large: 36;
+
+
+.container {
+  position: relative;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-block;
+  align-items: center;
+}
+
+.container:hover:not(.disabled) .control {
+  border: 1px solid $color-primary;
+}
+
+.radioInput {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  outline: none;
+
+  input[type="radio"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none !important;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .control {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    width: px($width-control-medium);
+    height: px($height-control-medium);
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    box-sizing: border-box;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      width: 15px;
+      height: 15px;
+      box-shadow: inset 15px 15px $color-primary;
+      border-radius: 50%;
+    }
+  }
+}
+
+.radioInput input:focus+.control {
+  border-color: $color-primary;
+}
+
+.radioInput+span {
+  padding: 0 8px;
+}
+
+.checked {
+  & .control {
+    border-color: $color-primary;
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+.disabled {
+
+  .control {
+    background-color: $color-gray-4;
+    border: 1px solid currentColor;
+    opacity: 0.4;
+  }
+
+  & input {
+    cursor: not-allowed;
+  }
+}
+
+.disabled+span {
+  color: $color-gray-5;
+  cursor: not-allowed;
+}
+
+.disabled.checked {
+  .control {
+    &::before {
+      border-color: currentColor;
+    }
+  }
+}
+
+.disabled.container {
+  cursor: not-allowed;
+}
+
+.small {
+  .control {
+    width: px($width-control-small);
+    height: px($height-control-small);
+  }
+}
+
+.medium {
+  .control {
+    width: px($width-control-medium);
+    height: px($height-control-medium);
+  }
+}
+
+.large {
+  .control {
+    width: px($width-control-large);
+    height: px($height-control-large);
+  }
+}
+
+//===========================================//
+.radioButtonContainer {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  padding: 0 15px;
+  color: $color-dark;
+  font-size: 14px;
+  line-height: 30px;
+  border-color: $color-gray-5;
+  border-style: solid;
+  border-width: 1.02px 1px 1px 0;
+  cursor: pointer;
+
+  &:first-child {
+    border-left: 1px solid $color-gray-5;
+  }
+
+  .checked {
+    background-color: $color-primary;
+    color: $color-light !important;
+  }
+}
+
+.radioButtonContainer.checked {
+  background-color: $color-primary;
+  color: $color-light !important;
+  border-color: $color-primary;
+}
+
+.radioButtonInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  input[type='radio'] {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.radioButtonInput+span {
+  position: relative;
+  z-index: 100;
+}
+
+.radioButtonContainer.large {
+  height: 40px;
+  font-size: 16px;
+  line-height: 38px;
+}
+
+.radioButtonContainer.medium {
+  height: 32px;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.radioButtonContainer.small {
+  height: 24px;
+  padding: 0 7px;
+  line-height: 22px;
+}
