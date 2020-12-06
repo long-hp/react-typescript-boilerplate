@@ -1,5 +1,5 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, select, text } from '@storybook/addon-knobs';
 import { NumberInput, NumberInputProps } from 'components/NumberInput';
 import { InputProps, TextInput } from 'components/TextInput';
 import React, { useState } from 'react';
@@ -19,13 +19,31 @@ export const InputText = () => {
     getOptions<InputProps['sizeInput'][]>(['large', 'medium', 'small']),
     'medium',
   );
+  const placeholder = text('Placeholder', 'Do something...');
+  const isLoading = boolean('Loading Input', false);
   const [value, setValue] = useState('');
 
   const _handleOnChange = (value: string) => {
     setValue(value);
     action('onChange');
   };
-  return <TextInput {...getWithStylesProps()} value={value} onChangeText={_handleOnChange} disabled={disabled} sizeInput={size} />;
+
+  const _renderNumberInput = () => {
+    return isLoading ? (
+      <TextInput.Loading />
+    ) : (
+      <TextInput
+        {...getWithStylesProps()}
+        value={value}
+        disabled={disabled}
+        sizeInput={size}
+        placeholder={placeholder}
+        onChangeText={_handleOnChange}
+      />
+    );
+  };
+
+  return _renderNumberInput();
 };
 
 export const InputNumber = () => {
@@ -34,6 +52,8 @@ export const InputNumber = () => {
   const min = number('Min', initNumber);
   const max = number('Max', 10);
   const step = number('Step', 1);
+
+  const isLoading = boolean('Loading Input', false);
 
   const size = select(
     'Size',
@@ -48,14 +68,22 @@ export const InputNumber = () => {
     action('onChange');
   };
 
-  return (
-    <NumberInput
-      {...getWithStylesProps()}
-      value={value}
-      onChangeNumber={_handleOnChange}
-      disabled={disabled}
-      inputProps={{ min: min, max: max, step: step }}
-      sizeInput={size}
-    />
-  );
+  const _renderNumberInput = () => {
+    return isLoading ? (
+      <NumberInput.Loading />
+    ) : (
+      <NumberInput
+        {...getWithStylesProps()}
+        value={value}
+        onChangeNumber={_handleOnChange}
+        disabled={disabled}
+        min={min}
+        max={max}
+        step={step}
+        sizeInput={size}
+      />
+    );
+  };
+
+  return _renderNumberInput();
 };

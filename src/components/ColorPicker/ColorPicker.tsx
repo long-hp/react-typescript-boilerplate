@@ -5,6 +5,7 @@ import { Manager, Popper, Reference } from 'react-popper';
 import { View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './ColorPicker.module.scss';
+import ColorPickerLoading from './ColorPickerLoading';
 
 export type ColorPickerType = 'chrome' | 'sketch' | 'photoshop';
 export type PresetColor = { color: string; title: string } | string;
@@ -61,7 +62,11 @@ export interface ColorPickerProps {
   onChangeComplete?: FunctionColorChange;
 }
 
-const ColorPicker: FC<ColorPickerProps> = ({
+interface ColorPickerFC extends FC<ColorPickerProps> {
+  Loading: typeof ColorPickerLoading;
+}
+
+const ColorPicker: ColorPickerFC = ({
   disableAlpha = false,
   onlyShowColorBoard = false,
   pickerType = 'chrome',
@@ -162,5 +167,7 @@ const ColorPicker: FC<ColorPickerProps> = ({
     </View>
   );
 };
+
+ColorPicker.Loading = ColorPickerLoading;
 
 export default ColorPicker;

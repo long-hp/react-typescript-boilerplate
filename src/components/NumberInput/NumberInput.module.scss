@@ -2,34 +2,28 @@
 
 $font-size-default: 14;
 
-$font-size-small: 12;
-$padding-small-vertical: 4;
-$padding-small-horizontal: 8;
+$font-size-small: 14;
+$padding-small-vertical: 0;
+$padding-small-horizontal: 12;
 
 $font-size-medium: 16;
-$padding-medium-vertical: 8;
-$padding-medium-horizontal: 10;
+$padding-medium-vertical: 2;
+$padding-medium-horizontal: 14;
 
 $font-size-large: 18;
-$padding-large-vertical: 12;
-$padding-large-horizontal: 12;
+$padding-large-vertical: 3;
+$padding-large-horizontal: 16;
 
 .container {
   margin: 0;
-  position: relative;
   font-size: px($font-size-default);
-  background-color: $color-light;
-  transition: all .3s;
-
-  &:focus {
-    outline: unset;
-  }
+  display: inline-block;
 }
 
-.container::-webkit-outer-spin-button,
-.container::-webkit-inner-spin-button {
-  appearance: textfield;
-  opacity: 1;
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  appearance: none;
+  opacity: 0;
   cursor: pointer;
 }
 
@@ -55,4 +49,16 @@ $padding-large-horizontal: 12;
 .disabled {
   opacity: 0.4;
   cursor: no-drop;
+}
+
+.input {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: $color-dark;
+  width: 100%;
+
+  &:focus {
+    outline: unset;
+  }
 }

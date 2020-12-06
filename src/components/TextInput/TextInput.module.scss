@@ -2,27 +2,34 @@
 
 $font-size-default: 14;
 
-$font-size-small: 12;
-$padding-small-vertical: 4;
-$padding-small-horizontal: 8;
+$font-size-small: 14;
+$padding-small-vertical: 0;
+$padding-small-horizontal: 12;
 
 $font-size-medium: 16;
-$padding-medium-vertical: 8;
-$padding-medium-horizontal: 10;
+$padding-medium-vertical: 2;
+$padding-medium-horizontal: 14;
 
 $font-size-large: 18;
-$padding-large-vertical: 12;
-$padding-large-horizontal: 12;
+$padding-large-vertical: 3;
+$padding-large-horizontal: 16;
 
 .container {
   margin: 0;
   position: relative;
+  display: inline-block;
+}
 
+.input {
   font-size: px($font-size-default);
-  background-color: $color-light;
+  background-color: transparent;
   background-image: none;
-  transition: all .3s;
   appearance: none;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  color: $color-dark;
+  width: 100%;
 
   &:focus {
     border-color: $color-primary;

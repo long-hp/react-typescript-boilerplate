@@ -1,0 +1,8 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$padding-x: 10;
+$padding-y: 30;
+
+.container {
+  padding: px($padding-x) px($padding-y);
+}

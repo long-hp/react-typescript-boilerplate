@@ -13,6 +13,7 @@ export default {
 
 export const Default = () => {
   const onlyShowColorBoard = boolean('Only show color picker board', false);
+  const isLoading = boolean('Loading', false);
 
   const selectType = select(
     'Color Picker Platform',
@@ -70,15 +71,20 @@ export const Default = () => {
 
   return (
     <View tachyons={['flex', 'justify-between', 'w-100']}>
-      <ColorPicker
-        pickerType={selectType}
-        color={colorState}
-        colorPicker={rgbColor}
-        placement={selectPlacement}
-        strategy={selectStrategy}
-        onlyShowColorBoard={onlyShowColorBoard}
-        onChange={_onChangeColorPicker}
-      />
+      {isLoading ? (
+        <ColorPicker.Loading />
+      ) : (
+        <ColorPicker
+          pickerType={selectType}
+          color={colorState}
+          colorPicker={rgbColor}
+          placement={selectPlacement}
+          strategy={selectStrategy}
+          onlyShowColorBoard={onlyShowColorBoard}
+          onChange={_onChangeColorPicker}
+        />
+      )}
+
       <View>
         <Text color="gray9">Hex: {colorPreview}</Text>
         <Text color="gray9">
