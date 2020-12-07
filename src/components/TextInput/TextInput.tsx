@@ -30,7 +30,7 @@ interface TextInputFC extends FC<InputProps> {
 
 const TextInput: TextInputFC = ({
   className,
-  sizeInput = 'medium',
+  sizeInput = 'large',
   placeholder = '',
   block = false,
   type = 'text',
@@ -68,7 +68,7 @@ const TextInput: TextInputFC = ({
       borderWidth={borderWidth}
       borderStyle={borderStyle}
     >
-      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.input} onChange={_handleChange} />
+      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.textInput} onChange={_handleChange} />
     </View>
   );
 };
