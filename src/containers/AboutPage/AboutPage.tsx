@@ -7,7 +7,7 @@ import Header from 'containers/Header/Header';
 import { range } from 'ramda';
 import React, { useState } from 'react';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
-import { decimalToHex } from 'utils/functions/decimalToHex';
+import { decimalToHex } from 'components/ColorPicker/decimalToHex';
 import { GridSmart, Text, View } from 'wiloke-react-core';
 
 const STEP = 1;

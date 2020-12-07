@@ -3,7 +3,7 @@ import { boolean, select } from '@storybook/addon-knobs';
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
 import getOptions from 'stories/utils/getOptions';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
-import { decimalToHex } from 'utils/functions/decimalToHex';
+import { decimalToHex } from 'components/ColorPicker/decimalToHex';
 import { Text, View } from 'wiloke-react-core';
 
 export default {

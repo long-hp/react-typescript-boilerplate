@@ -97,7 +97,7 @@ const NumberInput: NumberInputFC = ({
     >
       <input
         {...inputProps}
-        className={styles.input}
+        className={styles.numberInput}
         type={type}
         min={min}
         max={max}
