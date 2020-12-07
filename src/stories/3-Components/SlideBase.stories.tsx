@@ -3,6 +3,7 @@ import { boolean, color, number } from '@storybook/addon-knobs';
 import SliderBase from 'components/SlideBase';
 import React, { useState } from 'react';
 import { View } from 'wiloke-react-core';
+
 export default {
   title: 'Components/SlideBase',
   component: SliderBase,
