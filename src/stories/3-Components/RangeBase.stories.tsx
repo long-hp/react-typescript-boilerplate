@@ -4,6 +4,7 @@ import { boolean, color, number, select } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { RangeProps } from 'rc-slider/lib/Range';
 import { Text, View } from 'wiloke-react-core';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/RangeBase',
@@ -15,6 +16,7 @@ export const Default = () => {
 
   const _handleOnChange = (value: number[]) => {
     setValue(value);
+    action('onChange')(value);
   };
 
   return (
@@ -69,6 +71,7 @@ export const WithProps = () => {
 
   const _handleOnChange = (value: number[]) => {
     setValue(value);
+    action('onChange')(value);
   };
 
   return (

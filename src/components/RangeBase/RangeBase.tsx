@@ -6,33 +6,27 @@ import RangeLoading from './RangeLoading';
 export interface RangeBaseProps extends RangeProps {
   /** Style của 2(hoặc nhiều) thanh track  */
   trackStyle?: React.CSSProperties[];
-
   /** Style của 2(hoặc nhiều) nút handle  */
   handleStyle?: React.CSSProperties[];
-
   /** Giá trị đầu vào của range slider */
   value?: number[];
-
   /** Bật lên sẽ hiện tooltip */
   tooltip?: boolean;
-
+  /** Màu của thanh rail */
+  railColor?: string;
   /** Vị trí của tooltip: 'top' | 'bottom' */
   tooltipPlacement?: 'top' | 'bottom';
-
   /** Trạng thái ẩn/hiện của tooltip */
   tooltipVisible?: boolean;
-
   /** Hàm format tooltip overlay */
   tipFormatter?: (value: number) => ReactNode;
 }
 
-interface RangeFC extends FC<RangeBaseProps> {
-  Loading: typeof RangeLoading;
-}
-
 const RangeWithTooltip = createSliderWithTooltip(Range);
 
-const RangeBase: RangeFC = ({
+const RangeBase: FC<RangeBaseProps> & {
+  Loading: typeof RangeLoading;
+} = ({
   tooltip = false,
   tooltipVisible = false,
   handleStyle,
@@ -41,6 +35,7 @@ const RangeBase: RangeFC = ({
   value = [10, 20],
   min = 0,
   max = 10,
+  railColor = '#ccc',
   tooltipPlacement = 'top',
   tipFormatter,
   onChange,
@@ -61,11 +56,12 @@ const RangeBase: RangeFC = ({
       <RangeWithTooltip
         {...rest}
         {...generalProps()}
+        railStyle={{ backgroundColor: `${railColor}` }}
         tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }}
         tipFormatter={tipFormatter}
       />
     ) : (
-      <Range {...rest} {...generalProps()} onChange={onChange} />
+      <Range {...rest} {...generalProps()} railStyle={{ backgroundColor: `${railColor}` }} onChange={onChange} />
     );
   };
 

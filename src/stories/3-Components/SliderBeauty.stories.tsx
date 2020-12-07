@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
-import SlideBeauty, { SlideBeautyProps } from 'components/SlideBeauty';
+import SlideBeauty, { SlideBeautyProps } from 'components/SliderBeauty';
 import React, { useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
 import { defaultColors } from 'wiloke-react-core';

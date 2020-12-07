@@ -2,12 +2,12 @@ import React, { DOMAttributes, FC } from 'react';
 import { MaterialIcon, View } from 'wiloke-react-core';
 import styles from './NumberInput.module.scss';
 
-export interface CounterActionProps {
+export interface ActionProps {
   increment?: DOMAttributes<HTMLElement>['onClick'];
   decrement?: DOMAttributes<HTMLElement>['onClick'];
 }
 
-const CounterAction: FC<CounterActionProps> = ({ increment, decrement }) => {
+const Action: FC<ActionProps> = ({ increment, decrement }) => {
   return (
     <View tachyons={['h-100', 'flex', 'flex-column', 'justify-center']}>
       <View
@@ -30,4 +30,4 @@ const CounterAction: FC<CounterActionProps> = ({ increment, decrement }) => {
   );
 };
 
-export default CounterAction;
+export default Action;

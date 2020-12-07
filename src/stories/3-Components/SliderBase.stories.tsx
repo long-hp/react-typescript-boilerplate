@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, color, number } from '@storybook/addon-knobs';
-import SliderBase from 'components/SlideBase';
+import SliderBase from 'components/SliderBase';
 import React, { useState } from 'react';
 import { View } from 'wiloke-react-core';
 
