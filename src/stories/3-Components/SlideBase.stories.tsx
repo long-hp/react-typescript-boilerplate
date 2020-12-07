@@ -1,13 +1,11 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, color, number, select } from '@storybook/addon-knobs';
-import Slider, { SliderProps } from 'components/SlideBase';
+import { boolean, color, number } from '@storybook/addon-knobs';
+import SliderBase from 'components/SlideBase';
 import React, { useState } from 'react';
-import getOptions from 'stories/utils/getOptions';
 import { View } from 'wiloke-react-core';
-
 export default {
   title: 'Components/SlideBase',
-  component: Slider,
+  component: SliderBase,
 };
 
 export const Default = () => {
@@ -22,7 +20,7 @@ export const Default = () => {
 
   return (
     <View tachyons="pa4" width={600}>
-      <Slider
+      <SliderBase
         value={value}
         min={MIN}
         max={MAX}
@@ -38,7 +36,7 @@ export const Default = () => {
 
 export const WithProps = () => {
   const isLoading = boolean('Loading', false);
-  let trackStyle, handleStyle, handleBorder, railStyle, min, max, step, tooltip, tooltipVisible, tooltipPlacement;
+  let trackStyle, handleStyle, handleBorder, railStyle, min, max, step;
 
   if (isLoading === false) {
     trackStyle = color('Track background', '#475BE2');
@@ -48,13 +46,6 @@ export const WithProps = () => {
     min = number('Min', 0);
     max = number('Max', 10);
     step = number('Step', 1);
-    tooltip = boolean('Tooltip', false);
-    tooltipVisible = boolean('Tooltip Visible', false);
-    tooltipPlacement = select(
-      'Tooltip Placement',
-      getOptions<SliderProps['tooltipPlacement'][]>(['bottom', 'top']),
-      'top',
-    ) as any;
   }
 
   const [value, setValue] = useState(0);
@@ -66,16 +57,13 @@ export const WithProps = () => {
   return (
     <View tachyons="pa4" width={600}>
       {isLoading ? (
-        <Slider.Loading />
+        <SliderBase.Loading />
       ) : (
-        <Slider
+        <SliderBase
           value={value}
           min={min}
           max={max}
           step={step}
-          tooltip={tooltip}
-          tooltipVisible={tooltipVisible}
-          tooltipPlacement={tooltipPlacement}
           trackStyle={{ backgroundColor: `${trackStyle}` }}
           handleStyle={{ backgroundColor: `${handleStyle}`, border: `1px solid ${handleBorder}` }}
           railStyle={{ backgroundColor: `${railStyle}` }}
