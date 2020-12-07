@@ -1,0 +1,19 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-note: 12;
+
+.container {
+  position: relative;
+  margin-bottom: 0.8rem;
+}
+
+.label {
+  line-height: 1;
+  font-weight: $font-medium;
+}
+
+.note {
+  color: $color-gray-6;
+  font-size: px($font-size-note);
+  font-weight: $font-regular;
+}
