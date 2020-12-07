@@ -1,10 +1,9 @@
-import Box from 'components/FieldBox';
 import Field from 'components/Field';
+import Box from 'components/FieldBox';
 import { NumberInput } from 'components/NumberInput';
-import { Slider } from 'components/RangeSlider';
+import Slider from 'components/SliderBase';
 import React, { FC, ReactNode } from 'react';
 import { ColorNames, View, WithStylesProps } from 'wiloke-react-core';
-import { memoization } from 'wiloke-react-core/utils';
 import styles from './SlideBeauty.module.scss';
 import SlideBeautyLoading from './SlideBeautyLoading';
 
@@ -46,11 +45,9 @@ export interface SlideBeautyProps extends WithStylesProps {
   onChangeNumber?: (value: number) => void;
 }
 
-interface SlideBeautyFC extends FC<SlideBeautyProps> {
+const SlideBeauty: FC<SlideBeautyProps> & {
   Loading: typeof SlideBeautyLoading;
-}
-
-const SlideBeauty: SlideBeautyFC = ({
+} = ({
   min = 0,
   max = 10,
   step = 1,
@@ -71,7 +68,7 @@ const SlideBeauty: SlideBeautyFC = ({
   onChangeNumber,
 }) => {
   return (
-    <Field label={label} fontSize={14} note={note} color="dark">
+    <Field label={label} fontSize={16} note={note} color="dark">
       <Box backgroundColor={backgroundInnerField} borderColor={borderColor} borderStyle={borderStyle} borderWidth={borderWidth} radius={radius}>
         <View tachyons={['flex', 'items-center']} radius="round" className={styles.inner}>
           <View className={styles.slide}>
@@ -108,4 +105,4 @@ const SlideBeauty: SlideBeautyFC = ({
 };
 SlideBeauty.Loading = SlideBeautyLoading;
 
-export default memoization(SlideBeauty);
+export default SlideBeauty;
