@@ -36,8 +36,8 @@ const getLoadingSize = (size: Size) => {
   }
 };
 
-const SwitchComponent = ({
-  checked,
+const Switch = ({
+  checked = false,
   defaultChecked = false,
   checkedChildren,
   unCheckedChildren,
@@ -88,7 +88,8 @@ const SwitchComponent = ({
   };
 
   useEffect(() => {
-    setCheckedState(!!checked);
+    setCheckedState(checked || defaultChecked);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checked]);
 
   return (
@@ -105,6 +106,4 @@ const SwitchComponent = ({
   );
 };
 
-const Switch = withTachyons<HTMLElement, SwitchProps>(SwitchComponent);
-
-export default memo(Switch);
+export default memo(withTachyons<HTMLElement, SwitchProps>(Switch));

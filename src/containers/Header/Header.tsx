@@ -1,7 +1,7 @@
+import Switch, { SwitchProps } from 'components/Switch/Switch';
 import React, { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Switch, { SwitchProps } from 'components/Switch/Switch';
 import { Divider, Sticky, Text, View } from 'wiloke-react-core';
 import { useSetNightMode } from './actions/actionNightMode';
 import { useSetDirection } from './slice/sliceDirection';
