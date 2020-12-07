@@ -1,5 +1,5 @@
-import React, { ReactNode, DOMAttributes, HTMLAttributes, ButtonHTMLAttributes, forwardRef, Ref } from 'react';
-import { WithStylesProps, withStyles, ActivityIndicator, Size, Text } from 'wiloke-react-core';
+import React, { ButtonHTMLAttributes, DOMAttributes, forwardRef, HTMLAttributes, ReactNode, Ref } from 'react';
+import { ActivityIndicator, Size, Text, withStyles, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Button.module.scss';
 
@@ -26,7 +26,7 @@ export interface ButtonProps extends WithStylesProps {
   onClick?: DOMAttributes<HTMLElement>['onClick'];
 }
 
-const ButtonComponent = forwardRef<HTMLElement, ButtonProps>(
+const Button = forwardRef<HTMLElement, ButtonProps>(
   (
     {
       href,
@@ -80,11 +80,9 @@ const ButtonComponent = forwardRef<HTMLElement, ButtonProps>(
   },
 );
 
-const Button = withStyles<HTMLElement, ButtonProps>(ButtonComponent, {
+export default withStyles<HTMLElement, ButtonProps>(Button, {
   color: 'light',
   backgroundColor: 'primary',
   radius: 'square',
   borderWidth: '0/6',
 });
-
-export default Button;

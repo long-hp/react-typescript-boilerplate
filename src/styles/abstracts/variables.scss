@@ -3,10 +3,11 @@ $NODE_ENV: 'production'; // production ? size px : size rem
 $root-font-size-percent: 100;
 
 // Breakpoints for @include media
-$breakpoints: (
-  'xxs': 320px,
+$breakpoints: ('xxs': 320px,
   'xs': 480px,
   'sm': 768px,
   'md': 992px,
-  'lg': 1300px
-);
+  'lg': 1300px);
+
+$font-regular: 400;
+$font-medium: 500;
