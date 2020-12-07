@@ -1,7 +1,7 @@
 import { CheckboxProps } from 'components/Checkbox';
 import React, { FC, useContext, useEffect, useState } from 'react';
 import { Text, WithTachyonsProps } from 'wiloke-react-core';
-import { classNames, memoization } from 'wiloke-react-core/utils';
+import { classNames } from 'wiloke-react-core/utils';
 import RadioGroupContext from './context';
 import styles from './Radio.module.scss';
 import RadioButton from './RadioButton';
@@ -43,9 +43,6 @@ const Radio: RadioFc = ({
   const disabledClass = disabled ? styles.disabled : '';
   const classes = classNames(styles.container, checkedClass, disabledClass, sizeClass, className);
 
-  useEffect(() => {
-    console.log(classes);
-  }, [classes]);
   const _handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) {
       return;
@@ -89,4 +86,4 @@ const Radio: RadioFc = ({
 Radio.Group = RadioGroup;
 Radio.Button = RadioButton;
 
-export default memoization(Radio);
+export default Radio;

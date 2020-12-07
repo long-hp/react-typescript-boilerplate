@@ -1,5 +1,5 @@
 import useMergedState from 'hooks/useMergedState';
-import React, { ChangeEvent, FC, InputHTMLAttributes, ReactNode } from 'react';
+import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { View } from 'wiloke-react-core';
 import { RadioGroupContextProvider } from './context';
 import Radio from './Radio';
@@ -77,4 +77,4 @@ const RadioGroup: FC<RadioGroupProps> = ({ options, name, disabled, value, child
   );
 };
 
-export default RadioGroup;
+export default memo(RadioGroup);

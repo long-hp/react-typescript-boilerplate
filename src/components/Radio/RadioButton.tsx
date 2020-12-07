@@ -11,6 +11,7 @@ export interface RadioButtonProps extends WithTachyonsProps, RadioProps {
 const RadioButton: FC<RadioButtonProps> = props => {
   const context = React.useContext(RadioGroupContext);
   const { ...rest } = props;
+
   if (context) {
     rest.checked = String(props.value) === context.value;
     rest.disabled = props.disabled || (context.disabled as boolean);
