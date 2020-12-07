@@ -1,0 +1,62 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-default: 14;
+
+$font-size-small: 14;
+$padding-small-vertical: 0;
+$padding-small-horizontal: 12;
+
+$font-size-medium: 16;
+$padding-medium-vertical: 2;
+$padding-medium-horizontal: 14;
+
+$font-size-large: 18;
+$padding-large-vertical: 3;
+$padding-large-horizontal: 16;
+
+.container {
+  margin: 0;
+  position: relative;
+  display: inline-block;
+}
+
+.input {
+  font-size: px($font-size-default);
+  background-color: transparent;
+  background-image: none;
+  appearance: none;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+  color: $color-dark;
+  width: 100%;
+
+  &:focus {
+    border-color: $color-primary;
+    outline: unset;
+  }
+}
+
+.small {
+  padding: px($padding-small-vertical) px($padding-small-horizontal);
+  font-size: px($font-size-small);
+}
+
+.medium {
+  padding: px($padding-medium-vertical) px($padding-medium-horizontal);
+  font-size: px($font-size-medium);
+}
+
+.large {
+  padding: px($padding-large-vertical) px($padding-large-horizontal);
+  font-size: px($font-size-large);
+}
+
+.block {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: no-drop;
+}

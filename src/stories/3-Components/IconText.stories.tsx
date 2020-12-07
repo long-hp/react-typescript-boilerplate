@@ -1,7 +1,7 @@
-import React from 'react';
-import { text, color } from '@storybook/addon-knobs';
-import { GridSmart, View } from 'wiloke-react-core';
+import { color, text } from '@storybook/addon-knobs';
 import IconText from 'components/IconText/IconText';
+import React from 'react';
+import { GridSmart, View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/IconText',

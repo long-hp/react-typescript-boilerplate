@@ -1,5 +1,12 @@
 @import 'styles/abstracts/abstracts.scss';
 
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 body {
   font-family: $font-primary;
   font-size: px(14);

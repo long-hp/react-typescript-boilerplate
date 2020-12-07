@@ -1,6 +1,6 @@
 const styles = `
 .container {
-  color: red;
+  position: relative;
 }
 `;
 const actions = `
