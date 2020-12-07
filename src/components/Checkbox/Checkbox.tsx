@@ -45,8 +45,8 @@ const Checkbox: CheckboxFC = ({ size = 'medium', checked, defaultChecked = false
 
   return (
     <Text {...rest} tagName="label" className={classes} tachyons={['inline-flex', 'items-center']}>
-      <Text tagName="span" className={classNames(styles.checkboxInput, sizeClass, checkedClass, disabledClass)}>
-        <input disabled={disabled} checked={checkedState} type="checkbox" onChange={_handleChange} />
+      <Text tagName="span" className={classNames(styles.checkbox, sizeClass, checkedClass, disabledClass)}>
+        <input disabled={disabled} className={styles.checkboxInput} checked={checkedState} type="checkbox" onChange={_handleChange} />
         <Text tagName="span" className={styles.control}></Text>
       </Text>
       {children && <Text tagName="span">{children}</Text>}

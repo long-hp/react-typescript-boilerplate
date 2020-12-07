@@ -11,19 +11,24 @@ export default {
 };
 
 export const WithProps = () => {
-  const size = select(
-    'Size',
-    getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
-    'medium',
-  );
   const isLoading = boolean('Loading', false);
-  const checked = boolean('Checked', false);
-  const disabled = boolean('Disabled', false);
+  let size;
+  let checked;
+  let disabled;
+  if (!isLoading) {
+    checked = boolean('Checked', false);
+    disabled = boolean('Disabled', false);
+    size = select(
+      'Size',
+      getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
+      'medium',
+    ) as any;
+  }
   const [checkedState, setCheckedState] = useState(checked);
 
-  const _handleChange = () => {
+  const _handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCheckedState(!checkedState);
-    action('onChange');
+    action('onClick')(event.target);
   };
 
   return isLoading ? (
