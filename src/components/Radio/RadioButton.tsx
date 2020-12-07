@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
-import { WithTachyonsProps } from 'wiloke-react-core';
+import { ColorNames } from 'wiloke-react-core';
 import RadioGroupContext from './context';
 import Radio, { RadioProps } from './Radio';
 
-export interface RadioButtonProps extends WithTachyonsProps, RadioProps {
+export interface RadioButtonProps extends RadioProps {
   value?: any;
   name?: string;
+  /** Color text khi active radio button*/
+  colorTextActive?: ColorNames;
 }
 
 const RadioButton: FC<RadioButtonProps> = props => {
@@ -16,7 +18,7 @@ const RadioButton: FC<RadioButtonProps> = props => {
     rest.checked = String(props.value) === context.value;
     rest.disabled = props.disabled || (context.disabled as boolean);
   }
-  return <Radio {...rest} type="button"></Radio>;
+  return <Radio colorTextActive={rest.colorTextActive} {...rest} type="button"></Radio>;
 };
 
 export default RadioButton;

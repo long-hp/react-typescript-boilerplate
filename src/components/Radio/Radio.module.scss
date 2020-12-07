@@ -1,7 +1,10 @@
 @import 'styles/abstracts/abstracts';
 
-$width-control-small: 16;
-$height-control-small: 16;
+
+$width-control-extra-small: 12;
+$height-control-extra-small: 12;
+$width-control-small: 18;
+$height-control-small: 18;
 $width-control-medium: 24;
 $height-control-medium: 24;
 $width-control-large: 30;
@@ -55,10 +58,11 @@ $border-color-checked: $color-behance;
   width: px($width-control-medium);
   height: px($height-control-medium);
   border-radius: 50%;
-  border: 1px solid $color-gray-5;
+  border-width: 1px;
+  border-style: solid;
   box-sizing: border-box;
 
-  &::before {
+  .dot {
     content: '';
     position: absolute;
     top: 50%;
@@ -67,7 +71,6 @@ $border-color-checked: $color-behance;
     transform: translate(-50%, -50%);
     width: px(12);
     height: px(12);
-    box-shadow: inset px(12) px(12) $border-color-checked;
     border-radius: 50%;
   }
 }
@@ -78,9 +81,7 @@ $border-color-checked: $color-behance;
 
 .checked {
   & .control {
-    border-color: $border-color-checked;
-
-    &::before {
+    .dot {
       opacity: 1;
     }
   }
@@ -107,7 +108,7 @@ $border-color-checked: $color-behance;
   .control {
     &::before {
       border-color: $color-gray-5;
-      box-shadow: inset px(16) px(16) $color-gray-5;
+      background-color: $color-gray-9 !important;
     }
   }
 }
@@ -116,15 +117,26 @@ $border-color-checked: $color-behance;
   cursor: not-allowed;
 }
 
+.extra-small {
+  .control {
+    width: px($width-control-extra-small);
+    height: px($height-control-extra-small);
+
+    .dot {
+      width: px(4);
+      height: px(4);
+    }
+  }
+}
+
 .small {
   .control {
     width: px($width-control-small);
     height: px($height-control-small);
 
-    &::before {
+    .dot {
       width: px(8);
       height: px(8);
-      box-shadow: inset px(8) px(8) $border-color-checked;
     }
   }
 }
@@ -134,10 +146,9 @@ $border-color-checked: $color-behance;
     width: px($width-control-medium);
     height: px($height-control-medium);
 
-    &::before {
+    .dot {
       width: px(12);
       height: px(12);
-      box-shadow: inset px(12) px(12) $border-color-checked;
     }
   }
 }
@@ -147,10 +158,9 @@ $border-color-checked: $color-behance;
     width: px($width-control-large);
     height: px($height-control-large);
 
-    &::before {
+    .dot {
       width: px(16);
       height: px(16);
-      box-shadow: inset px(16) px(16) $border-color-checked;
     }
   }
 }
@@ -162,28 +172,32 @@ $border-color-checked: $color-behance;
   height: px(38);
   padding: 0 px(15);
   color: $color-dark;
-  font-size: px(14);
+  font-size: px(12);
   line-height: px(36);
   border-color: $color-gray-5;
   border-style: solid;
-  border-width: 1.02px 1px 1px 0;
+  border-width: px(2.02) px(2) px(2) 0;
   cursor: pointer;
 
   &:first-child {
-    border-left: 1px solid $color-gray-5;
+    border-radius: px(5) 0 0 px(5);
+    border-left: 2px solid $color-gray-5;
+  }
+
+  &:last-child {
+    border-radius: 0 px(5) px(5) 0;
   }
 }
 
-.radioButtonContainer.checked {
-  background-color: $color-behance;
-  color: $color-light;
-  border-color: $color-behance;
+.disabledRadioButton {
+  background-color: $color-gray-4;
+  color: $color-gray-5 !important;
+  cursor: not-allowed;
 }
 
-.radioButtonContainer.disabled.checked .disabled.checked {
-  color: $color-dark;
-  background-color: $color-gray-3;
-  border-color: $color-gray-5 !important;
+.checkedRadioButton.disabledRadioButton {
+  background-color: $color-gray-5;
+  color: $color-gray-6 !important;
 }
 
 .radioButton {
@@ -208,14 +222,16 @@ $border-color-checked: $color-behance;
 
 .radioButtonContainer.large {
   height: px(46);
-  font-size: px(16);
+  font-size: px(14);
   line-height: px(44);
+  padding: 0 px(42);
 }
 
 .radioButtonContainer.medium {
   height: px(38);
-  font-size: px(14);
+  font-size: px(12);
   line-height: px(36);
+  padding: 0 px(15);
 }
 
 .radioButtonContainer.small {
