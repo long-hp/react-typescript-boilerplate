@@ -44,7 +44,8 @@ export const WithProps = () => {
         value={valueState}
         colorActive={colorActive}
         colorTextActive={colorTextActive}
-        size="large"
+        size={size}
+        disabled={disabled}
         defaultValue={3}
         onChange={_handleChange}
       >
@@ -54,12 +55,12 @@ export const WithProps = () => {
           Hello3
         </Radio.Button>
       </Radio.Group>
-      <Radio.Group colorActive={colorActive} value={valueState} onChange={_handleChange} disabled>
+      <Radio.Group size={size} disabled={disabled} colorActive={colorActive} value={valueState} onChange={_handleChange}>
         <Radio value="value1">Value1</Radio>
         <Radio value="value2">Value2</Radio>
         <Radio value="value3">Value3</Radio>
       </Radio.Group>
-      <Radio.Group colorActive={colorActive} value={valueState} onChange={_handleChange} options={optionsWithDisabled}></Radio.Group>
+      <Radio.Group size={size} colorActive={colorActive} value={valueState} onChange={_handleChange} options={optionsWithDisabled}></Radio.Group>
     </>
   );
 };

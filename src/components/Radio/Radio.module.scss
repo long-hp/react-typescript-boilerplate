@@ -238,4 +238,12 @@ $border-color-checked: $color-behance;
   height: px(30);
   padding: 0 px(7);
   line-height: px(28);
+  font-size: px(12);
+}
+
+.radioButtonContainer.extra-small {
+  height: px(22);
+  padding: 0 px(7);
+  line-height: px(20);
+  font-size: px(10);
 }
