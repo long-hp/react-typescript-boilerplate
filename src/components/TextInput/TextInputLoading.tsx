@@ -4,7 +4,7 @@ export interface TextInputLoadingProps {}
 
 const TextInputLoading: FC<TextInputLoadingProps> = () => {
   return (
-    <View width={200} height={36} backgroundColor="gray5" radius={6} tachyons="relative">
+    <View width={200} height={46} backgroundColor="gray5" radius={6} tachyons="relative">
       <View
         tachyons={['absolute', 'left-1', 'w-40']}
         height={4}
