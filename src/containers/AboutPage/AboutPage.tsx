@@ -25,25 +25,21 @@ const AboutPage = () => {
 
           <Text tagName="h1">About Page</Text>
 
-          <Radio.Group value={state} onChange={onChange} disabled>
+          <Radio.Group defaultValue="value1" disabled>
             <Radio value="value1">Value1</Radio>
             <Radio value="value2">Value2</Radio>
             <Radio value="value3">Value3</Radio>
           </Radio.Group>
 
-          <Radio.Group value={state} onChange={onChange}>
-            <Radio.Button value={1} size="small">
-              Hello1
-            </Radio.Button>
-            <Radio.Button value={2} size="small">
-              Hello2
-            </Radio.Button>
-            <Radio.Button disabled value={3} size="small">
+          <Radio.Group value={state} defaultValue={3} onChange={onChange}>
+            <Radio.Button value={1}>Hello1</Radio.Button>
+            <Radio.Button value={2}>Hello2</Radio.Button>
+            <Radio.Button disabled value={3}>
               Hello3
             </Radio.Button>
           </Radio.Group>
 
-          <Radio.Group options={optionsWithDisabled}></Radio.Group>
+          <Radio.Group value={state} options={optionsWithDisabled}></Radio.Group>
         </Section>
       </View>
     </View>
