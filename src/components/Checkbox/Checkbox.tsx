@@ -36,7 +36,7 @@ export interface CheckboxProps {
 const Checkbox: FC<CheckboxProps> & {
   Loading: typeof CheckboxLoading;
 } = ({
-  size = 'extra-small',
+  size = 'medium',
   checked,
   defaultChecked = false,
   disabled = false,
@@ -44,10 +44,10 @@ const Checkbox: FC<CheckboxProps> & {
   className,
   Icon,
   borderColor = 'gray5',
-  radius = 5,
-  borderWidth = '4/6',
+  radius = 'round',
+  borderWidth = '2/6',
   borderStyle = 'solid',
-  activeColor = 'youtube',
+  activeColor = 'primary',
   iconActiveColor = 'light',
   onChange,
 }) => {
