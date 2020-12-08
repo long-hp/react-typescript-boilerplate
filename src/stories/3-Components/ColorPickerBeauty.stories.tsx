@@ -138,43 +138,51 @@ export const WithProps = () => {
     <View tachyons={['w-90']}>
       <View tachyons="mb3">
         <Text>RGB Display</Text>
-        <ColorPickerBeauty
-          color={colorState}
-          colorPicker={rgbColor}
-          strategy={selectStrategy}
-          placement={selectPlacement}
-          pickerType={selectType}
-          radiusBox={radiusBox}
-          radiusPicker={radiusPicker}
-          backgroundInnerField={backgroundInnerField}
-          borderColor={borderColor}
-          borderStyle={borderStyle}
-          borderWidth={borderWidth}
-          colorDetails={
-            <Text>
-              rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
-            </Text>
-          }
-          onChange={_onChangeColorPicker}
-        />
+        {isLoading ? (
+          <ColorPickerBeauty.Loading />
+        ) : (
+          <ColorPickerBeauty
+            color={colorState}
+            colorPicker={rgbColor}
+            strategy={selectStrategy}
+            placement={selectPlacement}
+            pickerType={selectType}
+            radiusBox={radiusBox}
+            radiusPicker={radiusPicker}
+            backgroundInnerField={backgroundInnerField}
+            borderColor={borderColor}
+            borderStyle={borderStyle}
+            borderWidth={borderWidth}
+            colorDetails={
+              <Text>
+                rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
+              </Text>
+            }
+            onChange={_onChangeColorPicker}
+          />
+        )}
       </View>
       <View tachyons="mb3">
         <Text>Hex Display</Text>
-        <ColorPickerBeauty
-          color={colorState}
-          colorPicker={rgbColor}
-          strategy={selectStrategy}
-          placement={selectPlacement}
-          pickerType={selectType}
-          radiusBox={radiusBox}
-          radiusPicker={radiusPicker}
-          backgroundInnerField={backgroundInnerField}
-          borderColor={borderColor}
-          borderStyle={borderStyle}
-          borderWidth={borderWidth}
-          colorDetails={<Text>{colorPreview}</Text>}
-          onChange={_onChangeColorPicker}
-        />
+        {isLoading ? (
+          <ColorPickerBeauty.Loading />
+        ) : (
+          <ColorPickerBeauty
+            color={colorState}
+            colorPicker={rgbColor}
+            strategy={selectStrategy}
+            placement={selectPlacement}
+            pickerType={selectType}
+            radiusBox={radiusBox}
+            radiusPicker={radiusPicker}
+            backgroundInnerField={backgroundInnerField}
+            borderColor={borderColor}
+            borderStyle={borderStyle}
+            borderWidth={borderWidth}
+            colorDetails={<Text>{colorPreview}</Text>}
+            onChange={_onChangeColorPicker}
+          />
+        )}
       </View>
     </View>
   );
