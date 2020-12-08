@@ -1,5 +1,5 @@
 import React, { FC, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { ColorNames, LineAwesome, Size, Text } from 'wiloke-react-core';
+import { BorderStyle, BorderWidth, ColorNames, LineAwesome, Radius, Size, Text } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
 import styles from './Checkbox.module.scss';
 import CheckboxLoading from './CheckboxLoading';
@@ -14,13 +14,21 @@ export interface CheckboxProps {
   /** Disabled Checkbox */
   disabled?: boolean;
   /** Backgroundcolor checkbox*/
-  color?: ColorNames;
+  activeColor?: ColorNames;
   /** Color icon ben trong checkbox */
-  colorIcon?: ColorNames;
+  iconActiveColor?: ColorNames;
   /** Classname */
   className?: string;
   /** Icon ben trong checkbox */
   Icon?: ReactNode;
+  /** Màu border được lấy màu từ ThemeProvider */
+  borderColor?: ColorNames;
+  /** Kiểu của border */
+  borderStyle?: BorderStyle;
+  /** Border width css */
+  borderWidth?: BorderWidth;
+  /** Border radius css */
+  radius?: Radius;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
 }
@@ -35,10 +43,13 @@ const Checkbox: FC<CheckboxProps> & {
   children,
   className,
   Icon,
-  color = 'behance',
-  colorIcon = 'light',
+  borderColor = 'gray5',
+  radius = 5,
+  borderWidth = '4/6',
+  borderStyle = 'solid',
+  activeColor = 'youtube',
+  iconActiveColor = 'light',
   onChange,
-  ...rest
 }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.checked : '';
@@ -68,15 +79,16 @@ const Checkbox: FC<CheckboxProps> & {
   }, [checked]);
 
   return (
-    <Text {...rest} tagName="label" className={classes} tachyons={['inline-flex', 'items-center']}>
+    <Text tagName="label" className={classes} tachyons={['inline-flex', 'items-center']}>
       <Text tagName="span" className={classNames(styles.checkbox, sizeClass, checkedClass, disabledClass)}>
         <input disabled={disabled} className={styles.checkboxInput} checked={checkedState} type="checkbox" onChange={_handleChange} />
-        <Text tagName="span" backgroundColor={checkedState ? color : 'light'} className={styles.control}>
+        <Text tagName="span" radius={radius} borderColor={borderColor} borderStyle={borderStyle} borderWidth={borderWidth} className={styles.control}>
           {checkedState && (
-            <Text className={styles.icon} color={colorIcon} tagName="span">
+            <Text className={styles.icon} color={iconActiveColor} nightModeBlacklist={['color']} tagName="span">
               {Icon || defaultIconMapping[size]}
             </Text>
           )}
+          <Text className={styles.background} backgroundColor={checkedState ? activeColor : 'light'}></Text>
         </Text>
       </Text>
       {children && <Text tagName="span">{children}</Text>}

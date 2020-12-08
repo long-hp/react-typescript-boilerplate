@@ -1,3 +1,4 @@
+import Checkbox from 'components/Checkbox';
 import ColorPicker from 'components/ColorPicker';
 import Field from 'components/Field';
 import { NumberInput } from 'components/NumberInput';
@@ -101,6 +102,12 @@ const AboutPage = () => {
             </GridSmart>
           </View>
         </Section>
+        <Checkbox size="extra-small">Hello</Checkbox>
+        <Checkbox size="small">Hello</Checkbox>
+        <Checkbox size="medium">Hello</Checkbox>
+        <Checkbox checked disabled size="large">
+          Hello
+        </Checkbox>
       </View>
     </View>
   );
