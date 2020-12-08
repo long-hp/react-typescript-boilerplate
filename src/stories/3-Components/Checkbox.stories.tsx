@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Checkbox from 'components/Checkbox';
 import { boolean, number, optionsKnob, select, text } from '@storybook/addon-knobs';
 import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Size } from 'wiloke-react-core';
@@ -54,11 +54,9 @@ export const WithProps = () => {
       'solid',
     );
   }
-  const [checkedState, setCheckedState] = useState(checked);
 
-  const _handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCheckedState(!checkedState);
-    action('onClick')(event.target);
+  const _handleValueChange = (value: boolean) => {
+    action('onValueChange')(value);
   };
 
   return isLoading ? (
@@ -74,7 +72,7 @@ export const WithProps = () => {
       size={size}
       radius={radius}
       checked={checked}
-      onChange={_handleChange}
+      onValueChange={_handleValueChange}
     >
       {text('Children', 'Lorem ipsum')}
     </Checkbox>

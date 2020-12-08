@@ -29,13 +29,17 @@ export interface CheckboxProps {
   borderWidth?: BorderWidth;
   /** Border radius css */
   radius?: Radius;
-  /** Su kien onChange */
+  /** Sự kiện khi bấm vào checkbox và nhận được event */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Sự kiện khi bấm vào checkbox và nhận được value */
+  onValueChange?: (value: boolean) => void;
 }
 
-const Checkbox: FC<CheckboxProps> & {
+interface CheckboxStatic {
   Loading: typeof CheckboxLoading;
-} = ({
+}
+
+const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   size = 'small',
   checked,
   defaultChecked = false,
@@ -50,6 +54,7 @@ const Checkbox: FC<CheckboxProps> & {
   activeColor = 'primary',
   iconActiveColor = 'light',
   onChange,
+  onValueChange,
 }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const sizeClassName = styles[size];
@@ -69,11 +74,12 @@ const Checkbox: FC<CheckboxProps> & {
     }
     setCheckedState(!checkedState);
     onChange?.(event);
+    onValueChange?.(!checkedState);
   };
 
   useEffect(() => {
     if (typeof checked !== 'undefined') {
-      setCheckedState(!!checked);
+      setCheckedState(checked);
     }
   }, [checked]);
 
