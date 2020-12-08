@@ -7,17 +7,19 @@ import styles from './Radio.module.scss';
 import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
 
-export interface RadioProps extends CheckboxProps {
+type TypeRadioProps = Pick<CheckboxProps, 'checked' | 'size' | 'disabled' | 'defaultChecked' | 'onChange' | 'className' | 'activeColor'>;
+
+export interface RadioProps extends TypeRadioProps {
   /** Value radio input html */
   value?: any;
   /** Name radio input html */
   name?: string;
   /** kieu cua radio */
   type?: 'default' | 'button';
-  /** Color khi active */
-  colorActive?: ColorNames;
+  /**  */
+  block?: boolean;
   /** Color text khi active radio button */
-  colorTextActive?: ColorNames;
+  textActiveColor?: ColorNames;
 }
 
 const Radio: FC<RadioProps> & {
@@ -33,10 +35,10 @@ const Radio: FC<RadioProps> & {
   value,
   type = 'default',
   name,
-  colorTextActive = 'light',
-  colorActive = 'behance',
+  textActiveColor = 'light',
+  activeColor = 'primary',
+  block = true,
   onChange,
-  ...rest
 }) => {
   const context = useContext(RadioGroupContext);
   if (context) {
@@ -44,8 +46,8 @@ const Radio: FC<RadioProps> & {
     checked = String(value) === context.value;
     disabled = disabled || (context.disabled as boolean);
     size = context.size as Size;
-    colorActive = context.colorActive as ColorNames;
-    colorTextActive = context.colorTextActive as ColorNames;
+    activeColor = context.activeColor as ColorNames;
+    textActiveColor = context.textActiveColor as ColorNames;
   }
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.checked : '';
@@ -55,7 +57,15 @@ const Radio: FC<RadioProps> & {
 
   const checkedRadioButtonClass = checkedState ? styles.checkedRadioButton : '';
   const disabledRadioButtonClass = disabled ? styles.disabledRadioButton : '';
-  const classesRadioButon = classNames(styles.radioButtonContainer, disabledRadioButtonClass, checkedRadioButtonClass, sizeClass, className);
+  const blockRadioButtonClass = block ? styles.blockRadioButton : '';
+  const classesRadioButon = classNames(
+    styles.radioButtonContainer,
+    disabledRadioButtonClass,
+    checkedRadioButtonClass,
+    blockRadioButtonClass,
+    sizeClass,
+    className,
+  );
 
   const _handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) {
@@ -77,7 +87,7 @@ const Radio: FC<RadioProps> & {
   return (
     <>
       {type === 'default' ? (
-        <Text {...rest} tagName="label" className={classes}>
+        <Text tagName="label" className={classes}>
           <Text tagName="span" className={classNames(styles.radio, sizeClass, checkedClass, disabledClass)}>
             <input
               name={name}
@@ -88,16 +98,16 @@ const Radio: FC<RadioProps> & {
               onChange={_handleChange}
               value={value}
             />
-            <Text tagName="span" borderColor={checkedState && !disabled ? colorActive : 'gray5'} className={styles.control}>
-              <Text backgroundColor={checkedState && !disabled ? colorActive : 'gray5'} className={styles.dot}></Text>
+            <Text tagName="span" borderColor={checkedState && !disabled ? activeColor : 'gray5'} className={styles.control}>
+              <Text backgroundColor={checkedState && !disabled ? activeColor : 'gray5'} className={styles.dot}></Text>
             </Text>
           </Text>
           {children && <Text tagName="span">{children}</Text>}
         </Text>
       ) : (
         <Text
-          backgroundColor={checkedState && !disabled ? colorActive : 'light'}
-          color={checkedState ? colorTextActive : 'dark'}
+          backgroundColor={checkedState && !disabled ? activeColor : 'light'}
+          color={checkedState ? textActiveColor : 'dark'}
           tagName="label"
           className={classesRadioButon}
         >

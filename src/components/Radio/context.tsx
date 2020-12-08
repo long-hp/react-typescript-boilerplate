@@ -7,8 +7,9 @@ export interface RadioGroupContextProps {
   disabled?: boolean;
   name?: string;
   size?: Size;
-  colorActive?: ColorNames;
-  colorTextActive?: ColorNames;
+  block?: boolean;
+  activeColor?: ColorNames;
+  textActiveColor?: ColorNames;
 }
 
 const RadioGroupContext = createContext<RadioGroupContextProps | null>(null);

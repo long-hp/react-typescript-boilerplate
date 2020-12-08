@@ -36,10 +36,6 @@ $border-color-checked: $color-behance;
     z-index: 1;
     cursor: pointer;
     opacity: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    -o-appearance: none;
     appearance: none !important;
 
     &:focus {
@@ -58,7 +54,7 @@ $border-color-checked: $color-behance;
   width: px($width-control-medium);
   height: px($height-control-medium);
   border-radius: 50%;
-  border-width: 1px;
+  border-width: 2px;
   border-style: solid;
   box-sizing: border-box;
 
@@ -90,7 +86,7 @@ $border-color-checked: $color-behance;
 .disabled {
   .control {
     background-color: $color-gray-4;
-    border: 1px solid $color-gray-5;
+    border: 2px solid $color-gray-5;
     opacity: 0.4;
   }
 
@@ -176,7 +172,8 @@ $border-color-checked: $color-behance;
   line-height: px(36);
   border-color: $color-gray-5;
   border-style: solid;
-  border-width: px(2.02) px(2) px(2) 0;
+  text-align: center;
+  border-width: px(2) px(2) px(2) 0;
   cursor: pointer;
 
   &:first-child {
@@ -246,4 +243,18 @@ $border-color-checked: $color-behance;
   padding: 0 px(7);
   line-height: px(20);
   font-size: px(10);
+}
+
+.blockRadioButton {
+  flex: 1;
+}
+
+// =====================//
+.groupContaner {
+  display: inline-block;
+}
+
+.blockGroup {
+  display: flex;
+  align-items: center;
 }
