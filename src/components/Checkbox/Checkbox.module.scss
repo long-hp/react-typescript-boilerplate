@@ -1,106 +1,93 @@
 @import 'styles/abstracts/abstracts';
 
+$width-control-extra-small:18;
+$height-control-extra-small: 18;
 $width-control-small: 24;
 $height-control-small: 24;
 $width-control-medium: 30;
 $height-control-medium: 30;
 $width-control-large: 36;
 $height-control-large: 36;
+$background-color-checkbox: $color-behance;
 
 
 .container {
   position: relative;
-  font-size: 14px;
+  font-size: px(14);
   cursor: pointer;
 }
 
-.container:hover .control {
-  border: 1px solid currentColor;
+.checkbox {
+  position: relative;
 }
 
 .checkboxInput {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.control {
   position: relative;
-
-  input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    opacity: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .control {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: block;
-    width: px($width-control-medium);
-    height: px($height-control-medium);
-    border-radius: 0.2px;
-    border: 1px solid currentColor;
-    box-sizing: border-box;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      opacity: 0;
-    }
-
-    &::before {
-      left: 8px;
-      width: 5px;
-      height: 12px;
-      border-width: 0 3px 3px 0;
-      border-style: solid;
-      border-color: $color-light;
-      margin-top: -10px;
-      transform: rotate(45deg);
-    }
-  }
+  top: 0;
+  left: 0;
+  display: block;
+  width: px($width-control-medium);
+  height: px($height-control-medium);
+  overflow: hidden;
 }
 
-.checkboxInput input:focus+.control {
-  border-color: $color-primary;
+.icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  z-index: 1;
 }
 
-.checkboxInput+span {
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.checkbox+span {
   padding: 0 8px;
 }
 
 .checked {
-  & .control {
-    background-color: $color-primary;
+  .control {
     border: none;
+  }
 
-    &::before {
-      opacity: 1;
-    }
+  .background {
+    visibility: visible;
   }
 }
 
 .disabled {
-
   .control {
-    background-color: $color-gray-4;
-    border: 1px solid currentColor;
+    border-color: $color-gray-5 !important;
     opacity: 0.4;
   }
 
-  & input {
+  .checkboxInput {
     cursor: not-allowed;
   }
 }
@@ -111,10 +98,12 @@ $height-control-large: 36;
 }
 
 .disabled.checked {
-  .control {
-    &::before {
-      border-color: currentColor;
-    }
+  .background {
+    background-color: $color-gray-5 !important;
+  }
+
+  .icon {
+    color: $color-dark;
   }
 }
 
@@ -122,17 +111,19 @@ $height-control-large: 36;
   cursor: not-allowed;
 }
 
+.extra-small {
+  font-size: px(12);
+  .control {
+    width: px($width-control-extra-small);
+    height: px($height-control-extra-small);
+  }
+}
+
+
 .small {
   .control {
     width: px($width-control-small);
     height: px($height-control-small);
-
-    &::before {
-      margin-top: -6px;
-      left: 9px;
-      width: 3px;
-      height: 8px;
-    }
   }
 }
 
@@ -140,13 +131,6 @@ $height-control-large: 36;
   .control {
     width: px($width-control-medium);
     height: px($height-control-medium);
-
-    &::before {
-      margin-top: -10px;
-      left: 12px;
-      width: 5px;
-      height: 12px;
-    }
   }
 }
 
@@ -154,12 +138,5 @@ $height-control-large: 36;
   .control {
     width: px($width-control-large);
     height: px($height-control-large);
-
-    &::before {
-      margin-top: -14px;
-      left: 13px;
-      width: 8px;
-      height: 20px;
-    }
   }
 }

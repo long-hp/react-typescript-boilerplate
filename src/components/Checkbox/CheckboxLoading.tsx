@@ -1,13 +1,15 @@
-import React, { FC, memo, ReactNode } from 'react';
-import { View } from 'wiloke-react-core';
+import React, { FC, memo } from 'react';
+import { Radius, View } from 'wiloke-react-core';
 
-export interface CheckboxLoadingProps {}
+export interface CheckboxLoadingProps {
+  radius?: Radius;
+}
 
-const CheckboxLoading: FC<CheckboxLoadingProps> = () => {
+const CheckboxLoading: FC<CheckboxLoadingProps> = ({ radius = 'square' }) => {
   return (
-    <View height={30} tachyons={['flex', 'items-center']}>
-      <View width={30} height={'100%'} backgroundColor="gray5" radius={2}></View>
-      <View width={200} height={'100%'} tachyons={'ml2'} backgroundColor="gray5"></View>
+    <View height={24} tachyons={['flex', 'items-center']}>
+      <View width={24} height={24} backgroundColor="gray4" radius={radius}></View>
+      <View width={80} height={10} tachyons={'ml2'} backgroundColor="gray4"></View>
     </View>
   );
 };

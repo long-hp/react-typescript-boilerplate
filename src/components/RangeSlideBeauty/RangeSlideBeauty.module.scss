@@ -1,0 +1,16 @@
+@import 'styles/abstracts/abstracts.scss';
+
+.container {
+  position: relative;
+}
+
+.inner {}
+
+.slide {
+  flex: 1;
+}
+
+.input {
+  margin-left: px(30);
+  display: block;
+}
