@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Checkbox',
-  component: Checkbox,
+  component: (Checkbox as any).type,
 };
 
 export const WithProps = () => {
@@ -20,7 +20,7 @@ export const WithProps = () => {
   let borderColor: ColorNames = 'gray5';
   let borderStyle: BorderStyle = 'solid';
   let activeColor: ColorNames = 'primary';
-  const radiusType = optionsKnob('Radius Type', getOptions(['css style', 'number']), 'css style', {
+  const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
   });
   const radius =
@@ -28,9 +28,9 @@ export const WithProps = () => {
       ? select<Radius>(
           'Radius',
           getOptions<Radius[]>(['pill', 'round', 'square']),
-          'round',
+          'square',
         )
-      : number('Radius', 0, { range: true, min: 0, max: 100 });
+      : number('Radius', 5, { range: true, min: 0, max: 100 });
 
   if (!isLoading) {
     checked = boolean('Checked', false);
@@ -38,7 +38,7 @@ export const WithProps = () => {
     size = select<Size>(
       'Size',
       getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
-      'medium',
+      'small',
     ) as any;
     iconActiveColor = select<ColorNames>('Color Icon Active', getOptions(defaultColors), 'light');
     activeColor = select<ColorNames>('Color Checkbox Active', getOptions(defaultColors), 'primary');
@@ -76,7 +76,7 @@ export const WithProps = () => {
       checked={checked}
       onChange={_handleChange}
     >
-      {text('Children', 'Day la checkbox')}
+      {text('Children', 'Lorem ipsum')}
     </Checkbox>
   );
 };

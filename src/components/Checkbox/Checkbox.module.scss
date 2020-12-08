@@ -8,135 +8,43 @@ $width-control-medium: 30;
 $height-control-medium: 30;
 $width-control-large: 36;
 $height-control-large: 36;
-$background-color-checkbox: $color-behance;
+$font-size: 14;
+$font-size-for-extra-small: 12;
 
 
 .container {
-  position: relative;
-  font-size: px(14);
-  cursor: pointer;
-}
-
-.checkbox {
-  position: relative;
-}
-
-.checkboxInput {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  opacity: 0;
-  appearance: none;
-
-  &:focus {
-    outline: none;
+  font-size: px($font-size);
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
   }
 }
 
 .control {
-  position: relative;
-  top: 0;
-  left: 0;
-  display: block;
   width: px($width-control-medium);
   height: px($height-control-medium);
-  overflow: hidden;
-}
 
-.icon {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1;
-  z-index: 1;
-}
-
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  visibility: hidden;
-}
-
-.checkbox+span {
-  padding: 0 8px;
-}
-
-.checked {
-  .control {
-    border: none;
-  }
-
-  .background {
-    visibility: visible;
-  }
-}
-
-.disabled {
-  .control {
-    border-color: $color-gray-5 !important;
-    opacity: 0.4;
-  }
-
-  .checkboxInput {
-    cursor: not-allowed;
-  }
-}
-
-.disabled+span {
-  color: $color-gray-5;
-  cursor: not-allowed;
-}
-
-.disabled.checked {
-  .background {
-    background-color: $color-gray-5 !important;
-  }
-
-  .icon {
-    color: $color-dark;
-  }
-}
-
-.disabled.container {
-  cursor: not-allowed;
-}
-
-.extra-small {
-  font-size: px(12);
-  .control {
+  .extra-small & {
     width: px($width-control-extra-small);
     height: px($height-control-extra-small);
   }
-}
 
-
-.small {
-  .control {
+  .small & {
     width: px($width-control-small);
     height: px($height-control-small);
   }
-}
 
-.medium {
-  .control {
+  .medium & {
     width: px($width-control-medium);
     height: px($height-control-medium);
   }
-}
 
-.large {
-  .control {
+  .large & {
     width: px($width-control-large);
     height: px($height-control-large);
   }
+}
+
+.extra-small {
+  font-size: px($font-size-for-extra-small);
 }
