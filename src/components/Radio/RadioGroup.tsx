@@ -86,7 +86,11 @@ const RadioGroup: FC<RadioGroupProps> = ({
       });
     }
 
-    return <View className={classes}>{childrenToRender}</View>;
+    return (
+      <View className={classes} tachyons="dib">
+        {childrenToRender}
+      </View>
+    );
   };
 
   return (
