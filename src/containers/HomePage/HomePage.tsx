@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { View, Text, Space, GridSmart, Image, Skeleton, TextUnderline, useResponsive, LineAwesome, useTheme } from 'wiloke-react-core';
+import { View, Text, Space, GridSmart, Image, TextUnderline, useResponsive, LineAwesome, useTheme } from 'wiloke-react-core';
 import Section from 'components/Section';
 import IconText from 'components/IconText';
 import SectionTitle from 'components/SectionTitle';
@@ -105,7 +105,7 @@ const HomePage: FC = () => {
             <GridSmart columnWidth={200} columnCount={4}>
               {todolist.status === 'loading'
                 ? range(0, 8).map(item => {
-                    return <Skeleton key={item} textNumberLines={2} imageAspectRatioPercent={56.25} />;
+                    return <View key={item} backgroundColor="gray2" tachyons="pa4" />;
                   })
                 : todolist.data.map(item => (
                     <View key={item.id} backgroundColor="gray2" tachyons="pa4">
@@ -120,12 +120,7 @@ const HomePage: FC = () => {
           <View container>
             <SectionTitle tachyons={['tl', 'mb3', 'mb4-l']} title="Popular Posts" text="Image test lazyload with previewSrc" />
             <GridSmart columnWidth={300} columnCount={4}>
-              <PostCard
-                previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-4x2.jpg"
-                imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv002-1280x798.jpg"
-                title="Contrary to popular"
-                category="Travel"
-              />
+              <PostCard.Loading />
               <PostCard
                 previewSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-4x3.jpg"
                 imageSrc="https://travel.highspeedblog.com/wp-content/uploads/sites/11/2020/06/tv003-1280x853.jpg"

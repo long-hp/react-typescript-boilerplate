@@ -1,5 +1,7 @@
-import React, { FC, memo } from 'react';
+import React, { FC } from 'react';
 import { Image, LineAwesome, Text, View } from 'wiloke-react-core';
+import { memoization } from 'wiloke-react-core/utils';
+import PostCardLoading from './PostCardLoading';
 
 export interface PostCardProps {
   title: string;
@@ -8,7 +10,11 @@ export interface PostCardProps {
   category: string;
 }
 
-const PostCard: FC<PostCardProps> = ({ title, previewSrc, imageSrc, category }) => {
+interface PostCardFC extends FC<PostCardProps> {
+  Loading: typeof PostCardLoading;
+}
+
+const PostCard: PostCardFC = ({ title, previewSrc, imageSrc, category }) => {
   return (
     <View backgroundColor="light" radius="round" tachyons={['relative', 'overflow-hidden']}>
       <Image previewSrc={previewSrc} src={imageSrc} lazyLoad aspectRatioInPercent={56.25} />
@@ -16,7 +22,7 @@ const PostCard: FC<PostCardProps> = ({ title, previewSrc, imageSrc, category }) 
         {category}
       </View>
       <View tachyons={['pa3', 'flex', 'justify-between', 'items-center']}>
-        <Text numberOfLines={1} tagName="h2" tachyons={['w-80', 'nowrap', 'f6']}>
+        <Text tagName="h2" tachyons={['w-80', 'nowrap', 'f6']}>
           {title}
         </Text>
         <LineAwesome name="share" size={20} />
@@ -25,4 +31,6 @@ const PostCard: FC<PostCardProps> = ({ title, previewSrc, imageSrc, category }) 
   );
 };
 
-export default memo(PostCard);
+PostCard.Loading = PostCardLoading;
+
+export default memoization(PostCard);
