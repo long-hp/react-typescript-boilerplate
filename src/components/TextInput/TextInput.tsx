@@ -24,13 +24,12 @@ export interface InputProps extends WithStylesProps {
   /** Sự kiện onChangeText của input, trả về dữ liệu dạng string(chuỗi) */
   onChangeText?: (text: string) => void;
 }
-interface TextInputFC extends FC<InputProps> {
-  Loading: typeof TextInputLoading;
-}
 
-const TextInput: TextInputFC = ({
+const TextInput: FC<InputProps> & {
+  Loading: typeof TextInputLoading;
+} = ({
   className,
-  sizeInput = 'medium',
+  sizeInput = 'large',
   placeholder = '',
   block = false,
   type = 'text',
@@ -68,7 +67,7 @@ const TextInput: TextInputFC = ({
       borderWidth={borderWidth}
       borderStyle={borderStyle}
     >
-      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.input} onChange={_handleChange} />
+      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.textInput} onChange={_handleChange} />
     </View>
   );
 };

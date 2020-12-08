@@ -3,10 +3,10 @@
 $slider-handle-width: 20;
 $slider-handle-height: 20;
 
-$rail-height: 4;
+$rail-height: 3;
 $rail-radius: 6;
 
-$track-height: 4;
+$track-height: 3;
 $track-radius: 6;
 
 $mark-font-size: 12;
@@ -140,7 +140,7 @@ $tooltip-inner-height: 24;
   }
 
   .rc-slider-dot-active {
-    border-color: $color-primary;
+    border-color: $color-gray-4;
   }
 
   .rc-slider-dot-reverse {

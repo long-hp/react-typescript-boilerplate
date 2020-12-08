@@ -2,51 +2,39 @@ import Slider, { createSliderWithTooltip } from 'rc-slider';
 import { GenericSliderProps } from 'rc-slider/lib/interface';
 import React, { CSSProperties, FC } from 'react';
 import { classNames } from 'wiloke-react-core/utils';
-import RangeSliderLoading from '../RangeSliderLoading';
-import styles from './Slider.module.scss';
+import SliderLoading from './SliderLoading';
+import styles from './SlideBase.module.scss';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 export interface SliderProps extends GenericSliderProps {
   /** Giá trị đầu vào của thanh trượt */
   value?: number;
-
   /** Style của thanh track */
   trackStyle?: CSSProperties;
-
   /** Style của nút điều khiển */
   handleStyle?: CSSProperties;
-
-  /** Sự kiện onChange */
-  onChange?: (value: number) => void;
-
-  /** Sự kiện onBlur */
-  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void;
-
-  /** Sự kiện onFocus */
-  onFocus?: (e: React.FocusEvent<HTMLDivElement>) => void;
-
-  /** Sự kiện onAfterChange */
-  onAfterChange?: (value: number) => void;
-
-  /** Sự kiện onBeforeChange */
-  onBeforeChange?: (value: number) => void;
-
   /** Bật lên sẽ hiện tooltip */
   tooltip?: boolean;
-
   /** Vị trí của tooltip: 'top' | 'bottom' */
   tooltipPlacement?: 'top' | 'bottom';
-
   /** Trạng thái ẩn/hiện của tooltip */
   tooltipVisible?: boolean;
+  /** Sự kiện onChange */
+  onChange?: (value: number) => void;
+  /** Sự kiện onBlur */
+  onBlur?: (e: React.FocusEvent<HTMLDivElement>) => void;
+  /** Sự kiện onFocus */
+  onFocus?: (e: React.FocusEvent<HTMLDivElement>) => void;
+  /** Sự kiện onAfterChange */
+  onAfterChange?: (value: number) => void;
+  /** Sự kiện onBeforeChange */
+  onBeforeChange?: (value: number) => void;
 }
 
-interface SliderFC extends FC<SliderProps> {
-  Loading: typeof RangeSliderLoading;
-}
-
-const SliderComponent: SliderFC = ({
+const SliderBase: FC<SliderProps> & {
+  Loading: typeof SliderLoading;
+} = ({
   value,
   trackStyle,
   handleStyle,
@@ -68,49 +56,32 @@ const SliderComponent: SliderFC = ({
   const disabledClassName = disabled ? styles.disable : '';
   const combineProps = { className: classNames(className, styles.container, disabledClassName) };
 
+  const generalProps = () => ({
+    trackStyle: trackStyle,
+    handleStyle: handleStyle,
+    value: value,
+    min: min,
+    max: max,
+    disabled: disabled,
+    step: step,
+    onChange: onChange,
+    onBlur: onBlur,
+    onFocus: onFocus,
+    onAfterChange: onAfterChange,
+    onBeforeChange: onBeforeChange,
+  });
+
   const _renderSlide = () => {
     return tooltip ? (
-      <SliderWithTooltip
-        {...rest}
-        {...combineProps}
-        trackStyle={trackStyle}
-        handleStyle={handleStyle}
-        value={value}
-        min={min}
-        max={max}
-        disabled={disabled}
-        step={step}
-        tipFormatter={value => value}
-        tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onAfterChange={onAfterChange}
-        onBeforeChange={onBeforeChange}
-      />
+      <SliderWithTooltip {...rest} {...combineProps} {...generalProps()} tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }} />
     ) : (
-      <Slider
-        {...rest}
-        {...combineProps}
-        trackStyle={trackStyle}
-        handleStyle={handleStyle}
-        value={value}
-        min={min}
-        max={max}
-        disabled={disabled}
-        step={step}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        onAfterChange={onAfterChange}
-        onBeforeChange={onBeforeChange}
-      />
+      <Slider {...rest} {...combineProps} {...generalProps()} />
     );
   };
 
   return _renderSlide();
 };
 
-SliderComponent.Loading = RangeSliderLoading;
+SliderBase.Loading = SliderLoading;
 
-export default SliderComponent;
+export default SliderBase;

@@ -2,18 +2,13 @@ import { SizeInput } from 'components/TextInput/TextInput';
 import React, { FC, InputHTMLAttributes, useEffect } from 'react';
 import { View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import CounterAction from './Actions';
+import Action from './Actions';
 import styles from './NumberInput.module.scss';
 import NumberInputLoading from './NumberInputLoading';
 import useCount from './useCount';
 type InputType = 'number' | 'phone';
-interface InputBaseComponentProps extends React.HTMLAttributes<HTMLInputElement> {
-  [arbitrary: string]: any;
-}
 
 export interface NumberInputProps extends WithStylesProps {
-  /** Chứa các properties ban đầu của input */
-  inputProps?: InputBaseComponentProps;
   /** Size của input */
   sizeInput?: SizeInput;
   /** Bật lên input sẽ rộng 100% */
@@ -36,11 +31,9 @@ export interface NumberInputProps extends WithStylesProps {
   onChangeNumber?: (number: number) => void;
 }
 
-interface NumberInputFC extends FC<NumberInputProps> {
+const NumberInput: FC<NumberInputProps> & {
   Loading: typeof NumberInputLoading;
-}
-
-const NumberInput: NumberInputFC = ({
+} = ({
   sizeInput = 'medium',
   type = 'number',
   value = 0,
@@ -50,7 +43,6 @@ const NumberInput: NumberInputFC = ({
   block = false,
   disabled = false,
   className,
-  inputProps,
   color = 'gray8',
   backgroundColor = 'light',
   borderColor = 'gray5',
@@ -95,20 +87,10 @@ const NumberInput: NumberInputFC = ({
       borderWidth={borderWidth}
       borderStyle={borderStyle}
     >
-      <input
-        {...inputProps}
-        className={styles.input}
-        type={type}
-        min={min}
-        max={max}
-        step={step}
-        value={count}
-        disabled={disabled}
-        onChange={_handleChange}
-      />
+      <input className={styles.numberInput} type={type} min={min} max={max} step={step} value={count} disabled={disabled} onChange={_handleChange} />
 
       <View tachyons={['absolute', 'top-0', 'right-0', 'h-100']} backgroundColor="transparent">
-        <CounterAction increment={_onIncrement} decrement={_onDecrement} />
+        <Action increment={_onIncrement} decrement={_onDecrement} />
       </View>
     </View>
   );

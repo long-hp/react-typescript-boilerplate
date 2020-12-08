@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { ChromePicker, Color, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
-import { View } from 'wiloke-react-core';
+import { Radius, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './ColorPicker.module.scss';
 import ColorPickerLoading from './ColorPickerLoading';
@@ -25,53 +25,44 @@ export type Placement =
 
 export type Strategy = 'fixed' | 'absolute';
 
-type FunctionColorChange = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
+export type FunctionColorChange = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
 
 export interface ColorPickerProps {
   /** Giao diện của color picker platform: 'chrome' | 'sketch' | 'photoshop' | 'material' | 'compact' | 'swatches' */
-  pickerType: ColorPickerType;
-
+  pickerType?: ColorPickerType;
   /** Đầu vào cùa color: hex | hsl | rgb */
   color?: Color;
-
   /** Background picker */
   colorPicker?: ColorResult['rgb'];
-
   /** Thuộc tính disable alpha của các platform: 'chrome' | 'sketch */
   disableAlpha?: boolean;
-
   /** bảng màu ở phía dưới của platform: sketch */
   presetColor?: PresetColor[];
-
   /** className của color picker */
   className?: string;
-
   /** Position của color picker board */
   strategy?: Strategy;
-
   /** Chỉ hiện bảng color picker */
   onlyShowColorBoard?: boolean;
-
   /** Vị trí của color picker board */
   placement?: Placement;
-
+  /** Bo viền */
+  radius?: Radius;
   /** Sự kiện onChange */
   onChange?: FunctionColorChange;
-
   /** Sự kiện onChangeComplete */
   onChangeComplete?: FunctionColorChange;
 }
 
-interface ColorPickerFC extends FC<ColorPickerProps> {
+const ColorPicker: FC<ColorPickerProps> & {
   Loading: typeof ColorPickerLoading;
-}
-
-const ColorPicker: ColorPickerFC = ({
+} = ({
   disableAlpha = false,
   onlyShowColorBoard = false,
   pickerType = 'chrome',
   placement = 'bottom-start',
   strategy = 'absolute',
+  radius = 8,
   color,
   className,
   colorPicker,
@@ -127,6 +118,7 @@ const ColorPicker: ColorPickerFC = ({
           <View ref={ref} tagName="div" onClick={_handleOnclick}>
             <View
               className={styles.pickerColor}
+              radius={radius}
               style={{ backgroundColor: `rgba(${colorPicker?.r}, ${colorPicker?.g}, ${colorPicker?.b}, ${colorPicker?.a})` }}
             ></View>
           </View>

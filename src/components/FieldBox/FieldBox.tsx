@@ -1,14 +1,14 @@
 import React, { CSSProperties, FC, ReactNode } from 'react';
-import { View, withStyles, WithStylesProps } from 'wiloke-react-core';
+import { View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './Box.module.scss';
+import styles from './FieldBox.module.scss';
 
 export interface BoxProps extends WithStylesProps {
   children?: ReactNode;
   style?: CSSProperties;
 }
 
-const BoxComponent: FC<BoxProps> = ({
+const Box: FC<BoxProps> = ({
   tachyons,
   borderColor,
   borderStyle,
@@ -23,19 +23,17 @@ const BoxComponent: FC<BoxProps> = ({
   return (
     <View
       {...rest}
+      tachyons={tachyons}
       {...combineProps}
       radius={radius}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       borderStyle={borderStyle}
       borderWidth={borderWidth}
-      tachyons={tachyons}
     >
       {children}
     </View>
   );
 };
-
-const Box = withStyles<HTMLElement, BoxProps>(BoxComponent);
 
 export default Box;

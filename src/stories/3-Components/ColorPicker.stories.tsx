@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
 import getOptions from 'stories/utils/getOptions';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
-import { decimalToHex } from 'utils/functions/decimalToHex';
 import { Text, View } from 'wiloke-react-core';
+import { decimalToHex } from 'components/ColorPicker/decimalToHex';
 
 export default {
   title: 'Components/ColorPicker',
   component: ColorPicker,
 };
 
-export const Default = () => {
-  const onlyShowColorBoard = boolean('Only show color picker board', false);
+export const WithProps = () => {
   const isLoading = boolean('Loading', false);
-
+  const onlyShowColorBoard = boolean('Only show color picker board', false);
+  const radius = number('Radius', 8);
   const selectType = select(
     'Color Picker Platform',
     getOptions<ColorPickerProps['pickerType'][]>(['chrome', 'photoshop', 'sketch']),
@@ -80,6 +80,7 @@ export const Default = () => {
           colorPicker={rgbColor}
           placement={selectPlacement}
           strategy={selectStrategy}
+          radius={radius}
           onlyShowColorBoard={onlyShowColorBoard}
           onChange={_onChangeColorPicker}
         />
@@ -89,9 +90,6 @@ export const Default = () => {
         <Text color="gray9">Hex: {colorPreview}</Text>
         <Text color="gray9">
           RGB: rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
-        </Text>
-        <Text color="gray9">
-          HSL: hsla({colorState.h.toFixed(4)}, {colorState.s.toFixed(2)}, {colorState.l.toFixed(2)}, {colorState.a})
         </Text>
       </View>
     </View>
