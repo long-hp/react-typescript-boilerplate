@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Checkbox from 'components/Checkbox';
 import { boolean, number, optionsKnob, select, text } from '@storybook/addon-knobs';
-import { BorderStyle, BorderWidth, defaultColors, Radius, Size } from 'wiloke-react-core';
+import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Size } from 'wiloke-react-core';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 
@@ -12,55 +12,47 @@ export default {
 
 export const WithProps = () => {
   const isLoading = boolean('Loading', false);
-  let size;
+  let size: Size = 'medium';
   let checked;
   let disabled;
-  let iconActiveColor;
-  let borderWidth;
-  let borderColor;
-  let borderStyle;
+  let iconActiveColor: ColorNames = 'light';
+  let borderWidth: BorderWidth = '2/6';
+  let borderColor: ColorNames = 'gray5';
+  let borderStyle: BorderStyle = 'solid';
+  let activeColor: ColorNames = 'primary';
   const radiusType = optionsKnob('Radius Type', getOptions(['css style', 'number']), 'css style', {
     display: 'inline-radio',
   });
-  let radius =
+  const radius =
     radiusType === 'css style'
-      ? select(
+      ? select<Radius>(
           'Radius',
           getOptions<Radius[]>(['pill', 'round', 'square']),
-          'square',
+          'round',
         )
       : number('Radius', 0, { range: true, min: 0, max: 100 });
-  let activeColor;
 
   if (!isLoading) {
     checked = boolean('Checked', false);
     disabled = boolean('Disabled', false);
-    size = select(
+    size = select<Size>(
       'Size',
       getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
       'medium',
     ) as any;
-    iconActiveColor = select('Color Icon Active', getOptions(defaultColors), 'light') as any;
-    activeColor = select('Color Checkbox Active', getOptions(defaultColors), 'behance') as any;
-    borderWidth = select(
+    iconActiveColor = select<ColorNames>('Color Icon Active', getOptions(defaultColors), 'light');
+    activeColor = select<ColorNames>('Color Checkbox Active', getOptions(defaultColors), 'primary');
+    borderWidth = select<BorderWidth>(
       'Boder Width',
       getOptions<BorderWidth[]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-      '1/6',
-    ) as any;
-    borderColor = select('Border Color', getOptions(defaultColors), 'gray5') as any;
-    borderStyle = select(
+      '2/6',
+    );
+    borderColor = select<ColorNames>('Border Color', getOptions(defaultColors), 'gray5');
+    borderStyle = select<BorderStyle>(
       'Border Style',
       getOptions<BorderStyle[]>(['solid', 'dotted', 'dashed']),
       'solid',
-    ) as any;
-    radius =
-      radiusType === 'css style'
-        ? select(
-            'Radius',
-            getOptions<Radius[]>(['pill', 'round', 'square']),
-            'square',
-          )
-        : number('Radius', 0, { range: true, min: 0, max: 100 });
+    );
   }
   const [checkedState, setCheckedState] = useState(checked);
 
