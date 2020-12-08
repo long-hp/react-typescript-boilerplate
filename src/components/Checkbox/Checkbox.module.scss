@@ -1,165 +1,50 @@
 @import 'styles/abstracts/abstracts';
 
+$width-control-extra-small:18;
+$height-control-extra-small: 18;
 $width-control-small: 24;
 $height-control-small: 24;
 $width-control-medium: 30;
 $height-control-medium: 30;
 $width-control-large: 36;
 $height-control-large: 36;
+$font-size: 14;
+$font-size-for-extra-small: 12;
 
 
 .container {
-  position: relative;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.container:hover .control {
-  border: 1px solid currentColor;
-}
-
-.checkboxInput {
-  position: relative;
-
-  input {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    opacity: 0;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .control {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: block;
-    width: px($width-control-medium);
-    height: px($height-control-medium);
-    border-radius: 0.2px;
-    border: 1px solid currentColor;
-    box-sizing: border-box;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      opacity: 0;
-    }
-
-    &::before {
-      left: 8px;
-      width: 5px;
-      height: 12px;
-      border-width: 0 3px 3px 0;
-      border-style: solid;
-      border-color: $color-light;
-      margin-top: -10px;
-      transform: rotate(45deg);
-    }
-  }
-}
-
-.checkboxInput input:focus+.control {
-  border-color: $color-primary;
-}
-
-.checkboxInput+span {
-  padding: 0 8px;
-}
-
-.checked {
-  & .control {
-    background-color: $color-primary;
-    border: none;
-
-    &::before {
-      opacity: 1;
-    }
-  }
-}
-
-.disabled {
-
-  .control {
-    background-color: $color-gray-4;
-    border: 1px solid currentColor;
+  font-size: px($font-size);
+  &.disabled {
+    cursor: not-allowed;
     opacity: 0.4;
   }
+}
 
-  & input {
-    cursor: not-allowed;
+.control {
+  width: px($width-control-medium);
+  height: px($height-control-medium);
+
+  .extra-small & {
+    width: px($width-control-extra-small);
+    height: px($height-control-extra-small);
   }
-}
 
-.disabled+span {
-  color: $color-gray-5;
-  cursor: not-allowed;
-}
-
-.disabled.checked {
-  .control {
-    &::before {
-      border-color: currentColor;
-    }
-  }
-}
-
-.disabled.container {
-  cursor: not-allowed;
-}
-
-.small {
-  .control {
+  .small & {
     width: px($width-control-small);
     height: px($height-control-small);
-
-    &::before {
-      margin-top: -6px;
-      left: 9px;
-      width: 3px;
-      height: 8px;
-    }
   }
-}
 
-.medium {
-  .control {
+  .medium & {
     width: px($width-control-medium);
     height: px($height-control-medium);
+  }
 
-    &::before {
-      margin-top: -10px;
-      left: 12px;
-      width: 5px;
-      height: 12px;
-    }
+  .large & {
+    width: px($width-control-large);
+    height: px($height-control-large);
   }
 }
 
-.large {
-  .control {
-    width: px($width-control-large);
-    height: px($height-control-large);
-
-    &::before {
-      margin-top: -14px;
-      left: 13px;
-      width: 8px;
-      height: 20px;
-    }
-  }
+.extra-small {
+  font-size: px($font-size-for-extra-small);
 }

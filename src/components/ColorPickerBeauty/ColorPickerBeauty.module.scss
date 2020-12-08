@@ -1,0 +1,11 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-details: 14;
+
+.container {
+  position: relative;
+}
+
+.colorDetails {
+  font-size: px($font-size-details);
+}
