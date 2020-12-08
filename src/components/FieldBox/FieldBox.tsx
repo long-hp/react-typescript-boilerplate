@@ -23,13 +23,13 @@ const Box: FC<BoxProps> = ({
   return (
     <View
       {...rest}
+      tachyons={tachyons}
       {...combineProps}
       radius={radius}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       borderStyle={borderStyle}
       borderWidth={borderWidth}
-      tachyons={tachyons}
     >
       {children}
     </View>
