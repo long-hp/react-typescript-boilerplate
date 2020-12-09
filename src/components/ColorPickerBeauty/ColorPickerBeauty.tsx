@@ -72,7 +72,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
         radius={radiusBox}
         className={styles.box}
       >
-        <View tachyons={['flex', 'items-center']} radius="round" className={styles.inner}>
+        <View tachyons={['flex', 'items-center', 'w-100', 'h-100']} radius="round" className={styles.inner}>
           <View className={styles.colorPicker} tachyons={['flex-grow-1']}>
             <ColorPicker
               pickerType={pickerType}
@@ -86,7 +86,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
             />
           </View>
 
-          <View tachyons={['ml4', 'h-50']} style={{ display: 'inherit' }}>
+          <View tachyons={['ml4']} style={{ display: 'inherit' }}>
             <Text color="gray5" className={styles.colorDetails}>
               {colorDetails}
             </Text>
