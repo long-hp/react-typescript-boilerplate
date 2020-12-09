@@ -1,0 +1,60 @@
+@import '../abstracts/abstracts.scss';
+
+$font-size-tab: 14;
+
+:global {
+  .rc-tabs {
+    border: none !important;
+  }
+
+  .rc-tabs-tab {
+    padding: px(5);
+    text-transform: capitalize;
+    background-color: transparent !important;
+    background: transparent;
+    color: $color-dark;
+  }
+
+  .rc-tabs-nav-wrap {
+    margin-bottom: px(20);
+  }
+
+  .rc-tabs-tab .rc-tabs-tab-btn {
+    font-weight: 400;
+    font-size: px($font-size-tab);
+    border: none;
+
+    &:active,
+    &:hover,
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+  .rc-tabs-tab.rc-tabs-tab-active {
+    color: $color-behance;
+  }
+
+  .rc-tabs-ink-bar {
+    background: $color-behance;
+  }
+
+  .rc-tabs-tab-disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  .rc-tabs-tabpane {
+    font-size: px($font-size-tab);
+    color: $color-gray-9;
+
+    &:active,
+    &:hover,
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+
+}
