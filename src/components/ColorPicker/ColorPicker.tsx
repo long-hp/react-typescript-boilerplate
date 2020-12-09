@@ -23,7 +23,7 @@ export type Placement =
   | 'left-start'
   | 'left-end';
 
-export type Strategy = 'fixed' | 'absolute';
+export type Strategy = 'absolute';
 
 export type FunctionColorChange = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
 
@@ -64,7 +64,7 @@ const ColorPicker: FC<ColorPickerProps> & {
   pickerType = 'sketch',
   placement = 'bottom-start',
   strategy = 'absolute',
-  radius = 8,
+  radius = 5,
   color,
   isPortal = false,
   className,
