@@ -25,7 +25,7 @@ export const Default = () => {
       value={value}
       borderStyle="solid"
       borderWidth="1/6"
-      onChangeNumber={_handleOnChange}
+      onValueChange={_handleOnChange}
     />
   );
 };
@@ -123,7 +123,7 @@ export const WithProps = () => {
       min={min}
       max={max}
       step={step}
-      onChangeNumber={_handleOnChange}
+      onValueChange={_handleOnChange}
     />
   );
 };

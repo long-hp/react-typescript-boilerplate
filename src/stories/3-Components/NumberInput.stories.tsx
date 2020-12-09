@@ -49,7 +49,7 @@ export const WithProps = () => {
         radius={8}
         borderColor="gray5"
         borderWidth="1/6"
-        onChangeNumber={_handleOnChange}
+        onValueChange={_handleOnChange}
       />
     );
   };

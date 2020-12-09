@@ -27,8 +27,8 @@ export interface NumberInputProps extends WithStylesProps {
   step?: number;
   /** Sự kiện onChange của input */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
-  /** Sự kiện onChangeText của input, trả về dữ liệu dạng string(chuỗi) */
-  onChangeNumber?: (number: number) => void;
+  /** Sự kiện onValueChange của input, trả về dữ liệu dạng string(chuỗi) */
+  onValueChange?: (number: number) => void;
 }
 
 const NumberInput: FC<NumberInputProps> & {
@@ -48,7 +48,7 @@ const NumberInput: FC<NumberInputProps> & {
   borderColor = 'gray5',
   borderWidth = '1/6',
   borderStyle = 'solid',
-  onChangeNumber,
+  onValueChange,
   onChange,
   ...rest
 }) => {
@@ -64,7 +64,7 @@ const NumberInput: FC<NumberInputProps> & {
   });
 
   useEffect(() => {
-    onChangeNumber?.(count);
+    onValueChange?.(count);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count]);
 
