@@ -1,5 +1,6 @@
+import { action } from '@storybook/addon-actions';
 import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
-import { Placement, Strategy } from 'components/ColorPicker/ColorPicker';
+import { Placement } from 'components/ColorPicker/ColorPicker';
 import ColorPickerBeauty, { ColorPickerBeautyProps } from 'components/ColorPickerBeauty';
 import React, { useState } from 'react';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
@@ -19,15 +20,16 @@ export const Default = () => {
     a: 1,
   });
   const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 0.5,
+    r: 51,
+    g: 51,
+    b: 51,
+    a: 1,
   });
 
   const _onChangeColorPicker = (color: ColorResult) => {
     setRgbColor(color.rgb);
     setColorState(color.hsl);
+    action('onChange')(color);
   };
 
   return (
@@ -56,7 +58,6 @@ export const WithProps = () => {
     borderStyle: BorderStyle = 'solid',
     borderWidth: BorderWidth = '1/6',
     selectType: ColorPickerBeautyProps['pickerType'] = 'sketch',
-    selectStrategy: Strategy = 'absolute',
     selectPlacement: Placement = 'bottom-start',
     backgroundInnerField: ColorNames = 'gray5';
 
@@ -71,7 +72,7 @@ export const WithProps = () => {
           getOptions<Radius[]>(['pill', 'round', 'square']),
           'square',
         )
-      : number('Radius Picker', 8, { range: true, min: 0, max: 100 });
+      : number('Radius Picker', 5, { range: true, min: 0, max: 100 });
 
   const radiusType = optionsKnob<'css style' | 'number'>('Radius Box Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
@@ -84,7 +85,7 @@ export const WithProps = () => {
           getOptions<Radius[]>(['pill', 'round', 'square']),
           'square',
         )
-      : number('Radius Box', 8, { range: true, min: 0, max: 100 });
+      : number('Radius Box', 5, { range: true, min: 0, max: 100 });
 
   if (isLoading === false) {
     borderColor = select('Border Color', getOptions(defaultColors), 'gray5');
@@ -105,12 +106,6 @@ export const WithProps = () => {
       'Color Picker Platform',
       getOptions<ColorPickerBeautyProps['pickerType'][]>(['chrome', 'photoshop', 'sketch']),
       'sketch',
-    );
-
-    selectStrategy = select(
-      'Color Picker Strategy',
-      getOptions<ColorPickerBeautyProps['strategy'][]>(['absolute', 'fixed']),
-      'absolute',
     );
 
     selectPlacement = select(
@@ -142,16 +137,17 @@ export const WithProps = () => {
     a: 1,
   });
   const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 0.5,
+    r: 51,
+    g: 51,
+    b: 51,
+    a: 1,
   });
 
   const _onChangeColorPicker = (color: ColorResult) => {
     if (color.hsl !== colorState) {
       setRgbColor(color.rgb);
       setColorState(color.hsl);
+      action('onChange')(color);
     }
   };
 
@@ -164,7 +160,6 @@ export const WithProps = () => {
           <ColorPickerBeauty
             color={colorState}
             colorPicker={rgbColor}
-            strategy={selectStrategy}
             placement={selectPlacement}
             pickerType={selectType}
             radiusBox={radiusBox}

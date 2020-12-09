@@ -54,9 +54,9 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
   color,
   colorPicker,
   borderStyle = 'solid',
-  borderColor = 'gray4',
-  radiusPicker = 8,
-  radiusBox = 8,
+  borderColor = 'gray5',
+  radiusPicker = 5,
+  radiusBox = 5,
   borderWidth = '1/6',
   pickerType = 'chrome',
   onChange,
@@ -70,7 +70,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
         borderStyle={borderStyle}
         borderWidth={borderWidth}
         radius={radiusBox}
-        tachyons={['pt2', 'pb2']}
+        className={styles.box}
       >
         <View tachyons={['flex', 'items-center']} radius="round" className={styles.inner}>
           <View className={styles.colorPicker} tachyons={['flex-grow-1']}>

@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 import { InputProps, TextInput } from 'components/TextInput';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { boolean, number, optionsKnob, select, text } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
+import { Radius } from 'wiloke-react-core';
 
 export default {
   title: 'Components/TextInput',
@@ -12,8 +13,19 @@ export default {
 
 export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
-  let size, disabled, block, placeholder, radius;
+  let size, disabled, block, placeholder;
+  const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
+    display: 'inline-radio',
+  });
 
+  const radius =
+    radiusType === 'css style'
+      ? select<Radius>(
+          'Radius',
+          getOptions<Radius[]>(['pill', 'round', 'square']),
+          'square',
+        )
+      : number('Radius', 5, { range: true, min: 0, max: 100 });
   if (isLoading === false) {
     size = select(
       'Size',
@@ -23,7 +35,6 @@ export const WithProps = () => {
     disabled = boolean('Disabled', false);
     block = boolean('Block', false);
     placeholder = text('Placeholder', 'Do something...');
-    radius = number('Radius', 10);
   }
 
   const [value, setValue] = useState('');

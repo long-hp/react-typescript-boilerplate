@@ -20,7 +20,7 @@ const RangeSlideBeautyLoading: FC<RangeSlideBeautyLoadingProps> = () => {
             }}
           />
         </View>
-        <View width={50} height={28} tachyons={['ml4']} backgroundColor="gray4" radius={8} />
+        <View width={50} height={28} tachyons={['ml4']} backgroundColor="gray4" radius={5} />
       </View>
       <View backgroundColor="gray5" width={100} height={20} radius={4} tachyons={['mt2']} />
     </View>
