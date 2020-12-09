@@ -18,17 +18,7 @@ export interface CheckboxProps extends WithStylesProps {
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
 }
 
-const Checkbox: FC<CheckboxProps> = ({
-  size = 'small',
-  checked = true,
-  defaultChecked = true,
-  disabled,
-  indeterminate,
-  children,
-  className,
-  onChange,
-  ...rest
-}) => {
+const Checkbox: FC<CheckboxProps> = ({ size = 'small', defaultChecked = true, disabled, children, className, onChange, ...rest }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.check : '';
   const sizeClass = styles[size];
