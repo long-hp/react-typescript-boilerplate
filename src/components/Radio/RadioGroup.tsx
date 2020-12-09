@@ -1,6 +1,7 @@
 import useMergedState from 'hooks/useMergedState';
 import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { ColorNames, Size, View } from 'wiloke-react-core';
+import { classNames } from 'wiloke-react-core/utils';
 import { RadioGroupContextProvider } from './context';
 import Radio from './Radio';
 import styles from './Radio.module.scss';
@@ -25,30 +26,36 @@ export interface RadioGroupProps {
   /** Disable tat ca radio */
   disabled?: boolean;
   /** Color khi active */
-  colorActive?: ColorNames;
+  activeColor?: ColorNames;
   /** Color text khi active radio button*/
-  colorTextActive?: ColorNames;
+  textActiveColor?: ColorNames;
   /**Children cua radio group*/
   children?: ReactNode;
+  /** Block radio */
+  block?: boolean;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
 }
 
 const RadioGroup: FC<RadioGroupProps> = ({
-  colorActive = 'behance',
-  colorTextActive = 'light',
+  activeColor = 'primary',
+  textActiveColor = 'light',
   size = 'medium',
   options,
   name,
   disabled,
   value,
   children,
+  block = false,
   defaultValue,
   onChange,
 }) => {
   const [valueState, setValueState] = useMergedState(String(defaultValue), {
     value: value,
   });
+  const blockGroupClass = block ? styles.blockGroup : '';
+  const classes = classNames(styles.groupContaner, blockGroupClass);
+
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const lastValue = valueState;
     const val = event.target.value;
@@ -79,7 +86,11 @@ const RadioGroup: FC<RadioGroupProps> = ({
       });
     }
 
-    return <View className={styles.group}>{childrenToRender}</View>;
+    return (
+      <View className={classes} tachyons="dib">
+        {childrenToRender}
+      </View>
+    );
   };
 
   return (
@@ -90,8 +101,9 @@ const RadioGroup: FC<RadioGroupProps> = ({
         disabled: disabled,
         name: name,
         size,
-        colorActive,
-        colorTextActive,
+        activeColor,
+        block,
+        textActiveColor,
       }}
     >
       {_renderGroup()}

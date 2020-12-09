@@ -17,6 +17,7 @@ const RadioButton: FC<RadioButtonProps> = props => {
   if (context) {
     rest.checked = String(props.value) === context.value;
     rest.disabled = props.disabled || (context.disabled as boolean);
+    rest.block = props.block || (context.block as boolean);
   }
   return <Radio colorTextActive={rest.colorTextActive} {...rest} type="button"></Radio>;
 };

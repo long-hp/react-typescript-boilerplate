@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { boolean, select } from '@storybook/addon-knobs';
-import { defaultColors, Size } from 'wiloke-react-core';
+import { ColorNames, defaultColors, Size } from 'wiloke-react-core';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import Radio from 'components/Radio';
@@ -24,8 +24,9 @@ export const WithProps = () => {
   );
   const checked = boolean('Checked', false);
   const disabled = boolean('Disabled', false);
-  const colorActive = select('Color Active', getOptions(defaultColors), 'behance');
-  const colorTextActive = select('Color Text Active', getOptions(defaultColors), 'light');
+  const activeColor = select<ColorNames>('Color Active', getOptions(defaultColors), 'primary');
+  const textActiveColor = select<ColorNames>('Color Text Active', getOptions(defaultColors), 'light');
+  const block = boolean('Block Radio Button', false);
 
   const [valueState, setValueState] = useState('');
 
@@ -37,13 +38,14 @@ export const WithProps = () => {
   return (
     <>
       {' '}
-      <Radio checked={checked} value={valueState} colorActive={colorActive} size={size} onChange={_handleChange} disabled={disabled}>
+      <Radio checked={checked} activeColor={activeColor} size={size} onChange={_handleChange} disabled={disabled}>
         Day la radio default
       </Radio>
       <Radio.Group
+        block={block}
         value={valueState}
-        colorActive={colorActive}
-        colorTextActive={colorTextActive}
+        activeColor={activeColor}
+        textActiveColor={textActiveColor}
         size={size}
         disabled={disabled}
         defaultValue={3}
@@ -55,12 +57,12 @@ export const WithProps = () => {
           Hello3
         </Radio.Button>
       </Radio.Group>
-      <Radio.Group size={size} disabled={disabled} colorActive={colorActive} value={valueState} onChange={_handleChange}>
+      <Radio.Group size={size} disabled={disabled} activeColor={activeColor} value={valueState} onChange={_handleChange}>
         <Radio value="value1">Value1</Radio>
         <Radio value="value2">Value2</Radio>
         <Radio value="value3">Value3</Radio>
       </Radio.Group>
-      <Radio.Group size={size} colorActive={colorActive} value={valueState} onChange={_handleChange} options={optionsWithDisabled}></Radio.Group>
+      <Radio.Group size={size} activeColor={activeColor} value={valueState} onChange={_handleChange} options={optionsWithDisabled}></Radio.Group>
     </>
   );
 };
