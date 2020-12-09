@@ -35,6 +35,8 @@ export interface RadioGroupProps {
   block?: boolean;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Su kien onChange lay value */
+  onChangeValue?: (value: string) => void;
 }
 
 const RadioGroup: FC<RadioGroupProps> = ({
@@ -49,6 +51,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
   block = false,
   defaultValue,
   onChange,
+  onChangeValue,
 }) => {
   const [valueState, setValueState] = useMergedState(String(defaultValue), {
     value: value,
@@ -59,11 +62,15 @@ const RadioGroup: FC<RadioGroupProps> = ({
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const lastValue = valueState;
     const val = event.target.value;
+
     if (!value) {
       setValueState(val);
     }
     if (onChange && val !== lastValue) {
       onChange(event);
+    }
+    if (onChangeValue && val !== lastValue) {
+      onChangeValue(val);
     }
   };
 

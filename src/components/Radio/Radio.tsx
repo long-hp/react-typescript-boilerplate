@@ -1,5 +1,4 @@
-import { CheckboxProps } from 'components/Checkbox';
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, InputHTMLAttributes, useContext, useEffect, useState } from 'react';
 import { ColorNames, Size, Text } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
 import RadioGroupContext from './context';
@@ -7,21 +6,35 @@ import styles from './Radio.module.scss';
 import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
 
-type TypeRadioProps = Pick<CheckboxProps, 'checked' | 'size' | 'disabled' | 'defaultChecked' | 'onChange' | 'className' | 'activeColor'>;
-
 export type RadioType = 'default' | 'button';
 
-export interface RadioProps extends TypeRadioProps {
+export interface RadioProps {
+  /** Size cua Radio va RadioButton */
+  size?: Size;
+  /** Trang thai checked cua Radio */
+  checked?: boolean;
   /** Value radio input html */
   value?: any;
   /** Name radio input html */
   name?: string;
   /** kieu cua radio */
   type?: RadioType;
-  /**  */
+  /**className*/
+  className?: string;
+  /** Trang thai disabled cua Radio*/
+  disabled?: boolean;
+  /** block cua RadioButton */
   block?: boolean;
+  /** Trang thai default cua Radio */
+  defaultChecked?: boolean;
+  /** Color khi active Radio */
+  activeColor?: ColorNames;
   /** Color text khi active radio button */
   textActiveColor?: ColorNames;
+  /** Su kien onChange */
+  onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Su kien onChange lay value */
+  onChangeValue?: (value: string) => void;
 }
 
 interface RadioStatic {
@@ -43,6 +56,7 @@ const Radio: FC<RadioProps> & RadioStatic = ({
   activeColor = 'primary',
   block = true,
   onChange,
+  onChangeValue,
 }) => {
   const context = useContext(RadioGroupContext);
   if (context) {
@@ -70,15 +84,16 @@ const Radio: FC<RadioProps> & RadioStatic = ({
     sizeClass,
     className,
   );
-  console.log(checkedRadioButtonClass);
-  const _handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+  const _handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) {
       return;
     }
     setCheckedState(!checkedState);
-    onChange?.(e);
+    onChange?.(event);
+    onChangeValue?.(event.target.value);
     if (context?.onChange) {
-      context.onChange(e);
+      context.onChange(event);
     }
   };
 

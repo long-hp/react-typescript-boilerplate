@@ -35,10 +35,22 @@ export const WithProps = () => {
     action('onChange')(event);
   };
 
+  const _handleChangeValue = (value: string) => {
+    action('onChange')(value);
+  };
+
   return (
     <>
       {' '}
-      <Radio checked={checked} activeColor={activeColor} size={size} onChange={_handleChange} disabled={disabled}>
+      <Radio
+        value={1}
+        checked={checked}
+        activeColor={activeColor}
+        size={size}
+        onChange={_handleChange}
+        onChangeValue={_handleChangeValue}
+        disabled={disabled}
+      >
         Day la radio default
       </Radio>
       <Radio.Group
@@ -50,6 +62,7 @@ export const WithProps = () => {
         disabled={disabled}
         defaultValue={3}
         onChange={_handleChange}
+        onChangeValue={_handleChangeValue}
       >
         <Radio.Button value={1}>Hello1</Radio.Button>
         <Radio.Button value={2}>Hello2</Radio.Button>
@@ -57,12 +70,26 @@ export const WithProps = () => {
           Hello3
         </Radio.Button>
       </Radio.Group>
-      <Radio.Group size={size} disabled={disabled} activeColor={activeColor} value={valueState} onChange={_handleChange}>
+      <Radio.Group
+        size={size}
+        disabled={disabled}
+        activeColor={activeColor}
+        value={valueState}
+        onChange={_handleChange}
+        onChangeValue={_handleChangeValue}
+      >
         <Radio value="value1">Value1</Radio>
         <Radio value="value2">Value2</Radio>
         <Radio value="value3">Value3</Radio>
       </Radio.Group>
-      <Radio.Group size={size} activeColor={activeColor} value={valueState} onChange={_handleChange} options={optionsWithDisabled}></Radio.Group>
+      <Radio.Group
+        size={size}
+        activeColor={activeColor}
+        value={valueState}
+        onChange={_handleChange}
+        onChangeValue={_handleChangeValue}
+        options={optionsWithDisabled}
+      ></Radio.Group>
     </>
   );
 };
