@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
 import getOptions from 'stories/utils/getOptions';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
-import { Text, View } from 'wiloke-react-core';
+import { Radius, Text, View } from 'wiloke-react-core';
 import { decimalToHex } from 'components/ColorPicker/decimalToHex';
 
 export default {
@@ -14,11 +14,24 @@ export default {
 export const WithProps = () => {
   const isLoading = boolean('Loading', false);
   const onlyShowColorBoard = boolean('Only show color picker board', false);
-  const radius = number('Radius', 8);
+
+  const radiusType = optionsKnob<'css style' | 'number'>('Radius Picker Type', getOptions(['css style', 'number']), 'number', {
+    display: 'inline-radio',
+  });
+
+  const radius =
+    radiusType === 'css style'
+      ? select<Radius>(
+          'Radius Picker',
+          getOptions<Radius[]>(['pill', 'round', 'square']),
+          'square',
+        )
+      : number('Radius Picker', 8, { range: true, min: 0, max: 100 });
+
   const selectType = select(
     'Color Picker Platform',
     getOptions<ColorPickerProps['pickerType'][]>(['chrome', 'photoshop', 'sketch']),
-    'chrome',
+    'sketch',
   );
 
   const selectStrategy = select(
@@ -61,16 +74,14 @@ export const WithProps = () => {
   });
 
   const _onChangeColorPicker = (color: ColorResult) => {
-    if (color.hsl !== colorState) {
-      setRgbColor(color.rgb);
-      setColorState(color.hsl);
-      const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
-      setColorPreview(hexCode);
-    }
+    setRgbColor(color.rgb);
+    setColorState(color.hsl);
+    const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
+    setColorPreview(hexCode);
   };
 
   return (
-    <View tachyons={['flex', 'justify-between', 'w-100']}>
+    <View tachyons={['flex', 'justify-between', 'w-100', 'pa4']}>
       {isLoading ? (
         <ColorPicker.Loading />
       ) : (

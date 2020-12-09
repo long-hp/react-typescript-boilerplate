@@ -51,6 +51,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
   backgroundInnerField = 'light',
   colorDetails,
   strategy = 'absolute',
+  color,
   colorPicker,
   borderStyle = 'solid',
   borderColor = 'gray4',
@@ -79,6 +80,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
               radius={radiusPicker}
               placement={placement}
               strategy={strategy}
+              color={color}
               onChange={onChange}
               onChangeComplete={onChangeComplete}
             />

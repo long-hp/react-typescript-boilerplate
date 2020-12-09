@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { ChromePicker, Color, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
-import { Radius, View } from 'wiloke-react-core';
+import { OuterTrigger, Radius, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './ColorPicker.module.scss';
 import ColorPickerLoading from './ColorPickerLoading';
@@ -48,6 +48,8 @@ export interface ColorPickerProps {
   placement?: Placement;
   /** Bo viền */
   radius?: Radius;
+  /** True thì Tạo color picker board ngoài root */
+  isPortal?: boolean;
   /** Sự kiện onChange */
   onChange?: FunctionColorChange;
   /** Sự kiện onChangeComplete */
@@ -59,11 +61,12 @@ const ColorPicker: FC<ColorPickerProps> & {
 } = ({
   disableAlpha = false,
   onlyShowColorBoard = false,
-  pickerType = 'chrome',
+  pickerType = 'sketch',
   placement = 'bottom-start',
   strategy = 'absolute',
   radius = 8,
   color,
+  isPortal = false,
   className,
   colorPicker,
   presetColor,
@@ -100,7 +103,15 @@ const ColorPicker: FC<ColorPickerProps> & {
 
       default:
         picker = (
-          <ChromePicker color={color} disableAlpha={disableAlpha} className={className} onChange={onChange} onChangeComplete={onChangeComplete} />
+          <SketchPicker
+            {...combineProps}
+            color={color}
+            disableAlpha={disableAlpha}
+            className={className}
+            presetColors={presetColor}
+            onChange={onChange}
+            onChangeComplete={onChangeComplete}
+          />
         );
         break;
     }
@@ -111,14 +122,20 @@ const ColorPicker: FC<ColorPickerProps> & {
     setShowPicker(!showPicker);
   };
 
+  const _onClose = () => {
+    setShowPicker(false);
+    console.log('close');
+  };
+
   const _renderTarget = () => {
     return (
       <Reference>
         {({ ref }) => (
-          <View ref={ref} tagName="div" onClick={_handleOnclick}>
+          <View ref={ref} className={styles.pickerColor} onClick={_handleOnclick}>
             <View
-              className={styles.pickerColor}
+              className={styles.bgFade}
               radius={radius}
+              tachyons={['absolute', 'absolute--fill']}
               style={{ backgroundColor: `rgba(${colorPicker?.r}, ${colorPicker?.g}, ${colorPicker?.b}, ${colorPicker?.a})` }}
             ></View>
           </View>
@@ -127,36 +144,42 @@ const ColorPicker: FC<ColorPickerProps> & {
     );
   };
 
-  const _renderColorPicker = () => {
+  const _renderPickerBoard = () => {
     return (
-      showPicker &&
-      createPortal(
-        <Popper strategy={strategy} placement={placement}>
-          {popperProps => {
-            return (
-              <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
-                <View className={styles.popperInner}>{_handleRenderPickerType()}</View>
-                <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} className={styles.arrow} />
-              </View>
-            );
-          }}
-        </Popper>,
-        document.body,
-      )
+      <Popper strategy={strategy} placement={placement}>
+        {popperProps => {
+          return (
+            <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
+              <View className={styles.popperInner}>{_handleRenderPickerType()}</View>
+              <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} className={styles.arrow} />
+            </View>
+          );
+        }}
+      </Popper>
     );
   };
 
+  const _renderColorPicker = () => {
+    return showPicker && _renderPickerBoard();
+  };
+
+  const _renderPickerPortal = () => {
+    return showPicker && createPortal(_renderPickerBoard(), document.body);
+  };
+
   return (
-    <View className={styles.container}>
-      {onlyShowColorBoard ? (
-        _handleRenderPickerType()
-      ) : (
-        <Manager>
-          {_renderTarget()}
-          {_renderColorPicker()}
-        </Manager>
-      )}
-    </View>
+    <OuterTrigger onClick={_onClose}>
+      <View tachyons={['relative']}>
+        {onlyShowColorBoard ? (
+          _handleRenderPickerType()
+        ) : (
+          <Manager>
+            {_renderTarget()}
+            {isPortal ? _renderPickerPortal() : _renderColorPicker()}
+          </Manager>
+        )}
+      </View>
+    </OuterTrigger>
   );
 };
 

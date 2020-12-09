@@ -2,10 +2,10 @@ import React from 'react';
 import { text, number, color, select } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { View, defaultColors } from 'wiloke-react-core';
-import TextUnderline from './base/TextUnderline';
+import TextUnderline from 'components/TextUnderline';
 
 export default {
-  title: 'UI Base/TextUnderline',
+  title: 'Components/TextUnderline',
   component: TextUnderline,
 };
 
