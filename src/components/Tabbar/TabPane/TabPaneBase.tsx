@@ -12,12 +12,14 @@ export interface TabPaneBaseProps extends PaneProps {
   disabled?: boolean;
   /** Background color của Tab pane */
   backgroundColor?: ColorNames;
+  /** Color text của Tab pane */
+  color?: ColorNames;
 }
 
-const TabPaneBase: FC<TabPaneBaseProps> = ({ disabled, key, children, tab, id, backgroundColor = 'light', className, ...rest }) => {
+const TabPaneBase: FC<TabPaneBaseProps> = ({ disabled, key, children, tab, id, backgroundColor = 'light', color = 'dark', className, ...rest }) => {
   return (
     <TabPane {...rest} tab={tab} id={id} key={key} disabled={disabled}>
-      <View className={className} backgroundColor={backgroundColor} tachyons="pa2">
+      <View className={className} backgroundColor={backgroundColor} color={color} tachyons="pa2">
         {children}
       </View>
     </TabPane>

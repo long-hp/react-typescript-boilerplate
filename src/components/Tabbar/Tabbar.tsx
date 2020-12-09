@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import Tabs, { TabsProps } from 'rc-tabs';
-import { View } from 'wiloke-react-core';
-import styles from './Tabbar.module.scss';
+import { MaterialIcon, View } from 'wiloke-react-core';
 import TabPaneBase from './TabPane';
 import 'rc-tabs/assets/index.css';
+import styles from './Tabbar.module.scss';
 
-type TabPosition = 'left' | 'right' | 'top' | 'bottom';
-type Direction = 'ltr' | 'rtl';
+export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
+export type Direction = 'ltr' | 'rtl';
 
 export interface TabbarProps extends TabsProps {
   /** key của tabPanel đang active hiện tại */
@@ -23,6 +23,8 @@ export interface TabbarProps extends TabsProps {
   tabPaneAnimated?: boolean;
   /** Khoảng cách giữa mỗi tab title */
   tabTitleGutter?: number;
+  /** More Icon */
+  moreIcon?: ReactNode;
   /** Sự kiện onChange */
   onChange?: (activeKey: string) => void;
   /** render props tabbar */
@@ -43,6 +45,7 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
   tabPaneAnimated = false,
   tabPosition = 'top',
   tabTitleGutter = 15,
+  moreIcon = <MaterialIcon name="arrow_right_alt" />,
   activeKey,
   onChange,
   onTabClick,
@@ -60,7 +63,7 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
         onChange={onChange}
         onTabClick={onTabClick}
         renderTabBar={renderTabBar}
-        moreIcon="..."
+        moreIcon={moreIcon}
       >
         {children}
       </Tabs>

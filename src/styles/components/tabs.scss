@@ -8,15 +8,72 @@ $font-size-tab: 14;
   }
 
   .rc-tabs-tab {
-    padding: px(5);
+    padding: px(8) px(5);
     text-transform: capitalize;
     background-color: transparent !important;
     background: transparent;
     color: $color-dark;
   }
 
+  .rc-tabs-nav {
+    margin-bottom: px(8);
+    align-items: center;
+  }
+
+  .rc-tabs-nav-operations {
+    display: inline-block;
+  }
+
   .rc-tabs-nav-wrap {
-    margin-bottom: px(20);
+
+    &::before,
+    &::after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .rc-tabs-nav-more,
+  .rc-tabs-dropdown-menu-item {
+    cursor: pointer;
+    outline: none;
+  }
+
+  .rc-tabs-dropdown-menu {
+
+    &:hover,
+    &:focus,
+    &:active {
+      outline: unset;
+    }
+  }
+
+  .rc-tabs-dropdown {
+    transition: 0.3s ease-in-out;
+    border: unset;
+    outline: unset;
+    box-shadow: px(0) px(4) px(9) rgba($color: #000000, $alpha: 0.4);
+  }
+
+  .rc-tabs-dropdown-menu-item {
+    padding: px(4) px(12);
+    transition: 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    color: #000000;
+    font-size: px(14);
+
+    &:hover {
+      background-color: rgba($color: #000000, $alpha: 0.1);
+    }
+  }
+
+  .rc-tabs-nav-more {
+    border: 1px solid $color-gray-6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-light;
+    font-size: px(14);
+    color: $color-gray-8;
   }
 
   .rc-tabs-tab .rc-tabs-tab-btn {
@@ -33,11 +90,11 @@ $font-size-tab: 14;
   }
 
   .rc-tabs-tab.rc-tabs-tab-active {
-    color: $color-behance;
+    color: $color-behance !important;
   }
 
   .rc-tabs-ink-bar {
-    background: $color-behance;
+    background: $color-behance !important;
   }
 
   .rc-tabs-tab-disabled {
