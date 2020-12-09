@@ -31,6 +31,8 @@ export interface CheckboxProps {
   radius?: Radius;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Su kien onChange lay value */
+  onChangeValue?: (value: boolean) => void;
 }
 
 const Checkbox: FC<CheckboxProps> & {
@@ -50,6 +52,7 @@ const Checkbox: FC<CheckboxProps> & {
   activeColor = 'primary',
   iconActiveColor = 'light',
   onChange,
+  onChangeValue,
 }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const sizeClassName = styles[size];
@@ -69,6 +72,7 @@ const Checkbox: FC<CheckboxProps> & {
     }
     setCheckedState(!checkedState);
     onChange?.(event);
+    onChangeValue?.(event.target.checked);
   };
 
   useEffect(() => {
