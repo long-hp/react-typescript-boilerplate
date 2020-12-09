@@ -3,6 +3,7 @@ import IconText from 'components/IconText/IconText';
 import PostCard from 'components/PostCard/PostCard';
 import Section from 'components/Section/Section';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
+import TextUnderline from 'components/TextUnderline';
 import Header from 'containers/Header/Header';
 import { range } from 'ramda';
 import React, { FC } from 'react';
@@ -38,7 +39,7 @@ const HomePage: FC = () => {
                   <Text tagName="h2" color="gray9" size={size(66)}>
                     <TextUnderline lineSize={size(20)} lineBottomSpace={size(43)} color="secondary" lineColor={`rgba(${colors.rgbSecondary}, 0.4)`}>
                       Lorem Ipsum
-                    </TextUnderline>{' '}
+                    </TextUnderline>
                     Dolor Sit Amet
                   </Text>
                   <Space size={size(40)} />
