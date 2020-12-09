@@ -8,7 +8,7 @@ import { range } from 'ramda';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Endpoints } from 'types/Endpoints';
-import { GridSmart, Image, LineAwesome, Space, Text, TextUnderline, useResponsive, useTheme, View } from 'wiloke-react-core';
+import { GridSmart, Image, LineAwesome, Space, Text, useResponsive, useTheme, View } from 'wiloke-react-core';
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 
