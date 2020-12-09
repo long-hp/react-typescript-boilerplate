@@ -1,22 +1,21 @@
 @import 'styles/abstracts/abstracts.scss';
 
 $font-size-default: 14;
+$padding-left: 12;
+$padding-right: 20;
 
 $font-size-small: 12;
 $padding-small-vertical: 0;
-$padding-small-horizontal: 13;
 
 $font-size-medium: 14;
 $padding-medium-vertical: 0;
-$padding-medium-horizontal: 15;
 
 $font-size-large: 14;
 $padding-large-vertical: 0;
-$padding-large-horizontal: 17;
 
-$height-input-large: 43;
 $height-input-small: 27;
-$height-input-medium: 35;
+$height-input-medium: 33;
+$height-input-large: 43;
 
 $color-border-action: $color-gray-5;
 
@@ -37,6 +36,21 @@ $color-border-action: $color-gray-5;
   &:focus {
     outline: unset;
   }
+
+  .small & {
+    padding: px($padding-small-vertical) px($padding-right) px($padding-small-vertical) px($padding-left);
+    font-size: px($font-size-small);
+  }
+
+  .medium & {
+    padding: px($padding-medium-vertical) px($padding-right) px($padding-medium-vertical) px($padding-left);
+    font-size: px($font-size-medium);
+  }
+
+  .large & {
+    padding: px($padding-large-vertical) px($padding-right) px($padding-large-vertical) px($padding-left);
+    font-size: px($font-size-large);
+  }
 }
 
 .numberInput::-webkit-outer-spin-button,
@@ -48,29 +62,14 @@ $color-border-action: $color-gray-5;
 
 .small {
   height: px($height-input-small);
-
-  .numberInput {
-    padding: px($padding-small-vertical) px($padding-small-horizontal);
-    font-size: px($font-size-small);
-  }
 }
 
 .medium {
   height: px($height-input-medium);
-
-  .numberInput {
-    padding: px($padding-medium-vertical) px($padding-medium-horizontal);
-    font-size: px($font-size-medium);
-  }
 }
 
 .large {
   height: px($height-input-large);
-
-  .numberInput {
-    padding: px($padding-large-vertical) px($padding-large-horizontal);
-    font-size: px($font-size-large);
-  }
 }
 
 .block {

@@ -3,21 +3,29 @@
 $picker-width: 42;
 $picker-height: 20;
 
-.container {
-  position: relative;
-}
-
 .pickerColor {
   position: relative;
   z-index: 1;
-  border-radius: 0.5rem;
   cursor: pointer;
 
   width: px($picker-width);
   height: px($picker-height);
 }
 
-.pickerContainer {}
+.bgFade {
+  &:after {
+    content: '';
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==');
+    position: absolute;
+    background-repeat: repeat;
+    background-size: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+}
 
 .arrow {
   position: absolute;
@@ -28,7 +36,7 @@ $picker-height: 20;
 
 :global {
   .sketch-picker {
-    box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: px(0.3) px(0.6) px(1) rgba(0, 0, 0, 0.2) !important;
   }
 }
 
@@ -37,13 +45,15 @@ $picker-height: 20;
   background-color: #ffffff;
   border: none !important;
   border-radius: px(8);
-  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: px(0.3) px(0.6) px(1) rgba(0, 0, 0, 0.2) !important;
+  z-index: 9999;
 }
 
 // placement
 
 .bottom {
   margin-top: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -56,13 +66,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 10px 10px 10px;
+    border-width: 0 px(1) px(1) px(1);
     border-color: transparent transparent #ffffff transparent;
   }
 }
 
 .bottom-start {
   margin-top: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -74,7 +85,7 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 10px 10px 10px;
+    border-width: 0 px(1) px(1) px(1);
     border-color: transparent transparent #ffffff transparent;
   }
 }
@@ -92,13 +103,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 0 10px 10px 10px;
+    border-width: 0 px(1) px(1) px(1);
     border-color: transparent transparent #ffffff transparent;
   }
 }
 
 .top {
   margin-bottom: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -111,13 +123,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 0 10px;
+    border-width: px(1) px(1) 0 px(1);
     border-color: #ffffff transparent transparent transparent;
   }
 }
 
 .top-start {
   margin-bottom: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -129,13 +142,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 0 10px;
+    border-width: px(1) px(1) 0 px(1);
     border-color: #ffffff transparent transparent transparent;
   }
 }
 
 .top-end {
   margin-bottom: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -147,13 +161,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 0 10px;
+    border-width: px(1) px(1) 0 px(1);
     border-color: #ffffff transparent transparent transparent;
   }
 }
 
 .left {
   margin-right: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -166,13 +181,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 0 10px 10px;
+    border-width: px(1) 0 px(1) px(1);
     border-color: transparent transparent transparent #ffffff;
   }
 }
 
 .left-start {
   margin-right: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -184,13 +200,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 0 10px 10px;
+    border-width: px(1) 0 px(1) px(1);
     border-color: transparent transparent transparent #ffffff;
   }
 }
 
 .left-end {
   margin-right: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -202,13 +219,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 0 10px 10px;
+    border-width: px(1) 0 px(1) px(1);
     border-color: transparent transparent transparent #ffffff;
   }
 }
 
 .right {
   margin-left: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -221,13 +239,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 10px 0;
+    border-width: px(1) px(1) px(1) 0;
     border-color: transparent #ffffff transparent transparent;
   }
 }
 
 .right-start {
   margin-left: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -239,13 +258,14 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 10px 0;
+    border-width: px(1) px(1) px(1) 0;
     border-color: transparent #ffffff transparent transparent;
   }
 }
 
 .right-end {
   margin-left: px(10);
+  z-index: 9999;
 
   &:after {
     content: '';
@@ -257,7 +277,7 @@ $picker-height: 20;
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 10px 10px 10px 0;
+    border-width: px(1) px(1) px(1) 0;
     border-color: transparent #ffffff transparent transparent;
   }
 }

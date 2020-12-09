@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 import { View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/SlideBase',
+  title: 'Components/Slider',
   component: SliderBase,
 };
 
 export const Default = () => {
   const [value, setValue] = useState(0);
   const MIN = 0;
-  const MAX = 10;
+  const MAX = 100;
   const STEP = 1;
   const _handleOnChange = (value: number) => {
     setValue(value);

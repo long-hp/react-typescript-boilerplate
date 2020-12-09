@@ -6,6 +6,8 @@ const AboutPage = () => {
   return (
     <View>
       <Header />
+
+      <View container></View>
     </View>
   );
 };
