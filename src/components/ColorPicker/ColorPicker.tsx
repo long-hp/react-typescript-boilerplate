@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { ChromePicker, Color, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
@@ -74,107 +74,72 @@ const ColorPicker: FC<ColorPickerProps> & {
   onChangeComplete,
 }) => {
   const [showPicker, setShowPicker] = useState(false);
+  const combineProps = { className: classNames(styles.pickerPallte, className) };
 
-  const _handleRenderPickerType = () => {
-    let picker = null;
-    const combineProps = { className: classNames(styles.pickerPallte, className) };
-    switch (pickerType) {
-      case 'chrome':
-        picker = <ChromePicker {...combineProps} color={color} disableAlpha={disableAlpha} onChange={onChange} onChangeComplete={onChangeComplete} />;
-        break;
-
-      case 'photoshop':
-        picker = <PhotoshopPicker {...combineProps} color={color} className={className} onChange={onChange} onChangeComplete={onChangeComplete} />;
-        break;
-
-      case 'sketch':
-        picker = (
-          <SketchPicker
-            {...combineProps}
-            color={color}
-            disableAlpha={disableAlpha}
-            className={className}
-            presetColors={presetColor}
-            onChange={onChange}
-            onChangeComplete={onChangeComplete}
-          />
-        );
-        break;
-
-      default:
-        picker = (
-          <SketchPicker
-            {...combineProps}
-            color={color}
-            disableAlpha={disableAlpha}
-            className={className}
-            presetColors={presetColor}
-            onChange={onChange}
-            onChangeComplete={onChangeComplete}
-          />
-        );
-        break;
-    }
-    return picker;
-  };
-
-  const _handleOnclick = () => {
+  const _handleOnClick = () => {
     setShowPicker(!showPicker);
   };
 
-  const _onClose = () => {
+  const _handleOnClose = () => {
     setShowPicker(false);
-    console.log('close');
   };
 
-  const _renderTarget = () => {
-    return (
-      <Reference>
-        {({ ref }) => (
-          <View ref={ref} className={styles.pickerColor} onClick={_handleOnclick}>
-            <View
-              className={styles.bgFade}
-              radius={radius}
-              tachyons={['absolute', 'absolute--fill']}
-              style={{ backgroundColor: `rgba(${colorPicker?.r}, ${colorPicker?.g}, ${colorPicker?.b}, ${colorPicker?.a})` }}
-            ></View>
+  const mappingColorPicker: Record<ColorPickerType, ReactNode> = {
+    chrome: <ChromePicker {...combineProps} color={color} disableAlpha={disableAlpha} onChange={onChange} onChangeComplete={onChangeComplete} />,
+    photoshop: <PhotoshopPicker {...combineProps} color={color} className={className} onChange={onChange} onChangeComplete={onChangeComplete} />,
+    sketch: (
+      <SketchPicker
+        {...combineProps}
+        color={color}
+        disableAlpha={disableAlpha}
+        className={className}
+        presetColors={presetColor}
+        onChange={onChange}
+        onChangeComplete={onChangeComplete}
+      />
+    ),
+  };
+
+  const targetPicker = (
+    <Reference>
+      {({ ref }) => (
+        <View ref={ref} className={styles.pickerColor} onClick={_handleOnClick}>
+          <View
+            className={styles.bgFade}
+            radius={radius}
+            tachyons={['absolute', 'absolute--fill']}
+            style={{ backgroundColor: `rgba(${colorPicker?.r}, ${colorPicker?.g}, ${colorPicker?.b}, ${colorPicker?.a})` }}
+          ></View>
+        </View>
+      )}
+    </Reference>
+  );
+
+  const pickerBoard = (
+    <Popper strategy={strategy} placement={placement}>
+      {popperProps => {
+        return (
+          <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
+            <View className={styles.popperInner}>{mappingColorPicker[pickerType]}</View>
+            <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} tachyons="absolute" />
           </View>
-        )}
-      </Reference>
-    );
-  };
+        );
+      }}
+    </Popper>
+  );
 
-  const _renderPickerBoard = () => {
-    return (
-      <Popper strategy={strategy} placement={placement}>
-        {popperProps => {
-          return (
-            <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
-              <View className={styles.popperInner}>{_handleRenderPickerType()}</View>
-              <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} className={styles.arrow} />
-            </View>
-          );
-        }}
-      </Popper>
-    );
-  };
+  const _renderColorPicker = () => showPicker && pickerBoard;
 
-  const _renderColorPicker = () => {
-    return showPicker && _renderPickerBoard();
-  };
-
-  const _renderPickerPortal = () => {
-    return showPicker && createPortal(_renderPickerBoard(), document.body);
-  };
+  const _renderPickerPortal = () => showPicker && createPortal(pickerBoard, document.body);
 
   return (
-    <OuterTrigger onClick={_onClose}>
+    <OuterTrigger onClick={_handleOnClose}>
       <View tachyons={['relative']}>
         {onlyShowColorBoard ? (
-          _handleRenderPickerType()
+          mappingColorPicker[pickerType]
         ) : (
           <Manager>
-            {_renderTarget()}
+            {targetPicker}
             {isPortal ? _renderPickerPortal() : _renderColorPicker()}
           </Manager>
         )}
