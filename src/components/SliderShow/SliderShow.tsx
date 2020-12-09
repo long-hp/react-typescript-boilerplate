@@ -1,21 +1,29 @@
 import Slide from 'components/Slide/Slide';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { View } from 'wiloke-react-core';
 import styles from './SliderShow.module.scss';
 
 export interface Slide {
-  img: string;
+  title: string;
 }
 
 export interface SliderShowProps {
-  slides: Slide[];
+  items?: Slide[];
 }
 
-const SliderShow: FC<SliderShowProps> = () => {
-  // const [activeIndex, setActiveIndex] = useState(0);
+const SliderShow: FC<SliderShowProps> = ({}) => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const innerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (innerRef.current !== null) {
+      innerRef.current.style.flexDirection = 'column';
+    }
+  }, [innerRef]);
+
   return (
-    <View className={styles.container}>
-      <View className={styles.wrapper}>
+    <View ref={containerRef} className={styles.container}>
+      <View ref={innerRef} className={styles.wrapper}>
         <Slide />
         <Slide />
         <Slide />
