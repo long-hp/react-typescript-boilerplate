@@ -3,7 +3,7 @@ import Box from 'components/FieldBox';
 import { NumberInput } from 'components/NumberInput';
 import Slider from 'components/SliderBase';
 import React, { FC, ReactNode } from 'react';
-import { ColorNames, View, WithStylesProps } from 'wiloke-react-core';
+import { ColorNames, Radius, View, WithStylesProps } from 'wiloke-react-core';
 import styles from './SlideBeauty.module.scss';
 import SlideBeautyLoading from './SlideBeautyLoading';
 
@@ -41,31 +41,40 @@ export interface SlideBeautyProps extends WithStylesProps {
   borderWidth?: BorderWidth;
   /** Bật lên thì hiện tooltip */
   tooltip?: boolean;
+  /** Radius của ô input */
+  radiusInput?: Radius;
+  /** Style border của input */
+  borderInputStyle?: BorderStyle;
+  /** Background color của input */
+  borderInputColor?: ColorNames;
   /** Sự kiện onChange */
-  onChangeNumber?: (value: number) => void;
+  onValueChange?: (value: number) => void;
 }
 
 const SlideBeauty: FC<SlideBeautyProps> & {
   Loading: typeof SlideBeautyLoading;
 } = ({
   min = 0,
-  max = 10,
+  max = 100,
   step = 1,
   value = 0,
   label,
   note,
   tooltip = false,
   dots = false,
-  borderColor = 'gray4',
+  borderColor = 'gray5',
   borderStyle = 'solid',
-  radius,
+  radius = 5,
+  borderInputStyle = 'solid',
+  radiusInput = 5,
   borderWidth = '1/6',
+  borderInputColor = 'gray5',
   trackColor = '#475BE2',
   railColor = '#DBDBE0',
   handleColor = '#ffffff',
   handleBorder = '#DBDBE0',
   backgroundInnerField = 'light',
-  onChangeNumber,
+  onValueChange,
 }) => {
   return (
     <Field label={label} fontSize={16} note={note} color="dark">
@@ -82,7 +91,7 @@ const SlideBeauty: FC<SlideBeautyProps> & {
               handleStyle={{ backgroundColor: `${handleColor}`, border: `1px solid ${handleBorder}` }}
               dots={dots}
               tooltip={tooltip}
-              onChange={onChangeNumber}
+              onChange={onValueChange}
             />
           </View>
 
@@ -92,10 +101,11 @@ const SlideBeauty: FC<SlideBeautyProps> & {
               min={min}
               max={max}
               step={step}
+              radius={radiusInput}
+              borderStyle={borderInputStyle}
+              borderColor={borderInputColor}
               sizeInput="small"
-              radius={8}
-              borderColor="gray5"
-              onChangeNumber={onChangeNumber}
+              onValueChange={onValueChange}
             />
           </View>
         </View>

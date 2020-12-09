@@ -1,10 +1,10 @@
-import { boolean, number, select } from '@storybook/addon-knobs';
-import { decimalToHex } from 'components/ColorPicker/decimalToHex';
+import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
+import { Placement, Strategy } from 'components/ColorPicker/ColorPicker';
 import ColorPickerBeauty, { ColorPickerBeautyProps } from 'components/ColorPickerBeauty';
 import React, { useState } from 'react';
 import { ColorResult, HSLColor, RGBColor } from 'react-color';
 import getOptions from 'stories/utils/getOptions';
-import { defaultColors, Text, View } from 'wiloke-react-core';
+import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Text, View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/ColorPickerBeauty',
@@ -12,7 +12,6 @@ export default {
 };
 
 export const Default = () => {
-  const [colorPreview, setColorPreview] = useState('#333333');
   const [colorState, setColorState] = useState<HSLColor>({
     h: 250,
     s: 0,
@@ -27,21 +26,17 @@ export const Default = () => {
   });
 
   const _onChangeColorPicker = (color: ColorResult) => {
-    if (color.hsl !== colorState) {
-      setRgbColor(color.rgb);
-      setColorState(color.hsl);
-      const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
-      setColorPreview(hexCode);
-    }
+    setRgbColor(color.rgb);
+    setColorState(color.hsl);
   };
 
   return (
     <View tachyons={['w-90']}>
       <View tachyons="mb3">
-        <Text>RGB Display</Text>
         <ColorPickerBeauty
           color={colorState}
           colorPicker={rgbColor}
+          pickerType="sketch"
           colorDetails={
             <Text>
               rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
@@ -50,10 +45,6 @@ export const Default = () => {
           onChange={_onChangeColorPicker}
         />
       </View>
-      <View tachyons="mb3">
-        <Text>Hex Display</Text>
-        <ColorPickerBeauty color={colorState} colorPicker={rgbColor} colorDetails={<Text>{colorPreview}</Text>} onChange={_onChangeColorPicker} />
-      </View>
     </View>
   );
 };
@@ -61,33 +52,66 @@ export const Default = () => {
 export const WithProps = () => {
   const isLoading = boolean('Loading', false);
 
-  let borderColor, borderStyle, borderWidth, radiusBox, radiusPicker, selectType, selectStrategy, selectPlacement, backgroundInnerField;
+  let borderColor: ColorNames = 'gray5',
+    borderStyle: BorderStyle = 'solid',
+    borderWidth: BorderWidth = '1/6',
+    selectType: ColorPickerBeautyProps['pickerType'] = 'sketch',
+    selectStrategy: Strategy = 'absolute',
+    selectPlacement: Placement = 'bottom-start',
+    backgroundInnerField: ColorNames = 'gray5';
+
+  const radiusPikerType = optionsKnob<'css style' | 'number'>('Radius Picker Type', getOptions(['css style', 'number']), 'number', {
+    display: 'inline-radio',
+  });
+
+  const radiusPicker =
+    radiusPikerType === 'css style'
+      ? select<Radius>(
+          'Radius Picker',
+          getOptions<Radius[]>(['pill', 'round', 'square']),
+          'square',
+        )
+      : number('Radius Picker', 8, { range: true, min: 0, max: 100 });
+
+  const radiusType = optionsKnob<'css style' | 'number'>('Radius Box Type', getOptions(['css style', 'number']), 'number', {
+    display: 'inline-radio',
+  });
+
+  const radiusBox =
+    radiusType === 'css style'
+      ? select<Radius>(
+          'Radius Box',
+          getOptions<Radius[]>(['pill', 'round', 'square']),
+          'square',
+        )
+      : number('Radius Box', 8, { range: true, min: 0, max: 100 });
 
   if (isLoading === false) {
-    borderColor = select('Border Color', getOptions(defaultColors), 'gray5') as any;
+    borderColor = select('Border Color', getOptions(defaultColors), 'gray5');
+
     borderStyle = select(
       'Border Style',
       getOptions<ColorPickerBeautyProps['borderStyle'][]>(['dashed', 'dotted', 'solid']),
       'solid',
-    ) as any;
+    );
+
     borderWidth = select(
       'Border Width',
       getOptions<ColorPickerBeautyProps['borderWidth'][]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
       '1/6',
-    ) as any;
-    radiusBox = number('Radius Field Box', 8);
-    radiusPicker = number('Radius Picker', 8);
+    );
+
     selectType = select(
       'Color Picker Platform',
       getOptions<ColorPickerBeautyProps['pickerType'][]>(['chrome', 'photoshop', 'sketch']),
-      'chrome',
-    ) as any;
+      'sketch',
+    );
 
     selectStrategy = select(
       'Color Picker Strategy',
       getOptions<ColorPickerBeautyProps['strategy'][]>(['absolute', 'fixed']),
       'absolute',
-    ) as any;
+    );
 
     selectPlacement = select(
       'Placement',
@@ -106,12 +130,11 @@ export const WithProps = () => {
         'right-start',
       ]),
       'bottom-start',
-    ) as any;
+    );
 
-    backgroundInnerField = select('Background field box', getOptions(defaultColors), 'light') as any;
+    backgroundInnerField = select('Background field box', getOptions(defaultColors), 'light');
   }
 
-  const [colorPreview, setColorPreview] = useState('#333333');
   const [colorState, setColorState] = useState<HSLColor>({
     h: 250,
     s: 0,
@@ -129,15 +152,12 @@ export const WithProps = () => {
     if (color.hsl !== colorState) {
       setRgbColor(color.rgb);
       setColorState(color.hsl);
-      const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
-      setColorPreview(hexCode);
     }
   };
 
   return (
     <View tachyons={['w-90']}>
       <View tachyons="mb3">
-        <Text>RGB Display</Text>
         {isLoading ? (
           <ColorPickerBeauty.Loading />
         ) : (
@@ -158,28 +178,6 @@ export const WithProps = () => {
                 rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
               </Text>
             }
-            onChange={_onChangeColorPicker}
-          />
-        )}
-      </View>
-      <View tachyons="mb3">
-        <Text>Hex Display</Text>
-        {isLoading ? (
-          <ColorPickerBeauty.Loading />
-        ) : (
-          <ColorPickerBeauty
-            color={colorState}
-            colorPicker={rgbColor}
-            strategy={selectStrategy}
-            placement={selectPlacement}
-            pickerType={selectType}
-            radiusBox={radiusBox}
-            radiusPicker={radiusPicker}
-            backgroundInnerField={backgroundInnerField}
-            borderColor={borderColor}
-            borderStyle={borderStyle}
-            borderWidth={borderWidth}
-            colorDetails={<Text>{colorPreview}</Text>}
             onChange={_onChangeColorPicker}
           />
         )}

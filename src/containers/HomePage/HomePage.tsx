@@ -3,12 +3,13 @@ import IconText from 'components/IconText/IconText';
 import PostCard from 'components/PostCard/PostCard';
 import Section from 'components/Section/Section';
 import SectionTitle from 'components/SectionTitle/SectionTitle';
+import TextUnderline from 'components/TextUnderline';
 import Header from 'containers/Header/Header';
 import { range } from 'ramda';
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { Endpoints } from 'types/Endpoints';
-import { GridSmart, Image, LineAwesome, Space, Text, TextUnderline, useResponsive, useTheme, View } from 'wiloke-react-core';
+import { GridSmart, Image, LineAwesome, Space, Text, useResponsive, useTheme, View } from 'wiloke-react-core';
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 
