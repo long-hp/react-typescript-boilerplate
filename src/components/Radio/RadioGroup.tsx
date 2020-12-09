@@ -2,8 +2,8 @@ import useMergedState from 'hooks/useMergedState';
 import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { ColorNames, Size, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import { RadioGroupContextProvider } from './context';
-import Radio from './Radio';
+import { RadioGroupActionProvider, RadioGroupStateProvider } from './context';
+import Radio, { Value } from './Radio';
 import styles from './Radio.module.scss';
 
 export interface Optional {
@@ -16,13 +16,13 @@ export interface RadioGroupProps {
   /** Size cua tat ca Radio */
   size?: Size;
   /** Gia tri mac dinh duoc chon */
-  defaultValue?: any;
+  defaultValue?: Value;
   /** Childrent Optional */
   options?: string[] | Optional[];
   /** html name cua chilren*/
   name?: InputHTMLAttributes<HTMLInputElement>['name'];
   /** Value */
-  value?: any;
+  value?: Value;
   /** Disable tat ca radio */
   disabled?: boolean;
   /** Color khi active */
@@ -33,6 +33,8 @@ export interface RadioGroupProps {
   children?: ReactNode;
   /** Block radio */
   block?: boolean;
+  /** Màu border được lấy màu từ ThemeProvider */
+  borderColor?: ColorNames;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
   /** Su kien onChange lay value */
@@ -49,6 +51,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
   value,
   children,
   block = false,
+  borderColor = 'gray5',
   defaultValue,
   onChange,
   onChangeValue,
@@ -94,16 +97,15 @@ const RadioGroup: FC<RadioGroupProps> = ({
     }
 
     return (
-      <View className={classes} tachyons="dib">
+      <View className={classes} borderColor={borderColor} tachyons="dib">
         {childrenToRender}
       </View>
     );
   };
 
   return (
-    <RadioGroupContextProvider
+    <RadioGroupStateProvider
       value={{
-        onChange: _handleChange,
         value: valueState,
         disabled: disabled,
         name: name,
@@ -111,10 +113,11 @@ const RadioGroup: FC<RadioGroupProps> = ({
         activeColor,
         block,
         textActiveColor,
+        borderColor,
       }}
     >
-      {_renderGroup()}
-    </RadioGroupContextProvider>
+      <RadioGroupActionProvider value={_handleChange}>{_renderGroup()}</RadioGroupActionProvider>
+    </RadioGroupStateProvider>
   );
 };
 

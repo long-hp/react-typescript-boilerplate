@@ -1,10 +1,12 @@
-import React, { FC, InputHTMLAttributes, useContext, useEffect, useState } from 'react';
+import React, { FC, InputHTMLAttributes, useEffect, useState } from 'react';
 import { ColorNames, Size, Text } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
-import RadioGroupContext from './context';
+import { useRadioAction, useRadioState } from './context';
 import styles from './Radio.module.scss';
 import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
+
+export type Value = string | number;
 
 export type RadioType = 'default' | 'button';
 
@@ -14,7 +16,7 @@ export interface RadioProps {
   /** Trang thai checked cua Radio */
   checked?: boolean;
   /** Value radio input html */
-  value?: any;
+  value?: Value;
   /** Name radio input html */
   name?: string;
   /** kieu cua radio */
@@ -58,14 +60,15 @@ const Radio: FC<RadioProps> & RadioStatic = ({
   onChange,
   onChangeValue,
 }) => {
-  const context = useContext(RadioGroupContext);
-  if (context) {
-    name = context.name;
-    checked = String(value) === context.value;
-    disabled = disabled || (context.disabled as boolean);
-    size = context.size as Size;
-    activeColor = context.activeColor as ColorNames;
-    textActiveColor = context.textActiveColor as ColorNames;
+  const stateContext = useRadioState();
+  const onChangeContext = useRadioAction();
+  if (stateContext) {
+    name = stateContext.name;
+    checked = String(value) === stateContext.value;
+    disabled = disabled || (stateContext.disabled as boolean);
+    size = stateContext.size as Size;
+    activeColor = stateContext.activeColor as ColorNames;
+    textActiveColor = stateContext.textActiveColor as ColorNames;
   }
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.checked : '';
@@ -92,9 +95,7 @@ const Radio: FC<RadioProps> & RadioStatic = ({
     setCheckedState(!checkedState);
     onChange?.(event);
     onChangeValue?.(event.target.value);
-    if (context?.onChange) {
-      context.onChange(event);
-    }
+    onChangeContext?.(event);
   };
 
   useEffect(() => {
@@ -158,7 +159,6 @@ const Radio: FC<RadioProps> & RadioStatic = ({
           color={checkedState ? textActiveColor : 'dark'}
           tagName="label"
           tachyons={['relative', 'dib', 'tc', 'pointer']}
-          borderColor="gray5"
           borderStyle="solid"
           className={classesRadioButton}
         >
