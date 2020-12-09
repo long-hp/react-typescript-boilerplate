@@ -48,7 +48,7 @@ export interface SlideBeautyProps extends WithStylesProps {
   /** Background color của input */
   borderInputColor?: ColorNames;
   /** Sự kiện onChange */
-  onChangeNumber?: (value: number) => void;
+  onValueChange?: (value: number) => void;
 }
 
 const SlideBeauty: FC<SlideBeautyProps> & {
@@ -74,7 +74,7 @@ const SlideBeauty: FC<SlideBeautyProps> & {
   handleColor = '#ffffff',
   handleBorder = '#DBDBE0',
   backgroundInnerField = 'light',
-  onChangeNumber,
+  onValueChange,
 }) => {
   return (
     <Field label={label} fontSize={16} note={note} color="dark">
@@ -91,7 +91,7 @@ const SlideBeauty: FC<SlideBeautyProps> & {
               handleStyle={{ backgroundColor: `${handleColor}`, border: `1px solid ${handleBorder}` }}
               dots={dots}
               tooltip={tooltip}
-              onChange={onChangeNumber}
+              onChange={onValueChange}
             />
           </View>
 
@@ -105,7 +105,7 @@ const SlideBeauty: FC<SlideBeautyProps> & {
               borderStyle={borderInputStyle}
               borderColor={borderInputColor}
               sizeInput="small"
-              onChangeNumber={onChangeNumber}
+              onValueChange={onValueChange}
             />
           </View>
         </View>

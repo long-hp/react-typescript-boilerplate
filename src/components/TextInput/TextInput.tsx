@@ -21,8 +21,8 @@ export interface InputProps extends WithStylesProps {
   disabled?: boolean;
   /** Sự kiện onChange của input */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
-  /** Sự kiện onChangeText của input, trả về dữ liệu dạng string(chuỗi) */
-  onChangeText?: (text: string) => void;
+  /** Sự kiện onValueChange của input, trả về dữ liệu dạng string(chuỗi) */
+  onValueChange?: (text: string) => void;
 }
 
 const TextInput: FC<InputProps> & {
@@ -41,7 +41,7 @@ const TextInput: FC<InputProps> & {
   color,
   backgroundColor,
   onChange,
-  onChangeText,
+  onValueChange,
   ...rest
 }) => {
   const blockClassName = block ? styles.block : '';
@@ -50,7 +50,7 @@ const TextInput: FC<InputProps> & {
 
   const _handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (!disabled) {
-      onChangeText?.(event.target.value);
+      onValueChange?.(event.target.value);
       onChange?.(event);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
