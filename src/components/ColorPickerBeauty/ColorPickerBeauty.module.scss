@@ -1,6 +1,7 @@
 @import 'styles/abstracts/abstracts.scss';
 
 $font-size-details: 14;
+$box-height: 46;
 
 .container {
   position: relative;
@@ -11,6 +12,5 @@ $font-size-details: 14;
 }
 
 .box {
-  padding-top: px(7);
-  padding-bottom: px(7);
+  height: px($box-height);
 }
