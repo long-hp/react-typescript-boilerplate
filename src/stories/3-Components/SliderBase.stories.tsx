@@ -45,7 +45,7 @@ export const WithProps = () => {
     handleBorder = color('Handle border color', '#ccc');
     railStyle = color('Rail background', '#DBDBE0');
     min = number('Min', 0);
-    max = number('Max', 10);
+    max = number('Max', 100);
     step = number('Step', 1);
   }
 

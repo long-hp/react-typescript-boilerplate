@@ -9,3 +9,8 @@ $font-size-details: 14;
 .colorDetails {
   font-size: px($font-size-details);
 }
+
+.box {
+  padding-top: px(7);
+  padding-bottom: px(7);
+}

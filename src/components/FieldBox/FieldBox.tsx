@@ -6,6 +6,7 @@ import styles from './FieldBox.module.scss';
 export interface BoxProps extends WithStylesProps {
   children?: ReactNode;
   style?: CSSProperties;
+  className?: string;
 }
 
 const Box: FC<BoxProps> = ({
@@ -13,13 +14,14 @@ const Box: FC<BoxProps> = ({
   borderColor,
   borderStyle,
   borderWidth,
+  className,
   backgroundColor = 'light',
   style,
   children,
   radius = 'round',
   ...rest
 }) => {
-  const combineProps = { style, className: classNames(styles.container) };
+  const combineProps = { style, className: classNames(className, styles.container) };
   return (
     <View
       {...rest}

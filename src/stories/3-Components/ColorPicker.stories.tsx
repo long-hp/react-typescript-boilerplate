@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
-import getOptions from 'stories/utils/getOptions';
-import { ColorResult, HSLColor, RGBColor } from 'react-color';
-import { Radius, Text, View } from 'wiloke-react-core';
 import { decimalToHex } from 'components/ColorPicker/decimalToHex';
+import React, { useState } from 'react';
+import { ColorResult, HSLColor, RGBColor } from 'react-color';
+import getOptions from 'stories/utils/getOptions';
+import { Radius, Text, View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/ColorPicker',
@@ -26,18 +27,12 @@ export const WithProps = () => {
           getOptions<Radius[]>(['pill', 'round', 'square']),
           'square',
         )
-      : number('Radius Picker', 8, { range: true, min: 0, max: 100 });
+      : number('Radius Picker', 5, { range: true, min: 0, max: 100 });
 
   const selectType = select(
     'Color Picker Platform',
     getOptions<ColorPickerProps['pickerType'][]>(['chrome', 'photoshop', 'sketch']),
     'sketch',
-  );
-
-  const selectStrategy = select(
-    'Color Picker Strategy',
-    getOptions<ColorPickerProps['strategy'][]>(['absolute', 'fixed']),
-    'fixed',
   );
 
   const selectPlacement = select(
@@ -67,10 +62,10 @@ export const WithProps = () => {
     a: 1,
   });
   const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 0,
-    g: 0,
-    b: 0,
-    a: 0.5,
+    r: 51,
+    g: 51,
+    b: 51,
+    a: 1,
   });
 
   const _onChangeColorPicker = (color: ColorResult) => {
@@ -78,6 +73,7 @@ export const WithProps = () => {
     setColorState(color.hsl);
     const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
     setColorPreview(hexCode);
+    action('onChange')(color);
   };
 
   return (
@@ -90,7 +86,6 @@ export const WithProps = () => {
           color={colorState}
           colorPicker={rgbColor}
           placement={selectPlacement}
-          strategy={selectStrategy}
           radius={radius}
           onlyShowColorBoard={onlyShowColorBoard}
           onChange={_onChangeColorPicker}
