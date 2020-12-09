@@ -1,9 +1,10 @@
 import { action } from '@storybook/addon-actions';
-import { boolean, number, select } from '@storybook/addon-knobs';
+import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import { NumberInput, NumberInputProps } from 'components/NumberInput';
 import React, { useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
+import { Radius } from 'wiloke-react-core';
 
 export default {
   title: 'Components/NumberInput',
@@ -14,6 +15,19 @@ export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
   const initNumber = 0;
   let disabled: boolean, min: number, max: number, step: number, size: string;
+
+  const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
+    display: 'inline-radio',
+  });
+
+  const radius =
+    radiusType === 'css style'
+      ? select<Radius>(
+          'Radius',
+          getOptions<Radius[]>(['pill', 'round', 'square']),
+          'square',
+        )
+      : number('Radius', 5, { range: true, min: 0, max: 100 });
 
   if (isLoading === false) {
     disabled = boolean('Disabled', false);
@@ -46,7 +60,7 @@ export const WithProps = () => {
         max={max}
         step={step}
         sizeInput={size as any}
-        radius={8}
+        radius={radius}
         borderColor="gray5"
         borderWidth="1/6"
         onValueChange={_handleOnChange}

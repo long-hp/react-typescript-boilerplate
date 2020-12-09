@@ -61,8 +61,6 @@ $tooltip-inner-height: 24;
     border: 2px solid transparent;
 
     cursor: pointer;
-    cursor: -webkit-grab;
-    cursor: grab;
     border-radius: 50%;
     background-color: $color-primary;
     touch-action: pan-x;
@@ -77,23 +75,12 @@ $tooltip-inner-height: 24;
 
     &:active {
       box-shadow: 0 0 5px rgba($color: $color-primary, $alpha: 0.2);
-      cursor: -webkit-grabbing;
-      cursor: grabbing;
-    }
-  }
-
-  .rc-slider-handle-dragging {
-    &.rc-slider-handle-dragging {
-      &.rc-slider-handle-dragging {
-        border-color: tint(#2db7f5, 20%);
-        box-shadow: 0 0 0 5px tint(#2db7f5, 50%);
-      }
+      cursor: pointer;
     }
   }
 
   .rc-slider-handle-click-focused {
     &:focus {
-      border-color: tint(#2db7f5, 50%);
       box-shadow: unset;
     }
   }
