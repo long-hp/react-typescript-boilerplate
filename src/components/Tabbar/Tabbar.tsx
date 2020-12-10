@@ -9,7 +9,22 @@ export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
 export type ScrollDirection = 'top' | 'bottom' | 'left' | 'right';
 export type Direction = 'ltr' | 'rtl';
 
-export interface TabbarProps extends TabsProps {
+type PickTabsProp = Pick<
+  TabsProps,
+  | 'activeKey'
+  | 'className'
+  | 'children'
+  | 'direction'
+  | 'onChange'
+  | 'onTabClick'
+  | 'onTabScroll'
+  | 'renderTabBar'
+  | 'moreIcon'
+  | 'tabPosition'
+  | 'defaultActiveKey'
+>;
+
+export interface TabbarProps extends PickTabsProp {
   /** key của tabPanel đang active hiện tại */
   activeKey?: string;
   /** Default active tab */

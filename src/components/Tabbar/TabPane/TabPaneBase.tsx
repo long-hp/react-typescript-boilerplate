@@ -26,6 +26,7 @@ const TabPaneBase: FC<TabPaneBaseProps> = ({
   key,
   children,
   tab,
+  tabKey,
   style,
   forceRender = false,
   backgroundColor = 'light',
@@ -35,7 +36,7 @@ const TabPaneBase: FC<TabPaneBaseProps> = ({
 }) => {
   const combineProps = { style, className: classNames(className) };
   return (
-    <TabPane {...rest} {...combineProps} tab={tab} key={key} disabled={disabled} forceRender={forceRender}>
+    <TabPane {...rest} {...combineProps} tab={tab} tabKey={tabKey} key={key} disabled={disabled} forceRender={forceRender}>
       <View backgroundColor={backgroundColor} color={color} tachyons="pa2">
         {children}
       </View>
