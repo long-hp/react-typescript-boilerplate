@@ -89,6 +89,17 @@ $color-border-action: $color-gray-5;
   border-bottom: 1px solid $color-border-action;
 }
 
+.iconUp,
+.iconDown {
+  .medium & {
+    padding: px(3);
+  }
+
+  .large & {
+    padding: px(5);
+  }
+}
+
 .actionDown {
   line-height: 1;
   flex: 0 0 50%;

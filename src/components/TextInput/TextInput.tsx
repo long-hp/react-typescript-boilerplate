@@ -1,14 +1,13 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes, useCallback } from 'react';
-import { View, WithStylesProps } from 'wiloke-react-core';
+import { Size, View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import TextInputLoading from './TextInputLoading';
 import styles from './TextInput.module.scss';
 
-export type SizeInput = 'small' | 'medium' | 'large';
 type InputType = 'text' | 'password' | 'email';
 export interface InputProps extends WithStylesProps {
   /** Size của input */
-  sizeInput?: SizeInput;
+  sizeInput?: Size;
   /** Placeholder của input */
   placeholder?: string;
   /** Bật lên input sẽ rộng 100% */
