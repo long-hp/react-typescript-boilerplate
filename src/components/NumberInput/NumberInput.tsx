@@ -1,16 +1,15 @@
-import { SizeInput } from 'components/TextInput/TextInput';
 import React, { FC, InputHTMLAttributes, useEffect } from 'react';
-import { View, WithStylesProps } from 'wiloke-react-core';
+import { Size, View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import Action from './Actions';
 import styles from './NumberInput.module.scss';
 import NumberInputLoading from './NumberInputLoading';
 import useCount from './useCount';
-type InputType = 'number' | 'phone';
 
+type InputType = 'number' | 'phone';
 export interface NumberInputProps extends WithStylesProps {
   /** Size của input */
-  sizeInput?: SizeInput;
+  sizeInput?: Size;
   /** Bật lên input sẽ rộng 100% */
   block?: boolean;
   /** Kiểu đầu vào của input */
