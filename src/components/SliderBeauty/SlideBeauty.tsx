@@ -1,7 +1,7 @@
 import Field from 'components/Field';
 import Box from 'components/FieldBox';
 import { NumberInput } from 'components/NumberInput';
-import Slider from 'components/SliderBase';
+import Slider from 'components/Slider';
 import React, { FC, ReactNode } from 'react';
 import { ColorNames, Radius, View, WithStylesProps } from 'wiloke-react-core';
 import styles from './SlideBeauty.module.scss';
