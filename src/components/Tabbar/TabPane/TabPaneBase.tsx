@@ -8,7 +8,7 @@ export interface TabPaneBaseProps extends PaneProps {
   tab?: ReactNode;
   /** Giá trị tương ứng vói active key của tabbar */
   key?: string | number;
-  /** Disabled = true sẽ không cho bấm vào tab đấy nữa */
+  /** Disabled = true sẽ không active tab và không cho bấm vào tab đấy nữa */
   disabled?: boolean;
   /** Background color của Tab pane */
   backgroundColor?: ColorNames;

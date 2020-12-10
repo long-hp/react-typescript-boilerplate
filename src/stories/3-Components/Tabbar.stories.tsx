@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
-import Tabbar, { TabbarProps } from 'components/Tabbar';
+import Tabbar, { ScrollDirection, TabbarProps } from 'components/Tabbar';
 import { range } from 'ramda';
 import React, { useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
@@ -13,7 +13,7 @@ export default {
 
 export const Default = () => {
   const defaultActive = '1';
-  const [activeKey, setActiveKey] = useState(defaultActive);
+  const [activeKey, setActiveKey] = useState<string>(defaultActive);
 
   const _onChangeKey = (value: string) => {
     setActiveKey(value);
@@ -38,7 +38,7 @@ export const Default = () => {
 };
 
 export const WithProps = () => {
-  const inkBarAnimated = boolean('Navbar Animation', true);
+  const navBarAnimated = boolean('Navbar Animation', true);
   const backgroundTabContent = select('Background Tab Content', getOptions(defaultColors), 'gray6');
   const colorTabContent = select('Color Text Tab Content', getOptions(defaultColors), 'light');
   const tabPosition = select(
@@ -54,7 +54,7 @@ export const WithProps = () => {
 
   const navBarGutter = number('Navbar Title Gutter', 15, { range: true, min: 0, max: 100 });
   const defaultActive = '1';
-  const [activeKey, setActiveKey] = useState(defaultActive);
+  const [activeKey, setActiveKey] = useState<string>(defaultActive);
 
   const _onChangeKey = (value: string) => {
     setActiveKey(value);
@@ -64,26 +64,38 @@ export const WithProps = () => {
     action('onTabClick')(activeKey);
   };
 
+  const _ontabScroll = (info: { direction: ScrollDirection }) => {
+    action('onTabScroll')(info);
+  };
+
   const fakeData = range(1, 8);
-  const lastData = fakeData[fakeData.length - 1];
-  const icon = lastData ? <MaterialIcon name="arrow_right_alt" /> : <MaterialIcon name="arrow_left" />;
+  const lastEle = fakeData.slice(-1)[0];
+  const changeIcon = lastEle ? 'arrow_right_alt' : 'arrow_left';
+  const icon = <MaterialIcon name={changeIcon} />;
 
   return (
     <View container>
       <View width={500}>
         <Tabbar
           defaultActiveKey={activeKey}
-          inkBarAnimated={inkBarAnimated}
+          navBarAnimated={navBarAnimated}
           tabTitleGutter={navBarGutter}
           tabPosition={tabPosition}
           direction={rtl}
           moreIcon={icon}
           onChange={_onChangeKey}
           onTabClick={_onClickTab}
+          onTabScroll={_ontabScroll}
         >
           {fakeData.map(item => {
             return (
-              <Tabbar.TabPane tab={`Tab Title ${item}`} key={`${item}`} backgroundColor={backgroundTabContent} color={colorTabContent}>
+              <Tabbar.TabPane
+                tab={`Tab Title ${item}`}
+                disabled={item === 3}
+                key={`${item}`}
+                backgroundColor={backgroundTabContent}
+                color={colorTabContent}
+              >
                 <View>Tab content {item}</View>
               </Tabbar.TabPane>
             );
