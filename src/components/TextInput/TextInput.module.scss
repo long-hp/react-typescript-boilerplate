@@ -12,9 +12,9 @@ $padding-medium-horizontal: 10;
 $padding-large-vertical: 0;
 $padding-large-horizontal: 12;
 
-$height-input-large: 43;
-$height-input-small: 27;
-$height-input-medium: 35;
+$height-input-large: 46;
+$height-input-medium: 37;
+$height-input-small: 28;
 
 .container {
   margin: 0;
@@ -35,34 +35,33 @@ $height-input-medium: 35;
   &:focus {
     outline: unset;
   }
+
+  .small & {
+    padding: px(0) px($padding-small-horizontal);
+    font-size: px($font-size-small);
+  }
+
+  .medium & {
+    padding: px(0) px($padding-medium-horizontal);
+    font-size: px($font-size-default);
+  }
+
+  .large & {
+    padding: px(0) px($padding-large-horizontal);
+    font-size: px($font-size-default);
+  }
 }
 
 .small {
   height: px($height-input-small);
-
-  .textInput {
-    padding: px($padding-small-vertical) px($padding-small-horizontal);
-    font-size: px($font-size-small);
-  }
 }
 
 .medium {
   height: px($height-input-medium);
-
-  .textInput {
-    padding: px($padding-medium-vertical) px($padding-medium-horizontal);
-    font-size: px($font-size-default);
-  }
-
 }
 
 .large {
   height: px($height-input-large);
-
-  .textInput {
-    padding: px($padding-large-vertical) px($padding-large-horizontal);
-    font-size: px($font-size-default);
-  }
 }
 
 .block {

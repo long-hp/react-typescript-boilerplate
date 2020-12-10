@@ -10,7 +10,6 @@ export interface BoxProps extends WithStylesProps {
 }
 
 const Box: FC<BoxProps> = ({
-  tachyons,
   borderColor,
   borderStyle,
   borderWidth,
@@ -18,6 +17,7 @@ const Box: FC<BoxProps> = ({
   backgroundColor = 'light',
   style,
   children,
+  tachyons,
   radius = 'round',
   ...rest
 }) => {
@@ -25,8 +25,8 @@ const Box: FC<BoxProps> = ({
   return (
     <View
       {...rest}
-      tachyons={tachyons}
       {...combineProps}
+      tachyons={tachyons}
       radius={radius}
       backgroundColor={backgroundColor}
       borderColor={borderColor}

@@ -13,6 +13,7 @@ export default {
 
 export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
+  const block = boolean('Block', false);
   const initNumber = 0;
   let disabled: boolean, min: number, max: number, step: number, size: string;
 
@@ -63,6 +64,7 @@ export const WithProps = () => {
         radius={radius}
         borderColor="gray5"
         borderWidth="1/6"
+        block={block}
         onValueChange={_handleOnChange}
       />
     );

@@ -78,8 +78,16 @@ const SlideBeauty: FC<SlideBeautyProps> & {
 }) => {
   return (
     <Field label={label} fontSize={16} note={note} color="dark">
-      <Box backgroundColor={backgroundInnerField} borderColor={borderColor} borderStyle={borderStyle} borderWidth={borderWidth} radius={radius}>
-        <View tachyons={['flex', 'items-center']} radius="round" className={styles.inner}>
+      <Box
+        className={styles.box}
+        backgroundColor={backgroundInnerField}
+        borderColor={borderColor}
+        borderStyle={borderStyle}
+        borderWidth={borderWidth}
+        radius={radius}
+        tachyons={['pt0', 'pb0']}
+      >
+        <View tachyons={['flex', 'items-center', 'w-100', 'h-100']} radius="round" className={styles.inner}>
           <View className={styles.slide}>
             <Slider
               value={value}
@@ -95,7 +103,7 @@ const SlideBeauty: FC<SlideBeautyProps> & {
             />
           </View>
 
-          <View tachyons={['ml4', 'h-50']} style={{ display: 'inherit' }}>
+          <View tachyons={['ml4']} style={{ display: 'inherit' }}>
             <NumberInput
               value={value}
               min={min}

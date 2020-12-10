@@ -13,6 +13,7 @@ export default {
 
 export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
+
   let size, disabled, block, placeholder;
   const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
