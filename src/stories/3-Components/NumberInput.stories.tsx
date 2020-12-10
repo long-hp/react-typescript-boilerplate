@@ -1,10 +1,10 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
-import { NumberInput, NumberInputProps } from 'components/NumberInput';
+import { NumberInput } from 'components/NumberInput';
 import React, { useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
-import { Radius } from 'wiloke-react-core';
+import { Radius, Size } from 'wiloke-react-core';
 
 export default {
   title: 'Components/NumberInput',
@@ -15,7 +15,11 @@ export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
   const block = boolean('Block', false);
   const initNumber = 0;
-  let disabled: boolean, min: number, max: number, step: number, size: string;
+  let disabled: boolean,
+    min: number,
+    max: number,
+    step: number,
+    size: Size = 'small';
 
   const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
@@ -38,7 +42,7 @@ export const WithProps = () => {
 
     size = select(
       'Size',
-      getOptions<NumberInputProps['sizeInput'][]>(['large', 'medium', 'small']),
+      getOptions<Size[]>(['large', 'medium', 'small']),
       'small',
     );
   }
@@ -60,7 +64,7 @@ export const WithProps = () => {
         min={min}
         max={max}
         step={step}
-        sizeInput={size as any}
+        sizeInput={size}
         radius={radius}
         borderColor="gray5"
         borderWidth="1/6"

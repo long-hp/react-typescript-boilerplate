@@ -4,7 +4,7 @@ import { boolean, number, optionsKnob, select, text } from '@storybook/addon-kno
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
-import { Radius } from 'wiloke-react-core';
+import { Radius, Size } from 'wiloke-react-core';
 
 export default {
   title: 'Components/TextInput',
@@ -14,7 +14,10 @@ export default {
 export const WithProps = () => {
   const isLoading = boolean('Loading Input', false);
 
-  let size, disabled, block, placeholder;
+  let size: Size = 'large',
+    disabled,
+    block,
+    placeholder;
   const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
   });
@@ -32,7 +35,7 @@ export const WithProps = () => {
       'Size',
       getOptions<InputProps['sizeInput'][]>(['small', 'medium', 'large']),
       'large',
-    ) as any;
+    );
     disabled = boolean('Disabled', false);
     block = boolean('Block', false);
     placeholder = text('Placeholder', 'Do something...');
