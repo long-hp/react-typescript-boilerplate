@@ -52,7 +52,7 @@ const NumberInput: FC<NumberInputProps> & {
   ...rest
 }) => {
   const blockClassName = block ? styles.block : '';
-  const disableClassName = disabled ? styles.disabled : '';
+  const disableClassName = disabled ? 'ui-disabled' : '';
   const generalSetting = { className: classNames(styles.container, className, styles[sizeInput], blockClassName, disableClassName) };
 
   const { count, decrement, increment, setCount } = useCount({

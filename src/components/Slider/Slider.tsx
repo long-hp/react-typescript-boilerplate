@@ -1,19 +1,24 @@
 import RSlider, { createSliderWithTooltip } from 'rc-slider';
 import { GenericSliderProps } from 'rc-slider/lib/interface';
-import React, { CSSProperties, FC } from 'react';
+import React, { FC } from 'react';
+import { ColorNames, useTheme } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import SliderLoading from './SliderLoading';
 import styles from './Slider.module.scss';
+import SliderLoading from './SliderLoading';
 
 const SliderWithTooltip = createSliderWithTooltip(RSlider);
 
 export interface SliderProps extends GenericSliderProps {
   /** Giá trị đầu vào của thanh trượt */
   value?: number;
-  /** Style của thanh track */
-  trackStyle?: CSSProperties;
-  /** Style của nút điều khiển */
-  handleStyle?: CSSProperties;
+  /** Background color của nút điều khiển */
+  handleColor?: ColorNames;
+  /** Background color của nút điều khiển */
+  handleBorderColor?: ColorNames;
+  /** Background color của track */
+  trackColor?: ColorNames;
+  /** Background color của track */
+  railColor?: ColorNames;
   /** Bật lên sẽ hiện tooltip */
   tooltip?: boolean;
   /** Vị trí của tooltip: 'top' | 'bottom' */
@@ -36,8 +41,10 @@ const Slider: FC<SliderProps> & {
   Loading: typeof SliderLoading;
 } = ({
   value,
-  trackStyle,
-  handleStyle,
+  trackColor = 'primary',
+  handleBorderColor = 'gray5',
+  handleColor = 'light',
+  railColor = 'gray5',
   min,
   max,
   disabled = false,
@@ -53,29 +60,42 @@ const Slider: FC<SliderProps> & {
   onBeforeChange,
   ...rest
 }) => {
-  const disabledClassName = disabled ? styles.disable : '';
-  const combineProps = { className: classNames(className, styles.container, disabledClassName) };
+  const { colors } = useTheme();
+  const disabledClassName = disabled ? 'ui-disabled' : '';
 
-  const generalProps = () => ({
-    trackStyle: trackStyle,
-    handleStyle: handleStyle,
-    value: value,
-    min: min,
-    max: max,
-    disabled: disabled,
-    step: step,
-    onChange: onChange,
-    onBlur: onBlur,
-    onFocus: onFocus,
-    onAfterChange: onAfterChange,
-    onBeforeChange: onBeforeChange,
-  });
+  const generalProps = {
+    value,
+    min,
+    max,
+    disabled,
+    step,
+    onChange,
+    onBlur,
+    onFocus,
+    onAfterChange,
+    onBeforeChange,
+  };
+
+  const combineProps = { className: classNames(className, styles.container, disabledClassName), ...rest };
 
   const _renderSlide = () => {
     return tooltip ? (
-      <SliderWithTooltip {...rest} {...combineProps} {...generalProps()} tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }} />
+      <SliderWithTooltip
+        {...combineProps}
+        {...generalProps}
+        trackStyle={{ backgroundColor: colors[trackColor] }}
+        handleStyle={{ backgroundColor: colors[handleColor], border: `1px solid ${colors[handleBorderColor]}` }}
+        railStyle={{ backgroundColor: colors[railColor] }}
+        tipProps={{ placement: tooltipPlacement, visible: tooltipVisible }}
+      />
     ) : (
-      <Slider {...rest} {...combineProps} {...generalProps()} />
+      <RSlider
+        {...combineProps}
+        {...generalProps}
+        trackStyle={{ backgroundColor: colors[trackColor] }}
+        handleStyle={{ backgroundColor: colors[handleColor], border: `1px solid ${colors[handleBorderColor]}` }}
+        railStyle={{ backgroundColor: colors[railColor] }}
+      />
     );
   };
 
