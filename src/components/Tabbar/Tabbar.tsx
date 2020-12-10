@@ -26,6 +26,8 @@ export interface TabbarProps extends TabsProps {
   tabTitleGutter?: number;
   /** More Icon */
   moreIcon?: ReactNode;
+  /** className */
+  className?: string;
   /** render navbar */
   renderTabBar?: (props: any, DefaultTabBar: React.ComponentType) => React.ReactElement;
   /** Sự kiện onChange */
@@ -42,6 +44,7 @@ interface TabbarStatic {
 
 const Tabbar: FC<TabbarProps> & TabbarStatic = ({
   children,
+  className,
   direction = 'ltr',
   defaultActiveKey = '1',
   navBarAnimated = false,
@@ -64,11 +67,12 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
         tabPosition={tabPosition}
         animated={{ inkBar: navBarAnimated, tabPane: tabPaneAnimated }}
         tabBarGutter={tabTitleGutter}
+        moreIcon={moreIcon}
+        className={className}
         onChange={onChange}
         onTabClick={onTabClick}
         onTabScroll={onTabScroll}
         renderTabBar={renderTabBar}
-        moreIcon={moreIcon}
       >
         {children}
       </Tabs>

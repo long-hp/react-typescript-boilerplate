@@ -1,8 +1,9 @@
-import { TabPane, TabPaneProps as PaneProps } from 'rc-tabs';
-import React, { FC, ReactNode } from 'react';
+import { TabPane, TabPaneProps } from 'rc-tabs';
+import React, { CSSProperties, FC, ReactNode } from 'react';
 import { ColorNames, View } from 'wiloke-react-core';
+import { classNames } from 'wiloke-react-core/utils';
 
-export interface TabPaneBaseProps extends PaneProps {
+export interface TabPaneBaseProps extends TabPaneProps {
   className?: string;
   /** Tiêu đề của tab pane hiện tại. Có thể là string hoặc react element */
   tab?: ReactNode;
@@ -14,12 +15,28 @@ export interface TabPaneBaseProps extends PaneProps {
   backgroundColor?: ColorNames;
   /** Color text của Tab pane */
   color?: ColorNames;
+  /** Forced render of content in tabs, not lazy render after clicking on tabs */
+  forceRender?: boolean;
+  /** style inline */
+  style?: CSSProperties;
 }
 
-const TabPaneBase: FC<TabPaneBaseProps> = ({ disabled, key, children, tab, id, backgroundColor = 'light', color = 'dark', className, ...rest }) => {
+const TabPaneBase: FC<TabPaneBaseProps> = ({
+  disabled,
+  key,
+  children,
+  tab,
+  style,
+  forceRender = false,
+  backgroundColor = 'light',
+  color = 'dark',
+  className,
+  ...rest
+}) => {
+  const combineProps = { style, className: classNames(className) };
   return (
-    <TabPane {...rest} tab={tab} id={id} key={key} disabled={disabled}>
-      <View className={className} backgroundColor={backgroundColor} color={color} tachyons="pa2">
+    <TabPane {...rest} {...combineProps} tab={tab} key={key} disabled={disabled} forceRender={forceRender}>
+      <View backgroundColor={backgroundColor} color={color} tachyons="pa2">
         {children}
       </View>
     </TabPane>

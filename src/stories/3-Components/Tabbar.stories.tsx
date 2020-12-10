@@ -2,9 +2,9 @@ import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import Tabbar, { ScrollDirection, TabbarProps } from 'components/Tabbar';
 import { range } from 'ramda';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
-import { defaultColors, MaterialIcon, View } from 'wiloke-react-core';
+import { defaultColors, MaterialIcon, Text, View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/Tabs',
@@ -53,29 +53,34 @@ export const WithProps = () => {
   );
 
   const navBarGutter = number('Navbar Title Gutter', 15, { range: true, min: 0, max: 100 });
+
   const defaultActive = '1';
   const [activeKey, setActiveKey] = useState<string>(defaultActive);
+  const [icon, setIcon] = useState<ReactNode>(<MaterialIcon name="keyboard_arrow_right" />);
+
+  const fakeData = range(1, 8);
 
   const _onChangeKey = (value: string) => {
     setActiveKey(value);
     action('onChangeKey')(value);
   };
+
   const _onClickTab = (activeKey: string) => {
     action('onTabClick')(activeKey);
   };
 
   const _ontabScroll = (info: { direction: ScrollDirection }) => {
+    if (info.direction === 'right') {
+      setIcon(<MaterialIcon name="keyboard_arrow_left" />);
+    } else if (info.direction === 'left') {
+      setIcon(<MaterialIcon name="keyboard_arrow_right" />);
+    }
     action('onTabScroll')(info);
   };
 
-  const fakeData = range(1, 8);
-  const lastEle = fakeData.slice(-1)[0];
-  const changeIcon = lastEle ? 'arrow_right_alt' : 'arrow_left';
-  const icon = <MaterialIcon name={changeIcon} />;
-
   return (
     <View container>
-      <View width={500}>
+      <View tachyons={['w-60']}>
         <Tabbar
           defaultActiveKey={activeKey}
           navBarAnimated={navBarAnimated}
@@ -96,7 +101,7 @@ export const WithProps = () => {
                 backgroundColor={backgroundTabContent}
                 color={colorTabContent}
               >
-                <View>Tab content {item}</View>
+                <Text>Tab content {item}</Text>
               </Tabbar.TabPane>
             );
           })}
