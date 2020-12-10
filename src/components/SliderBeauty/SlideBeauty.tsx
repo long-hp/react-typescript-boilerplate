@@ -1,16 +1,16 @@
 import Field from 'components/Field';
 import Box from 'components/FieldBox';
 import { NumberInput } from 'components/NumberInput';
-import Slider from 'components/Slider';
+import Slider, { SliderProps } from 'components/Slider';
 import React, { FC, ReactNode } from 'react';
-import { ColorNames, Radius, View, WithStylesProps } from 'wiloke-react-core';
+import { ColorNames, Radius, useTheme, View, WithStylesProps } from 'wiloke-react-core';
 import styles from './SlideBeauty.module.scss';
 import SlideBeautyLoading from './SlideBeautyLoading';
 
 type BorderStyle = 'solid' | 'dashed' | 'dotted';
 type BorderWidth = '0/6' | '1/6' | '2/6' | '3/6' | '4/6' | '5/6' | '6/6';
 
-export interface SlideBeautyProps extends WithStylesProps {
+export interface SlideBeautyProps extends WithStylesProps, SliderProps {
   /** Giá trị thấp nhất của slide beauty */
   min?: number;
   /** Giá trị lớn nhất của slide beauty */
@@ -27,14 +27,6 @@ export interface SlideBeautyProps extends WithStylesProps {
   dots?: boolean;
   /** Background color của box */
   backgroundInnerField?: ColorNames;
-  /** Màu của thanh track */
-  trackColor?: string;
-  /** Màu của thanh rail */
-  railColor?: string;
-  /** Màu của nút */
-  handleColor?: string;
-  /** Màu viền của nút */
-  handleBorder?: string;
   /** Style border của field box */
   borderStyle?: BorderStyle;
   /** Độ rộng border của field box */
@@ -58,6 +50,10 @@ const SlideBeauty: FC<SlideBeautyProps> & {
   max = 100,
   step = 1,
   value = 0,
+  handleBorderColor = 'gray4',
+  handleColor = 'light',
+  railColor = 'gray5',
+  trackColor = 'gray5',
   label,
   note,
   tooltip = false,
@@ -69,13 +65,10 @@ const SlideBeauty: FC<SlideBeautyProps> & {
   radiusInput = 5,
   borderWidth = '1/6',
   borderInputColor = 'gray5',
-  trackColor = '#475BE2',
-  railColor = '#DBDBE0',
-  handleColor = '#ffffff',
-  handleBorder = '#DBDBE0',
   backgroundInnerField = 'light',
   onValueChange,
 }) => {
+  const { colors } = useTheme();
   return (
     <Field label={label} fontSize={16} note={note} color="dark">
       <Box
@@ -94,11 +87,11 @@ const SlideBeauty: FC<SlideBeautyProps> & {
               min={min}
               max={max}
               step={step}
-              trackStyle={{ backgroundColor: `${trackColor}` }}
-              railStyle={{ backgroundColor: `${railColor}` }}
-              handleStyle={{ backgroundColor: `${handleColor}`, border: `1px solid ${handleBorder}` }}
               dots={dots}
               tooltip={tooltip}
+              handleStyle={{ backgroundColor: colors[handleColor], border: `1px solid ${colors[handleBorderColor]}` }}
+              trackStyle={{ backgroundColor: colors[trackColor] }}
+              railStyle={{ backgroundColor: colors[railColor] }}
               onChange={onValueChange}
             />
           </View>
