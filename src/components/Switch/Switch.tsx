@@ -137,7 +137,7 @@ const Switch = ({
         {_renderInnerContent()}
         {_renderLoading()}
       </View>
-      {}
+      {_renderChildren()}
     </>
   );
 };
