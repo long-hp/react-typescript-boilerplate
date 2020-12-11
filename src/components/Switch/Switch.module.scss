@@ -1,118 +1,147 @@
 @import 'styles/abstracts/abstracts.scss';
 
+// general
+$space: 2.05;
+$font-size: 14;
+$handle-height-space: $space * 2;
+$translateX-checked: translateX(calc(100% - #{px($space)}));
+
+// large
+$switch-height-large: 24;
+$switch-width-large: $switch-height-large * 1.75;
+$switch-min-width-large: $switch-width-large * 1.05;
+
+$handle-width-large: $switch-height-large - $space;
+
+// medium
+$switch-height-medium: 22;
+$switch-width-medium: $switch-height-medium * 1.75;
+$switch-min-width-medium: $switch-width-medium * 1.05;
+
+$handle-width-medium: $switch-height-medium - $space;
+
+// small
+$switch-height-small: 20;
+$switch-width-small: $switch-height-small * 1.75;
+$switch-min-width-small: $switch-width-small * 1.05;
+
+$handle-width-small: $switch-height-small - $space;
+
+// extra small
+$switch-height-extra-small: 18;
+$switch-width-extra-small: $switch-height-extra-small * 1.75;
+$switch-min-width-extra-small: $switch-width-extra-small * 1.05;
+
+$handle-width-extra-small: $switch-height-extra-small - $space;
+
+
 .container {
-  font-size: px(14);
-  min-width: px(44);
-  height: px(22);
-  line-height: px(22);
-  transition: all 0.2s;
+  font-size: px($font-size);
+  min-width: px($switch-width-medium);
+  height: px($switch-height-medium);
+  line-height: px($switch-height-medium);
+
+  transition: 0.2s all ease;
   user-select: none;
-}
 
-.extra-small {
-  min-width: px(26);
-  height: px(16);
-  line-height: px(16);
-}
+  &.large {
+    min-width: px($switch-min-width-large);
+    height: px($switch-height-large);
+    line-height: px($switch-height-large);
+  }
 
-.medium {
-  min-width: px(48);
-  height: px(24);
-  line-height: px(24);
-}
+  &.medium {
+    min-width: px($switch-min-width-medium);
+    height: px($switch-height-medium);
+    line-height: px($switch-height-medium);
+  }
 
-.large {
-  min-width: px(54);
-  height: px(28);
-  line-height: px(28);
-}
+  &.small {
+    min-width: px($switch-min-width-small);
+    height: px($switch-height-small);
+    line-height: px($switch-height-small);
+  }
 
-.disable {
-  cursor: not-allowed;
-  opacity: 0.4;
+
+  &.extra-small {
+    min-width: px($switch-min-width-extra-small);
+    height: px($switch-height-extra-small);
+    line-height: px($switch-height-extra-small);
+  }
 }
 
 .handle {
-  top: px(2);
-  height: calc(100% - #{px(4)});
-  width: px(18);
+  top: px($space);
+  height: calc(100% - #{px($handle-height-space)});
   transition: all 0.2s ease-in-out;
-  @include autoDirection((
-    left: px(2)
-  ));
+  @include autoDirection((transform: translateX(px($space))));
+
   .checked & {
-    @include autoDirection((
-      left: calc(100% - #{px(18)} - #{px(2)})
-    ))
+    @include autoDirection((transform: $translateX-checked))
   }
+
   .extra-small & {
-    width: px(12);
+    width: px($handle-width-extra-small);
   }
+
   .extra-small.checked & {
-    @include autoDirection((
-      left: calc(100% - #{px(12)} - #{px(2)})
-    ))
+    @include autoDirection((transform: $translateX-checked))
   }
+
+  .small & {
+    width: px($handle-width-small);
+  }
+
+  .small.checked & {
+    @include autoDirection((transform: $translateX-checked))
+  }
+
   .medium & {
-    width: px(20);
+    width: px($handle-width-medium);
   }
+
   .medium.checked & {
-    @include autoDirection((
-      left: calc(100% - #{px(20)} - #{px(2)})
-    ))
+    @include autoDirection((transform: $translateX-checked))
   }
+
   .large & {
-    width: px(24);
+    width: px($handle-width-large);
   }
+
   .large.checked & {
-    @include autoDirection((
-      left: calc(100% - #{px(24)} - #{px(2)})
-    ))
+    @include autoDirection((transform: $translateX-checked))
   }
 }
 
 .inner {
   font-size: px(12);
-  transition: margin 0.2s;
-  @include autoDirection((
-    margin-left: px(25),
-    margin-right: px(7)
-  ));
+  transition: 0.2s ease;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+
+  @include autoDirection((left: px(2)));
+
   .extra-small & {
     font-size: px(10);
-    @include autoDirection((
-      margin-right: px(7),
-      margin-left: px(18)
-    ))
   }
+
   .medium & {
     font-size: px(13);
   }
+
   .large & {
     font-size: px(14);
-    @include autoDirection((
-      margin-right: px(7),
-      margin-left: px(30)
-    ))
   }
 }
 
 .innerChecked {
-  @include autoDirection((
-    text-align: left,
-    margin-left: px(7),
-    margin-right: px(25)
-  ));
-  .extra-small & {
-    @include autoDirection((
-      margin-right: px(18),
-      margin-left: px(7)
-    ))
-  }
-  .large & {
-    @include autoDirection((
-      margin-right: px(30),
-      margin-left: px(7)
-    ))
+  @include autoDirection((left: px(2)));
+}
+
+:global {
+  .ui-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 }

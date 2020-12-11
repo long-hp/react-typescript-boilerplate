@@ -1,5 +1,5 @@
-import React, { ReactNode, useState, useEffect, memo } from 'react';
-import { ActivityIndicator, View, Size, ViewProps, WithTachyonsProps } from 'wiloke-react-core';
+import React, { memo, ReactNode, useEffect, useState } from 'react';
+import { ActivityIndicator, ColorNames, Size, View, ViewProps, WithTachyonsProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './Switch.module.scss';
 
@@ -18,6 +18,10 @@ export interface SwitchProps extends WithTachyonsProps, Pick<ViewProps, 'nightMo
   loading?: boolean;
   /** Kích thước component */
   size?: Size;
+  /** Background color khi active */
+  activeColor?: ColorNames;
+  /** Background color khi chưa active */
+  inactiveColor?: ColorNames;
   /** sự kiện onChange click vào component và nhận được event */
   onChange?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   /** sự kiện onChange click vào component và nhận được value */
@@ -47,6 +51,8 @@ const Switch = ({
   disabled = false,
   loading = false,
   size = 'medium',
+  activeColor = 'primary',
+  inactiveColor = 'gray4',
   onChange,
   onValueChange,
   children,
@@ -56,10 +62,10 @@ const Switch = ({
 }: SwitchProps) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const containerCheckedClassName = checkedState ? styles.checked : '';
-  const disableClassName = disabled ? styles.disable : '';
+  const disableClassName = disabled ? 'ui-disabled' : '';
   const sizeClassName = styles[size];
   const loadingSize = getLoadingSize(size);
-  const containerClassName = classNames(styles.container, containerCheckedClassName, disableClassName, sizeClassName, className);
+  const containerClassName = classNames(sizeClassName, styles.container, containerCheckedClassName, disableClassName, className);
 
   const _handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (loading || disabled) {
@@ -79,7 +85,12 @@ const Switch = ({
     const innerContent = checkedState ? CheckedChildren : UnCheckedChildren;
 
     return (
-      <View color="light" className={classNames(styles.inner, innerCheckedClassName)} tachyons={['tr', 'db']} nightModeBlacklist={nightModeBlacklist}>
+      <View
+        color="light"
+        className={classNames(styles.inner, innerCheckedClassName)}
+        tachyons={['tr', 'db', 'absolute', 'flex', 'ma0']}
+        nightModeBlacklist={nightModeBlacklist}
+      >
         {innerContent}
       </View>
     );
@@ -116,7 +127,7 @@ const Switch = ({
     <>
       <View
         {...rest}
-        backgroundColor={checkedState ? 'primary' : 'gray4'}
+        backgroundColor={checkedState ? activeColor : inactiveColor}
         className={containerClassName}
         radius="pill"
         tachyons={['relative', 'dib', 'v-mid', 'pointer', 'outline-0']}
@@ -126,7 +137,7 @@ const Switch = ({
         {_renderInnerContent()}
         {_renderLoading()}
       </View>
-      {_renderChildren()}
+      {}
     </>
   );
 };
