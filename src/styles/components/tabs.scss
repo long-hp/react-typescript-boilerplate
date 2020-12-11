@@ -69,12 +69,9 @@ $font-size-tab: 14;
     justify-content: center;
     align-items: center;
 
-    border: unset;
     background-color: $color-light;
     color: $color-gray-8;
-    box-shadow: 0 px(3) px(6) px(-4) rgba(0, 0, 0, .12),
-      0 px(6) px(16) 0 rgba(0, 0, 0, .08),
-      0 px(9) px(28) px(8) rgba(0, 0, 0, .05);
+    border: 1px solid $color-gray-4;
     cursor: pointer;
 
     font-size: px(14);
