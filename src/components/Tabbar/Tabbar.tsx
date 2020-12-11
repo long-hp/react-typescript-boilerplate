@@ -1,9 +1,9 @@
-import React, { FC, ReactNode } from 'react';
 import Tabs, { TabsProps } from 'rc-tabs';
-import { MaterialIcon, View } from 'wiloke-react-core';
-import TabPaneBase from './TabPane';
 import 'rc-tabs/assets/index.css';
+import React, { FC, ReactNode } from 'react';
+import { View } from 'wiloke-react-core';
 import styles from './Tabbar.module.scss';
+import TabPaneBase from './TabPane';
 
 export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
 export type ScrollDirection = 'top' | 'bottom' | 'left' | 'right';
@@ -66,7 +66,7 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
   tabPaneAnimated = false,
   tabPosition = 'top',
   tabTitleGutter = 15,
-  moreIcon = <MaterialIcon name="arrow_right_alt" />,
+  moreIcon = '...',
   activeKey,
   onTabScroll,
   onChange,
