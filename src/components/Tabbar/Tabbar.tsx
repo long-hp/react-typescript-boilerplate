@@ -1,20 +1,18 @@
 import Tabs, { TabsProps } from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
 import React, { FC, ReactNode } from 'react';
-import { View } from 'wiloke-react-core';
+import { useTheme, View } from 'wiloke-react-core';
 import styles from './Tabbar.module.scss';
 import TabPaneBase from './TabPane';
 
 export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
 export type ScrollDirection = 'top' | 'bottom' | 'left' | 'right';
-export type Direction = 'ltr' | 'rtl';
 
 type PickTabsProp = Pick<
   TabsProps,
   | 'activeKey'
   | 'className'
   | 'children'
-  | 'direction'
   | 'onChange'
   | 'onTabClick'
   | 'onTabScroll'
@@ -31,8 +29,6 @@ export interface TabbarProps extends PickTabsProp {
   defaultActiveKey?: string;
   /** Vị trí của tab */
   tabPosition?: TabPosition;
-  /** ltr | rtl */
-  direction?: Direction;
   /** Hiệu ứng khi chuyển tiêu đề tab */
   navBarAnimated?: boolean;
   /** Hiệu ứng khi chuyển nội dung tab */
@@ -60,7 +56,6 @@ interface TabbarStatic {
 const Tabbar: FC<TabbarProps> & TabbarStatic = ({
   children,
   className,
-  direction = 'ltr',
   defaultActiveKey = '1',
   navBarAnimated = false,
   tabPaneAnimated = false,
@@ -73,6 +68,8 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
   onTabClick,
   renderTabBar,
 }) => {
+  const { direction } = useTheme();
+
   return (
     <View className={styles.container}>
       <Tabs
