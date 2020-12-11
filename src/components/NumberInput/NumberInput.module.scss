@@ -1,0 +1,97 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-default: 14;
+
+$font-size-small: 12;
+$padding-small-vertical: 0;
+$padding-small-horizontal: 13;
+
+$font-size-medium: 14;
+$padding-medium-vertical: 0;
+$padding-medium-horizontal: 15;
+
+$font-size-large: 14;
+$padding-large-vertical: 0;
+$padding-large-horizontal: 17;
+
+$height-input-large: 43;
+$height-input-small: 27;
+$height-input-medium: 35;
+
+$color-border-action: $color-gray-5;
+
+.container {
+  margin: 0;
+  font-size: px($font-size-default);
+  display: inline-block;
+}
+
+.numberInput {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  color: $color-dark;
+  width: 100%;
+  height: 100%;
+
+  &:focus {
+    outline: unset;
+  }
+}
+
+.numberInput::-webkit-outer-spin-button,
+.numberInput::-webkit-inner-spin-button {
+  appearance: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.small {
+  height: px($height-input-small);
+
+  .numberInput {
+    padding: px($padding-small-vertical) px($padding-small-horizontal);
+    font-size: px($font-size-small);
+  }
+}
+
+.medium {
+  height: px($height-input-medium);
+
+  .numberInput {
+    padding: px($padding-medium-vertical) px($padding-medium-horizontal);
+    font-size: px($font-size-medium);
+  }
+}
+
+.large {
+  height: px($height-input-large);
+
+  .numberInput {
+    padding: px($padding-large-vertical) px($padding-large-horizontal);
+    font-size: px($font-size-large);
+  }
+}
+
+.block {
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.4;
+  cursor: no-drop;
+}
+
+
+.actionUp {
+  line-height: 1;
+  flex: 0 0 50%;
+  border-left: 1px solid $color-border-action;
+  border-bottom: 1px solid $color-border-action;
+}
+
+.actionDown {
+  line-height: 1;
+  flex: 0 0 50%;
+  border-left: 1px solid $color-border-action;
+}

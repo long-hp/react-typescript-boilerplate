@@ -1,7 +1,8 @@
 import React from 'react';
+import { View } from 'wiloke-react-core';
+import Header from 'containers/Header/Header';
 import Section from 'components/Section';
-import { Header } from 'containers/Header';
-import { Text, View } from 'wiloke-react-core';
+import SliderShow from 'components/SliderShow';
 
 const AboutPage = () => {
   return (
@@ -9,7 +10,7 @@ const AboutPage = () => {
       <Header />
       <View container>
         <Section>
-          <Text tagName="h1">About Page</Text>
+          <SliderShow items={[{ title: '1' }, { title: '2' }, { title: '3' }]} />
         </Section>
       </View>
     </View>
