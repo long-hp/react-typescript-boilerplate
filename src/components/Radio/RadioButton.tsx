@@ -1,24 +1,19 @@
 import React, { FC } from 'react';
-import { ColorNames } from 'wiloke-react-core';
-import RadioGroupContext from './context';
+import { useRadioState } from './context';
 import Radio, { RadioProps } from './Radio';
 
-export interface RadioButtonProps extends RadioProps {
-  value?: any;
-  name?: string;
-  /** Color text khi active radio button*/
-  colorTextActive?: ColorNames;
-}
+export interface RadioButtonProps extends RadioProps {}
 
 const RadioButton: FC<RadioButtonProps> = props => {
-  const context = React.useContext(RadioGroupContext);
+  const stateContext = useRadioState();
   const { ...rest } = props;
 
-  if (context) {
-    rest.checked = String(props.value) === context.value;
-    rest.disabled = props.disabled || (context.disabled as boolean);
+  if (stateContext) {
+    rest.checked = String(props.value) === stateContext.value;
+    rest.disabled = props.disabled || (stateContext.disabled as boolean);
+    rest.block = props.block || (stateContext.block as boolean);
   }
-  return <Radio colorTextActive={rest.colorTextActive} {...rest} type="button"></Radio>;
+  return <Radio {...rest} type="button"></Radio>;
 };
 
 export default RadioButton;

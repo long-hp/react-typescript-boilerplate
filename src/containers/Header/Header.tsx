@@ -14,12 +14,12 @@ const Header: FC<HeaderProps> = () => {
   const setDirection = useSetDirection();
   const setNightMode = useSetNightMode();
 
-  const _handleNightMode: SwitchProps['onChange'] = ({ checked }) => {
-    setNightMode(checked);
+  const _handleNightMode: SwitchProps['onValueChange'] = value => {
+    setNightMode(value);
   };
 
-  const _handleDirection: SwitchProps['onChange'] = ({ checked }) => {
-    const direction = checked ? 'rtl' : 'ltr';
+  const _handleDirection: SwitchProps['onValueChange'] = value => {
+    const direction = value ? 'rtl' : 'ltr';
     setDirection({ direction });
   };
 
@@ -45,13 +45,13 @@ const Header: FC<HeaderProps> = () => {
             <Text color="gray8" tachyons="mr2">
               NightMode
             </Text>
-            <Switch checked={nightMode} onChange={_handleNightMode} nightModeBlacklist="all" />
+            <Switch checked={nightMode} onValueChange={_handleNightMode} nightModeBlacklist="all" />
           </View>
           <View tachyons={['flex', 'items-center']}>
             <Text color="gray8" tachyons="mr2">
               RTL
             </Text>
-            <Switch checked={direction === 'rtl'} onChange={_handleDirection} nightModeBlacklist="all" />
+            <Switch checked={direction === 'rtl'} onValueChange={_handleDirection} nightModeBlacklist="all" />
           </View>
         </View>
       </View>

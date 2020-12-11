@@ -1,8 +1,9 @@
 import useMergedState from 'hooks/useMergedState';
 import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { ColorNames, Size, View } from 'wiloke-react-core';
-import { RadioGroupContextProvider } from './context';
-import Radio from './Radio';
+import { classNames } from 'wiloke-react-core/utils';
+import { RadioGroupActionProvider, RadioGroupStateProvider } from './context';
+import Radio, { Value } from './Radio';
 import styles from './Radio.module.scss';
 
 export interface Optional {
@@ -15,48 +16,64 @@ export interface RadioGroupProps {
   /** Size cua tat ca Radio */
   size?: Size;
   /** Gia tri mac dinh duoc chon */
-  defaultValue?: any;
+  defaultValue?: Value;
   /** Childrent Optional */
   options?: string[] | Optional[];
   /** html name cua chilren*/
   name?: InputHTMLAttributes<HTMLInputElement>['name'];
   /** Value */
-  value?: any;
+  value?: Value;
   /** Disable tat ca radio */
   disabled?: boolean;
   /** Color khi active */
-  colorActive?: ColorNames;
+  activeColor?: ColorNames;
   /** Color text khi active radio button*/
-  colorTextActive?: ColorNames;
+  textActiveColor?: ColorNames;
   /**Children cua radio group*/
   children?: ReactNode;
+  /** Block radio */
+  block?: boolean;
+  /** Màu border được lấy màu từ ThemeProvider */
+  borderColor?: ColorNames;
   /** Su kien onChange */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Su kien onChange lay value */
+  onChangeValue?: (value: string) => void;
 }
 
 const RadioGroup: FC<RadioGroupProps> = ({
-  colorActive = 'behance',
-  colorTextActive = 'light',
+  activeColor = 'primary',
+  textActiveColor = 'light',
   size = 'medium',
   options,
   name,
   disabled,
   value,
   children,
+  block = false,
+  borderColor = 'gray5',
   defaultValue,
   onChange,
+  onChangeValue,
 }) => {
   const [valueState, setValueState] = useMergedState(String(defaultValue), {
     value: value,
   });
+  const blockGroupClass = block ? styles.blockGroup : '';
+  const classes = classNames(styles.groupContaner, blockGroupClass);
+
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const lastValue = valueState;
     const val = event.target.value;
+
     if (!value) {
       setValueState(val);
     }
     if (onChange && val !== lastValue) {
       onChange(event);
+    }
+    if (onChangeValue && val !== lastValue) {
+      onChangeValue(val);
     }
   };
 
@@ -79,23 +96,28 @@ const RadioGroup: FC<RadioGroupProps> = ({
       });
     }
 
-    return <View className={styles.group}>{childrenToRender}</View>;
+    return (
+      <View className={classes} borderColor={borderColor} tachyons="dib">
+        {childrenToRender}
+      </View>
+    );
   };
 
   return (
-    <RadioGroupContextProvider
+    <RadioGroupStateProvider
       value={{
-        onChange: _handleChange,
         value: valueState,
         disabled: disabled,
         name: name,
         size,
-        colorActive,
-        colorTextActive,
+        activeColor,
+        block,
+        textActiveColor,
+        borderColor,
       }}
     >
-      {_renderGroup()}
-    </RadioGroupContextProvider>
+      <RadioGroupActionProvider value={_handleChange}>{_renderGroup()}</RadioGroupActionProvider>
+    </RadioGroupStateProvider>
   );
 };
 

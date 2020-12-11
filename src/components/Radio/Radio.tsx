@@ -1,29 +1,50 @@
-import { CheckboxProps } from 'components/Checkbox';
-import React, { FC, useContext, useEffect, useState } from 'react';
+import React, { FC, InputHTMLAttributes, useEffect, useState } from 'react';
 import { ColorNames, Size, Text } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
-import RadioGroupContext from './context';
+import { useRadioAction, useRadioState } from './context';
 import styles from './Radio.module.scss';
 import RadioButton from './RadioButton';
 import RadioGroup from './RadioGroup';
 
-export interface RadioProps extends CheckboxProps {
+export type Value = string | number;
+
+export type RadioType = 'default' | 'button';
+
+export interface RadioProps {
+  /** Size cua Radio va RadioButton */
+  size?: Size;
+  /** Trang thai checked cua Radio */
+  checked?: boolean;
   /** Value radio input html */
-  value?: any;
+  value?: Value;
   /** Name radio input html */
   name?: string;
   /** kieu cua radio */
-  type?: 'default' | 'button';
-  /** Color khi active */
-  colorActive?: ColorNames;
+  type?: RadioType;
+  /**className*/
+  className?: string;
+  /** Trang thai disabled cua Radio*/
+  disabled?: boolean;
+  /** block cua RadioButton */
+  block?: boolean;
+  /** Trang thai default cua Radio */
+  defaultChecked?: boolean;
+  /** Color khi active Radio */
+  activeColor?: ColorNames;
   /** Color text khi active radio button */
-  colorTextActive?: ColorNames;
+  textActiveColor?: ColorNames;
+  /** Su kien onChange */
+  onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
+  /** Su kien onChange lay value */
+  onChangeValue?: (value: string) => void;
 }
 
-const Radio: FC<RadioProps> & {
+interface RadioStatic {
   Group: typeof RadioGroup;
   Button: typeof RadioButton;
-} = ({
+}
+
+const Radio: FC<RadioProps> & RadioStatic = ({
   size = 'medium',
   checked,
   defaultChecked = false,
@@ -33,19 +54,21 @@ const Radio: FC<RadioProps> & {
   value,
   type = 'default',
   name,
-  colorTextActive = 'light',
-  colorActive = 'behance',
+  textActiveColor = 'light',
+  activeColor = 'primary',
+  block = true,
   onChange,
-  ...rest
+  onChangeValue,
 }) => {
-  const context = useContext(RadioGroupContext);
-  if (context) {
-    name = context.name;
-    checked = String(value) === context.value;
-    disabled = disabled || (context.disabled as boolean);
-    size = context.size as Size;
-    colorActive = context.colorActive as ColorNames;
-    colorTextActive = context.colorTextActive as ColorNames;
+  const stateContext = useRadioState();
+  const onChangeContext = useRadioAction();
+  if (stateContext) {
+    name = stateContext.name;
+    checked = String(value) === stateContext.value;
+    disabled = disabled || (stateContext.disabled as boolean);
+    size = stateContext.size as Size;
+    activeColor = stateContext.activeColor as ColorNames;
+    textActiveColor = stateContext.textActiveColor as ColorNames;
   }
   const [checkedState, setCheckedState] = useState(defaultChecked);
   const checkedClass = checkedState ? styles.checked : '';
@@ -55,17 +78,24 @@ const Radio: FC<RadioProps> & {
 
   const checkedRadioButtonClass = checkedState ? styles.checkedRadioButton : '';
   const disabledRadioButtonClass = disabled ? styles.disabledRadioButton : '';
-  const classesRadioButon = classNames(styles.radioButtonContainer, disabledRadioButtonClass, checkedRadioButtonClass, sizeClass, className);
+  const blockRadioButtonClass = block ? styles.blockRadioButton : '';
+  const classesRadioButton = classNames(
+    styles.radioButtonContainer,
+    disabledRadioButtonClass,
+    checkedRadioButtonClass,
+    blockRadioButtonClass,
+    sizeClass,
+    className,
+  );
 
-  const _handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const _handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled) {
       return;
     }
     setCheckedState(!checkedState);
-    onChange?.(e);
-    if (context?.onChange) {
-      context.onChange(e);
-    }
+    onChange?.(event);
+    onChangeValue?.(event.target.value);
+    onChangeContext?.(event);
   };
 
   useEffect(() => {
@@ -74,46 +104,76 @@ const Radio: FC<RadioProps> & {
     }
   }, [checked]);
 
+  const classNameRadioNative: Record<RadioType, string> = {
+    default: classNames('absolute', 'absolute--fill', 'z-1', 'o-0'),
+    button: classNames('w-0', 'h-0', 'o-0'),
+  };
+
+  const _renderRadioNative = () => {
+    return (
+      <input
+        name={name}
+        className={classNameRadioNative[type]}
+        disabled={disabled}
+        checked={checkedState}
+        type="radio"
+        onChange={_handleChange}
+        value={value}
+      />
+    );
+  };
+
+  const _renderRadioIcon = () => {
+    return (
+      <Text
+        tagName="span"
+        borderColor={checkedState && !disabled ? activeColor : 'gray5'}
+        radius="pill"
+        borderWidth="2/6"
+        borderStyle="solid"
+        tachyons={['relative', 'db', 'flex', 'justify-center', 'items-center']}
+        className={styles.control}
+      >
+        <Text backgroundColor={checkedState && !disabled ? activeColor : 'gray5'} className={styles.dot} radius="pill"></Text>
+      </Text>
+    );
+  };
+
   return (
     <>
       {type === 'default' ? (
-        <Text {...rest} tagName="label" className={classes}>
-          <Text tagName="span" className={classNames(styles.radio, sizeClass, checkedClass, disabledClass)}>
-            <input
-              name={name}
-              className={styles.radioInput}
-              disabled={disabled}
-              checked={checkedState}
-              type="radio"
-              onChange={_handleChange}
-              value={value}
-            />
-            <Text tagName="span" borderColor={checkedState && !disabled ? colorActive : 'gray5'} className={styles.control}>
-              <Text backgroundColor={checkedState && !disabled ? colorActive : 'gray5'} className={styles.dot}></Text>
-            </Text>
+        <Text tagName="label" className={classes} tachyons={['inline-flex', 'items-center', 'pointer']}>
+          <Text tagName="span" tachyons={['relative', 'dib', 'v-mid']} className={classNames(styles.radio, sizeClass, checkedClass, disabledClass)}>
+            {_renderRadioNative()}
+            {_renderRadioIcon()}
           </Text>
-          {children && <Text tagName="span">{children}</Text>}
+          {children && (
+            <Text tachyons={['ph2', 'dib', 'v-mid']} tagName="span">
+              {children}
+            </Text>
+          )}
         </Text>
       ) : (
         <Text
-          backgroundColor={checkedState && !disabled ? colorActive : 'light'}
-          color={checkedState ? colorTextActive : 'dark'}
+          backgroundColor={checkedState && !disabled ? activeColor : 'light'}
+          color={checkedState ? textActiveColor : 'dark'}
           tagName="label"
-          className={classesRadioButon}
+          tachyons={['relative', 'dib', 'tc', 'pointer']}
+          borderStyle="solid"
+          className={classesRadioButton}
         >
-          <Text tagName="span" className={classNames(styles.radioButton, sizeClass, checkedRadioButtonClass, disabledRadioButtonClass)}>
-            <input
-              name={name}
-              disabled={disabled}
-              className={styles.radioButonInput}
-              checked={checkedState}
-              type="radio"
-              onChange={_handleChange}
-              value={value}
-            />
-            <Text tagName="span" className={styles.controlButton}></Text>
+          <Text
+            tagName="span"
+            tachyons={['absolute', 'top-0', 'left-0', 'w-100', 'h-100']}
+            className={classNames(styles.radioButton, sizeClass, checkedRadioButtonClass, disabledRadioButtonClass)}
+          >
+            {_renderRadioNative()}
           </Text>
-          {children && <Text tagName="span">{children}</Text>}
+          {children && (
+            <Text tachyons={['relative', 'z-999']} tagName="span">
+              {children}
+            </Text>
+          )}
         </Text>
       )}
     </>
