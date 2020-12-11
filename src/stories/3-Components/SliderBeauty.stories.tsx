@@ -42,7 +42,11 @@ export const WithProps = () => {
     borderStyle: BorderStyle = 'solid',
     borderWidth: BorderWidth = '1/6',
     borderInputColor: ColorNames = 'gray5',
-    borderInputStyle: BorderStyle = 'solid';
+    borderInputStyle: BorderStyle = 'solid',
+    trackColor: ColorNames = 'primary',
+    handleColor: ColorNames = 'light',
+    handleBorderColor: ColorNames = 'gray4',
+    railColor: ColorNames = 'gray5';
 
   const radiusInputType = optionsKnob<'css style' | 'number'>('Radius Picker Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
@@ -96,6 +100,11 @@ export const WithProps = () => {
       getOptions<BorderWidth[]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
       '1/6',
     );
+
+    trackColor = select<ColorNames>('Track Color', getOptions(defaultColors), 'primary');
+    handleColor = select<ColorNames>('Hanlder Color', getOptions(defaultColors), 'light');
+    handleBorderColor = select<ColorNames>('Hanlder Border Color', getOptions(defaultColors), 'gray4');
+    railColor = select<ColorNames>('Rail Color', getOptions(defaultColors), 'gray5');
   }
 
   const [value, setValue] = useState(0);
@@ -110,6 +119,8 @@ export const WithProps = () => {
   ) : (
     <SlideBeauty
       value={value}
+      radius={radius}
+      radiusInput={radiusInput}
       label={label}
       note={note}
       backgroundInnerField={backgroundColor}
@@ -118,8 +129,10 @@ export const WithProps = () => {
       borderWidth={borderWidth}
       borderInputColor={borderInputColor}
       borderInputStyle={borderInputStyle}
-      radius={radius}
-      radiusInput={radiusInput}
+      trackColor={trackColor}
+      railColor={railColor}
+      handleColor={handleColor}
+      handleBorderColor={handleBorderColor}
       min={min}
       max={max}
       step={step}
