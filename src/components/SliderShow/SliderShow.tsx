@@ -1,49 +1,66 @@
-import Slide from 'components/Slide/Slide';
-import React, { FC, useEffect, useRef, useState } from 'react';
+import Slide, { SlideProps } from 'components/Slide/Slide';
+import React, { FC, MouseEvent, useEffect, useRef, useState } from 'react';
 import { LineAwesome, Text, View } from 'wiloke-react-core';
 import styles from './SliderShow.module.scss';
 
-export interface Slide {
-  title: string;
-}
-
 export interface SliderShowProps {
-  items?: Slide[];
+  items: SlideProps[];
 }
 
-const SliderShow: FC<SliderShowProps> = ({ items = [{ title: '1' }, { title: '2' }, { title: '3' }] }) => {
-  const [indexActive, setIndexActive] = useState(0);
-  const [offsetWidth, setOffsetWidth] = useState(0);
+const SliderShow: FC<SliderShowProps> = ({ items }) => {
+  // const [indexActive, setIndexActive] = useState(0);
+  //Check xem co dang nhap chuot hay khong
+  const [isDown, setIsDown] = useState(false);
+  // const [scrollLeft, setScrollLeft] = useState(null);
+  // const [startX, setStartX] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const innerRef = useRef<HTMLDivElement | null>(null);
-  const itemRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (itemRef.current !== null) {
-      setOffsetWidth(itemRef.current.offsetWidth);
-    }
-  }, []);
 
   useEffect(() => {
     if (containerRef.current !== null && innerRef.current !== null) {
-      innerRef.current.style.transform = `translate3d(-${offsetWidth}px, 0, 0)`;
+      // innerRef.current.style.transform = `translate3d(-${350}px, 0, 0)`;
+      // innerRef.current.style.width = `${Children.count(children) * 350}px`;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [indexActive]);
+  }, []);
 
-  const _handleSlideNext = () => {
-    setIndexActive(indexActive => Math.min(indexActive + 1, items.length - 1));
+  const _handleSlideNext = () => {};
+
+  const _handleSlidePrev = () => {};
+
+  const _handleMouseDown = (event: React.MouseEvent<HTMLElement, globalThis.MouseEvent>) => {
+    console.log(event);
+    setIsDown(true);
+    if (containerRef.current !== null && innerRef.current !== null) {
+      containerRef.current.classList.add('active');
+    }
   };
 
-  const _handleSlidePrev = () => {
-    setIndexActive(indexActive => Math.max(indexActive - 1, 0));
+  const _handleMouseMove = (event: MouseEvent<HTMLElement, globalThis.MouseEvent>) => {
+    if (!isDown) return;
+    console.log(event);
+  };
+
+  const _handleMouseLeave = () => {
+    setIsDown(false);
+  };
+
+  const _handleMouseUp = () => {
+    setIsDown(false);
   };
 
   return (
-    <View ref={containerRef} className={styles.container}>
+    <View
+      onMouseLeave={_handleMouseLeave}
+      onMouseMove={_handleMouseMove}
+      onMouseDown={_handleMouseDown}
+      onMouseUp={_handleMouseUp}
+      ref={containerRef}
+      className={styles.container}
+    >
       <View style={{ transition: 'all 300ms ease 0s' }} ref={innerRef} className={styles.wrapper}>
-        {items.map((item: Slide, index: number) => {
-          return <Slide ref={itemRef} key={index} title={item.title} />;
+        {items.map((item: SlideProps, index: number) => {
+          return <Slide key={index} title={item.title} />;
         })}
       </View>
       <View onClick={_handleSlideNext} className={styles.btnNext}>
