@@ -1,39 +1,39 @@
 @import 'styles/abstracts/abstracts.scss';
+@import './Switch.settings.scss';
 
 // general
-$space: 2.05;
-$font-size: 14;
+$space: map-get($settings, 'space');
+$font-size: map-get($settings, 'font-size');
 $handle-height-space: $space * 2;
-$translateX-checked: translateX(calc(100% - #{px($space)}));
+$translateX-checked: translateX(calc(100% + #{px($space)}));
 
 // large
-$switch-height-large: 24;
+$switch-height-large: map-get($settings, 'switch-height-large');
 $switch-width-large: $switch-height-large * 1.75;
 $switch-min-width-large: $switch-width-large * 1.05;
 
-$handle-width-large: $switch-height-large - $space;
+$handle-size-large: $switch-height-large - $handle-height-space;
 
 // medium
-$switch-height-medium: 22;
+$switch-height-medium: map-get($settings, 'switch-height-medium');
 $switch-width-medium: $switch-height-medium * 1.75;
 $switch-min-width-medium: $switch-width-medium * 1.05;
 
-$handle-width-medium: $switch-height-medium - $space;
+$handle-size-medium: $switch-height-medium - $handle-height-space;
 
 // small
-$switch-height-small: 20;
+$switch-height-small: map-get($settings, 'switch-height-small');
 $switch-width-small: $switch-height-small * 1.75;
 $switch-min-width-small: $switch-width-small * 1.05;
 
-$handle-width-small: $switch-height-small - $space;
+$handle-size-small: $switch-height-small - $handle-height-space;
 
 // extra small
-$switch-height-extra-small: 18;
+$switch-height-extra-small: map-get($settings, 'switch-height-extra-small');
 $switch-width-extra-small: $switch-height-extra-small * 1.75;
 $switch-min-width-extra-small: $switch-width-extra-small * 1.05;
 
-$handle-width-extra-small: $switch-height-extra-small - $space;
-
+$handle-size-extra-small: $switch-height-extra-small - $handle-height-space;
 
 .container {
   font-size: px($font-size);
@@ -72,7 +72,6 @@ $handle-width-extra-small: $switch-height-extra-small - $space;
 
 .handle {
   top: px($space);
-  height: calc(100% - #{px($handle-height-space)});
   transition: all 0.2s ease-in-out;
   @include autoDirection((transform: translateX(px($space))));
 
@@ -81,7 +80,8 @@ $handle-width-extra-small: $switch-height-extra-small - $space;
   }
 
   .extra-small & {
-    width: px($handle-width-extra-small);
+    width: px($handle-size-extra-small);
+    height: px($handle-size-extra-small);
   }
 
   .extra-small.checked & {
@@ -89,7 +89,8 @@ $handle-width-extra-small: $switch-height-extra-small - $space;
   }
 
   .small & {
-    width: px($handle-width-small);
+    width: px($handle-size-small);
+    height: px($handle-size-small);
   }
 
   .small.checked & {
@@ -97,7 +98,8 @@ $handle-width-extra-small: $switch-height-extra-small - $space;
   }
 
   .medium & {
-    width: px($handle-width-medium);
+    width: px($handle-size-medium);
+    height: px($handle-size-medium);
   }
 
   .medium.checked & {
@@ -105,7 +107,8 @@ $handle-width-extra-small: $switch-height-extra-small - $space;
   }
 
   .large & {
-    width: px($handle-width-large);
+    width: px($handle-size-large);
+    height: px($handle-size-large);
   }
 
   .large.checked & {
