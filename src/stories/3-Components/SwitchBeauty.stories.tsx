@@ -11,10 +11,10 @@ export default {
 };
 
 const getRadioDefaultProps = () => ({
-  size: select(
+  size: select<Size>(
     'Size',
     getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
-    'medium',
+    'large',
   ),
   checked: boolean('Checked', false),
   disabled: boolean('Disabled', false),
