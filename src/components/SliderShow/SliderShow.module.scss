@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  padding: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.wrapper {
+  transform: translate3d(0px, 0, 0);
+  position: relative;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+}
+
+.btnNext,
+.btnPrev {
+  position: absolute;
+  top: 50%;
+  z-index: 999;
+  transform: translateY(-50%);
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnPrev {
+  left: 0;
+}
+
+.btnNext {
+  right: 0;
+}
+
+.iconNext,
+.iconPrev {
+  line-height: 1;
+}
