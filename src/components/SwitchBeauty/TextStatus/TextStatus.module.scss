@@ -1,21 +1,27 @@
 @import 'styles/abstracts/abstracts';
 
+$font-size-extra-small: 12;
+$font-size-small: 14;
+$font-size-medium: 14;
+$font-size-large: 14;
+
 .container {
-  font-size: px(16);
-}
+  font-size: px($font-size-medium);
 
-.large {
-  font-size: px(20);
-}
+  &.large {
+    font-size: px($font-size-large);
+  }
 
-.medium {
-  font-size: px(16);
-}
+  &.medium {
+    font-size: px($font-size-medium);
+  }
 
-.small {
-  font-size: px(12);
-}
+  &.small {
+    font-size: px($font-size-small);
+  }
 
-.extra-small {
-  font-size: px(10);
+  &.extra-small {
+    font-size: px($font-size-extra-small);
+  }
+
 }
