@@ -1,10 +1,9 @@
-import React, { CSSProperties, FC, ReactNode } from 'react';
+import React, { CSSProperties, FC } from 'react';
 import { View, WithStylesProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import styles from './FieldBox.module.scss';
 
 export interface BoxProps extends WithStylesProps {
-  children?: ReactNode;
   style?: CSSProperties;
   className?: string;
 }
