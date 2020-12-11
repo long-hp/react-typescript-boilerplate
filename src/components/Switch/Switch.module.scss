@@ -2,62 +2,99 @@
 
 .container {
   font-size: px(14);
-  position: relative;
-  display: inline-block;
   min-width: px(44);
   height: px(22);
   line-height: px(22);
-  vertical-align: middle;
-  border: 0;
-  border-radius: px(100);
-  cursor: pointer;
   transition: all 0.2s;
-  outline: none;
   user-select: none;
-  &:focus,
-  &:hover {
-    box-shadow: 0 0 0 2px rgba(#000, 0.08);
-  }
+}
+
+.extra-small {
+  min-width: px(26);
+  height: px(16);
+  line-height: px(16);
+}
+
+.medium {
+  min-width: px(48);
+  height: px(24);
+  line-height: px(24);
+}
+
+.large {
+  min-width: px(54);
+  height: px(28);
+  line-height: px(28);
 }
 
 .disable {
   cursor: not-allowed;
-  opacity: 0.5;
-}
-
-.checked {
-  .handle {
-    @include autoDirection((
-      left: calc(100% - #{px(18)} - #{px(2)})
-    ))
-  }
+  opacity: 0.4;
 }
 
 .handle {
-  position: absolute;
   top: px(2);
   height: calc(100% - #{px(4)});
   width: px(18);
   transition: all 0.2s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  transition: all 0.2s ease-in-out;
   @include autoDirection((
     left: px(2)
-  ))
+  ));
+  .checked & {
+    @include autoDirection((
+      left: calc(100% - #{px(18)} - #{px(2)})
+    ))
+  }
+  .extra-small & {
+    width: px(12);
+  }
+  .extra-small.checked & {
+    @include autoDirection((
+      left: calc(100% - #{px(12)} - #{px(2)})
+    ))
+  }
+  .medium & {
+    width: px(20);
+  }
+  .medium.checked & {
+    @include autoDirection((
+      left: calc(100% - #{px(20)} - #{px(2)})
+    ))
+  }
+  .large & {
+    width: px(24);
+  }
+  .large.checked & {
+    @include autoDirection((
+      left: calc(100% - #{px(24)} - #{px(2)})
+    ))
+  }
 }
 
 .inner {
-  text-align: right;
-  display: block;
   font-size: px(12);
   transition: margin 0.2s;
   @include autoDirection((
     margin-left: px(25),
     margin-right: px(7)
-  ))
+  ));
+  .extra-small & {
+    font-size: px(10);
+    @include autoDirection((
+      margin-right: px(7),
+      margin-left: px(18)
+    ))
+  }
+  .medium & {
+    font-size: px(13);
+  }
+  .large & {
+    font-size: px(14);
+    @include autoDirection((
+      margin-right: px(7),
+      margin-left: px(30)
+    ))
+  }
 }
 
 .innerChecked {
@@ -65,75 +102,14 @@
     text-align: left,
     margin-left: px(7),
     margin-right: px(25)
-  ))
-}
-
-// size
-.extra-small {
-  min-width: px(26);
-  height: px(16);
-  line-height: px(16);
-  &.checked .handle {
-    @include autoDirection((
-      left: calc(100% - #{px(12)} - #{px(2)})
-    ))
-  }
-  .handle {
-    width: px(12);
-  }
-
-  .inner {
-    font-size: px(10);
-    @include autoDirection((
-      margin-right: px(7),
-      margin-left: px(18)
-    ))
-  }
-  .innerChecked {
+  ));
+  .extra-small & {
     @include autoDirection((
       margin-right: px(18),
       margin-left: px(7)
     ))
   }
-}
-
-.medium {
-  min-width: px(48);
-  height: px(24);
-  line-height: px(24);
-  &.checked .handle {
-    @include autoDirection((
-      left: calc(100% - #{px(20)} - #{px(2)})
-    ))
-  }
-  .handle {
-    width: px(20);
-  }
-  .inner {
-    font-size: px(13);
-  }
-}
-
-.large {
-  min-width: px(54);
-  height: px(28);
-  line-height: px(28);
-  &.checked .handle {
-    @include autoDirection((
-      left: calc(100% - #{px(24)} - #{px(2)})
-    ))
-  }
-  .handle {
-    width: px(24);
-  }
-  .inner {
-    font-size: px(14);
-    @include autoDirection((
-      margin-right: px(7),
-      margin-left: px(30)
-    ))
-  }
-  .innerChecked {
+  .large & {
     @include autoDirection((
       margin-right: px(30),
       margin-left: px(7)
