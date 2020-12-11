@@ -46,11 +46,6 @@ export const WithProps = () => {
     getOptions<TabbarProps['tabPosition'][]>(['bottom', 'left', 'right', 'top']),
     'top',
   );
-  const rtl = select(
-    'Direction',
-    getOptions<TabbarProps['direction'][]>(['ltr', 'rtl']),
-    'ltr',
-  );
 
   const navBarGutter = number('Navbar Title Gutter', 15, { range: true, min: 0, max: 100 });
 
@@ -86,7 +81,6 @@ export const WithProps = () => {
           navBarAnimated={navBarAnimated}
           tabTitleGutter={navBarGutter}
           tabPosition={tabPosition}
-          direction={rtl}
           moreIcon={icon}
           onChange={_onChangeKey}
           onTabClick={_onClickTab}
