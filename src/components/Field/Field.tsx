@@ -20,12 +20,14 @@ const FieldComponent: FC<FieldProps> = ({ label, children, style, className, col
   return (
     <View {...rest} {...combineProps}>
       {!!label && (
-        <Text color={color} tagName="p" className={styles.label} tachyons="mb2" style={{ fontSize: `${fontSize}px` }}>
+        <Text color={color} size={fontSize} tagName="p" className={styles.label} tachyons={['mb2', 'mt0']}>
           {label}
         </Text>
       )}
       {children}
-      <Text className={styles.note}>{note}</Text>
+      <Text tagName="p" className={styles.note} tachyons={['mb0', 'mt1']}>
+        {note}
+      </Text>
     </View>
   );
 };

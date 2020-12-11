@@ -1,15 +1,16 @@
 @import 'styles/abstracts/abstracts.scss';
 
 $font-size-note: 12;
+$space-field-bottom: 20;
 
 .container {
   position: relative;
-  margin-bottom: px(0.8);
+  margin-bottom: px($space-field-bottom);
 }
 
 .label {
   line-height: 1;
-  font-weight: $font-medium;
+  font-weight: $font-regular;
 }
 
 .note {
