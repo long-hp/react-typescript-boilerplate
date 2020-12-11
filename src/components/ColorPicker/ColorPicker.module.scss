@@ -1,0 +1,165 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$picker-width: 42;
+$picker-height: 20;
+
+.pickerColor {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+
+  width: px($picker-width);
+  height: px($picker-height);
+}
+
+.bgFade {
+  &:after {
+    content: '';
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==');
+    position: absolute;
+    background-repeat: repeat;
+    background-size: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+  }
+}
+
+:global {
+  .sketch-picker {
+    z-index: 9999;
+  }
+}
+
+.pickerPallte {
+  padding: px(8) px(8) 0;
+  background-color: #ffffff;
+  border: none !important;
+  border-radius: px(8);
+
+  z-index: 9999;
+}
+
+// placement
+
+.bottom {
+  margin-top: px(8);
+  z-index: 9999;
+
+  &:after {
+    content: '';
+    display: none;
+  }
+}
+
+.bottom-start {
+  margin-top: px(8);
+  z-index: 9999;
+
+  &:after {
+    content: '';
+    display: none;
+  }
+}
+
+.bottom-end {
+  margin-top: px(8);
+  z-index: 9999;
+
+  &:after {
+    content: '';
+    display: none;
+  }
+}
+
+.top {
+  margin-bottom: px(8);
+  z-index: 9999;
+
+  &:after {
+    content: '';
+    display: none;
+  }
+}
+
+.top-start {
+  margin-bottom: px(8);
+  z-index: 9999;
+
+  &:after {
+    content: '';
+    display: none;
+  }
+
+  .top-end {
+    margin-bottom: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .left {
+    margin-right: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .left-start {
+    margin-right: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .left-end {
+    margin-right: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .right {
+    margin-left: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .right-start {
+    margin-left: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+
+  .right-end {
+    margin-left: px(8);
+    z-index: 9999;
+
+    &:after {
+      content: '';
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import 'styles/abstracts/abstracts.scss';
+
+$font-size-details: 14;
+$box-height: 46;
+
+.container {
+  position: relative;
+}
+
+.colorDetails {
+  font-size: px($font-size-details);
+}
+
+.box {
+  height: px($box-height);
+}
