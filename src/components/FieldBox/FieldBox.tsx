@@ -10,15 +10,15 @@ export interface BoxProps extends WithStylesProps {
 }
 
 const Box: FC<BoxProps> = ({
-  borderColor,
-  borderStyle,
-  borderWidth,
-  className,
+  borderColor = 'gray5',
+  borderStyle = 'solid',
+  borderWidth = '1/6',
   backgroundColor = 'light',
+  radius = 5,
+  className,
   style,
   children,
   tachyons,
-  radius = 'round',
   ...rest
 }) => {
   const combineProps = { style, className: classNames(className, styles.container) };
