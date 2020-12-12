@@ -50,11 +50,11 @@ export interface TabProps extends PickTabsProp {
   onTabClick?: (activeKey: string, e: KeyboardEvent | MouseEvent) => void;
 }
 
-interface TabbarStatic {
+interface TabsStatic {
   Pane: typeof TabPaneBase;
 }
 
-const Tabbar: FC<TabProps> & TabbarStatic = ({
+const Tabs: FC<TabProps> & TabsStatic = ({
   children,
   className,
   defaultActiveKey = '1',
@@ -93,6 +93,6 @@ const Tabbar: FC<TabProps> & TabbarStatic = ({
   );
 };
 
-Tabbar.Pane = TabPaneBase;
+Tabs.Pane = TabPaneBase;
 
-export default Tabbar;
+export default Tabs;
