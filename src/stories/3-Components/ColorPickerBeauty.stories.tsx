@@ -8,7 +8,7 @@ import getOptions from 'stories/utils/getOptions';
 import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Text, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/ColorPickerBeauty',
+  title: 'Fields/ColorPickerBeauty',
   component: ColorPickerBeauty,
 };
 

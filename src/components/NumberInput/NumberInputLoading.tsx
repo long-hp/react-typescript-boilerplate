@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { View } from 'wiloke-react-core';
+
 export interface NumberInputLoadingProps {}
 
 const NumberInputLoading: FC<NumberInputLoadingProps> = () => {

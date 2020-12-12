@@ -6,7 +6,7 @@ import getOptions from 'stories/utils/getOptions';
 import { ColorNames, defaultColors, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/Slider',
+  title: 'Fields/Slider',
   component: Slider,
 };
 

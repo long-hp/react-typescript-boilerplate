@@ -8,7 +8,7 @@ import getOptions from 'stories/utils/getOptions';
 import { Radius, Text, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/ColorPicker',
+  title: 'Fields/ColorPicker',
   component: ColorPicker,
 };
 

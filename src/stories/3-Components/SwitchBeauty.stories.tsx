@@ -6,7 +6,7 @@ import { ColorNames, defaultColors, Size } from 'wiloke-react-core';
 import { boolean, number, select, text } from '@storybook/addon-knobs';
 
 export default {
-  title: 'Components/SwitchBeauty',
+  title: 'Fields/SwitchBeauty',
   component: SwitchBeauty,
 };
 

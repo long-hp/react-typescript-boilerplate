@@ -7,7 +7,7 @@ import { LineAwesome, Text, View, Size } from 'wiloke-react-core';
 import Button, { ButtonProps } from 'components/Button/Button';
 
 export default {
-  title: 'Components/Button',
+  title: 'General/Button',
   component: Button,
 };
 

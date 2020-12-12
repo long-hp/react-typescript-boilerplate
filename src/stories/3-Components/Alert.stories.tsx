@@ -6,7 +6,7 @@ import { Radius } from 'wiloke-react-core';
 import Alert, { AlertProps } from 'components/Alert/Alert';
 
 export default {
-  title: 'Components/Alert',
+  title: 'General/Alert',
   component: Alert,
 };
 
@@ -23,7 +23,6 @@ export const WithProps = () => {
   );
   const closable = boolean('Closable', true);
   const showIcon = boolean('ShowIcon', true);
-  const disableBorder = boolean('Border Disabled', false);
   const radiusType = optionsKnob('Radius Type', getOptions(['css style', 'number']), 'css style', {
     display: 'inline-radio',
   });
@@ -48,7 +47,6 @@ export const WithProps = () => {
       description={description}
       closable={closable}
       showIcon={showIcon}
-      disableBorder={disableBorder}
       radius={radius}
       size={size}
       onClose={action('onClose')}

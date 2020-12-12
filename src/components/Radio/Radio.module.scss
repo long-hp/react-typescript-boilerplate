@@ -87,12 +87,12 @@ $height-control-large: 30;
   color: $color-dark;
   font-size: px(12);
   line-height: px(36);
-  border-width: px(2) px(2) px(2) 0;
+  border-width: px(1) px(1) px(1) 0;
   border-color: inherit;
 
   &:first-child {
     border-radius: px(5) 0 0 px(5);
-    border-left: 2px solid;
+    border-left: px(1) solid;
     border-color: inherit;
   }
 

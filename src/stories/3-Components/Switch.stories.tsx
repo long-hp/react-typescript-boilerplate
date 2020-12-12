@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { defaultColors, Size } from 'wiloke-react-core';
+import React from 'react';
+import { Size } from 'wiloke-react-core';
 import { boolean, select } from '@storybook/addon-knobs';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
-import Switch from 'components/Switch/Switch';
+import Switch from 'components/Switch';
 
 export default {
-  title: 'Components/Switch',
-  component: Switch,
+  title: 'Fields/Switch',
+  component: (Switch as any).type,
 };
 
 export const Default = () => {
@@ -16,30 +16,13 @@ export const Default = () => {
     getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
     'medium',
   );
-
-  const activeBackground = select('Background color active', getOptions(defaultColors), 'primary');
-  const inactiveBackground = select('Background color inactive', getOptions(defaultColors), 'gray4');
-
   const checked = boolean('Checked', false);
   const loading = boolean('Loading', false);
   const disabled = boolean('Disabled', false);
 
-  const [checkedState, setChecked] = useState(checked);
-
-  const _handleClick = () => {
-    setChecked(!checkedState);
-    action('onChange');
+  const _handleValueChange = (value: boolean) => {
+    action('onValueChange')(value);
   };
 
-  return (
-    <Switch
-      onChange={_handleClick}
-      size={size}
-      checked={checked}
-      activeColor={activeBackground}
-      inactiveColor={inactiveBackground}
-      loading={loading}
-      disabled={disabled}
-    />
-  );
+  return <Switch onValueChange={_handleValueChange} size={size} checked={checked} loading={loading} disabled={disabled} />;
 };

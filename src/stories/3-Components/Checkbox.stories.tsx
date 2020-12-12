@@ -6,7 +6,7 @@ import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  title: 'Components/Checkbox',
+  title: 'Fields/Checkbox',
   component: (Checkbox as any).type,
 };
 

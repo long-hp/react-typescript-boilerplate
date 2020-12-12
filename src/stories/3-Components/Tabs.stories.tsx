@@ -7,7 +7,7 @@ import getOptions from 'stories/utils/getOptions';
 import { defaultColors, MaterialIcon, Text, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/Tabs',
+  title: 'General/Tabs',
   component: Tabs,
 };
 

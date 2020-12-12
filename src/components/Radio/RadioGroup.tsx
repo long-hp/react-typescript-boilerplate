@@ -1,7 +1,7 @@
-import useMergedState from 'hooks/useMergedState';
 import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { ColorNames, Size, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
+import useMergedState from './useMergedState';
 import { RadioGroupActionProvider, RadioGroupStateProvider } from './context';
 import Radio, { Value } from './Radio';
 import styles from './Radio.module.scss';
@@ -51,7 +51,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
   value,
   children,
   block = false,
-  borderColor = 'gray5',
+  borderColor = 'gray4',
   defaultValue,
   onChange,
   onChangeValue,
@@ -69,11 +69,11 @@ const RadioGroup: FC<RadioGroupProps> = ({
     if (!value) {
       setValueState(val);
     }
-    if (onChange && val !== lastValue) {
-      onChange(event);
+    if (val !== lastValue) {
+      onChange?.(event);
     }
-    if (onChangeValue && val !== lastValue) {
-      onChangeValue(val);
+    if (val !== lastValue) {
+      onChangeValue?.(val);
     }
   };
 
