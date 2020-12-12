@@ -28,7 +28,7 @@ const SwitchBeauty: FC<SwitchBeautyProps> = ({ ...rest }) => {
   const switchProps = pick(switchPropsKeys, rest);
   const textStatusProps = pick(textStatusPropsKeys, rest);
   const fieldBoxProps = omit(omitFieldBoxPropsKeys, rest);
-  const { size = 'medium', disabled } = rest;
+  const { size = 'large', disabled } = rest;
   const disabledClass = disabled ? 'ui-disable' : '';
   const sizeClass = styles[size];
   const classes = classNames(styles.container, sizeClass, disabledClass);
