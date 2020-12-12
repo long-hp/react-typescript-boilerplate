@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, select } from '@storybook/addon-knobs';
-import Tabbar, { ScrollDirection, TabbarProps } from 'components/Tabbar';
+import Tabs, { ScrollDirection, TabPosition } from 'components/Tabs';
 import { range } from 'ramda';
 import React, { ReactNode, useState } from 'react';
 import getOptions from 'stories/utils/getOptions';
@@ -8,7 +8,7 @@ import { defaultColors, MaterialIcon, Text, View } from 'wiloke-react-core';
 
 export default {
   title: 'Components/Tabs',
-  component: Tabbar,
+  component: Tabs,
 };
 
 export const Default = () => {
@@ -20,20 +20,20 @@ export const Default = () => {
   };
 
   return (
-    <Tabbar onChange={_onChangeKey} defaultActiveKey={activeKey}>
-      <Tabbar.TabPane tab="Tab title 1" key="1">
+    <Tabs defaultActiveKey={activeKey} onChange={_onChangeKey}>
+      <Tabs.Pane tab="Tab title 1" key="1">
         <View>Tab content 1</View>
-      </Tabbar.TabPane>
-      <Tabbar.TabPane tab="Tab title 2" key="2">
+      </Tabs.Pane>
+      <Tabs.Pane tab="Tab title 2" key="2">
         <View>Tab content 2</View>
-      </Tabbar.TabPane>
-      <Tabbar.TabPane tab="Tab title 3" key="3">
+      </Tabs.Pane>
+      <Tabs.Pane tab="Tab title 3" key="3">
         <View>Tab content 3</View>
-      </Tabbar.TabPane>
-      <Tabbar.TabPane tab="Tab title 4" key="4" disabled>
+      </Tabs.Pane>
+      <Tabs.Pane tab="Tab title 4" key="4" disabled>
         <View>Tab content 4</View>
-      </Tabbar.TabPane>
-    </Tabbar>
+      </Tabs.Pane>
+    </Tabs>
   );
 };
 
@@ -43,7 +43,7 @@ export const WithProps = () => {
   const colorTabContent = select('Color Text Tab Content', getOptions(defaultColors), 'light');
   const tabPosition = select(
     'Tab Position',
-    getOptions<TabbarProps['tabPosition'][]>(['bottom', 'left', 'right', 'top']),
+    getOptions<TabPosition[]>(['bottom', 'left', 'right', 'top']),
     'top',
   );
 
@@ -76,7 +76,7 @@ export const WithProps = () => {
   return (
     <View container>
       <View tachyons={['w-60']}>
-        <Tabbar
+        <Tabs
           defaultActiveKey={activeKey}
           navBarAnimated={navBarAnimated}
           tabTitleGutter={navBarGutter}
@@ -88,7 +88,7 @@ export const WithProps = () => {
         >
           {fakeData.map(item => {
             return (
-              <Tabbar.TabPane
+              <Tabs.Pane
                 tab={`Tab Title ${item}`}
                 disabled={item === 3}
                 key={`${item}`}
@@ -96,10 +96,10 @@ export const WithProps = () => {
                 color={colorTabContent}
               >
                 <Text>Tab content {item}</Text>
-              </Tabbar.TabPane>
+              </Tabs.Pane>
             );
           })}
-        </Tabbar>
+        </Tabs>
       </View>
     </View>
   );

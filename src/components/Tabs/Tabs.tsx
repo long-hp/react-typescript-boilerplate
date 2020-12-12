@@ -1,6 +1,7 @@
-import Tabs, { TabsProps } from 'rc-tabs';
+import RTabs, { TabsProps } from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
-import React, { FC, ReactNode } from 'react';
+import { RenderTabBar } from 'rc-tabs/lib/interface';
+import React, { FC, KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { useTheme, View } from 'wiloke-react-core';
 import styles from './Tabbar.module.scss';
 import TabPaneBase from './TabPane';
@@ -22,7 +23,7 @@ type PickTabsProp = Pick<
   | 'defaultActiveKey'
 >;
 
-export interface TabbarProps extends PickTabsProp {
+export interface TabProps extends PickTabsProp {
   /** key của tabPanel đang active hiện tại */
   activeKey?: string;
   /** Default active tab */
@@ -40,20 +41,20 @@ export interface TabbarProps extends PickTabsProp {
   /** className */
   className?: string;
   /** render navbar */
-  renderTabBar?: (props: any, DefaultTabBar: React.ComponentType) => React.ReactElement;
+  renderTabBar?: RenderTabBar;
   /** Sự kiện onChange */
   onChange?: (activeKey: string) => void;
   /** Sự kiện scroll tab */
   onTabScroll?: (info: { direction: ScrollDirection }) => void;
   /** Sự kiện được gọi khi click vào tab */
-  onTabClick?: (activeKey: string, e: React.KeyboardEvent | React.MouseEvent) => void;
+  onTabClick?: (activeKey: string, e: KeyboardEvent | MouseEvent) => void;
 }
 
-interface TabbarStatic {
-  TabPane: typeof TabPaneBase;
+interface TabsStatic {
+  Pane: typeof TabPaneBase;
 }
 
-const Tabbar: FC<TabbarProps> & TabbarStatic = ({
+const Tabs: FC<TabProps> & TabsStatic = ({
   children,
   className,
   defaultActiveKey = '1',
@@ -72,7 +73,7 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
 
   return (
     <View className={styles.container}>
-      <Tabs
+      <RTabs
         activeKey={activeKey}
         direction={direction}
         defaultActiveKey={defaultActiveKey}
@@ -87,11 +88,11 @@ const Tabbar: FC<TabbarProps> & TabbarStatic = ({
         renderTabBar={renderTabBar}
       >
         {children}
-      </Tabs>
+      </RTabs>
     </View>
   );
 };
 
-Tabbar.TabPane = TabPaneBase;
+Tabs.Pane = TabPaneBase;
 
-export default Tabbar;
+export default Tabs;
