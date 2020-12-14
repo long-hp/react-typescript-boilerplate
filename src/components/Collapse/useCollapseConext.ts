@@ -1,9 +1,12 @@
 import { useContext } from 'react';
-import { CollapseStateContext } from './CollapseConext';
+import context from './CollapseContext';
 
 const useCollapseContext = () => {
-  const stateContext = useContext(CollapseStateContext);
-  console.log(stateContext);
+  const stateContext = useContext(context);
+  if (!stateContext) {
+    throw new Error('Collapse components are compound component. Must be used inside Collapse.');
+  }
+  return stateContext;
 };
 
 export default useCollapseContext;
