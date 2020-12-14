@@ -34,7 +34,7 @@ const SwitchBeauty: FC<SwitchBeautyProps> = ({ ...rest }) => {
   const classes = classNames(styles.container, sizeClass, disabledClass);
   return (
     <FieldBox className={classes} tachyons={['flex', 'items-center', 'justify-between']} {...fieldBoxProps}>
-      <Switch {...switchProps}>{value => <TextStatus {...textStatusProps} enable={value} />}</Switch>
+      <Switch {...switchProps} renderAfter={value => <TextStatus {...textStatusProps} enable={value} />} />
     </FieldBox>
   );
 };

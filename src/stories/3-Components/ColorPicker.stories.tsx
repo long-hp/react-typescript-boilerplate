@@ -1,11 +1,9 @@
 import { action } from '@storybook/addon-actions';
 import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
-import { decimalToHex } from 'components/ColorPicker/decimalToHex';
-import React, { useState } from 'react';
-import { ColorResult, HSLColor, RGBColor } from 'react-color';
+import React from 'react';
 import getOptions from 'stories/utils/getOptions';
-import { Radius, Text, View } from 'wiloke-react-core';
+import { Radius, View } from 'wiloke-react-core';
 
 export default {
   title: 'Fields/ColorPicker',
@@ -54,28 +52,6 @@ export const WithProps = () => {
     'bottom-start',
   );
 
-  const [colorPreview, setColorPreview] = useState('#333333');
-  const [colorState, setColorState] = useState<HSLColor>({
-    h: 250,
-    s: 0,
-    l: 0.2,
-    a: 1,
-  });
-  const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 51,
-    g: 51,
-    b: 51,
-    a: 1,
-  });
-
-  const _onChangeColorPicker = (color: ColorResult) => {
-    setRgbColor(color.rgb);
-    setColorState(color.hsl);
-    const hexCode = `${color.hex}${decimalToHex(Number(color.rgb.a))}`;
-    setColorPreview(hexCode);
-    action('onChange')(color);
-  };
-
   return (
     <View tachyons={['flex', 'justify-between', 'w-100', 'pa4']}>
       {isLoading ? (
@@ -83,21 +59,12 @@ export const WithProps = () => {
       ) : (
         <ColorPicker
           pickerType={selectType}
-          color={colorState}
-          colorPicker={rgbColor}
           placement={selectPlacement}
           radius={radius}
           onlyShowColorBoard={onlyShowColorBoard}
-          onChange={_onChangeColorPicker}
+          onChange={action('onChange')}
         />
       )}
-
-      <View>
-        <Text color="gray9">Hex: {colorPreview}</Text>
-        <Text color="gray9">
-          RGB: rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
-        </Text>
-      </View>
     </View>
   );
 };
