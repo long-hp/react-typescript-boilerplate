@@ -19,9 +19,9 @@ export const WithComponent = () => {
 };
 
 export const WithHooks = () => {
-  const { setRef } = useOuterTrigger(() => action('onClick')('Outer: true'));
+  const targetRef = useOuterTrigger(() => action('onClick')('Outer: true'));
   return (
-    <Text ref={setRef} backgroundColor="secondary" color="light" tachyons="pa4" size={20}>
+    <Text ref={targetRef} backgroundColor="secondary" color="light" tachyons="pa4" size={20}>
       Click outer box
     </Text>
   );

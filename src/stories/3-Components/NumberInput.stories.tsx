@@ -7,7 +7,7 @@ import getWithStylesProps from 'stories/utils/getWithStylesProps';
 import { Radius, Size } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/NumberInput',
+  title: 'Fields/NumberInput',
   component: NumberInput,
 };
 

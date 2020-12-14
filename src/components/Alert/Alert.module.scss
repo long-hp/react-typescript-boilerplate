@@ -3,8 +3,6 @@
 .container {
   padding: px(15);
   margin-bottom: px(15);
-  position: relative;
-  overflow: hidden;
 }
 
 .enableClose {
@@ -17,10 +15,6 @@
   @include autoDirection((
     padding-left: px(60)
   ));
-}
-
-.disableBorder {
-  border: none;
 }
 
 .message {
@@ -39,20 +33,48 @@
   opacity: 0.05;
 }
 
-.small {
-  padding-top: px(8);
-  padding-bottom: px(8);
-  .icon {
+.icon {
+  .small & {
     top: px(10);
     font-size: px(18);
   }
-  .message {
+  .medium & {
+    top: px(15);
+    font-size: px(26);
+  }
+  .large & {
+    top: px(16);
+    font-size: px(30);
+  }
+}
+
+.message {
+  .small & {
     font-size: px(14);
   }
-  .description {
+  .medium & {
+    font-size: px(16);
+  }
+  .large & {
+    font-size: px(20);
+  }
+}
+
+.description {
+  .small & {
     font-size: px(13);
   }
+  .medium & {
+    font-size: px(14);
+  }
+  .large & {
+    font-size: px(15);
+  }
+}
 
+.small {
+  padding-top: px(8);
+  padding-bottom: px(8);
   &.showIcon {
     @include autoDirection((
       padding-left: px(37)
@@ -60,38 +82,3 @@
   }
 }
 
-.medium {
-  .icon {
-    top: px(15);
-    font-size: px(26);
-  }
-  .message {
-    font-size: px(16);
-  }
-  .description {
-    font-size: px(14);
-  }
-}
-
-.large {
-  .icon {
-    top: px(16);
-    font-size: px(30);
-  }
-  .message {
-    font-size: px(20);
-  }
-  .description {
-    font-size: px(15);
-  }
-}
-
-//
-
-.round {
-  border-radius: px(10);
-}
-
-.pill {
-  border-radius: px(50);
-}

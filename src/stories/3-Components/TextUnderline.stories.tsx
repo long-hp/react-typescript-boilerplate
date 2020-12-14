@@ -5,7 +5,7 @@ import { View, defaultColors } from 'wiloke-react-core';
 import TextUnderline from 'components/TextUnderline';
 
 export default {
-  title: 'Components/TextUnderline',
+  title: 'General/TextUnderline',
   component: TextUnderline,
 };
 

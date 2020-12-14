@@ -73,10 +73,14 @@ $handle-size-extra-small: $switch-height-extra-small - $handle-height-space;
 .handle {
   top: px($space);
   transition: all 0.2s ease-in-out;
-  @include autoDirection((transform: translateX(px($space))));
+  @include autoDirection((
+    transform: translateX(px($space))
+  ));
 
   .checked & {
-    @include autoDirection((transform: $translateX-checked))
+    @include autoDirection((
+      transform: $translateX-checked
+    ))
   }
 
   .extra-small & {

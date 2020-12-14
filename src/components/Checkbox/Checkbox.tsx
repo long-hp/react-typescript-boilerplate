@@ -5,11 +5,11 @@ import styles from './Checkbox.module.scss';
 import CheckboxLoading from './CheckboxLoading';
 
 export interface CheckboxProps {
-  /** Kich thuoc checkbox */
+  /** Kích thước của checkbox */
   size?: Size;
-  /** Trang thai cua checkbox */
+  /** Trạng thái của checkbox */
   checked?: boolean;
-  /** Trang thai default cua checkbox */
+  /** Trạng thái default của checkbox */
   defaultChecked?: boolean;
   /** Disabled Checkbox */
   disabled?: boolean;

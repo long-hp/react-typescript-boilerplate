@@ -26,7 +26,7 @@ export interface SwitchProps extends WithTachyonsProps, Pick<ViewProps, 'nightMo
   onChange?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   /** sự kiện onChange click vào component và nhận được value */
   onValueChange?: (value: boolean) => void;
-  children?: ((value: boolean) => ReactNode) | ReactNode;
+  renderAfter?: (value: boolean) => ReactNode;
 }
 
 const getLoadingSize = (size: Size) => {
@@ -55,7 +55,7 @@ const Switch = ({
   inactiveColor = 'gray4',
   onChange,
   onValueChange,
-  children,
+  renderAfter,
   className,
   nightModeBlacklist,
   ...rest
@@ -111,13 +111,6 @@ const Switch = ({
     );
   };
 
-  const _renderChildren = () => {
-    if (typeof children === 'function') {
-      return children(checkedState);
-    }
-    return children;
-  };
-
   useEffect(() => {
     setCheckedState(checked || defaultChecked);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -137,7 +130,7 @@ const Switch = ({
         {_renderInnerContent()}
         {_renderLoading()}
       </View>
-      {_renderChildren()}
+      {renderAfter?.(checkedState)}
     </>
   );
 };

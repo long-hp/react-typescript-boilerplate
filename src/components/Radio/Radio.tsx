@@ -156,7 +156,7 @@ const Radio: FC<RadioProps> & RadioStatic = ({
       ) : (
         <Text
           backgroundColor={checkedState && !disabled ? activeColor : 'light'}
-          color={checkedState ? textActiveColor : 'dark'}
+          color={checkedState ? textActiveColor : 'gray9'}
           tagName="label"
           tachyons={['relative', 'dib', 'tc', 'pointer']}
           borderStyle="solid"

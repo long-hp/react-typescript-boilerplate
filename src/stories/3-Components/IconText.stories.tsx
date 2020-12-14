@@ -4,7 +4,7 @@ import React from 'react';
 import { GridSmart, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/IconText',
+  title: 'General/IconText',
   component: (IconText as any).type,
 };
 

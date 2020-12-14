@@ -1,51 +1,21 @@
+import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import { Placement } from 'components/ColorPicker/ColorPicker';
 import ColorPickerBeauty, { ColorPickerBeautyProps } from 'components/ColorPickerBeauty';
-import React, { useState } from 'react';
-import { ColorResult, HSLColor, RGBColor } from 'react-color';
 import getOptions from 'stories/utils/getOptions';
-import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Text, View } from 'wiloke-react-core';
+import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, View } from 'wiloke-react-core';
 
 export default {
-  title: 'Components/ColorPickerBeauty',
+  title: 'Fields/ColorPickerBeauty',
   component: ColorPickerBeauty,
 };
 
 export const Default = () => {
-  const [colorState, setColorState] = useState<HSLColor>({
-    h: 250,
-    s: 0,
-    l: 0.2,
-    a: 1,
-  });
-  const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 51,
-    g: 51,
-    b: 51,
-    a: 1,
-  });
-
-  const _onChangeColorPicker = (color: ColorResult) => {
-    setRgbColor(color.rgb);
-    setColorState(color.hsl);
-    action('onChange')(color);
-  };
-
   return (
-    <View tachyons={['w-90']}>
+    <View>
       <View tachyons="mb3">
-        <ColorPickerBeauty
-          color={colorState}
-          colorPicker={rgbColor}
-          pickerType="sketch"
-          colorDetails={
-            <Text>
-              rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
-            </Text>
-          }
-          onChange={_onChangeColorPicker}
-        />
+        <ColorPickerBeauty onChange={action('onChange')} />
       </View>
     </View>
   );
@@ -130,36 +100,13 @@ export const WithProps = () => {
     backgroundInnerField = select('Background field box', getOptions(defaultColors), 'light');
   }
 
-  const [colorState, setColorState] = useState<HSLColor>({
-    h: 250,
-    s: 0,
-    l: 0.2,
-    a: 1,
-  });
-  const [rgbColor, setRgbColor] = useState<RGBColor>({
-    r: 51,
-    g: 51,
-    b: 51,
-    a: 1,
-  });
-
-  const _onChangeColorPicker = (color: ColorResult) => {
-    if (color.hsl !== colorState) {
-      setRgbColor(color.rgb);
-      setColorState(color.hsl);
-      action('onChange')(color);
-    }
-  };
-
   return (
-    <View tachyons={['w-90']}>
+    <View>
       <View tachyons="mb3">
         {isLoading ? (
           <ColorPickerBeauty.Loading />
         ) : (
           <ColorPickerBeauty
-            color={colorState}
-            colorPicker={rgbColor}
             placement={selectPlacement}
             pickerType={selectType}
             radiusBox={radiusBox}
@@ -168,12 +115,7 @@ export const WithProps = () => {
             borderColor={borderColor}
             borderStyle={borderStyle}
             borderWidth={borderWidth}
-            colorDetails={
-              <Text>
-                rgba({rgbColor.r}, {rgbColor.g}, {rgbColor.b}, {rgbColor.a})
-              </Text>
-            }
-            onChange={_onChangeColorPicker}
+            onChange={action('onChange')}
           />
         )}
       </View>

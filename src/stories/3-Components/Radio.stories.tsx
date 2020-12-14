@@ -6,8 +6,8 @@ import { action } from '@storybook/addon-actions';
 import Radio from 'components/Radio';
 
 export default {
-  title: 'Components/Radio',
-  component: Radio,
+  title: 'Fields/Radio',
+  component: (Radio as any).type,
 };
 
 const optionsWithDisabled = [

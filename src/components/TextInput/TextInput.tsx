@@ -1,11 +1,11 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes, useCallback } from 'react';
-import { Size, View, WithStylesProps } from 'wiloke-react-core';
+import { Size, View, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import TextInputLoading from './TextInputLoading';
 import styles from './TextInput.module.scss';
 
 type InputType = 'text' | 'password' | 'email';
-export interface InputProps extends WithStylesProps {
+export interface InputProps extends ViewProps {
   /** Size của input */
   sizeInput?: Size;
   /** Placeholder của input */
@@ -34,11 +34,12 @@ const TextInput: FC<InputProps> & {
   type = 'text',
   value,
   disabled = false,
-  borderColor,
-  borderStyle,
-  borderWidth,
-  color,
+  borderColor = 'gray5',
+  borderStyle = 'solid',
+  borderWidth = '1/6',
+  color = 'gray8',
   backgroundColor,
+  radius = 5,
   onChange,
   onValueChange,
   ...rest
@@ -65,6 +66,7 @@ const TextInput: FC<InputProps> & {
       borderColor={borderColor}
       borderWidth={borderWidth}
       borderStyle={borderStyle}
+      radius={radius}
     >
       <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.textInput} onChange={_handleChange} />
     </View>
