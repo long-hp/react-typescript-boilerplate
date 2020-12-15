@@ -1,31 +1,101 @@
-import React, { CSSProperties, FC, Key, ReactNode } from 'react';
-import { View } from 'wiloke-react-core';
+import React, { CSSProperties, FC, ReactNode, useState } from 'react';
+import { BorderStyle, BorderWidth, ColorNames, LineAwesome, Radius, Text, View } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
+import styles from './Collapse.module.scss';
+import { useCollapseState } from './hook/useCollapseState';
 
 export interface PanelProps {
-  id?: string;
-  headerClass?: string;
+  children?: ReactNode;
+  /** className của panel */
   className?: string;
+  /** Title header của panel */
   header?: ReactNode;
-  expandIcon?: ReactNode;
+  /** Bật lên sẽ hiển thị mũi tên bên góc phải */
   showArrow?: boolean;
+  /** Panel đang được active sẽ hiển thị */
   active?: boolean;
-  panelKey?: Key;
+  /** Id key của panel */
+  panelKey?: string;
+  /** Style properties của panel */
   style?: CSSProperties;
-  onClick: (panelKey: Key) => void;
+  /** Bật lên panel sẽ bị mờ và không bấm được vào */
+  disabled?: boolean;
+  /** Radius vủa panel */
+  radius?: Radius;
+  /** Background color của panel */
+  backgroundColor?: ColorNames;
+  /** Kiểu border của panel */
+  borderStyle?: BorderStyle;
+  /** Độ rộng của border */
+  borderWidth?: BorderWidth;
+  /** Màu của border */
+  borderColor?: ColorNames;
+  /** Sự kiện onClick */
+  onClick?: (panelKey: string) => void;
 }
 
-const Panel: FC<PanelProps> = ({ id, panelKey = '', style, className, children, onClick }) => {
+const Panel: FC<PanelProps> = ({
+  showArrow = true,
+  active = false,
+  disabled = false,
+  panelKey,
+  header = 'Panel header',
+  style,
+  className,
+  children,
+  radius = 5,
+  backgroundColor = 'gray2',
+  borderColor = 'gray5',
+  borderWidth = '1/6',
+  borderStyle = 'solid',
+  onClick,
+}) => {
+  const [activePanel, setActive] = useState(active);
+  const stateContext = useCollapseState();
+
+  if (stateContext) {
+    disabled = disabled || (stateContext.disabled as boolean);
+  }
+
   const _handleClick = () => {
-    onClick(panelKey);
+    if (disabled) {
+      return;
+    }
+    setActive(activePanel => !activePanel);
+    onClick?.(panelKey as string);
   };
 
-  const combineProps = { className: classNames(className), style };
+  const disabledClass = disabled ? 'ui-disabled' : '';
+  const combineProps = { className: classNames(className, styles.panelContainer, disabledClass), style };
+  const activeClass = activePanel ? styles.panelActive : styles.panelInactive;
+  const expandIcon = activePanel ? <LineAwesome name="angle-down" /> : <LineAwesome name="angle-right" />;
 
   return (
-    <View {...combineProps} id={id} onClick={_handleClick}>
+    <View
+      {...combineProps}
+      key={panelKey}
+      tachyons={['mb2']}
+      wilokeStyles={activePanel ? ['pl-12', 'pr-12', 'pb-16'] : ['pl-12', 'pr-12']}
+      backgroundColor={backgroundColor}
+      borderColor={borderColor}
+      radius={radius}
+      borderStyle={borderStyle}
+      borderWidth={borderWidth}
+    >
+      {/* header */}
+      <View tachyons={['flex', 'items-center', 'justify-between']} onClick={_handleClick}>
+        <View tachyons={['flex', 'items-center', 'flex-grow-1']} className={styles.headerPanel}>
+          <Text size={14} color="gray9">
+            {header}
+          </Text>
+        </View>
+        <View className={styles.icon}>{showArrow && expandIcon}</View>
+      </View>
+
       {/* content */}
-      <View>{children}</View>
+      <View backgroundColor={backgroundColor} tagName="div" className={classNames(styles.panelContent, activeClass)}>
+        {children}
+      </View>
     </View>
   );
 };
