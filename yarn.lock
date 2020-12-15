@@ -3065,6 +3065,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-is@^17.0.0":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-is/-/react-is-17.0.0.tgz#6b60190ae60591ae0c83d6f3854e61e08f5a7976"
+  integrity sha512-A0DQ1YWZ0RG2+PV7neAotNCIh8gZ3z7tQnDJyS2xRPDNtAtSPcJ9YyfMP8be36Ha0kQRzbZCrrTMznA4blqO5g==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux-i18n@^0.0.11":
   version "0.0.11"
   resolved "https://registry.yarnpkg.com/@types/react-redux-i18n/-/react-redux-i18n-0.0.11.tgz#a0eedd67ca51ac78b9f4396d5b0e1d0e365ca6e1"
@@ -14370,6 +14377,11 @@ react-is@^16.12.0, react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-is@^17.0.1:
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
+  integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
