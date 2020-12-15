@@ -93,7 +93,7 @@ const Panel: FC<PanelProps> = ({
       </View>
 
       {/* content */}
-      <View backgroundColor={backgroundColor} tagName="div" className={classNames(styles.panelContent, activeClass)}>
+      <View backgroundColor={backgroundColor} tagName="div" wilokeStyles="pt-6" className={classNames(styles.panelContent, activeClass)}>
         {children}
       </View>
     </View>
