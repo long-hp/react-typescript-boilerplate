@@ -10,9 +10,9 @@ import getOptions from 'stories/utils/getOptions';
 import { BorderStyle, BorderWidth, defaultColors } from 'wiloke-react-core';
 
 export default {
-  title: 'Fields/Collapse',
+  title: 'General/Collapse',
   component: Collapse,
-  subcomponents: { Panel: (Collapse.Panel as any).type },
+  subcomponents: { 'Collapse.Panel': (Collapse.Panel as any).type },
 };
 
 export const Default = () => {

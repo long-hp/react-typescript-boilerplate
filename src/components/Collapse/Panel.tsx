@@ -2,7 +2,7 @@ import React, { CSSProperties, FC, ReactNode, useState } from 'react';
 import { BorderStyle, BorderWidth, ColorNames, LineAwesome, Radius, Text, View } from 'wiloke-react-core';
 import { classNames, memoization } from 'wiloke-react-core/utils';
 import styles from './Collapse.module.scss';
-import { useCollapseState } from './hook/useCollapseState';
+import { useCollapseState } from './hooks/useCollapseState';
 
 export interface PanelProps {
   children?: ReactNode;

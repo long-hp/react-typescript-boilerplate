@@ -1,9 +1,8 @@
-import React, { Children, FC, Fragment, ReactElement, useCallback, useState } from 'react';
-import { isFragment } from 'react-is';
+import React, { Children, FC, ReactElement, useCallback, useState } from 'react';
 import { CollapseDispatchProvider, CollapseStateProvider } from './context/CollapseContext';
-import { useCollapseDispatch } from './hook/useCollapseDispatch';
+import { useCollapseDispatch } from './hooks/useCollapseDispatch';
 import Panel, { PanelProps } from './Panel';
-import { parseValueToArray } from './util/parseValueToArray';
+import { parseValueToArray } from './utils/parseValueToArray';
 
 type KeyStateType = string | string[];
 
@@ -27,7 +26,7 @@ const Collapse: FC<CollapseProps> & CollapseStatic = ({ activeKey, defaultActive
   const currentActiveKey = activeKey ? activeKey : defaultActiveKey;
   const [activeStateKey, setActiveStateKey] = useState(parseValueToArray(currentActiveKey as KeyStateType));
 
-  const _handleOnChange = (key: KeyStateType) => {
+  const _handleChange = (key: KeyStateType) => {
     if (!activeKey) {
       setActiveStateKey(key as string[]);
     }
@@ -35,7 +34,7 @@ const Collapse: FC<CollapseProps> & CollapseStatic = ({ activeKey, defaultActive
     dispatchContext?.onChange?.(key);
   };
 
-  const _onClick = useCallback(
+  const _handlePanelClick = useCallback(
     (key: string) => {
       const _activeKey = [...activeStateKey];
       const idx = _activeKey.indexOf(key);
@@ -47,7 +46,7 @@ const Collapse: FC<CollapseProps> & CollapseStatic = ({ activeKey, defaultActive
         _activeKey.push(key); // add key to array when click
       }
 
-      _handleOnChange(_activeKey);
+      _handleChange(_activeKey);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [activeStateKey],
@@ -63,27 +62,19 @@ const Collapse: FC<CollapseProps> & CollapseStatic = ({ activeKey, defaultActive
     const props: PanelProps = {
       panelKey: key,
       active: isActive,
-      onClick: _onClick,
+      onClick: _handlePanelClick,
     };
     const newElement = React.cloneElement(child, props);
     return newElement;
   };
 
   const _renderChildren = () => {
-    // get list child
-    const childList = isFragment(children) ? children.props : children;
-    const newChildren = Children.map(childList, _renderNewChild);
-
-    if (isFragment(children as ReactElement)) {
-      return <Fragment>{newChildren}</Fragment>;
-    }
-
-    return newChildren;
+    return Children.map(children as ReactElement, _renderNewChild);
   };
 
   return (
     <CollapseStateProvider value={{ activeKey, defaultActiveKey, disabled }}>
-      <CollapseDispatchProvider value={{ onChange: _handleOnChange }}>{_renderChildren()}</CollapseDispatchProvider>
+      <CollapseDispatchProvider value={{ onChange: _handleChange }}>{_renderChildren()}</CollapseDispatchProvider>
     </CollapseStateProvider>
   );
 };
