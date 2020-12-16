@@ -17813,10 +17813,10 @@ widest-line@^3.1.0:
   dependencies:
     string-width "^4.0.0"
 
-wiloke-react-core@0.3.11:
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/wiloke-react-core/-/wiloke-react-core-0.3.11.tgz#7bdc5086026ff7d488b763822d31dcb0baf6f954"
-  integrity sha512-go/JpWGZK6uuDhWUiXtto8a+kZVadfBLdtSbZJYpvpWK0Q/T6bO9c+WehiU8lXna+pO7CNkRIsTVzp4sg7Mqmw==
+wiloke-react-core@0.3.12:
+  version "0.3.12"
+  resolved "https://registry.yarnpkg.com/wiloke-react-core/-/wiloke-react-core-0.3.12.tgz#b9983290f55c5242e1c2d9d324bc796bf4d66e59"
+  integrity sha512-DbKEaD0F0hrQ4F9fjocC6akkZpGNlDl5f+LggJIECK+d0l4JbcFL2fsf9tuEm1Cy7Pgk8y3zulJUKLwKAF9WlA==
   dependencies:
     "@popperjs/core" "^2.5.4"
     fs-extra "^9.0.1"
