@@ -1,6 +1,8 @@
-import React, { memo, FC } from 'react';
+import React, { FC } from 'react';
 import { View, Text, Image, ViewProps } from 'wiloke-react-core';
+import { memoization } from 'wiloke-react-core/utils';
 import avatarColors from './avatarColors';
+import AvatarLoading from './AvatarLoading';
 
 export interface AvatarProps extends Pick<ViewProps, 'radius' | 'className'> {
   /** Kích thước của avatar */
@@ -11,7 +13,11 @@ export interface AvatarProps extends Pick<ViewProps, 'radius' | 'className'> {
   uri?: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ uri, size = 30, name = '', ...rest }) => {
+interface AvatarStatic {
+  Loading: typeof AvatarLoading;
+}
+
+const Avatar: FC<AvatarProps> & AvatarStatic = ({ uri, size = 30, name = '', ...rest }) => {
   const textSize = size / 2 < 30 ? size / 2 : 30;
   const nameMatch = name.match(/^[^0-9]|\d/g);
   const text = !!name ? (!!nameMatch ? nameMatch[0].toUpperCase() : '') : '';
@@ -25,7 +31,7 @@ const Avatar: FC<AvatarProps> = ({ uri, size = 30, name = '', ...rest }) => {
   return (
     <View radius="pill" {...rest} tachyons={['flex', 'justify-center', 'items-center']} style={{ backgroundColor, width: size, height: size }}>
       {!!name && (
-        <Text size={textSize} style={{ lineHeight: textSize * 2, color: '#fff' }}>
+        <Text size={textSize} style={{ lineHeight: `${textSize * 2}px`, color: '#fff' }}>
           {text}
         </Text>
       )}
@@ -33,4 +39,6 @@ const Avatar: FC<AvatarProps> = ({ uri, size = 30, name = '', ...rest }) => {
   );
 };
 
-export default memo(Avatar);
+Avatar.Loading = AvatarLoading;
+
+export default memoization(Avatar);

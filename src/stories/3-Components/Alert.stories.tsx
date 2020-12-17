@@ -3,7 +3,7 @@ import { number, optionsKnob, select, text, boolean } from '@storybook/addon-kno
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import { Radius } from 'wiloke-react-core';
-import Alert, { AlertProps } from 'components/Alert/Alert';
+import Alert, { AlertProps } from 'components/Alert';
 
 export default {
   title: 'General/Alert',
