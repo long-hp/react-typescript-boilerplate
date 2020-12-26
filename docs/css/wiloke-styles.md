@@ -9,9 +9,11 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 Được tích hợp sẵn trong wiloke-react-core
 
-## Cách sử dụng
+## Trong file file styles/mains.scss
 
-- `@import '~wiloke-react-core/styles/wilokeStyles.scss';` vào file styles/mains.scss
+`@import '~wiloke-react-core/styles/wilokeStyles.scss'`
+
+## Cách sử dụng
 
 - Sử dụng trong component View và Text
 
@@ -87,6 +89,10 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 - Opacity
 
   `'o-0' | 'o-10' | 'o-15' | 'o-20' | 'o-25' | 'o-30' | 'o-35' | 'o-40' | 'o-45' | 'o-50' | 'o-55' | 'o-60' | 'o-65' | 'o-70' | 'o-75' | 'o-80' | 'o-85' | 'o-90' | 'o-95' | 'o-100'`
+
+- Backdrop-Filter
+
+  `'backdrop-blur-4' | 'backdrop-blur-5' | 'backdrop-blur-6' | 'backdrop-blur-7' | 'backdrop-blur-8' | 'backdrop-blur-9' | 'backdrop-blur-10';`
 
 Typography
 

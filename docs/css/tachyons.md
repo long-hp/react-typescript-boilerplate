@@ -7,7 +7,11 @@
 
 Có sẵn trong wiloke-react-core
 
-- `@import '~wiloke-react-core/styles/tachyons.scss;'` vào file styles/mains.scss
+## Trong file file styles/mains.scss
+
+`@import '~wiloke-react-core/styles/tachyons.scss'`
+
+## Cách sử dụng
 
 ```JS
 
