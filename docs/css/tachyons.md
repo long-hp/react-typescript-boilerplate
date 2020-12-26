@@ -1,8 +1,11 @@
+[4]: ./wiloke-styles.md
+[6]: ./css-modules.md
+
+<!-- content -->
+
 # Tachyons
 
 Có sẵn trong wiloke-react-core
-
-## Cách sử dụng xem thêm [Tachyons](https://tachyons.io/)
 
 - `@import '~wiloke-react-core/styles/tachyons.scss;'` vào file styles/mains.scss
 
@@ -24,3 +27,7 @@ Có sẵn trong wiloke-react-core
   }
   export default App;
 ```
+
+<!-- end of content -->
+
+[Prev][4] | [Next][6]

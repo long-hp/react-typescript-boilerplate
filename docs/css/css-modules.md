@@ -1,3 +1,8 @@
+[5]: ./tachyons.md
+[7]: ./scss.md
+
+<!-- content -->
+
 # CSS Module
 
 Thẻ bao ngoài cùng nên là styles.container
@@ -19,3 +24,7 @@ Thẻ bao ngoài cùng nên là styles.container
   }
   export default App;
 ```
+
+<!-- end of content -->
+
+[Prev][5] | [Next][7]

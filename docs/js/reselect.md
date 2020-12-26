@@ -1,3 +1,7 @@
+[9]: ./routing.md
+
+<!-- content -->
+
 # Reselect
 
 Tạo selector trong container page
@@ -9,3 +13,7 @@ Nhận redux state trả về data
 ```JSX
   export const todolistSelector = (state: AppState) => state.todolist;
 ```
+
+<!-- end of content -->
+
+[Prev][9]

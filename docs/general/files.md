@@ -1,3 +1,8 @@
+[2]: ./commands.md
+[4]: ../css/wiloke-styles.md
+
+<!-- content -->
+
 # Configuration: A Glossary
 
 ## Hướng dẫn về các tệp cấu hình cho dự án này
@@ -15,3 +20,7 @@
 - `.circleci:` Cấu hình circleci
 - `.github:` Kết nối github với storybook
 - `.stoybook:` Cấu hình storybook
+
+<!-- end of content -->
+
+[Prev][2] | [Next][4]

@@ -1,3 +1,8 @@
+[8]: ./redux-saga.md
+[10]: ./reselect.md
+
+<!--  content -->
+
 # Routing
 
 Để thêm một route mới:
@@ -67,3 +72,7 @@
       export type Role = 'admin' | 'user';
 
   ```
+
+<!-- end of content -->
+
+[Prev][8] | [Next][10]

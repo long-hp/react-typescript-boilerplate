@@ -1,3 +1,7 @@
+[2]: ./commands.md
+
+<!-- contend -->
+
 # Hướng dẫn sử dụng wiloke-react-boilerplate
 
 Wiloke-react-boilerplate dược xây dựng và phát triển bởi [Wiloke](https://github.com/wiloke1). Tài liệu này nhằm cung cấp
@@ -57,3 +61,7 @@ Bạn sẽ viết ứng dụng của mình trong thư mục src. Đây là thư 
 - `styles:` Chứa các scss global cho toàn bộ dự án
 - `types:` Type global của dự án
 - `utils:` Chứa constanst và các hàm tái sử dụng cho dự án
+
+<!-- end of content -->
+
+[Next][2]

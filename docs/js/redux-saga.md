@@ -1,3 +1,8 @@
+[7]: ../css/scss.md
+[9]: ./routing.md
+
+<!--  content -->
+
 # Redux Saga
 
 ## Actions
@@ -123,3 +128,7 @@ Cách định nghĩa một saga
 Khai báo reducer vừa tạo trong store/rootSagas
 
 ![alt text](../img/img2.png)
+
+<!-- end of content -->
+
+[Prev][7] | [Next][9]

@@ -1,3 +1,8 @@
+[3]: ../general/files
+[5]: ./tachyons.md
+
+<!--  content -->
+
 # Wiloke Styles
 
 Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà không cần viết CSS.
@@ -119,3 +124,7 @@ Ví dụ
 
   export default App;
 ```
+
+<!-- end of content -->
+
+[Prev][3] | [Next][5]

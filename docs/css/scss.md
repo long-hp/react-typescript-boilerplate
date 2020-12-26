@@ -1,3 +1,8 @@
+[6]: ./css-modules.md
+[8]: ../js/redux-saga.md
+
+<!-- content -->
+
 # SCSS
 
 - `@import '~wiloke-react-core/styles/themes.scss';` vào file styles/mains.scss.
@@ -45,3 +50,7 @@
   box-shadow: 0 px(5) px(15) 0 rgba(nightModeBlacklist($rgb-dark), 0.10);
   }
   ```
+
+<!-- end of content -->
+
+[Prev][6] | [Next][8]

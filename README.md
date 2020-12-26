@@ -1,55 +1,66 @@
-# This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
+# Documentation
 
-## [Documentation](./docs/README.md)
+## Table of Contents
 
-## React typescript boilerplate (overrides [Create React App](https://github.com/facebook/create-react-app))
+- General
 
-Reactjs, redux, redux-saga, redux-persist, redux-logger, react-router, axios, typescript, storybook
+  - [Introduction](docs/general/introduction.md)
+  - [CLI Commands](docs/general/commands.md)
+  - [Tool Configuration](docs/general/files.md)
 
-## Start project
+- Styling (CSS)
 
-### `yarn start` or `npm start`
+  - [Wiloke Style](docs/css/wiloke-styles.md)
+  - [Tachyons](docs/css/tachyons.md)
+  - [CSS Modules](docs/css/css-modules.md)
+  - [SCSS](docs/css/scss.md)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- JS
+  - [Redux](https://redux.js.org/)
+  - [React Redux i18n](https://github.com/artisavotins/react-redux-i18n#readme)
+  - [Redux Saga](docs//js/redux-saga.md)
+  - [Query string](https://github.com/ljharb/qs)
+  - [Axios](https://github.com/axios/axios)
+  - [Routing](docs/js/routing.md)
+  - [Reselect](docs/js/reselect.md)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Overview
 
-### `yarn storybook` or `npm run storybook`
+### Quickstart
 
-Runs the [Storybook](https://storybook.js.org).\
-Open [http://localhost:9009](http://localhost:9009) to view it in the browser.
+1. Đầu tiên, hãy bắt đầu bằng cách cài đặt và chạy wiloke-react-boilerplate
 
-Deploy storybook and check UI with Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-jyemwbgkan.chromatic.com/?path=/story/start-welcome--to-storybook)
+   ```Shell
+   npm install && npm start
+   ```
 
-### `yarn test`
+   hoặc
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   ```Shell
+   yarn && yarn start
+   ```
 
-### `yarn build`
+1. Mở [localhost:3000](http://localhost:3000) để xem nó hoạt động.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Sử dụng bộ tạo tích hợp để bắt đầu tính năng đầu tiên của bạn.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Development
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Chạy `npm start` để xem ứng dụng của bạn tại `localhost:3000`
 
-### `yarn eject`
+`yarn storybook or npm run storybook`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Chạy Storybook\
+Mở http: // localhost: 9009 để xem trên trình duyệt.\
+Triển khai Storybook và kiểm tra giao diện người dùng với Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-jyemwbgkan.chromatic.com/?path=/story/components-button--with-props)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Building & Deploying
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Chạy `npm run build`, sẽ biên dịch tất cả các tệp cần thiết thành thư mục `build`.
+2. Tải nội dung của thư mục `build` lên thư mục gốc của máy chủ web của bạn.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Structure
 
-## Learn More
+`src/` thư mục chứa toàn bộ mã ứng dụng của bạn, bao gồm cả CSS, JavaScript, HTML
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### [Convention](./general/convention.md)

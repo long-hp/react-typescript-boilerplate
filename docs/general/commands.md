@@ -1,3 +1,8 @@
+[1]: ./introduction.md
+[3]: ./files.md
+
+<!-- contend -->
+
 # Command Line Commands
 
 ## Eject Components
@@ -27,3 +32,7 @@ Cho phép bạn tự động tạo mã soạn sẵn cho các phần chung của 
 ```Shell
   rc-generate --style scss --redux saga --component:name components/Button
 ```
+
+<!-- end of contend -->
+
+[Prev][1] | [Next][3]
