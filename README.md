@@ -1,5 +1,7 @@
 # This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
+## [Documentation](./docs/README.md)
+
 ## React typescript boilerplate (overrides [Create React App](https://github.com/facebook/create-react-app))
 
 Reactjs, redux, redux-saga, redux-persist, redux-logger, react-router, axios, typescript, storybook
