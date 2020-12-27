@@ -7,13 +7,21 @@
 
 ## Eject Components
 
+## Cách sử dụng
+
 ```Shell
   yarn ce
 ```
 
 ![alt ảnh sau khi chay yarn ce](../img/img1.png)
 
-Sử dụng các components base có sẵn trong [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core)
+UI Base là các components có sẵn chỉ cần import trong [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core) ví dụ như sau
+
+```Shell
+import { View, Image } from 'wiloke-react-core';
+```
+
+Ngoài UI Base ra thì ta còn có thể sử dụng lệnh `yarn ce` để eject components có sẵn và nó sẽ xuất hiện trong thư mục components của dự án ( những components này sẽ xuất hiện trong dự án giúp ta có thể custom lại style cũng như code logic nếu cần )
 
 ![alt ảnh các component base trên storybook](https://wiloke-images.netlify.app/wiloke-react-core/1.png)
 
