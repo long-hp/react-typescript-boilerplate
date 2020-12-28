@@ -74,7 +74,12 @@ Cách định nghĩa một reducer
 
 Khai báo reducer vừa tạo trong store/rootReducers
 
-![alt text](../img/img3.png)
+```tsx
+const reducers = {
+  ...reducersDemoPage,
+  ...reducersHeader,
+};
+```
 
 ## Saga
 
@@ -127,7 +132,9 @@ Cách định nghĩa một saga
 
 Khai báo reducer vừa tạo trong store/rootSagas
 
-![alt text](../img/img2.png)
+```tsx
+const sagas = [...sagaDemoPage];
+```
 
 <!-- end of content -->
 
