@@ -1,3 +1,6 @@
+[2]: ./commands.md
+[4]: ../css/wiloke-styles.md
+
 # Theme Provider
 
 Theme Provider cho phép ta tùy chỉnh mã để đáp ứng sự đa dạng về giao diện người dùng theo yêu cầu của doanh nghiệp hoặc khách hàng, bao gồm color, nightModeColor, direction v.v.
@@ -51,3 +54,5 @@ const AppContent = () => {
   return <ThemeProvider themeOverrides={themeOverrides}>content...</ThemeProvider>;
 };
 ```
+
+[Prev][2] | [Next][4]
