@@ -5,7 +5,8 @@
 
 # Tachyons
 
-Có sẵn trong wiloke-react-core
+Tachyons là 1 atomic css có sẵn trong wiloke-react-core
+Xem thêm [Tachyons](https://tachyons.io/)
 
 ## Trong file file styles/mains.scss
 
@@ -14,8 +15,6 @@ Có sẵn trong wiloke-react-core
 ```
 
 ## Cách sử dụng
-
-Xem thêm [Tachyons](https://tachyons.io/)
 
 ```tsx
 

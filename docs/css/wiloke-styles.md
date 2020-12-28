@@ -1,13 +1,11 @@
-[3]: ../general/files.md
+[3]: ../general/customize-theme.md
 [5]: ./tachyons.md
 
 <!--  content -->
 
 # Wiloke Styles
 
-Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà không cần viết CSS.
-
-Được tích hợp sẵn trong wiloke-react-core
+Thuộc loại atomic css. Nó có sẵn những class để hỗ trợ những khoảng nhỏ chính xác nhất khi đo đạc tại bản thiết kế.
 
 ## Trong file file styles/mains.scss
 
@@ -58,7 +56,11 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Position
 
-  `'abs-left-top' | 'abs-left-center' | 'abs-left-bottom' | 'abs-right-top' | 'abs-right-center' | 'abs-right-bottom' | 'abs-center-top' | 'abs-center-center' | 'abs-center-bottom'`
+  ```tsx
+  'abs-left-top' | 'abs-left-center' | 'abs-left-bottom'
+  'abs-right-top' | 'abs-right-center' | 'abs-right-bottom' 
+  'abs-center-top' | 'abs-center-center' | 'abs-center-bottom'
+  ```
 
   Lưu ý chỉ áp dụng cho position absolute
 
@@ -66,7 +68,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Height
 
-  ```Shell
+  ```tsx
   'h-0' | 'h-1' | 'h-2' | ... | 'h-20'
   ```
 
@@ -74,7 +76,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Width
 
-  ```Shell
+  ```tsx
   'w-0' | 'w-1' | 'w-2' | ... | 'w-20'
   ```
 
@@ -82,7 +84,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Padding
 
-  ```Shell
+  ```tsx
   'pa-0' | 'pa-1' | 'pa-2' | ... | 'pa-30'
   'pt-0' | 'pt-1' | 'pt-2' | ... | 'pt-30'
   'pr-0' | 'pr-1' | 'pr-2' | ... | 'pr-30'
@@ -92,7 +94,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
   Margin
 
-  ```Shell
+  ```tsx
   'ma-0' | 'ma-1' | 'ma-2' | ... | 'ma-30'
   'mt-0' | 'mt-1' | 'mt-2' | ... | 'mt-30'
   'mb-0' | 'mb-1' | 'mb-2' | ... | 'mb-30'
@@ -104,20 +106,20 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Border Radius
 
-  ```Shell
+  ```tsx
   'round-0' | 'round-1' | ... | 'round-20'
   ```
 
 - Opacity
 
-  ```Shell
+  ```tsx
   'o-0' | 'o-10' | 'o-15' | 'o-20' | 'o-25' | 'o-30' | ... |'o-90' | 'o-95' | 'o-100'`
 
   ```
 
 - Backdrop-Filter
 
-  ```Shell
+  ```tsx
   'backdrop-blur-4' | 'backdrop-blur-5' | 'backdrop-blur-6' | 'backdrop-blur-7' | 'backdrop-blur-8' | 'backdrop-blur-9' | 'backdrop-blur-10'
   ```
 
@@ -125,13 +127,13 @@ Typography
 
 - Font size
 
-  ```Shell
+  ```tsx
   'fs-8' | 'fs-9' | ... | 'fs-28' | 'fs-29' | 'fs-30'
   ```
 
 - Font weight
 
-  ```Shell
+  ```tsx
   'fw-100' | 'fw-200' | 'fw-300' | 'fw-400' | 'fw-500' | 'fw-600' | 'fw-700' | 'fw-800' | 'fw-900'
   ```
 
@@ -139,7 +141,7 @@ Effect Hover
 
 - Lưu ý chỉ dùng cho một cấp
 
-  ```Shell
+  ```tsx
     'hover-child-translateX-10' | 'hover-child-translateX-20'
     ...
     'hover-child-translateX-90' | 'hover-child-translateX-100'

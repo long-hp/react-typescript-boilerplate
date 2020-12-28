@@ -1,67 +1,45 @@
-# Documentation
+# Hướng dẫn sử dụng react-typescript-boilerplate được tạo ra từ create-react-app + wiloke-react-core
 
-## Table of Contents
+React-typescript-boilerplate được xây dựng và phát triển bởi [Wiloke](http://wiloke.com/). Tài liệu này nhằm cung cấp
+cho bạn một chút về cách kiến trúc của react-typescript-boilerplate cũng như cách sử dụng [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core) tích hợp bên trong.
 
-- General
+###### [Bắt đầu dự án](docs/general/start.md)
 
-  - [Introduction](docs/general/introduction.md)
-  - [CLI](docs/general/commands.md)
-  - [Tool Configuration](docs/general/files.md)
-  - [Theme Provider](docs/general/customize-theme.md)
+###### [Xem các CLI](docs/general/commands.md)
 
-- Styling (CSS)
+###### [Danh sách các UI Base + Components](https://5f5b43872be3560022d03ffc-yvzedefutx.chromatic.com/?path=/story/ui-base-activityindicator--with-props)
 
-  - [Wiloke Styles](docs/css/wiloke-styles.md)
-  - [Tachyons](docs/css/tachyons.md)
-  - [CSS Modules](docs/css/css-modules.md)
-  - [SCSS](docs/css/scss.md)
+###### [Tool Configuration](docs/general/files.md)
 
-- JS
-  - [Redux](https://redux.js.org/)
-  - [React Redux i18n](https://github.com/artisavotins/react-redux-i18n#readme)
-  - [Redux Saga](docs//js/redux-saga.md)
-  - [Query string](https://github.com/ljharb/qs)
-  - [Axios](https://github.com/axios/axios)
-  - [Routing](docs/js/routing.md)
-  - [Reselect](docs/js/reselect.md)
+###### [Theme Provider](docs/general/customize-theme.md)
 
-## Overview
+###### [Wiloke Styles](docs/css/wiloke-styles.md)
+
+###### [Tachyons](docs/css/tachyons.md)
+
+###### [CSS Modules](docs/css/css-modules.md)
+
+###### [SCSS](docs/css/scss.md)
 
 ### Quickstart
 
-1. Đầu tiên, hãy bắt đầu bằng cách cài đặt và chạy wiloke-react-boilerplate
+Đầu tiên, hãy bắt đầu bằng cách cài đặt
 
-   ```Shell
-   npm install && npm start
-   ```
-
-   hoặc
-
-   ```Shell
-   yarn && yarn start
-   ```
-
-1. Mở [localhost:3000](http://localhost:3000) để xem nó hoạt động.
-
-1. Sử dụng bộ tạo tích hợp để bắt đầu tính năng đầu tiên của bạn.
+`npm install` hoặc `yarn`
 
 ### Development
 
-Chạy `npm start` để xem ứng dụng của bạn tại `localhost:3000`
+Chạy `npm start` để xem ứng dụng của bạn tại `http://localhost:3000`
 
-`yarn storybook or npm run storybook`
+### Mở cổng storybook
 
-Chạy Storybook\
-Mở http: // localhost: 9009 để xem trên trình duyệt.\
-Triển khai Storybook và kiểm tra giao diện người dùng với Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-jyemwbgkan.chromatic.com/?path=/story/components-button--with-props)
+`yarn storybook` hoặc `npm run storybook`
 
-### Building & Deploying
+Mở `http://localhost:9009` để xem trên trình duyệt.
+Triển khai Storybook và kiểm tra giao diện người dùng với Chromatic [Open Demo](https://5f5b43872be3560022d03ffc-yvzedefutx.chromatic.com/?path=/story/start-welcome--colors)
 
-1. Chạy `npm run build`, sẽ biên dịch tất cả các tệp cần thiết thành thư mục `build`.
-2. Tải nội dung của thư mục `build` lên thư mục gốc của máy chủ web của bạn.
+### Building
 
-### Structure
+`npm run build` hoặc `yarn build`
 
-`src/` thư mục chứa toàn bộ mã ứng dụng của bạn, bao gồm cả CSS, JavaScript, HTML
-
-### [Convention](./docs/general/convention.md)
+[Xem thêm Create React App](https://github.com/facebook/create-react-app)

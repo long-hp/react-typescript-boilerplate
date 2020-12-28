@@ -1,13 +1,10 @@
 [2]: ./commands.md
-[4]: ../css/wiloke-styles.md
+[4]: ./customize-theme.md
 
 <!-- content -->
+# Hướng dẫn về các tệp cấu hình cho dự án này
 
-# Configuration: A Glossary
-
-## Hướng dẫn về các tệp cấu hình cho dự án này
-
-## The root folders
+### The root folders
 
 - `.editorconfig:` Đặt cấu hình mặc định cho các tệp nhất định trên các trình chỉnh sửa. (ví dụ: thụt lề)
 - `.gitattributes:` Cho phép bạn chỉ định các tệp và thuộc tính đường dẫn sẽ được git sử dụng khi thực hiện các hành động git, chẳng hạn như git commit, v.v.
