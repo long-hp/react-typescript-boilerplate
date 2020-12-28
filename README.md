@@ -5,7 +5,7 @@
 - General
 
   - [Introduction](docs/general/introduction.md)
-  - [CLI Commands](docs/general/commands.md)
+  - [CLI](docs/general/commands.md)
   - [Tool Configuration](docs/general/files.md)
   - [Theme Provider](docs/general/customize-theme.md)
 
