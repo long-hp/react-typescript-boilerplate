@@ -19,7 +19,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Sử dụng trong component View và Text
 
-  ```js
+  ```tsx
   import React from 'react';
   import { Text, View } from 'wiloke-react-core';
 
@@ -39,7 +39,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
 
 - Cách sử dụng đối với nhiều
 
-  ```js
+  ```tsx
   import React from 'react';
   import { View } from 'wiloke-react-core';
 
@@ -178,7 +178,7 @@ Effect Hover
 
 - Ví dụ
 
-  ```js
+  ```tsx
   import React from 'react';
     import { View } from 'wiloke-react-core';
 
