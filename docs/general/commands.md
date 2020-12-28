@@ -1,5 +1,5 @@
 [1]: ./start.md
-[3]: ./files.md
+[3]: ./customize-theme.md
 
 <!-- contend -->
 
