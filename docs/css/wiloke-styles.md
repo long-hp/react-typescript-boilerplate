@@ -1,4 +1,4 @@
-[3]: ../general/files
+[3]: ../general/files.md
 [5]: ./tachyons.md
 
 <!--  content -->
