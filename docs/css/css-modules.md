@@ -7,8 +7,6 @@
 
 Thẻ bao ngoài cùng nên là styles.container
 
-## Cách sử dụng xem thêm [Tachyons](https://tachyons.io/)
-
 ```tsx
   import React from 'react';
   import { View } from 'wiloke-react-core';

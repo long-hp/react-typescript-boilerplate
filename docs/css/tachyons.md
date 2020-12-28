@@ -15,7 +15,9 @@ Có sẵn trong wiloke-react-core
 
 ## Cách sử dụng
 
-```JS
+Xem thêm [Tachyons](https://tachyons.io/)
+
+```tsx
 
  import React from 'react';
   import { View } from 'wiloke-react-core';
