@@ -7,6 +7,7 @@
   - [Introduction](docs/general/introduction.md)
   - [CLI Commands](docs/general/commands.md)
   - [Tool Configuration](docs/general/files.md)
+  - [Theme Provider](docs/general/customize-theme.md)
 
 - Styling (CSS)
 
@@ -63,4 +64,4 @@ Triển khai Storybook và kiểm tra giao diện người dùng với Chromatic
 
 `src/` thư mục chứa toàn bộ mã ứng dụng của bạn, bao gồm cả CSS, JavaScript, HTML
 
-### [Convention](./general/convention.md)
+### [Convention](./docs/general/convention.md)

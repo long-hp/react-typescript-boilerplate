@@ -9,7 +9,9 @@ Có sẵn trong wiloke-react-core
 
 ## Trong file file styles/mains.scss
 
-`@import '~wiloke-react-core/styles/tachyons.scss'`
+```scss
+@import '~wiloke-react-core/styles/tachyons.scss';
+```
 
 ## Cách sử dụng
 
