@@ -11,7 +11,7 @@
 
 - Styling (CSS)
 
-  - [Wiloke Style](docs/css/wiloke-styles.md)
+  - [Wiloke Styles](docs/css/wiloke-styles.md)
   - [Tachyons](docs/css/tachyons.md)
   - [CSS Modules](docs/css/css-modules.md)
   - [SCSS](docs/css/scss.md)

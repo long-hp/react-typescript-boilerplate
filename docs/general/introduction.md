@@ -2,20 +2,16 @@
 
 <!-- contend -->
 
-# Hướng dẫn sử dụng wiloke-react-boilerplate
+# Hướng dẫn sử dụng react-typescript-boilerplate
 
-Wiloke-react-boilerplate dược xây dựng và phát triển bởi [Wiloke](https://github.com/wiloke1). Tài liệu này nhằm cung cấp
-cho bạn một chút về cách hoạt động của wiloke-react-boilerplate.
-**Nếu bạn là người mới sử dụng React, hãy tham khảo [https://github.com/petehunt/react-howto](https://github.com/petehunt/react-howto)**\
+React-typescript-boilerplate dược xây dựng và phát triển bởi [Wiloke](https://github.com/wiloke1). Tài liệu này nhằm cung cấp
+cho bạn một chút về cách kiến trúc của react-typescript-boilerplate cũng như cách sử dụng [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core) tích hợp bên trong.
 
-Hệ sinh thái JavaScript phát triển với tốc độ đáng kinh ngạc: Việc bắt kịp công nghệ khiến các lập trình viên mới cảm thấy quá tải. Vì vậy,
-thay vì bạn luôn phải cập nhật mọi công cụ, tính năng và kĩ thuật mới đây là bản soạn thảo sẵn sàng cho Production và được tối ưu hóa cho các trình duyệt, không dành cho người mới bắt đầu. Nó bao gồm các công
-cụ giúp bạn quản lý performance, asynchrony, styling, mọi thứ bạn cần để xây dựng một ứng dụng thực sự.
+Hệ sinh thái JavaScript phát triển với tốc độ đáng kinh ngạc: Việc bắt kịp công nghệ khiến các lập trình viên mới cảm thấy quá tải. Vì vậy thay vì bạn luôn phải cập nhật mọi công cụ, tính năng và kĩ thuật mới đây là bản soạn thảo sẵn sàng cho Production và được tối ưu hóa cho các trình duyệt, không dành cho người mới bắt đầu. Nó bao gồm các công cụ giúp bạn quản lý performance, styling, mọi thứ bạn cần để xây dựng một ứng dụng thực sự.
 
 ## Tech Stack
 
-Dưới đây là danh sách các packages được sắp xếp mà bạn ít nhất phải quen thuộc trước khi bắt đầu dự án tuyệt vời của mình. Tuy nhiên, cách
-tốt nhất để xem danh sách đầy đủ các dependencies là kiểm tra `package.json`.
+Dưới đây là danh sách những thứ được sắp xếp mà bạn ít nhất phải quen thuộc trước khi bắt đầu dự án tuyệt vời của mình. Tuy nhiên, cách tốt nhất để xem danh sách đầy đủ các dependencies là kiểm tra `package.json`.
 
 ### Core
 
@@ -38,11 +34,6 @@ tốt nhất để xem danh sách đầy đủ các dependencies là kiểm tra 
 ### Doc
 
 - [Storybook](https://storybook.js.org/)
-
-### Development Environment
-
-- [CircleCi](https://circleci.com/)
-- [github](https://github.com/)
 
 ## Project Structure
 

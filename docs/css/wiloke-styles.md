@@ -37,7 +37,7 @@ Nhanh chóng xây dựng và thiết kế giao diện người dùng mới mà k
   export default App;
   ```
 
-- Cách sử dụng đối với một class trở lên
+- Cách sử dụng đối với nhiều
 
   ```js
   import React from 'react';

@@ -3,27 +3,44 @@
 
 <!-- contend -->
 
-# Command Line Commands
+# UI Base + CLI trong wiloke-react-core
 
-## Eject Components
+## UI Base
 
-## Cách sử dụng
+UI Base là các components có sẵn chỉ cần import trong [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core)
 
-```Shell
-  yarn ce
-```
+Trước hết ta cần gõ lệnh `yarn stories-eject` để eject storybook cho UI Base ( Sau khi thực hiện xong hãy kiểm tra thư mục src/stories của dự án hoặc thực hiện lệnh `yarn storybook` để mở storybook )
 
-![alt ảnh sau khi chay yarn ce](../img/img1.png)
+![alt ảnh các component base trên storybook](../img/1.png)
 
-UI Base là các components có sẵn chỉ cần import trong [wiloke-react-core](https://www.npmjs.com/package/wiloke-react-core) ví dụ như sau
+#### Ví dụ như sau
 
-```Shell
+```tsx
 import { View, Image } from 'wiloke-react-core';
+
+const App = () => {
+  return (
+    <View>
+      <Image src="example.jpg">
+    </View>
+  )
+}
 ```
+
+## Components Eject
 
 Ngoài UI Base ra thì ta còn có thể sử dụng lệnh `yarn ce` để eject components có sẵn và nó sẽ xuất hiện trong thư mục components của dự án ( những components này sẽ xuất hiện trong dự án giúp ta có thể custom lại style cũng như code logic nếu cần )
 
-![alt ảnh các component base trên storybook](https://wiloke-images.netlify.app/wiloke-react-core/1.png)
+Nếu bạn mở file package.json sẽ thấy dòng này `"ce": "components-eject src",`
+
+#### Để chạy CLI
+
+```shell
+  yarn ce
+```
+
+Và sau đó terminal xuất hiện như sau:
+![alt ảnh sau khi chay yarn ce](../img/2.png)
 
 ## Generators
 

@@ -26,7 +26,7 @@ Có sẵn trong wiloke-react-core
          <View
           tachyons={['tr', 'db', 'absolute', 'flex', 'ma0']}
         >
-          {innerContent}
+          Content...
         </View>
       );
     }
