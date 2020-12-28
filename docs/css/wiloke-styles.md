@@ -135,39 +135,37 @@ Typography
 
 Effect Hover
 
-- Lưu ý chỉ dùng cho một cấp
-
   ```tsx
-    'hover-child-translateX-10' | 'hover-child-translateX-20'
+    'child-translateX-10' | 'child-translateX-20'
     ...
-    'hover-child-translateX-90' | 'hover-child-translateX-100'
+    'child-translateX-90' | 'child-translateX-100'
 
-    'hover-child-translateX--10' | 'hover-child-translateX--20'
+    'child-translateX--10' | 'child-translateX--20'
     ...
-    'hover-child-translateX--90' | 'hover-child-translateX--100'
+    'child-translateX--90' | 'child-translateX--100'
 
-    'hover-child-translateY-10' | 'hover-child-translateY-20'
+    'child-translateY-10' | 'child-translateY-20'
     ...
-    'hover-child-translateY-90' | 'hover-child-translateY-100'
+    'child-translateY-90' | 'child-translateY-100'
 
-    'hover-child-translateY--10' | 'hover-child-translateY--20'
+    'child-translateY--10' | 'child-translateY--20'
     ...
-    'hover-child-translateY--90' | 'hover-child-translateY--100'
+    'child-translateY--90' | 'child-translateY--100'
 
-    'hover-child-scale-80-100' | 'hover-child-scale-90-100'
-    'hover-child-scale-100-110' | 'hover-child-scale-100-120'
-    'hover-child-scale-120-100' | 'hover-child-scale-110-100'
+    'child-scale-80-100' | 'child-scale-90-100'
+    'child-scale-100-110' | 'child-scale-100-120'
+    'child-scale-120-100' | 'child-scale-110-100'
 
-    'hover-child-fadein-0' | 'hover-child-fadein-10'
-    'hover-child-fadein-20' | 'hover-child-fadein-30'
-    'hover-child-fadein-40' | 'hover-child-fadein-50'
+    'child-fadein-0' | 'child-fadein-10'
+    'child-fadein-20' | 'child-fadein-30'
+    'child-fadein-40' | 'child-fadein-50'
 
-    'hover-child-fadeout-0' | 'hover-child-fadeout-10'
-    'hover-child-fadeout-20' | 'hover-child-fadeout-30'
-    'hover-child-fadeout-40' | 'hover-child-fadeout-50'
+    'child-fadeout-0' | 'child-fadeout-10'
+    'child-fadeout-20' | 'child-fadeout-30'
+    'child-fadeout-40' | 'child-fadeout-50'
 
-    'hover-child-show' |'hover-child-hide'
-    'hover-child-visible' | 'hover-child-hidden' | 'child'
+    'child-show' |'child-hide'
+    'child-visible' | 'child-hidden' | 'child'
 
     'delay-0' | 'delay-10' | 'delay-20' | 'delay-30'
     'delay-40' | 'delay-50' | 'delay-60' | 'delay-70'
@@ -182,8 +180,8 @@ Effect Hover
 
     const App = () => {
       return (
-        <View backgroundColor='gray4' wilokeStyles={['hover-child-show', 'w-20', 'h-20']}>
-          <View backgroundColor='primary' tachyons={['w-100', 'h-100']} wilokeStyles='child'></View>
+        <View backgroundColor='gray4' wilokeStyles={['parent-hover', 'w-20', 'h-20']}>
+          <View backgroundColor='primary' tachyons={['w-100', 'h-100']} wilokeStyles='child-fadein-0'></View>
         </View>
       );
     }
