@@ -9,8 +9,6 @@ cho bạn một chút về cách kiến trúc của react-typescript-boilerplate
 
 ###### [Danh sách các UI Base + Components](https://5f5b43872be3560022d03ffc-yvzedefutx.chromatic.com/?path=/story/ui-base-activityindicator--with-props)
 
-###### [Tool Configuration](docs/general/files.md)
-
 ###### [Theme Provider](docs/general/customize-theme.md)
 
 ###### [Wiloke Styles](docs/css/wiloke-styles.md)
