@@ -80,26 +80,28 @@
 
   ```scss
   .example {
-  font-size: px(14);
-  @include rtlDirection {
-    padding-left: 10px;
+    font-size: px(14);
+    @include rtlDirection {
+      padding-left: 10px;
+    }
   }
   ```
 
 - Cách sử dung autoDirection trong scss. Chỉ áp dụng cho các thuộc tính có left hoặc right, và trục X
 
   ```scss
-    .example {
+  .example {
     @include autoDirection ((
       padding-left: px(10);
-    ))
+    ));
+  }
   ```
 
 - Cách sử dung nightModeBlackList trong scss
 
   ```scss
   .shadow {
-  box-shadow: 0 px(5) px(15) 0 rgba(nightModeBlacklist($rgb-dark), 0.10);
+    box-shadow: 0 px(5) px(15) 0 rgba(nightModeBlacklist($rgb-dark), 0.10);
   }
   ```
 
