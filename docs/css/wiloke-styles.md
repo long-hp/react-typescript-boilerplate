@@ -22,14 +22,12 @@ Thuộc loại atomic css. Nó có sẵn những class để hỗ trợ những 
   import { Text, View } from 'wiloke-react-core';
 
   const App = () => {
-    render() {
-      return (
-        <View>
-          <View wilokeStyles="pa-10" />
-          <Text wilokeStyles="pa-10" />
-        </View>
-      );
-    }
+    return (
+      <View>
+        <View wilokeStyles="pa-10" />
+        <Text wilokeStyles="pa-10" />
+      </View>
+    );
   }
 
   export default App;
@@ -42,11 +40,9 @@ Thuộc loại atomic css. Nó có sẵn những class để hỗ trợ những 
   import { View } from 'wiloke-react-core';
 
   const App = () => {
-    render() {
-      return (
-          <View wilokeStyles={['pa-10', 'mr-2']} />
-      );
-    }
+    return (
+      <View wilokeStyles={['pa-10', 'mr-2']} />
+    );
   }
 
   export default App;
@@ -185,15 +181,11 @@ Effect Hover
     import { View } from 'wiloke-react-core';
 
     const App = () => {
-      render() {
-        return (
-            <View backgroundColor='gray4'
-            wilokeStyles={['hover-child-show', 'w-20', 'h-20']}>
-              <View backgroundColor='primary'
-            wilokeStyles='child'></View>
-            </View>
-        );
-      }
+      return (
+        <View backgroundColor='gray4' wilokeStyles={['hover-child-show', 'w-20', 'h-20']}>
+          <View backgroundColor='primary' tachyons={['w-100', 'h-100']} wilokeStyles='child'></View>
+        </View>
+      );
     }
 
     export default App;
