@@ -10,7 +10,7 @@
 
 - Hàm createGrid trong main.scss để tạo grid giống bootstrap cho component View
 
-  ```SCSS
+  ```scss
     @include createGrid((
       container: (
         width: 1300,
@@ -31,7 +31,7 @@
 
   sử dụng View như sau:
 
-  ```jsx
+  ```tsx
   <View row>
     <View columns={[12, 12, 4, 3]}>Column 1</View>
     <View columns={[12, 12, 4, 3]}>Column 2</View>
@@ -44,7 +44,7 @@
 
 - Hàm createGridEqual trong main.scss để tạo ra grid dành cho component View bật prop gridEqual và GridSmart
 
-  ```SCSS
+  ```scss
     @include createGridEqual((
       xs: 'default',
       sm: 768,
@@ -55,7 +55,7 @@
 
   Sử dụng với View:
 
-  ```TSX
+  ```tsx
   <View gridEqual colXs={1} colSm={2} colMd={3} colLg={4} gapXs={10}>
     <View>Column 1</View>
     <View>Column 2</View>
@@ -78,7 +78,7 @@
 - function px() và mixin rtlDirection dành riêng cho rtl
   hàm px cho phép sau này có thể chuyển đổi giá trị giữ im px hoặc chuyển đổi sang rem. Nếu muốn chuyển đổi pixel sang rem thì trong variables.scss ta có \$pixel-to-rem: true; và true cũng là mặc định
 
-  ```SCSS
+  ```scss
   .example {
   font-size: px(14);
   @include rtlDirection {
@@ -97,7 +97,7 @@
 
 - Cách sử dung nightModeBlackList trong scss
 
-  ```SCSS
+  ```scss
   .shadow {
   box-shadow: 0 px(5) px(15) 0 rgba(nightModeBlacklist($rgb-dark), 0.10);
   }

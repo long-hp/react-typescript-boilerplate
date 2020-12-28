@@ -4,16 +4,12 @@
 
 # Reselect
 
-Tạo selector trong container page
+Đọc thêm reselect tại đây [https://github.com/reduxjs/reselect](https://github.com/reduxjs/reselect)
 
-![alt text](../img/img4.png)
-
-Nhận redux state trả về data
-
-```JSX
-  export const todolistSelector = (state: AppState) => state.todolist;
+```tsx
+export const todolistSelector = (state: AppState) => state.todolist;
 ```
 
 <!-- end of content -->
 
-[Prev][9] | [Xem thêm UI tại đây](https://5f5b43872be3560022d03ffc-cmcaewwvid.chromatic.com/?path=/story/*)
+[Prev][9] | [Xem thêm UI tại đây](https://5f5b43872be3560022d03ffc-yvzedefutx.chromatic.com/?path=/story/start-welcome--colors)

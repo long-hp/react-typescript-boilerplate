@@ -9,7 +9,7 @@
 
 - Trong routes/index.tsx định nghĩa đường dẫn và component
 
-  ```JSX
+  ```tsx
     import React from 'react';
     import { BrowserRouter, Switch, Route } from 'react-router-dom';
     import { DemoPage } from 'containers/DemoPage';
@@ -48,7 +48,7 @@
 
 - Trong routes/types.tsx định nghĩa các location state
 
-  ```TSX
+  ```tsx
       import { ComponentType } from 'react';
 
       export interface HomePageLocationState {}

@@ -9,7 +9,7 @@ Cách làm việc với file
 - interface prop nên nhớ phải export ra ( ví dụ: export interface ProductProps ... )
 - Dùng [jsdoc](https://jsdoc.app/) để comment cho các prop trong interface ví dụ:
 
-```JSX
+```tsx
   export interface AvatarProps extends Pick<ViewProps, 'radius' | 'className'> {
     /** Kích thước của avatar */
     size?: number;

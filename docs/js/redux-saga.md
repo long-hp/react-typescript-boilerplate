@@ -9,7 +9,7 @@
 
 Cách định nghĩa một action
 
-```JSX
+```tsx
   import { Todolist } from 'models/Todolist';
   import { createAsyncAction, createDispatchAsyncAction } from 'wiloke-react-core/utils';
   import { Endpoints } from 'types/Endpoints';
@@ -28,7 +28,7 @@ Cách định nghĩa một action
 
 Cách định nghĩa một reducer
 
-```JSX
+```tsx
   import { ActionTypes, createReducer, handleAction } from 'wiloke-react-core/utils';
   import { Todolist } from 'models/Todolist';
   import { getTodolist } from '../actions/actionTodolist';
@@ -80,7 +80,7 @@ Khai báo reducer vừa tạo trong store/rootReducers
 
 Cách định nghĩa một saga
 
-```JSX
+```tsx
     import { put, call, take, fork, cancel } from 'redux-saga/effects';
     import { AxiosResponse } from 'axios';
     import { Todolist } from 'models/Todolist';
