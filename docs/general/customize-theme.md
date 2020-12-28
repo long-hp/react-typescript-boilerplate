@@ -1,6 +1,6 @@
 # Theme Provider
 
-Theme Provider cho phép bạn tùy chỉnh mã của chúng tôi để đáp ứng sự đa dạng về giao diện người dùng theo yêu cầu của doanh nghiệp hoặc khách hàng, bao gồm color, nightModeColor, direction v.v.
+Theme Provider cho phép ta tùy chỉnh mã để đáp ứng sự đa dạng về giao diện người dùng theo yêu cầu của doanh nghiệp hoặc khách hàng, bao gồm color, nightModeColor, direction v.v.
 
 Example
 
