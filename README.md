@@ -17,7 +17,7 @@ cho bạn một chút về cách kiến trúc của react-typescript-boilerplate
 
 ##### [CSS Modules](docs/css/css-modules.md)
 
-##### [SCSS](docs/css/scss.md)
+##### [Grid và một vài hỗ trợ cho scss](docs/css/scss.md)
 
 ### Quickstart
 

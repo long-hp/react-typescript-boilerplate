@@ -3,7 +3,7 @@
 
 <!-- content -->
 
-# SCSS
+# Grid và một vài hỗ trợ cho scss
 
 - `@import '~wiloke-react-core/styles/themes.scss';` vào file styles/mains.scss.
   Để sử dụng các varialbles, mixin, function mặc định trong core thì cần phải import file theme.scss trong abstracts.scss
