@@ -3,7 +3,7 @@
 
 <!--  content -->
 
-# Redux Saga
+# Redux
 
 ## Actions
 

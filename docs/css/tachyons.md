@@ -17,22 +17,17 @@ Xem thêm [Tachyons](https://tachyons.io/)
 ## Cách sử dụng
 
 ```tsx
+import React from 'react';
+import { View } from 'wiloke-react-core';
 
- import React from 'react';
-  import { View } from 'wiloke-react-core';
-
-  const App = () => {
-    render() {
-      return (
-         <View
-          tachyons={['tr', 'db', 'absolute', 'flex', 'ma0']}
-        >
-          Content...
-        </View>
-      );
-    }
-  }
-  export default App;
+const App = () => {
+  return (
+    <View tachyons={['tr', 'db', 'absolute', 'flex', 'ma0']}>
+      Content...
+    </View>
+  );
+}
+export default App;
 ```
 
 <!-- end of content -->
