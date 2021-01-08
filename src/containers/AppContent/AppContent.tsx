@@ -40,6 +40,10 @@ export const themeOverrides: ThemeOverrides = {
     gray1: '#252c41',
     light: '#202638',
   },
+  cssInJs: {
+    pixelToRem: false,
+    devMode: false,
+  },
 };
 
 const AppContent: FC = () => {

@@ -2,6 +2,7 @@
   "recommendations": [
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "mrmlnc.vscode-scss"
+    "mrmlnc.vscode-scss",
+    "jpoissonnier.vscode-styled-components"
   ]
 }

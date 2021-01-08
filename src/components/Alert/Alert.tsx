@@ -1,7 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react';
 import { LineAwesome, LineAwesomeName, Text, View, ViewProps } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
-import styles from './Alert.module.scss';
+import * as css from './styles';
 
 export type AlertType = 'success' | 'info' | 'warning' | 'danger';
 export interface AlertProps extends Omit<ViewProps, 'tachyons' | 'borderColor' | 'borderStyle'> {
@@ -24,27 +23,7 @@ export interface AlertProps extends Omit<ViewProps, 'tachyons' | 'borderColor' |
 }
 
 const Alert = forwardRef<HTMLElement, AlertProps>(
-  (
-    {
-      closable = true,
-      description,
-      message,
-      className,
-      showIcon = true,
-      type = 'info',
-      size = 'medium',
-      Icon,
-      onClose,
-      borderWidth = '1/6',
-      ...rest
-    },
-    ref,
-  ) => {
-    const sizeClassName = styles[size];
-    const closableClassName = closable ? styles.enableClose : '';
-    const showIconClassName = showIcon ? styles.showIcon : '';
-    const containerClassName = classNames(sizeClassName, closableClassName, showIconClassName, styles.container, className);
-
+  ({ closable = true, description, message, showIcon = true, type = 'info', size = 'medium', Icon, onClose, borderWidth = '1/6', ...rest }, ref) => {
     const iconNameMapping: Record<AlertType, LineAwesomeName> = {
       info: 'exclamation-circle',
       success: 'check-circle-o',
@@ -59,7 +38,7 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       if (Icon) {
         return Icon;
       }
-      return <LineAwesome className={styles.icon} color={type} tachyons={['absolute', 'left-1', 'pointer']} name={iconNameMapping[type]} />;
+      return <LineAwesome css={css.icon(size)} color={type} name={iconNameMapping[type]} />;
     };
 
     const renderClose = () => {
@@ -68,12 +47,12 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       }
       return (
         <LineAwesome
+          css={css.close}
           colorHover="gray9"
+          color="gray7"
           size={16}
-          tachyons={['absolute', 'top-1', 'right-1', 'pointer']}
           name="times"
           onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => onClose?.(event)}
-          color="gray7"
         />
       );
     };
@@ -82,23 +61,21 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       <View
         {...rest}
         ref={ref}
-        className={containerClassName}
-        tachyons={['relative', 'overflow-hidden']}
+        css={[css.container, closable ? css.enableClose : '', showIcon ? css.showIcon : '']}
         borderWidth={borderWidth}
         borderColor={type}
-        borderStyle="solid"
       >
         {renderAlertIcon()}
-        <Text className={styles.message} color="gray9">
+        <Text css={css.message(size)} color="gray9">
           {message}
         </Text>
         {description && (
-          <Text className={styles.description} color="gray7">
+          <Text css={css.description(size)} color="gray7">
             {description}
           </Text>
         )}
         {renderClose()}
-        <View tachyons={['absolute', 'absolute--fill']} className={styles.bgOverlay} backgroundColor={type} />
+        <View css={css.bgOverlay} backgroundColor={type} />
       </View>
     );
   },
