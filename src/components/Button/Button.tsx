@@ -1,7 +1,7 @@
 import React, { ReactNode, DOMAttributes, HTMLAttributes, ButtonHTMLAttributes, forwardRef, Ref } from 'react';
-import { WithStylesProps, withStyles, ActivityIndicator, Size, Text } from 'wiloke-react-core';
+import { WithStylesProps, withStyles, ActivityIndicator, Size, Text, useStyleSheet } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './Button.module.scss';
+import * as css from './styles';
 
 export interface ButtonProps extends WithStylesProps {
   /** React children */
@@ -41,14 +41,16 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
       type = 'button',
       fontSize,
       style,
+      borderWidth = '0/6',
     },
     ref,
   ) => {
-    const blockClassName = block ? styles.block : '';
-    const disabledClassName = disabled ? styles.disabled : '';
-    const classes = classNames(styles.container, styles[size], blockClassName, disabledClassName, className);
+    const { styles } = useStyleSheet();
     const props: HTMLAttributes<HTMLElement> = {
-      className: classes,
+      className: classNames(
+        styles(css.container(Number(borderWidth.charAt(0)), size), block ? css.block : {}, disabled ? css.disabled : {}),
+        className,
+      ),
       style: {
         fontSize,
         ...style,
@@ -58,8 +60,8 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
     const renderChildren = () => {
       return (
         <>
-          {loading && <ActivityIndicator size={18} className={styles.loading} />}
-          <Text tagName="span" className={styles.text}>
+          {loading && <ActivityIndicator size={18} className={styles(css.loading)} />}
+          <Text tagName="span" css={css.text}>
             {children}
           </Text>
         </>
