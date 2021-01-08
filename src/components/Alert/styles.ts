@@ -43,8 +43,8 @@ export const icon = (size: Size) => css`
   position: absolute;
   left: 10px;
   cursor: pointer;
-  top: ${getSizeMapping(10, 15, 16)[size]}px;
-  font-size: ${getSizeMapping(18, 26, 30)[size]}px;
+  top: ${getSizeMapping(15, 15, 16)[size]}px;
+  font-size: ${getSizeMapping(18, 26, 30)[size]}px !important;
 `;
 
 export const message = (size: Size) => css`

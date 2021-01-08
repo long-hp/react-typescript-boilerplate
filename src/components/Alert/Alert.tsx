@@ -61,7 +61,7 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       <View
         {...rest}
         ref={ref}
-        css={[css.container, closable ? css.enableClose : '', showIcon ? css.showIcon : '']}
+        css={[css.container, closable ? css.enableClose : '', showIcon ? css.showIcon(size) : '']}
         borderWidth={borderWidth}
         borderColor={type}
       >
