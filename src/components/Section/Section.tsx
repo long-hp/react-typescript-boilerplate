@@ -1,24 +1,18 @@
 import React, { FC, ReactNode } from 'react';
-import { ColorNames, View } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
-import styles from './Section.module.scss';
+import { View, ViewProps } from 'wiloke-react-core';
+import * as css from './styles';
 
-export interface SectionProps {
+type PickViewProps = Pick<ViewProps, 'backgroundColor'>;
+export interface SectionProps extends PickViewProps {
   children: ReactNode;
   backgroundColorNative?: string;
   backgroundType?: 'full' | 'left' | 'right';
-  backgroundColor?: ColorNames;
 }
 
 const Section: FC<SectionProps> = ({ children, backgroundColorNative, backgroundColor, backgroundType = 'full' }) => {
   return (
-    <View tagName="section" className={styles.container}>
-      <View
-        className={classNames(styles.background, styles[backgroundType])}
-        style={{ backgroundColor: backgroundColorNative }}
-        tachyons={['absolute', 'absolute--fill']}
-        backgroundColor={backgroundColor}
-      />
+    <View tagName="section" css={css.container}>
+      <View css={[css.background(backgroundColorNative, backgroundColor), css.backgroundType(backgroundType)]} />
       {children}
     </View>
   );

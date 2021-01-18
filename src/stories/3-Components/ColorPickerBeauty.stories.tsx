@@ -4,7 +4,7 @@ import { boolean, number, optionsKnob, select } from '@storybook/addon-knobs';
 import { Placement } from 'components/ColorPicker/ColorPicker';
 import ColorPickerBeauty, { ColorPickerBeautyProps } from 'components/ColorPickerBeauty';
 import getOptions from 'stories/utils/getOptions';
-import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, View } from 'wiloke-react-core';
+import { BorderStyle, ColorNames, defaultColors, Radius, View } from 'wiloke-react-core';
 
 export default {
   title: 'Fields/ColorPickerBeauty',
@@ -26,7 +26,7 @@ export const WithProps = () => {
 
   let borderColor: ColorNames = 'gray5',
     borderStyle: BorderStyle = 'solid',
-    borderWidth: BorderWidth = '1/6',
+    borderWidth = 1,
     selectType: ColorPickerBeautyProps['pickerType'] = 'sketch',
     selectPlacement: Placement = 'bottom-start',
     backgroundInnerField: ColorNames = 'gray5';
@@ -39,7 +39,7 @@ export const WithProps = () => {
     radiusPikerType === 'css style'
       ? select<Radius>(
           'Radius Picker',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius Picker', 5, { range: true, min: 0, max: 100 });
@@ -52,7 +52,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select<Radius>(
           'Radius Box',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius Box', 5, { range: true, min: 0, max: 100 });
@@ -66,11 +66,7 @@ export const WithProps = () => {
       'solid',
     );
 
-    borderWidth = select(
-      'Border Width',
-      getOptions<ColorPickerBeautyProps['borderWidth'][]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-      '1/6',
-    );
+    borderWidth = number('Border Width', 1);
 
     selectType = select(
       'Color Picker Platform',

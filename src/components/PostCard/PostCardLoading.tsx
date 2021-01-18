@@ -1,16 +1,17 @@
 import React, { FC, memo } from 'react';
 import { View } from 'wiloke-react-core';
+import * as css from './styles';
 
 export interface PostCardLoadingProps {}
 
 const PostCardLoading: FC<PostCardLoadingProps> = () => {
   return (
-    <View backgroundColor="light" radius="round" tachyons={['relative', 'overflow-hidden']}>
+    <View backgroundColor="light" radius={15} css={css.container}>
       <View backgroundColor="gray4" aspectRatioInPercent={56.25} />
-      <View backgroundColor="gray5" wilokeStyles="o-60" height={32} width={80} radius={4} tachyons={['absolute', 'top-1', 'left-1', 'ph3', 'pv1']} />
-      <View tachyons={['pa3', 'flex', 'justify-between', 'items-center']} height={52}>
-        <View backgroundColor="gray4" radius={4} height={10} tachyons={['w-70', 'nowrap', 'f6']} />
-        <View backgroundColor="gray4" radius={4} height={20} width={20} tachyons={['nowrap', 'f6']} />
+      <View backgroundColor="gray5" radius={4} css={[css.cat, { opacity: '0.6', height: '32px', width: '80px' }]} />
+      <View css={[css.content, { height: '50px' }]}>
+        <View backgroundColor="gray4" radius={4} height={10} css={{ width: '70%', height: '10px', whiteSpace: 'nowrap' }} />
+        <View backgroundColor="gray4" radius={4} css={{ width: '20px', height: '20px', whiteSpace: 'nowrap' }} />
       </View>
     </View>
   );

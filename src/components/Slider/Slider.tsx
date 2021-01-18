@@ -1,10 +1,10 @@
 import RSlider, { createSliderWithTooltip } from 'rc-slider';
 import { GenericSliderProps } from 'rc-slider/lib/interface';
 import React, { FC } from 'react';
-import { ColorNames, useTheme } from 'wiloke-react-core';
+import { ColorNames, useStyleSheet, useTheme } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './Slider.module.scss';
 import SliderLoading from './SliderLoading';
+import * as css from './styles';
 
 const SliderWithTooltip = createSliderWithTooltip(RSlider);
 
@@ -45,8 +45,8 @@ const Slider: FC<SliderProps> & {
   handleBorderColor = 'gray5',
   handleColor = 'light',
   railColor = 'gray5',
-  min,
-  max,
+  min = 0,
+  max = 100,
   disabled = false,
   step = 1,
   className,
@@ -61,8 +61,7 @@ const Slider: FC<SliderProps> & {
   ...rest
 }) => {
   const { colors } = useTheme();
-  const disabledClassName = disabled ? 'ui-disabled' : '';
-
+  const { styles } = useStyleSheet(colors);
   const generalProps = {
     value,
     min,
@@ -76,7 +75,8 @@ const Slider: FC<SliderProps> & {
     onBeforeChange,
   };
 
-  const combineProps = { className: classNames(className, styles.container, disabledClassName), ...rest };
+  const cssInJs = styles(css.disabled(disabled), css.container);
+  const combineProps = { className: classNames('Slide-container', className, cssInJs), ...rest };
 
   const _renderSlide = () => {
     return tooltip ? (

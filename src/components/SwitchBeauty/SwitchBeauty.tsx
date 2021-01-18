@@ -3,13 +3,12 @@ import FieldBox, { BoxProps } from 'components/FieldBox';
 import Switch, { SwitchProps } from 'components/Switch/Switch';
 import TextStatus, { TextStatusProps } from 'components/SwitchBeauty/TextStatus';
 import { omit, pick } from 'ramda';
-import { classNames } from 'wiloke-react-core/utils';
-import styles from './SwitchBeauty.module.scss';
+import * as css from './styles';
 
 export interface SwitchBeautyProps
   extends SwitchProps,
-    Omit<BoxProps, 'children'>,
-    Pick<TextStatusProps, 'size' | 'enable' | 'enableText' | 'disableText' | 'enableColor' | 'disableColor' | 'fontSize'> {}
+    Omit<BoxProps, 'children' | 'onChange'>,
+    Pick<TextStatusProps, 'size' | 'enable' | 'enableText' | 'disableText' | 'enableColor' | 'disableColor'> {}
 
 const SwitchBeauty: FC<SwitchBeautyProps> = ({ ...rest }) => {
   const switchPropsKeys: (keyof SwitchProps)[] = [
@@ -23,17 +22,15 @@ const SwitchBeauty: FC<SwitchBeautyProps> = ({ ...rest }) => {
     'onValueChange',
     'onChange',
   ];
-  const textStatusPropsKeys: (keyof TextStatusProps)[] = ['size', 'enable', 'enableText', 'disableText', 'enableColor', 'disableColor', 'fontSize'];
+  const textStatusPropsKeys: (keyof TextStatusProps)[] = ['size', 'enable', 'enableText', 'disableText', 'enableColor', 'disableColor'];
   const omitFieldBoxPropsKeys = [...switchPropsKeys, ...textStatusPropsKeys];
   const switchProps = pick(switchPropsKeys, rest);
   const textStatusProps = pick(textStatusPropsKeys, rest);
   const fieldBoxProps = omit(omitFieldBoxPropsKeys, rest);
-  const { size = 'large', disabled } = rest;
-  const disabledClass = disabled ? 'ui-disable' : '';
-  const sizeClass = styles[size];
-  const classes = classNames(styles.container, sizeClass, disabledClass);
+  const { size = 'large', disabled = false } = rest;
+
   return (
-    <FieldBox className={classes} tachyons={['flex', 'items-center', 'justify-between']} {...fieldBoxProps}>
+    <FieldBox css={[css.container(size), css.disabled(disabled)]} {...fieldBoxProps}>
       <Switch {...switchProps} renderAfter={value => <TextStatus {...textStatusProps} enable={value} />} />
     </FieldBox>
   );

@@ -1,10 +1,9 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes, memo, ReactNode } from 'react';
 import { ColorNames, Size, View } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
 import useMergedState from './useMergedState';
 import { RadioGroupActionProvider, RadioGroupStateProvider } from './context';
 import Radio, { Value } from './Radio';
-import styles from './Radio.module.scss';
+import * as css from './styles';
 
 export interface Optional {
   label: string;
@@ -59,8 +58,6 @@ const RadioGroup: FC<RadioGroupProps> = ({
   const [valueState, setValueState] = useMergedState(String(defaultValue), {
     value: value,
   });
-  const blockGroupClass = block ? styles.blockGroup : '';
-  const classes = classNames(styles.groupContaner, blockGroupClass);
 
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const lastValue = valueState;
@@ -97,7 +94,7 @@ const RadioGroup: FC<RadioGroupProps> = ({
     }
 
     return (
-      <View className={classes} borderColor={borderColor} tachyons="dib">
+      <View css={css.groupContainer(block)} borderColor={borderColor}>
         {childrenToRender}
       </View>
     );

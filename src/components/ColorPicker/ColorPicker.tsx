@@ -2,13 +2,14 @@ import React, { FC, ReactNode, useState } from 'react';
 import { ChromePicker, ColorChangeHandler, PhotoshopPicker, RGBColor, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
-import { OuterTrigger, Radius, View } from 'wiloke-react-core';
+import { OuterTrigger, Radius, useStyleSheet, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './ColorPicker.module.scss';
+// import styles from './ColorPicker.module.scss';
 import ColorPickerLoading from './ColorPickerLoading';
 import hexToRgb from './hexToRgb';
 import rgbaObjectToString from './utils/rgbaObjectToString';
 import rgbaStringToObject from './utils/rgbaStringToObject';
+import * as css from './styles';
 
 export type ColorPickerType = 'chrome' | 'sketch' | 'photoshop';
 export type PresetColor = { color: string; title: string } | string;
@@ -26,7 +27,7 @@ export type Placement =
   | 'left-start'
   | 'left-end';
 
-export type Strategy = 'absolute';
+export type Strategy = 'absolute' | 'fixed';
 
 export interface ColorPickerProps {
   /** Giao diện của color picker platform: 'chrome' | 'sketch' | 'photoshop' | 'material' | 'compact' | 'swatches' */
@@ -87,6 +88,7 @@ const ColorPicker: FC<ColorPickerProps> & {
 }) => {
   const [colorState, setColorState] = useState<RGBColor>(rgbaStringToObject(getColor(color)));
   const [showPicker, setShowPicker] = useState(false);
+  const { styles } = useStyleSheet();
 
   const _handleOnClick = () => {
     setShowPicker(!showPicker);
@@ -107,7 +109,7 @@ const ColorPicker: FC<ColorPickerProps> & {
   };
 
   const combineProps = {
-    className: classNames(styles.pickerPallte, className),
+    className: classNames(styles(css.container), className),
     color: colorState,
     onChange: _handleChange,
     onChangeComplete: _handleChangeComplete,
@@ -122,13 +124,8 @@ const ColorPicker: FC<ColorPickerProps> & {
   const targetPicker = (
     <Reference>
       {({ ref }) => (
-        <View ref={ref} className={styles.pickerColor} onClick={_handleOnClick}>
-          <View
-            className={styles.bgFade}
-            radius={radius}
-            tachyons={['absolute', 'absolute--fill']}
-            style={{ backgroundColor: rgbaObjectToString(colorState) }}
-          ></View>
+        <View ref={ref} className="TargetPicker" css={css.targetPicker} onClick={_handleOnClick}>
+          <View radius={radius} css={css.targetBackground} style={{ backgroundColor: rgbaObjectToString(colorState) }}></View>
         </View>
       )}
     </Reference>
@@ -138,9 +135,9 @@ const ColorPicker: FC<ColorPickerProps> & {
     <Popper strategy={strategy} placement={placement}>
       {popperProps => {
         return (
-          <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
-            <View className={styles.popperInner}>{mappingColorPicker[pickerType]}</View>
-            <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} tachyons="absolute" />
+          <View ref={popperProps.ref} style={popperProps.style} className="Placement-container" css={css.placement(placement)}>
+            <View>{mappingColorPicker[pickerType]}</View>
+            <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} css={{ position: 'absolute' }} />
           </View>
         );
       }}
@@ -154,7 +151,7 @@ const ColorPicker: FC<ColorPickerProps> & {
   return (
     <>
       <OuterTrigger onClick={_handleOnClose}>
-        <View tachyons={['relative']}>
+        <View css={{ position: 'relative' }}>
           {onlyShowColorBoard ? (
             mappingColorPicker[pickerType]
           ) : (

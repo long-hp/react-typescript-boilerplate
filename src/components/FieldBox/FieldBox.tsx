@@ -1,9 +1,9 @@
 import React, { CSSProperties, FC } from 'react';
-import { View, WithStylesProps } from 'wiloke-react-core';
+import { useStyleSheet, View, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './FieldBox.module.scss';
+import * as css from './styles';
 
-export interface BoxProps extends WithStylesProps {
+export interface BoxProps extends ViewProps {
   style?: CSSProperties;
   className?: string;
 }
@@ -11,21 +11,19 @@ export interface BoxProps extends WithStylesProps {
 const Box: FC<BoxProps> = ({
   borderColor = 'gray5',
   borderStyle = 'solid',
-  borderWidth = '1/6',
+  borderWidth = 1,
   backgroundColor = 'light',
   radius = 5,
   className,
   style,
   children,
-  tachyons,
   ...rest
 }) => {
-  const combineProps = { style, className: classNames(className, styles.container) };
+  const { styles } = useStyleSheet();
+  const combineProps = { style, className: classNames(className, styles(css.container)), ...rest };
   return (
     <View
-      {...rest}
       {...combineProps}
-      tachyons={tachyons}
       radius={radius}
       backgroundColor={backgroundColor}
       borderColor={borderColor}

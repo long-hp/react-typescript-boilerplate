@@ -7,7 +7,7 @@ import SwitchBeauty from 'components/SwitchBeauty';
 import { TextInput } from 'components/TextInput';
 import React from 'react';
 import getOptions from 'stories/utils/getOptions';
-import { BorderStyle, BorderWidth, defaultColors } from 'wiloke-react-core';
+import { BorderStyle, defaultColors } from 'wiloke-react-core';
 
 export default {
   title: 'General/Collapse',
@@ -39,11 +39,7 @@ export const WithProps = () => {
     getOptions<BorderStyle[]>(['dashed', 'dotted', 'solid']),
     'solid',
   );
-  const borderWidth = select(
-    'Border Width',
-    getOptions<BorderWidth[]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-    '1/6',
-  );
+  const borderWidth = number('Border Width', 1);
   const showArrow = boolean('Show Arrow', true);
   const disabled = boolean('Disabled', false);
 

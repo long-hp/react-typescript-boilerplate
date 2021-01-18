@@ -22,7 +22,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select<Radius>(
           'Radius Picker',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius Picker', 5, { range: true, min: 0, max: 100 });

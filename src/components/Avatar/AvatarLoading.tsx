@@ -1,5 +1,6 @@
 import React, { memo, FC } from 'react';
 import { ColorNames, View } from 'wiloke-react-core';
+import * as css from './styles';
 
 export interface AvatarLoadingProps {
   size?: number;
@@ -7,7 +8,7 @@ export interface AvatarLoadingProps {
 }
 
 const AvatarLoading: FC<AvatarLoadingProps> = ({ size = 30, color = 'gray2' }) => {
-  return <View radius="pill" style={{ width: size, height: size }} backgroundColor={color} />;
+  return <View radius="pill" css={css.container(size)} backgroundColor={color} />;
 };
 
 export default memo(AvatarLoading);

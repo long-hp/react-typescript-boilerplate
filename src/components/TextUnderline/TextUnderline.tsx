@@ -1,12 +1,12 @@
-import React, { FC, CSSProperties } from 'react';
+import React, { FC } from 'react';
 import { ColorNames, Text, WithStylesProps } from 'wiloke-react-core';
-import styles from './TextUnderline.module.scss';
+import * as css from './styles';
 
 export interface TextUnderlineProps extends Pick<WithStylesProps, 'nightModeBlacklist'> {
   /** Set css font-size */
-  size?: number | 'inherit';
+  textSize?: number | 'inherit';
   /** Color của component theo ThemeProvider */
-  color?: ColorNames;
+  textColor?: ColorNames;
   /** React children */
   children: string | number;
   /** Màu của line */
@@ -17,22 +17,24 @@ export interface TextUnderlineProps extends Pick<WithStylesProps, 'nightModeBlac
   lineBottomSpace?: number;
 }
 
-const TextUnderline: FC<TextUnderlineProps> = ({ children, color = 'gray8', size, lineSize, lineColor, lineBottomSpace, nightModeBlacklist }) => {
-  const lineSizeStyle: CSSProperties = !!lineSize ? { borderWidth: lineSize } : {};
-  const lineColorStyle: CSSProperties = !!lineColor ? { borderColor: lineColor } : {};
-  const lineBottomSpaceWrapStyle: CSSProperties = !!lineBottomSpace ? { top: -lineBottomSpace } : {};
-  const lineBottomSpaceStyle: CSSProperties = !!lineBottomSpace ? { top: lineBottomSpace } : {};
-
+const TextUnderline: FC<TextUnderlineProps> = ({
+  children,
+  textColor = 'gray8',
+  textSize,
+  lineSize = 5,
+  lineColor = '#94fbd1',
+  lineBottomSpace = 10,
+  nightModeBlacklist,
+}) => {
   return (
     <Text
       tagName="span"
-      className={styles.container}
-      color={color}
-      size={size}
-      style={{ ...lineSizeStyle, ...lineColorStyle, ...lineBottomSpaceWrapStyle }}
+      css={css.container(lineSize, lineColor, lineBottomSpace)}
+      color={textColor}
+      size={textSize}
       nightModeBlacklist={nightModeBlacklist}
     >
-      <Text tagName="span" style={lineBottomSpaceStyle} nightModeBlacklist={nightModeBlacklist}>
+      <Text tagName="span" nightModeBlacklist={nightModeBlacklist}>
         {children}
       </Text>
     </Text>

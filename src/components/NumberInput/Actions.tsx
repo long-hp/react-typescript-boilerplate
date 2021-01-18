@@ -1,20 +1,21 @@
 import React, { DOMAttributes, FC } from 'react';
-import { MaterialIcon, View } from 'wiloke-react-core';
-import styles from './NumberInput.module.scss';
+import { MaterialIcon, Size, View } from 'wiloke-react-core';
+import * as css from './styles';
 
 export interface ActionProps {
+  size?: Exclude<Size, 'extra-small'>;
   increment?: DOMAttributes<HTMLElement>['onClick'];
   decrement?: DOMAttributes<HTMLElement>['onClick'];
 }
 
-const Action: FC<ActionProps> = ({ increment, decrement }) => {
+const Action: FC<ActionProps> = ({ size = 'medium', increment, decrement }) => {
   return (
-    <View tachyons={['h-100', 'flex', 'flex-column', 'justify-center']}>
-      <View onClick={increment} tachyons={['pointer', 'flex', 'items-center']} className={styles.actionUp}>
-        <MaterialIcon name="keyboard_arrow_up" className={styles.iconUp} />
+    <View css={css.actionsContainer}>
+      <View onClick={increment} css={css.actionIncre}>
+        <MaterialIcon name="keyboard_arrow_up" css={css.icon(size)} />
       </View>
-      <View onClick={decrement} tachyons={['pointer', 'flex', 'items-center']} className={styles.actionDown}>
-        <MaterialIcon name="keyboard_arrow_down" className={styles.iconDown} />
+      <View onClick={decrement} css={css.actionDecre}>
+        <MaterialIcon name="keyboard_arrow_down" css={css.icon(size)} />
       </View>
     </View>
   );

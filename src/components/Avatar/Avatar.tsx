@@ -3,6 +3,7 @@ import { View, Text, Image, ViewProps } from 'wiloke-react-core';
 import { memoization } from 'wiloke-react-core/utils';
 import avatarColors from './avatarColors';
 import AvatarLoading from './AvatarLoading';
+import * as css from './styles';
 
 export interface AvatarProps extends Pick<ViewProps, 'radius' | 'className'> {
   /** Kích thước của avatar */
@@ -29,9 +30,9 @@ const Avatar: FC<AvatarProps> & AvatarStatic = ({ uri, size = 30, name = '', ...
   }
 
   return (
-    <View radius="pill" {...rest} tachyons={['flex', 'justify-center', 'items-center']} style={{ backgroundColor, width: size, height: size }}>
+    <View radius="pill" {...rest} css={[css.container(size), css.background(backgroundColor)]}>
       {!!name && (
-        <Text size={textSize} style={{ lineHeight: `${textSize * 2}px`, color: '#fff' }}>
+        <Text size={textSize} css={{ lineHeight: `${textSize * 2}px`, color: '#fff' }}>
           {text}
         </Text>
       )}

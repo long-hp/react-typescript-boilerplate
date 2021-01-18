@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FC, InputHTMLAttributes, useCallback } from 'react';
-import { Size, View, ViewProps } from 'wiloke-react-core';
+import { Size, useStyleSheet, View, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
+import * as css from './styles';
 import TextInputLoading from './TextInputLoading';
-import styles from './TextInput.module.scss';
 
 type InputType = 'text' | 'password' | 'email';
 export interface InputProps extends ViewProps {
   /** Size của input */
-  sizeInput?: Size;
+  sizeInput?: Exclude<Size, 'extra-small'>;
   /** Placeholder của input */
   placeholder?: string;
   /** Bật lên input sẽ rộng 100% */
@@ -36,7 +36,7 @@ const TextInput: FC<InputProps> & {
   disabled = false,
   borderColor = 'gray5',
   borderStyle = 'solid',
-  borderWidth = '1/6',
+  borderWidth = 1,
   color = 'gray8',
   backgroundColor,
   radius = 5,
@@ -44,9 +44,7 @@ const TextInput: FC<InputProps> & {
   onValueChange,
   ...rest
 }) => {
-  const blockClassName = block ? styles.block : '';
-  const disableClassName = disabled ? 'ui-disabled' : '';
-  const generalSetting = { className: classNames(styles.container, className, styles[sizeInput], blockClassName, disableClassName) };
+  const { styles } = useStyleSheet();
 
   const _handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     if (!disabled) {
@@ -59,8 +57,8 @@ const TextInput: FC<InputProps> & {
   return (
     <View
       {...rest}
-      {...generalSetting}
-      tachyons={['relative', 'overflow-hidden']}
+      className={classNames(className, 'TextInput-container')}
+      css={css.container(sizeInput, block, disabled)}
       color={color}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
@@ -68,7 +66,14 @@ const TextInput: FC<InputProps> & {
       borderStyle={borderStyle}
       radius={radius}
     >
-      <input type={type} value={value} placeholder={placeholder} disabled={disabled} className={styles.textInput} onChange={_handleChange} />
+      <input
+        className={styles(css.input(sizeInput))}
+        type={type}
+        value={value}
+        placeholder={placeholder}
+        disabled={disabled}
+        onChange={_handleChange}
+      />
     </View>
   );
 };

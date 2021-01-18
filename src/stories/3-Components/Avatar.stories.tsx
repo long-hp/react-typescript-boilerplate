@@ -15,9 +15,9 @@ export const Default = () => {
 
   return (
     <View>
-      <Text wilokeStyles="mb-4">Avatar</Text>
+      <Text css={{ marginBottom: '4px' }}>Avatar</Text>
       <Avatar size={size} name={name} uri={uri} radius="pill" />
-      <Text wilokeStyles={['mb-4', 'mt-20']}>Loading</Text>
+      <Text css={{ marginBottom: '4px', marginTop: '20px' }}>Loading</Text>
       <Avatar.Loading size={size} />
     </View>
   );

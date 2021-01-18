@@ -2,6 +2,7 @@ import { TabPane, TabPaneProps } from 'rc-tabs';
 import React, { CSSProperties, FC, ReactNode } from 'react';
 import { ColorNames, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
+import * as css from '../styles';
 
 export interface TabPaneBaseProps extends TabPaneProps {
   className?: string;
@@ -34,10 +35,10 @@ const TabPaneBase: FC<TabPaneBaseProps> = ({
   className,
   ...rest
 }) => {
-  const combineProps = { style, className: classNames(className) };
+  const combineProps = { style, className: classNames(className, 'TabPane') };
   return (
     <TabPane {...rest} {...combineProps} tab={tab} tabKey={tabKey} key={key} disabled={disabled} forceRender={forceRender}>
-      <View backgroundColor={backgroundColor} color={color} tachyons="pa2">
+      <View backgroundColor={backgroundColor} color={color} css={css.tabPaneChildren}>
         {children}
       </View>
     </TabPane>

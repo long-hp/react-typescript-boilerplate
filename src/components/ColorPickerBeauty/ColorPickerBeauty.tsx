@@ -1,20 +1,15 @@
 import ColorPicker, { ColorPickerProps } from 'components/ColorPicker';
 import Box from 'components/FieldBox';
-import React, { FC, ReactNode } from 'react';
-import { BorderStyle, BorderWidth, ColorNames, Radius, Text, View } from 'wiloke-react-core';
+import React, { FC } from 'react';
+import { ColorNames, Radius, Text, View, ViewProps } from 'wiloke-react-core';
 import ColorPickerBeautyLoading from './ColorPickerBeautyLoading';
-import styles from './ColorPickerBeauty.module.scss';
+import * as css from './styles';
 
 export interface ColorPickerBeautyProps
-  extends Pick<ColorPickerProps, 'pickerType' | 'placement' | 'strategy' | 'color' | 'onChange' | 'onChangeComplete'> {
+  extends Pick<ColorPickerProps, 'pickerType' | 'placement' | 'strategy' | 'color' | 'onChange' | 'onChangeComplete'>,
+    Pick<ViewProps, 'borderWidth' | 'borderStyle' | 'borderColor'> {
   /** Background color của box */
   backgroundInnerField?: ColorNames;
-  /** Style border của field box */
-  borderStyle?: BorderStyle;
-  /** Độ rộng border của field box */
-  borderWidth?: BorderWidth;
-  /** Màu border của field box */
-  borderColor?: ColorNames;
   /** Radius của field box */
   radiusBox?: Radius;
   /** Radius của color picker */
@@ -32,7 +27,7 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
   borderColor = 'gray5',
   radiusPicker = 5,
   radiusBox = 5,
-  borderWidth = '1/6',
+  borderWidth = 1,
   pickerType,
   onChange,
   onChangeComplete,
@@ -44,9 +39,9 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
       borderStyle={borderStyle}
       borderWidth={borderWidth}
       radius={radiusBox}
-      className={styles.box}
+      css={css.box}
     >
-      <View tachyons={['flex', 'items-center', 'justify-between', 'w-100', 'h-100']} radius="round" className={styles.inner}>
+      <View css={css.inner}>
         <ColorPicker
           pickerType={pickerType}
           radius={radiusPicker}
@@ -56,10 +51,8 @@ const ColorPickerBeauty: FC<ColorPickerBeautyProps> & {
           onChange={onChange}
           onChangeComplete={onChangeComplete}
           renderAfter={color => (
-            <View tachyons={['ml4']} style={{ display: 'inherit' }}>
-              <Text color="gray7" className={styles.colorDetails}>
-                {color}
-              </Text>
+            <View css={css.colorDetailsContainer}>
+              <Text css={css.colorDetails}>{color}</Text>
             </View>
           )}
         />

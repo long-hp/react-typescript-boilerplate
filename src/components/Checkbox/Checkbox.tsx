@@ -1,10 +1,10 @@
 import React, { FC, Fragment, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { BorderStyle, BorderWidth, ColorNames, LineAwesome, Radius, Size, Text, useStyleSheet, View } from 'wiloke-react-core';
+import { ColorNames, LineAwesome, Size, Text, TextProps, useStyleSheet, View } from 'wiloke-react-core';
 import { memoization } from 'wiloke-react-core/utils';
 import CheckboxLoading from './CheckboxLoading';
 import * as css from './styles';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends Pick<TextProps, 'borderWidth' | 'borderStyle' | 'borderColor' | 'radius' | 'className'> {
   /** Kích thước của checkbox */
   size?: Size;
   /** Trạng thái của checkbox */
@@ -17,18 +17,8 @@ export interface CheckboxProps {
   activeColor?: ColorNames;
   /** Color icon ben trong checkbox */
   iconActiveColor?: ColorNames;
-  /** Classname */
-  className?: string;
   /** Icon ben trong checkbox */
   Icon?: ReactNode;
-  /** Màu border được lấy màu từ ThemeProvider */
-  borderColor?: ColorNames;
-  /** Kiểu của border */
-  borderStyle?: BorderStyle;
-  /** Border width css */
-  borderWidth?: BorderWidth;
-  /** Border radius css */
-  radius?: Radius;
   /** Sự kiện khi bấm vào checkbox và nhận được event */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
   /** Sự kiện khi bấm vào checkbox và nhận được value */
@@ -48,7 +38,7 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   Icon,
   borderColor = 'gray5',
   radius = 5,
-  borderWidth = '2/6',
+  borderWidth = 2,
   borderStyle = 'solid',
   activeColor = 'primary',
   iconActiveColor = 'light',
@@ -91,7 +81,7 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
         radius={radius}
         borderColor={borderColor}
         borderStyle={borderStyle}
-        borderWidth={checkedState ? '0/6' : borderWidth}
+        borderWidth={checkedState ? 0 : borderWidth}
         css={css.control(size)}
       >
         {checkedState && (

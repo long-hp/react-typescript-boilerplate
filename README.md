@@ -11,13 +11,9 @@ cho bạn một chút về cách kiến trúc của react-typescript-boilerplate
 
 ##### [Theme Provider](docs/general/customize-theme.md)
 
+##### [CSS In JS ( render -> Atomic CSS )](docs/css/css-in-js.md)
+
 ##### [Wiloke Styles](docs/css/wiloke-styles.md)
-
-##### [Tachyons](docs/css/tachyons.md)
-
-##### [CSS Modules](docs/css/css-modules.md)
-
-##### [Grid và một vài hỗ trợ cho scss](docs/css/scss.md)
 
 ### Quickstart
 

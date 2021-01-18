@@ -1,7 +1,7 @@
 import React from 'react';
 import Checkbox from 'components/Checkbox';
 import { boolean, number, optionsKnob, select, text } from '@storybook/addon-knobs';
-import { BorderStyle, BorderWidth, ColorNames, defaultColors, Radius, Size } from 'wiloke-react-core';
+import { BorderStyle, ColorNames, defaultColors, Radius, Size } from 'wiloke-react-core';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 
@@ -16,7 +16,7 @@ export const WithProps = () => {
   let checked;
   let disabled;
   let iconActiveColor: ColorNames = 'light';
-  let borderWidth: BorderWidth = '2/6';
+  let borderWidth = 2;
   let borderColor: ColorNames = 'gray5';
   let borderStyle: BorderStyle = 'solid';
   let activeColor: ColorNames = 'primary';
@@ -27,7 +27,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select<Radius>(
           'Radius',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius', 5, { range: true, min: 0, max: 100 });
@@ -42,11 +42,7 @@ export const WithProps = () => {
     ) as any;
     iconActiveColor = select<ColorNames>('Color Icon Active', getOptions(defaultColors), 'light');
     activeColor = select<ColorNames>('Color Checkbox Active', getOptions(defaultColors), 'primary');
-    borderWidth = select<BorderWidth>(
-      'Boder Width',
-      getOptions<BorderWidth[]>(['0/6', '1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-      '2/6',
-    );
+    borderWidth = number('Boder Width', 2);
     borderColor = select<ColorNames>('Border Color', getOptions(defaultColors), 'gray5');
     borderStyle = select<BorderStyle>(
       'Border Style',

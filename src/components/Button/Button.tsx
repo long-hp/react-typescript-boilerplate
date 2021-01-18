@@ -41,20 +41,14 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
       type = 'button',
       fontSize,
       style,
-      borderWidth = '0/6',
+      borderWidth,
     },
     ref,
   ) => {
     const { styles } = useStyleSheet();
     const props: HTMLAttributes<HTMLElement> = {
-      className: classNames(
-        styles(css.container(Number(borderWidth.charAt(0)), size), block ? css.block : {}, disabled ? css.disabled : {}),
-        className,
-      ),
-      style: {
-        fontSize,
-        ...style,
-      },
+      className: classNames(styles(css.container(size, borderWidth), css.block(block), css.disabled(disabled), css.fontSize(fontSize)), className),
+      style,
       ...(disabled ? {} : { onClick }),
     };
     const renderChildren = () => {
@@ -86,5 +80,4 @@ export default withStyles<HTMLElement, ButtonProps>(Button, {
   color: 'light',
   backgroundColor: 'primary',
   radius: 'square',
-  borderWidth: '0/6',
 });

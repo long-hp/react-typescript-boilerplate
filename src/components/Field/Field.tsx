@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { Text, View, withStyles, ViewProps } from 'wiloke-react-core';
-import styles from './Field.module.scss';
+import * as css from './styles';
 
 export interface FieldProps extends ViewProps {
   children: ReactNode;
@@ -14,14 +14,14 @@ export interface FieldProps extends ViewProps {
 
 const FieldComponent: FC<FieldProps> = ({ label, children, color = 'gray9', fontSize = 14, note, ...rest }) => {
   return (
-    <View {...rest} wilokeStyles="mb-20" tachyons="relative">
+    <View {...rest} css={css.container}>
       {!!label && (
-        <Text color={color} size={fontSize} tagName="p" className={styles.label} tachyons={['mb2', 'mt0']}>
+        <Text color={color} size={fontSize} tagName="p" css={css.label}>
           {label}
         </Text>
       )}
       {children}
-      <Text tagName="p" className={styles.note} color="gray6" tachyons={['mb0', 'mt1']}>
+      <Text tagName="p" css={css.note}>
         {note}
       </Text>
     </View>
