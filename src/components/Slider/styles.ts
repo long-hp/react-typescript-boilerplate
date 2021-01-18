@@ -1,73 +1,52 @@
-@import 'styles/abstracts/abstracts.scss';
+import { css, Theme } from 'wiloke-react-core';
 
-$slider-handle-width: 20;
-$slider-handle-height: 20;
-
-$rail-height: 3;
-$rail-radius: 6;
-
-$track-height: 3;
-$track-radius: 6;
-
-$mark-font-size: 12;
-
-$step-height: 4;
-
-$dot-width: 8;
-$dot-height: 8;
-
-$tooltip-inner-height: 24;
-
-:global {
-  .ui-disabled {
+export const disabled = (disabled: boolean) => {
+  if (!disabled) {
+    return {};
+  }
+  return css`
+    debug: Slider-disabled;
     opacity: 0.4;
     cursor: no-drop;
-  }
+  `;
+};
 
-  .rc-slider {
-    position: relative;
-    padding: 5px 0;
-    width: 100%;
-    border-radius: 6px;
-    touch-action: none;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    }
-  }
+export const container = (colors: Theme['colors']) => css`
+  position: relative;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 6px;
+  touch-action: none;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: ${colors.dark};
 
   .rc-slider-rail {
     position: absolute;
     width: 100%;
-    background-color: $color-info;
-    height: px($rail-height);
-    border-radius: px($rail-radius);
+    background-color: ${colors.info};
+    height: 3px;
+    border-radius: 6px;
   }
 
   .rc-slider-track {
     position: absolute;
     left: 0;
-    height: px($track-height);
-    border-radius: px($track-radius);
-    background-color: $color-primary;
-    // top: 50%;
-    // transform: translateY(-50%);
+    height: 3px;
+    border-radius: 6px;
+    background-color: ${colors.primary};
   }
 
   .rc-slider-handle {
     position: absolute;
-    margin-top: px(-$slider-handle-width / 2.25);
+    margin-top: calc(-20px / 2.25);
 
-    width: px($slider-handle-width);
-    height: px($slider-handle-height);
+    width: 20px;
+    height: 20px;
     border: 2px solid transparent;
 
     cursor: pointer;
     border-radius: 50%;
-    background-color: $color-primary;
+    background-color: ${colors.primary};
     touch-action: pan-x;
 
     &:focus {
@@ -75,11 +54,11 @@ $tooltip-inner-height: 24;
     }
 
     &:hover {
-      border: 2px solid rgba($color: $color-primary, $alpha: 0.2);
+      border: 2px solid rgba(${colors.rgbPrimary}, 0.2);
     }
 
     &:active {
-      box-shadow: 0 0 5px rgba($color: $color-primary, $alpha: 0.2);
+      box-shadow: 0 0 5px rgba(${colors.rgbPrimary}, 0.2);
       cursor: pointer;
     }
   }
@@ -95,7 +74,7 @@ $tooltip-inner-height: 24;
     top: 18px;
     left: 0;
     width: 100%;
-    font-size: px($mark-font-size);
+    font-size: 12px;
   }
 
   .rc-slider-mark-text {
@@ -104,17 +83,17 @@ $tooltip-inner-height: 24;
     vertical-align: middle;
     text-align: center;
     cursor: pointer;
-    color: #999;
+    color: ${colors.gray5};
   }
 
   .rc-slider-mark-text-active {
-    color: #666;
+    color: ${colors.gray6};
   }
 
   .rc-slider-step {
     position: absolute;
     width: 100%;
-    height: px($step-height);
+    height: 4px;
     background: transparent;
   }
 
@@ -122,17 +101,17 @@ $tooltip-inner-height: 24;
     position: absolute;
     bottom: -2px;
     margin-left: -4px;
-    width: px($dot-width);
-    height: px($dot-height);
-    border: 1px solid $color-gray-4;
-    background-color: $color-light;
+    width: 8px;
+    height: 8px;
+    border: 1px solid ${colors.gray4};
+    background-color: ${colors.light};
     cursor: pointer;
     border-radius: 50%;
     vertical-align: middle;
   }
 
   .rc-slider-dot-active {
-    border-color: $color-gray-4;
+    border-color: ${colors.gray4};
   }
 
   .rc-slider-dot-reverse {
@@ -140,18 +119,18 @@ $tooltip-inner-height: 24;
   }
 
   .rc-slider-disabled {
-    background-color: #e9e9e9;
+    background-color: ${colors.gray2};
 
     .rc-slider-track {
-      background-color: #ccc;
+      background-color: ${colors.gray5};
     }
   }
 
   .rc-slider-disabled .rc-slider-handle,
   .rc-slider-disabled .rc-slider-dot {
-    border-color: #ccc;
+    border-color: ${colors.gray5};
     box-shadow: none;
-    background-color: #fff;
+    background-color: ${colors.light};
     cursor: not-allowed;
   }
 
@@ -208,7 +187,7 @@ $tooltip-inner-height: 24;
 
   .rc-slider-tooltip-zoom-down-enter,
   .rc-slider-tooltip-zoom-down-appear {
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-fill-mode: both;
     display: block !important;
     animation-play-state: paused;
@@ -217,7 +196,7 @@ $tooltip-inner-height: 24;
   }
 
   .rc-slider-tooltip-zoom-down-leave {
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-fill-mode: both;
     display: block !important;
     animation-play-state: paused;
@@ -241,13 +220,13 @@ $tooltip-inner-height: 24;
     top: -9999px;
     visibility: visible;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: ${colors.dark};
   }
 
   .rc-slider-tooltip {
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-tap-highlight-color: ${colors.dark};
     }
   }
 
@@ -269,14 +248,14 @@ $tooltip-inner-height: 24;
 
   .rc-slider-tooltip-inner {
     padding: 6px 2px;
-    min-width: px($tooltip-inner-height);
-    height: px($tooltip-inner-height);
-    font-size: px(12);
+    min-width: 24px;
+    height: 24px;
+    font-size: 12px;
     line-height: 1;
-    color: $color-light;
+    color: ${colors.light};
     text-align: center;
     text-decoration: none;
-    background-color: $color-gray-9;
+    background-color: ${colors.gray9};
     border-radius: 6px;
   }
 
@@ -310,4 +289,23 @@ $tooltip-inner-height: 24;
       transform: scale(1, 1);
     }
   }
-}
+`;
+
+export const loadingContainer = ({ colors }: Theme) => css`
+  flex-grow: 1;
+  height: 3px;
+  position: relative;
+  border-radius: 4px;
+  background-color: ${colors.gray5};
+`;
+
+export const loadingInner = ({ colors }: Theme) => css`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  background-color: ${colors.gray6};
+  transform: translateY(-50%);
+`;

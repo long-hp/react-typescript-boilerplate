@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 import { useSelector } from 'react-redux';
 import Routes from 'routes';
-import { ThemeOverrides, ThemeProvider } from 'wiloke-react-core';
+import styleBase from 'styles/base';
+import { ThemeOverrides, ThemeProvider, useStyleSheet, View } from 'wiloke-react-core';
+import * as css from './styles';
 
 export const themeOverrides: ThemeOverrides = {
   fonts: {
@@ -44,6 +46,29 @@ export const themeOverrides: ThemeOverrides = {
     pixelToRem: false,
     devMode: false,
   },
+  grid: {
+    container: {
+      width: 1300,
+      gap: 15,
+    },
+    columns: {
+      max: 12,
+      gap: 30,
+    },
+    breakpoints: {
+      xs: 'default',
+      sm: 768,
+      md: 992,
+      lg: 1300,
+    },
+  },
+};
+
+const CSSGlobal: FC = ({ children }) => {
+  const { renderer } = useStyleSheet();
+  renderer.renderStatic(styleBase);
+
+  return <View css={css.cssGlobalWithTheme}>{children}</View>;
 };
 
 const AppContent: FC = () => {
@@ -51,7 +76,9 @@ const AppContent: FC = () => {
   const direction = useSelector((state: AppState) => state.direction);
   return (
     <ThemeProvider themeOverrides={{ ...themeOverrides, nightMode, direction }}>
-      <Routes />
+      <CSSGlobal>
+        <Routes />
+      </CSSGlobal>
     </ThemeProvider>
   );
 };

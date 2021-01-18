@@ -19,7 +19,7 @@ export const WithProps = () => {
     min: number,
     max: number,
     step: number,
-    size: Size = 'small';
+    size: Exclude<Size, 'extra-small'> | undefined = 'small';
 
   const radiusType = optionsKnob<'css style' | 'number'>('Radius Type', getOptions(['css style', 'number']), 'number', {
     display: 'inline-radio',
@@ -29,7 +29,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select<Radius>(
           'Radius',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius', 5, { range: true, min: 0, max: 100 });
@@ -42,7 +42,7 @@ export const WithProps = () => {
 
     size = select(
       'Size',
-      getOptions<Size[]>(['large', 'medium', 'small']),
+      getOptions<Omit<Size, 'extra-small'>[]>(['large', 'medium', 'small']),
       'small',
     );
   }
@@ -67,7 +67,7 @@ export const WithProps = () => {
         sizeInput={size}
         radius={radius}
         borderColor="gray5"
-        borderWidth="1/6"
+        borderWidth={1}
         block={block}
         onValueChange={_handleOnChange}
       />

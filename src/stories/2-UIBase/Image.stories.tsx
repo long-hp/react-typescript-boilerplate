@@ -27,7 +27,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? optionsKnob(
           'Radius',
-          getOptions<ImageProps['radius'][]>(['square', 'round', 'pill']),
+          getOptions<ImageProps['radius'][]>(['square', 'pill']),
           'square',
           { display: 'inline-radio' },
         )

@@ -11,6 +11,7 @@ const getSizeMapping = (...nums: number[]): Record<Size, number> => {
 };
 
 export const container = css`
+  debug: Alert-container;
   position: relative;
   overflow: hidden;
   padding: 15px;
@@ -19,6 +20,7 @@ export const container = css`
 `;
 
 export const close = css`
+  debug: Alert-close;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -30,6 +32,7 @@ export const enableClose = css`
 `;
 
 export const bgOverlay = css`
+  debug: Alert-bgOverlay;
   position: absolute;
   top: 0;
   right: 0;
@@ -40,6 +43,7 @@ export const bgOverlay = css`
 `;
 
 export const icon = (size: Size) => css`
+  debug: Alert-icon;
   position: absolute;
   left: 10px;
   cursor: pointer;
@@ -48,11 +52,13 @@ export const icon = (size: Size) => css`
 `;
 
 export const message = (size: Size) => css`
+  debug: Alert-message;
   display: block;
   font-size: ${getSizeMapping(14, 16, 20)[size]}px;
 `;
 
 export const description = (size: Size) => css`
+  debug: Alert-description;
   margin-top: 4px;
   line-height: 22px;
   font-size: ${getSizeMapping(13, 14, 15)[size]}px;
@@ -63,6 +69,7 @@ export const showIcon = (size: Size) => css`
 `;
 
 export const small = css`
+  debug: Alert-small;
   padding-top: 8px;
   padding-bottom: 8px;
 `;

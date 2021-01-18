@@ -1,9 +1,10 @@
-import RTabs, { TabsProps } from 'rc-tabs';
+import TabCore, { TabsProps } from 'rc-tabs';
 import 'rc-tabs/assets/index.css';
 import { RenderTabBar } from 'rc-tabs/lib/interface';
 import React, { FC, KeyboardEvent, MouseEvent, ReactNode } from 'react';
 import { useTheme, View } from 'wiloke-react-core';
-import styles from './Tabbar.module.scss';
+import { classNames } from 'wiloke-react-core/utils';
+import * as css from './styles';
 import TabPaneBase from './TabPane';
 
 export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
@@ -72,8 +73,8 @@ const Tabs: FC<TabProps> & TabsStatic = ({
   const { direction } = useTheme();
 
   return (
-    <View className={styles.container}>
-      <RTabs
+    <View css={css.container}>
+      <TabCore
         activeKey={activeKey}
         direction={direction}
         defaultActiveKey={defaultActiveKey}
@@ -81,14 +82,14 @@ const Tabs: FC<TabProps> & TabsStatic = ({
         animated={{ inkBar: navBarAnimated, tabPane: tabPaneAnimated }}
         tabBarGutter={tabTitleGutter}
         moreIcon={moreIcon}
-        className={className}
+        className={classNames('Tabs', className)}
         onChange={onChange}
         onTabClick={onTabClick}
         onTabScroll={onTabScroll}
         renderTabBar={renderTabBar}
       >
         {children}
-      </RTabs>
+      </TabCore>
     </View>
   );
 };

@@ -26,7 +26,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select<Radius>(
           'Radius',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius', 5, { range: true, min: 0, max: 100 });
@@ -58,7 +58,7 @@ export const WithProps = () => {
       placeholder={placeholder}
       borderColor="gray5"
       borderStyle="solid"
-      borderWidth="1/6"
+      borderWidth={1}
       radius={radius}
       value={value}
       onChange={_handleOnChange}

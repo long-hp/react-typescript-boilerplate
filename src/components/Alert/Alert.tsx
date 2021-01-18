@@ -23,7 +23,7 @@ export interface AlertProps extends Omit<ViewProps, 'tachyons' | 'borderColor' |
 }
 
 const Alert = forwardRef<HTMLElement, AlertProps>(
-  ({ closable = true, description, message, showIcon = true, type = 'info', size = 'medium', Icon, onClose, borderWidth = '1/6', ...rest }, ref) => {
+  ({ closable = true, description, message, showIcon = true, type = 'info', size = 'medium', Icon, onClose, borderWidth = 1, ...rest }, ref) => {
     const iconNameMapping: Record<AlertType, LineAwesomeName> = {
       info: 'exclamation-circle',
       success: 'check-circle-o',
@@ -61,7 +61,7 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       <View
         {...rest}
         ref={ref}
-        css={[css.container, closable ? css.enableClose : '', showIcon ? css.showIcon(size) : '']}
+        css={[css.container, closable ? css.enableClose : {}, showIcon ? css.showIcon(size) : {}]}
         borderWidth={borderWidth}
         borderColor={type}
       >

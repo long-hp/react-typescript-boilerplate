@@ -33,7 +33,7 @@ export const WithStyles = () => {
 
 export const WithProps = () => {
   return (
-    <Button radius="round" {...getButtonProps()}>
+    <Button radius={6} {...getButtonProps()}>
       {text('Children', 'Button')}
     </Button>
   );

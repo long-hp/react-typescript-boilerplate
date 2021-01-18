@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Image, LineAwesome, Text, View } from 'wiloke-react-core';
 import { memoization } from 'wiloke-react-core/utils';
 import PostCardLoading from './PostCardLoading';
+import * as css from './styles';
 
 export interface PostCardProps {
   title: string;
@@ -16,13 +17,13 @@ interface PostCardFC extends FC<PostCardProps> {
 
 const PostCard: PostCardFC = ({ title, previewSrc, imageSrc, category }) => {
   return (
-    <View backgroundColor="light" radius="round" tachyons={['relative', 'overflow-hidden']}>
+    <View backgroundColor="light" radius={15} css={css.container}>
       <Image previewSrc={previewSrc} src={imageSrc} lazyLoad aspectRatioInPercent={56.25} />
-      <View backgroundColor="tertiary" color="light" radius={4} tachyons={['absolute', 'top-1', 'left-1', 'ph3', 'pv1']} nightModeBlacklist="all">
+      <View backgroundColor="tertiary" color="light" radius={4} css={css.cat} nightModeBlacklist="all">
         {category}
       </View>
-      <View tachyons={['pa3', 'flex', 'justify-between', 'items-center']}>
-        <Text tagName="h2" tachyons={['w-80', 'nowrap', 'f6']}>
+      <View css={css.content}>
+        <Text tagName="h2" css={{ width: '80%' }} size={16} numberOfLines={1}>
           {title}
         </Text>
         <LineAwesome name="share" size={20} />

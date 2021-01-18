@@ -49,7 +49,7 @@ export const Default = () => {
       </GridSmart>
       {icons.length <= 80 && (
         <View tachyons={['tc', 'mt4']}>
-          <Button radius="round" onClick={() => setIcons(range(0, lineAwesome.length))}>
+          <Button radius={6} onClick={() => setIcons(range(0, lineAwesome.length))}>
             View All Icons
           </Button>
         </View>

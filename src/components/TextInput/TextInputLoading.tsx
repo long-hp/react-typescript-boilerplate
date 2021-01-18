@@ -1,18 +1,13 @@
 import React, { FC } from 'react';
 import { View } from 'wiloke-react-core';
+import * as css from './styles';
 
 export interface TextInputLoadingProps {}
 
 const TextInputLoading: FC<TextInputLoadingProps> = () => {
   return (
-    <View width={200} height={46} backgroundColor="gray5" radius={6} tachyons="relative">
-      <View
-        tachyons={['absolute', 'left-1', 'w-40']}
-        height={4}
-        radius={4}
-        backgroundColor="gray4"
-        style={{ top: '50%', transform: 'translateY(-50%)' }}
-      />
+    <View css={css.loadingContainer}>
+      <View css={css.loadingInner} />
     </View>
   );
 };
