@@ -64,7 +64,7 @@ export const themeOverrides: ThemeOverrides = {
   },
 };
 
-const CSSGlobal: FC = ({ children }) => {
+export const CSSGlobal: FC = ({ children }) => {
   const { renderer } = useStyleSheet();
   renderer.renderStatic(styleBase);
 
