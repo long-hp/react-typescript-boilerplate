@@ -7,7 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { getUseDispatchRedux } from 'wiloke-react-core/utils';
 import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'wiloke-react-core';
-import { themeOverrides } from 'containers/AppContent/AppContent';
+import { themeOverrides, CSSGlobal } from 'containers/AppContent/AppContent';
 
 getUseDispatchRedux(useDispatch);
 import { store, persistor } from 'store/configureStore';
@@ -17,7 +17,9 @@ const AppContent: FC = ({ children }) => {
   const direction = useSelector((state: AppState) => state.direction);
   return (
     <ThemeProvider themeOverrides={{ ...themeOverrides, nightMode, direction }}>
-      <MemoryRouter>{children}</MemoryRouter>
+      <CSSGlobal>
+        <MemoryRouter>{children}</MemoryRouter>
+      </CSSGlobal>
     </ThemeProvider>
   );
 };
