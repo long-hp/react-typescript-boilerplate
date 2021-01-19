@@ -3,7 +3,7 @@ import { LineAwesome, LineAwesomeName, Text, View, ViewProps } from 'wiloke-reac
 import * as css from './styles';
 
 export type AlertType = 'success' | 'info' | 'warning' | 'danger';
-export interface AlertProps extends Omit<ViewProps, 'tachyons' | 'borderColor' | 'borderStyle'> {
+export interface AlertProps extends Omit<ViewProps, 'borderColor' | 'borderStyle'> {
   /** Bật tắt nút ( X ) */
   closable?: boolean;
   /** Đoạn text mô tả */
@@ -61,7 +61,7 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       <View
         {...rest}
         ref={ref}
-        css={[css.container, closable ? css.enableClose : {}, showIcon ? css.showIcon(size) : {}]}
+        css={[css.container, css.enableClose(closable), css.showIcon(size, showIcon)]}
         borderWidth={borderWidth}
         borderColor={type}
       >

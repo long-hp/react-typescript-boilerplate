@@ -27,9 +27,14 @@ export const close = css`
   cursor: pointer;
 `;
 
-export const enableClose = css`
-  padding-right: 30px;
-`;
+export const enableClose = (closable: boolean) => {
+  if (!closable) {
+    return {};
+  }
+  return css`
+    padding-right: 30px;
+  `;
+};
 
 export const bgOverlay = css`
   debug: Alert-bgOverlay;
@@ -64,9 +69,14 @@ export const description = (size: Size) => css`
   font-size: ${getSizeMapping(13, 14, 15)[size]}px;
 `;
 
-export const showIcon = (size: Size) => css`
-  padding-left: ${size === 'small' ? 37 : 60}px;
-`;
+export const showIcon = (size: Size, showIcon: boolean) => {
+  if (!showIcon) {
+    return {};
+  }
+  return css`
+    padding-left: ${size === 'small' ? 37 : 60}px;
+  `;
+};
 
 export const small = css`
   debug: Alert-small;
