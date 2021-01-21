@@ -10,13 +10,13 @@ Dưới đây là danh sách những thứ được sắp xếp mà bạn ít nh
 
 - [React](https://facebook.github.io/react/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [CSS In JS](../css/css-in-js.md)
+- [Wiloke Style](../css/wiloke-styles.md)
 - [React Router](https://github.com/ReactTraining/react-router)
 - [Redux](http://redux.js.org/)
 - [Redux Saga](https://redux-saga.github.io/redux-saga/)
 - [Reselect](https://github.com/reactjs/reselect)
-- [Ramda](https://ramdajs.com/)
-- [Wiloke Style](#1)
-- [Tachyons](#https://tachyons.io/)
+- ...
 
 ### Quản lý components
 
@@ -30,7 +30,7 @@ Chúng ta sẽ viết ứng dụng của mình trong thư mục src. Đây là t
 src
 ├── @types // Chứa các ts decralation để overrides thư viện hoặc viết riêng cho thư viện không hỗ trợ typescript
 │   ├── react-router-dom.ts
-|   └── ...
+│   └── ...
 ├── components // Chứa các thành phần chia sẻ dùng đi dùng lại ở mọi nơi trong dự án
 │   ├── Avatar
 │   │   ├── Avatar.tsx
@@ -41,7 +41,7 @@ src
 │   │   ├── CardLoading.tsx
 │   │   ├── Card.module.scss
 │   │   └── index.ts
-|   └── ...
+│   └── ...
 ├── containers // Một loại components giúp ta kết nối với store để xử lý dữ liệu, layout page và kết nối các components
 │   ├── AppContent
 │   │   ├── AppContent.tsx
@@ -58,22 +58,22 @@ src
 │   │   │   └── watchPost.ts
 │   │   ├── HomePage.tsx
 │   │   └── index.ts
-|   └── ...
+│   └── ...
 ├── hooks // Các file react hooks global
 │   ├── useToggle.ts
 │   ├── useMount.ts
-|   └── ...
+│   └── ...
 ├── models // Chứa type dữ liệu trên server trả về
 │   ├── Posts.ts
 │   ├── Products.ts
-|   └── ...
+│   └── ...
 ├── store // Nơi chứa config redux store và general store
 │   └── general
 │       ├── actions
 │       │   └── actionExample.ts
 │       ├── reducers
 │       │   └── reducerExample.ts
-|       └── sagas
+│       └── sagas
 │           └── watchExample.ts
 │   ├── rootReducers.ts
 │   ├── rootSagas.ts
@@ -81,33 +81,25 @@ src
 ├── stories // List các components đã làm nên storybook
 │   ├── 1-Start
 │   │   ├── App.stories.tsx
-|   |   └── ...
+│   │   └── ...
 │   ├── 2-UIBase
 │   │   ├── Header.stories.tsx
-|   |   └── ...
-|   └── ...
-├── styles // Chứa các global scss cho toàn bộ dự án
-│   ├── abstracts
-│   │   ├── variables.scss
-│   │   ├── mixins.scss
-│   │   ├── functions.scss
-|   |   └── ...
-│   ├── base
-│   │   ├── base.scss
-│   │   ├── typography.scss
-|   |   └── ...
-|   └── main.scss
+│   │   └── ...
+│   └── ...
+├── styles // Chứa các global CSSINJS cho toàn bộ dự án
+│   ├── base.ts
+│   └── ...
 ├── types // Type cho toàn bộ dự án
 │   ├── Endpoint.ts
 │   ├── Field.ts
-|   └── ...
+│   └── ...
 ├── utils // Chứa constants và các hàm tái sử dụng cho dự án
 │   ├── constants.ts
 │   ├── functions
 │   │   ├── ConfigureAxios.ts
 │   │   ├── isEmpty.ts
-|   |   └── ...
-|   └── ...
+│   │   └── ...
+│   └── ...
 ```
 
 Một số lưu ý ( quy ước chung ) khi làm việc
