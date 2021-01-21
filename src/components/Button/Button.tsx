@@ -1,9 +1,9 @@
-import React, { ReactNode, DOMAttributes, HTMLAttributes, ButtonHTMLAttributes, forwardRef, Ref } from 'react';
-import { WithStylesProps, withStyles, ActivityIndicator, Size, Text, useStyleSheet } from 'wiloke-react-core';
+import React, { ReactNode, DOMAttributes, ButtonHTMLAttributes, forwardRef, Ref } from 'react';
+import { View, ActivityIndicator, Size, Text, useStyleSheet, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import * as css from './styles';
 
-export interface ButtonProps extends WithStylesProps {
+export interface ButtonProps extends ViewProps {
   /** React children */
   children: ReactNode;
   /** Các kích thước của button */
@@ -42,13 +42,21 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
       fontSize,
       style,
       borderWidth,
+      backgroundColor = 'primary',
+      color = 'light',
+      radius = 'square',
+      ...rest
     },
     ref,
   ) => {
     const { styles } = useStyleSheet();
-    const props: HTMLAttributes<HTMLElement> = {
+    const props: ViewProps = {
+      ...rest,
       className: classNames(styles(css.container(size, borderWidth), css.block(block), css.disabled(disabled), css.fontSize(fontSize)), className),
       style,
+      backgroundColor,
+      radius,
+      color,
       ...(disabled ? {} : { onClick }),
     };
     const renderChildren = () => {
@@ -63,21 +71,17 @@ const Button = forwardRef<HTMLElement, ButtonProps>(
     };
     if (!!href) {
       return (
-        <a ref={ref as Ref<HTMLAnchorElement>} href={href} rel="noopener noreferrer" target={`_${target}`} {...props}>
+        <View tagName="a" ref={ref as Ref<HTMLAnchorElement>} href={href} rel="noopener noreferrer" target={`_${target}`} {...props}>
           {renderChildren()}
-        </a>
+        </View>
       );
     }
     return (
-      <button ref={ref as Ref<HTMLButtonElement>} type={type} {...props}>
+      <View tagName="button" ref={ref as Ref<HTMLButtonElement>} type={type} {...props}>
         {renderChildren()}
-      </button>
+      </View>
     );
   },
 );
 
-export default withStyles<HTMLElement, ButtonProps>(Button, {
-  color: 'light',
-  backgroundColor: 'primary',
-  radius: 'square',
-});
+export default Button;
