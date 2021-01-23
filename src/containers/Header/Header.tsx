@@ -2,18 +2,16 @@ import Switch, { SwitchProps } from 'components/Switch/Switch';
 import React, { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Divider, Sticky, Text, View } from 'wiloke-react-core';
-import { useSetNightMode } from './actions/actionNightMode';
+import { Divider, Sticky, Text, useNightMode, View } from 'wiloke-react-core';
 import { useSetDirection } from './slice/sliceDirection';
 import * as css from './styles';
 
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
-  const nightMode = useSelector((state: AppState) => state.nightMode);
   const direction = useSelector((state: AppState) => state.direction);
   const setDirection = useSetDirection();
-  const setNightMode = useSetNightMode();
+  const { nightMode, setNightMode } = useNightMode();
 
   const _handleNightMode: SwitchProps['onValueChange'] = value => {
     setNightMode(value);
