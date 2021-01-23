@@ -72,10 +72,9 @@ export const CSSGlobal: FC = ({ children }) => {
 };
 
 const AppContent: FC = () => {
-  const nightMode = useSelector((state: AppState) => state.nightMode);
   const direction = useSelector((state: AppState) => state.direction);
   return (
-    <ThemeProvider themeOverrides={{ ...themeOverrides, nightMode, direction }}>
+    <ThemeProvider themeOverrides={{ ...themeOverrides, direction }}>
       <CSSGlobal>
         <Routes />
       </CSSGlobal>
