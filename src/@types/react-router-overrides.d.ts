@@ -14,9 +14,9 @@ declare module 'react-router' {
     action: H.Action;
     location: Location<HistoryLocationState>;
     push<P extends keyof LocationStates>(path: P, state?: LocationStates[P]): void;
-    push<P extends keyof LocationStates>(location: LocationDescriptorObject): void;
+    push(location: LocationDescriptorObject): void;
     replace<P extends keyof LocationStates>(path: P, state?: LocationStates[P]): void;
-    replace<P extends keyof LocationStates>(location: LocationDescriptorObject): void;
+    replace(location: LocationDescriptorObject): void;
     go(n: number): void;
     goBack(): void;
     goForward(): void;
