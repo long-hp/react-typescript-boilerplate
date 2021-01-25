@@ -12,7 +12,7 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "isolatedModules": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
       "*": ["./@types/*", "*"]

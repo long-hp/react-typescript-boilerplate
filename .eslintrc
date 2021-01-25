@@ -29,6 +29,7 @@
         "extensions": [".ts", ".tsx"]
       }
     ],
+    "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/jsx-boolean-value": "off",
     "react/forbid-prop-types": "off",
