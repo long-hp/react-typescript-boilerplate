@@ -11,9 +11,6 @@ const configuration = {
     filename: 'static/css/[name].css',
     chunkFilename: 'static/css/[name].chunk.css',
   },
-  vendor: {
-    filename: 'static/js/vendors/vendor-[name].js',
-  },
 };
 
 function rewireProduction(config, type) {
@@ -41,21 +38,13 @@ function rewireProduction(config, type) {
       splitChunks: {
         maxInitialRequests: Infinity,
         minSize: 40000,
-        // chunks(chunk) {
-        //   return !chunk.name.includes('Lazy');
-        // },
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
-            filename: configuration.vendor.filename,
             chunks(chunk) {
               return chunk.name === 'main';
             },
             name(module, chunks, cacheGroupKey) {
-              // check import module in styles
-              if (module.context.includes('src/styles')) {
-                return '_vendors';
-              }
               const moduleFileName = module
                 .identifier()
                 .split('/')
