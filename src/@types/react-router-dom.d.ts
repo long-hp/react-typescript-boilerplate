@@ -1,24 +1,25 @@
 import { match } from 'react-router';
 import * as React from 'react';
 import * as H from 'history';
-import { LocationStates } from 'routes/types';
+import { PathName } from 'routes/types';
+import { GetState, LiteralUnion } from './type';
 
 declare module 'react-router-dom' {
-  export interface Location<P extends keyof LocationStates> {
-    pathname: P;
+  export interface Location<P extends string> {
+    pathname: LiteralUnion<P, PathName>;
     search: H.Search;
-    state: LocationStates[P];
+    state: GetState<P>;
     hash: H.Hash;
     key?: H.LocationKey;
   }
-  export interface LocationDescriptorObject<P extends keyof LocationStates> {
-    pathname?: P;
+  export interface LocationDescriptorObject<P extends string> {
+    pathname?: LiteralUnion<P, PathName>;
     search?: H.Search;
-    state?: LocationStates[P];
+    state?: GetState<P>;
     hash?: H.Hash;
     key?: H.LocationKey;
   }
-  export type LocationDescriptor<P extends keyof LocationStates> = P | LocationDescriptorObject<P>;
+  export type LocationDescriptor<P extends string> = LiteralUnion<P, PathName> | LocationDescriptorObject<P>;
 
   export {
     generatePath,
@@ -59,15 +60,15 @@ declare module 'react-router-dom' {
   }
   export class HashRouter extends React.Component<HashRouterProps, any> {}
 
-  export interface LinkProps<P extends keyof LocationStates> extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+  export interface LinkProps<P extends LiteralUnion<PathName>> extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     component?: React.ComponentType<any>;
     to: LocationDescriptor<P> | ((location: Location<P>) => LocationDescriptor<P>);
     replace?: boolean;
     innerRef?: React.Ref<HTMLAnchorElement>;
   }
-  export class Link<P extends keyof LocationStates> extends React.Component<LinkProps<P>, any> {}
+  export class Link<P extends LiteralUnion<PathName>> extends React.Component<LinkProps<P>, any> {}
 
-  export interface NavLinkProps<P extends keyof LocationStates> extends LinkProps<P> {
+  export interface NavLinkProps<P extends LiteralUnion<PathName>> extends LinkProps<P> {
     activeClassName?: string;
     activeStyle?: React.CSSProperties;
     exact?: boolean;
@@ -75,5 +76,5 @@ declare module 'react-router-dom' {
     isActive?<Params extends { [K in keyof Params]?: string }>(match: match<Params>, location: Location<P>): boolean;
     location?: Location<P>;
   }
-  export class NavLink<P extends keyof LocationStates> extends React.Component<NavLinkProps<P>, any> {}
+  export class NavLink<P extends LiteralUnion<PathName>> extends React.Component<NavLinkProps<P>, any> {}
 }

@@ -1,11 +1,11 @@
 import * as H from 'history';
-import { LocationStates } from 'routes/types';
-
+import { PathName } from 'routes/types';
+import { LiteralUnion, GetState } from 'type';
 declare module 'react-router' {
-  export interface LocationDescriptorObject<P extends keyof LocationStates> {
-    pathname?: P;
+  export interface LocationDescriptorObject<P extends string> {
+    pathname?: LiteralUnion<P, PathName>;
     search?: H.Search;
-    state?: LocationStates[P];
+    state?: GetState<P>;
     hash?: H.Hash;
     key?: H.LocationKey;
   }
@@ -13,9 +13,9 @@ declare module 'react-router' {
     length: number;
     action: H.Action;
     location: Location<HistoryLocationState>;
-    push<P extends keyof LocationStates>(path: P, state?: LocationStates[P]): void;
+    push<P extends string>(path: LiteralUnion<P, PathName>, state: GetState<P>): void;
     push(location: LocationDescriptorObject): void;
-    replace<P extends keyof LocationStates>(path: P, state?: LocationStates[P]): void;
+    replace<P extends string>(path: LiteralUnion<P, PathName>, state?: GetState<P>): void;
     replace(location: LocationDescriptorObject): void;
     go(n: number): void;
     goBack(): void;

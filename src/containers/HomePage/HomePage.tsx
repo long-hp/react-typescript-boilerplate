@@ -10,6 +10,7 @@ import Section from 'components/Section';
 import SectionTitle from 'components/SectionTitle';
 import TextUnderline from 'components/TextUnderline';
 import Header from 'containers/Header/Header';
+import { useHistory } from 'react-router';
 import { useGetTodolist } from './actions/actionTodolist';
 import { todolistSelector } from './selectors';
 
@@ -18,6 +19,17 @@ const HomePage: FC = () => {
   const getTodolist = useGetTodolist();
   const { size, ref } = useResponsive({ maxWidth: 600 });
   const { colors } = useTheme();
+  const history = useHistory();
+  history.push('/anotherPage', { anotherPage: '1' });
+  history.push('/anotherPage?q1=q1&q2=q2#hash=abc', { anotherPage: '1' });
+  history.push('/anotherPagezczxc?q1=q1&q2=q2#hash=abc', "Can't match any route");
+  history.push('/anotherPagezxcv', "Can't match any route");
+  history.push('/abc/', { anotherPage2Id: 'abc' });
+  history.push('/anotherPage/', { anotherPageId: 'abc' });
+  history.push('/anotherPage/abcxyz?q1=q1&...zxcyc#sad', { anotherPageId: 'abc' });
+  history.push('/abc', "Can't match any route");
+  history.push('/', { homePage: '123' });
+  history.push('/login/abc/xz', { loginPage: 'abc' });
 
   const _getTodolist = () => {
     getTodolist.request({ endpoint: Endpoints.Todolist });
