@@ -1,5 +1,5 @@
 import Switch, { SwitchProps } from 'components/Switch/Switch';
-import React, { FC, memo } from 'react';
+import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Divider, Sticky, Text, useNightMode, View } from 'wiloke-react-core';
@@ -34,7 +34,12 @@ const Header: FC<HeaderProps> = () => {
             </Link>
           </View>
           <View css={css.link}>
-            <Link to="/about">
+            <Link
+              to={{
+                pathname: '/about',
+                state: { abc: 'sdf' },
+              }}
+            >
               <Text tagName="span" color="gray8" colorHover="primary">
                 About
               </Text>

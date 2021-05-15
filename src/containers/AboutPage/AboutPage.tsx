@@ -1,6 +1,5 @@
-import React from 'react';
-import { View } from 'wiloke-react-core';
 import Header from 'containers/Header/Header';
+import { View } from 'wiloke-react-core';
 
 const AboutPage = () => {
   return (

@@ -44,7 +44,7 @@ export const themeOverrides: ThemeOverrides = {
   },
   cssInJs: {
     pixelToRem: false,
-    devMode: false,
+    devMode: true,
   },
   grid: {
     container: {

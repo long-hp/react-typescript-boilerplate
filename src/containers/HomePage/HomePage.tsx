@@ -1,8 +1,3 @@
-import React, { FC } from 'react';
-import { range } from 'ramda';
-import { useSelector } from 'react-redux';
-import { Endpoints } from 'types/Endpoints';
-import { GridSmart, Image, LineAwesome, Space, Text, useResponsive, useTheme, View } from 'wiloke-react-core';
 import Button from 'components/Button';
 import IconText from 'components/IconText';
 import PostCard from 'components/PostCard';
@@ -10,12 +5,20 @@ import Section from 'components/Section';
 import SectionTitle from 'components/SectionTitle';
 import TextUnderline from 'components/TextUnderline';
 import Header from 'containers/Header/Header';
+import { range } from 'ramda';
+import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { todolistSelector } from 'store/selectors';
+import { Endpoints } from 'types/Endpoints';
+import { GridSmart, Image, LineAwesome, Space, Text, useResponsive, useTheme, View } from 'wiloke-react-core';
+import { useActionExample } from './actions/actionExample';
 import { useGetTodolist } from './actions/actionTodolist';
-import { todolistSelector } from './selectors';
 
 const HomePage: FC = () => {
   const todolist = useSelector(todolistSelector);
   const getTodolist = useGetTodolist();
+  const actionExample = useActionExample();
+  const example = useSelector((state: AppState) => state.homePage.example);
   const { size, ref } = useResponsive({ maxWidth: 600 });
   const { colors } = useTheme();
 
@@ -27,6 +30,8 @@ const HomePage: FC = () => {
     getTodolist.cancel();
   };
 
+  console.log('re-render', example);
+
   return (
     <View>
       <Header />
@@ -36,7 +41,14 @@ const HomePage: FC = () => {
             <GridSmart columnWidth={450} columnCount={2} columnGap={30}>
               <View>
                 <View ref={ref}>
-                  <Text tagName="h2" color="gray9" size={size(66)}>
+                  <Text
+                    tagName="h2"
+                    color="gray9"
+                    size={size(66)}
+                    onClick={() => {
+                      actionExample();
+                    }}
+                  >
                     <TextUnderline
                       lineSize={size(20)}
                       lineBottomSpace={size(43)}
@@ -56,7 +68,7 @@ const HomePage: FC = () => {
                 </View>
                 <GridSmart columnWidth={200} columnCount={2}>
                   <Button
-                    loading={todolist.status === 'loading'}
+                    // loading={todolist.status === 'loading'}
                     block
                     radius={10}
                     size="large"
@@ -92,7 +104,7 @@ const HomePage: FC = () => {
             </View>
             <View css={{ display: 'flex', justifyContent: 'center', marginBottom: '18px' }}>
               <Button
-                loading={todolist.status === 'loading'}
+                // loading={todolist.status === 'loading'}
                 radius={10}
                 size="medium"
                 backgroundColor="secondary"
