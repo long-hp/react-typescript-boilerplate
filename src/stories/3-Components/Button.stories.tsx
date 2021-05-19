@@ -7,7 +7,7 @@ import { LineAwesome, Text, View, Size } from 'wiloke-react-core';
 import Button, { ButtonProps } from 'components/Button/Button';
 
 export default {
-  title: 'Components/Button',
+  title: 'General/Button',
   component: Button,
 };
 
@@ -33,7 +33,7 @@ export const WithStyles = () => {
 
 export const WithProps = () => {
   return (
-    <Button radius="round" {...getButtonProps()}>
+    <Button radius={6} {...getButtonProps()}>
       {text('Children', 'Button')}
     </Button>
   );

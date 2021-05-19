@@ -1,9 +1,9 @@
 import React, { forwardRef, ReactNode } from 'react';
-import { LineAwesome, LineAwesomeName, Text, View, withStyles, WithStylesProps } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
-import styles from './Alert.module.scss';
+import { LineAwesome, LineAwesomeName, Text, View, ViewProps } from 'wiloke-react-core';
+import * as css from './styles';
 
-export interface AlertProps extends WithStylesProps {
+export type AlertType = 'success' | 'info' | 'warning' | 'danger';
+export interface AlertProps extends Omit<ViewProps, 'borderColor' | 'borderStyle'> {
   /** Bật tắt nút ( X ) */
   closable?: boolean;
   /** Đoạn text mô tả */
@@ -12,10 +12,8 @@ export interface AlertProps extends WithStylesProps {
   message: string;
   /** Bật tắt icon phía bên trái */
   showIcon?: boolean;
-  /** Bật tắt border cho component */
-  disableBorder?: boolean;
   /** Chọn kiểu alert */
-  type?: 'success' | 'info' | 'warning' | 'danger';
+  type?: AlertType;
   /** Chọn kích thước */
   size?: 'small' | 'medium' | 'large';
   /** Render Icon */
@@ -24,32 +22,14 @@ export interface AlertProps extends WithStylesProps {
   onClose?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
 }
 
-const getIconName = (type: string): LineAwesomeName => {
-  switch (type) {
-    case 'info':
-      return 'exclamation-circle';
-    case 'success':
-      return 'check-circle-o';
-    case 'warning':
-      return 'exclamation-triangle';
-    case 'danger':
-      return 'times-circle';
-    default:
-      return 'info';
-  }
-};
-
 const Alert = forwardRef<HTMLElement, AlertProps>(
-  (
-    { closable = true, description, disableBorder, message, className, showIcon = true, type = 'info', size = 'medium', Icon, onClose, ...rest },
-    ref,
-  ) => {
-    const sizeClass = styles[size];
-    const disableBorderClass = disableBorder ? styles.disableBorder : '';
-    const closableClass = closable ? styles.enableClose : '';
-    const showIconClass = showIcon ? styles.showIcon : '';
-    const containerClass = classNames(sizeClass, disableBorderClass, closableClass, showIconClass, styles.container, className);
-    const iconName = getIconName(type);
+  ({ closable = true, description, message, showIcon = true, type = 'info', size = 'medium', Icon, onClose, borderWidth = 1, ...rest }, ref) => {
+    const iconNameMapping: Record<AlertType, LineAwesomeName> = {
+      info: 'exclamation-circle',
+      success: 'check-circle-o',
+      warning: 'exclamation-triangle',
+      danger: 'times-circle',
+    };
 
     const renderAlertIcon = () => {
       if (!showIcon) {
@@ -58,7 +38,7 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       if (Icon) {
         return Icon;
       }
-      return <LineAwesome className={styles.icon} color={type} tachyons={['absolute', 'left-1', 'pointer']} name={iconName} />;
+      return <LineAwesome css={css.icon(size)} color={type} name={iconNameMapping[type]} />;
     };
 
     const renderClose = () => {
@@ -67,32 +47,38 @@ const Alert = forwardRef<HTMLElement, AlertProps>(
       }
       return (
         <LineAwesome
+          css={css.close}
           colorHover="gray9"
+          color="gray7"
           size={16}
-          tachyons={['absolute', 'top-1', 'right-1', 'pointer']}
           name="times"
           onClick={(event: React.MouseEvent<HTMLElement, MouseEvent>) => onClose?.(event)}
-          color="gray7"
         />
       );
     };
 
     return (
-      <View {...rest} ref={ref} className={containerClass} borderColor={type} borderWidth="1/6" borderStyle="solid">
+      <View
+        {...rest}
+        ref={ref}
+        css={[css.container, css.enableClose(closable), css.showIcon(size, showIcon)]}
+        borderWidth={borderWidth}
+        borderColor={type}
+      >
         {renderAlertIcon()}
-        <Text className={styles.message} color="gray9">
+        <Text css={css.message(size)} color="gray9">
           {message}
         </Text>
         {description && (
-          <Text className={styles.description} color="gray7">
+          <Text css={css.description(size)} color="gray7">
             {description}
           </Text>
         )}
         {renderClose()}
-        <View tachyons={['absolute', 'absolute--fill']} className={styles.bgOverlay} backgroundColor={type} />
+        <View css={css.bgOverlay} backgroundColor={type} />
       </View>
     );
   },
 );
 
-export default withStyles<HTMLElement, AlertProps>(Alert);
+export default Alert;

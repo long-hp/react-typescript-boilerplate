@@ -1,18 +1,17 @@
 import Switch, { SwitchProps } from 'components/Switch/Switch';
-import React, { FC, memo } from 'react';
+import { FC, memo } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Divider, Sticky, Text, View } from 'wiloke-react-core';
-import { useSetNightMode } from './actions/actionNightMode';
+import { Divider, Sticky, Text, useNightMode, View } from 'wiloke-react-core';
 import { useSetDirection } from './slice/sliceDirection';
+import * as css from './styles';
 
 export interface HeaderProps {}
 
 const Header: FC<HeaderProps> = () => {
-  const nightMode = useSelector((state: AppState) => state.nightMode);
   const direction = useSelector((state: AppState) => state.direction);
   const setDirection = useSetDirection();
-  const setNightMode = useSetNightMode();
+  const { nightMode, setNightMode } = useNightMode();
 
   const _handleNightMode: SwitchProps['onValueChange'] = value => {
     setNightMode(value);
@@ -25,30 +24,35 @@ const Header: FC<HeaderProps> = () => {
 
   return (
     <Sticky>
-      <View backgroundColor="light" tachyons="pa4">
-        <View tagName="header" tachyons={['flex', 'flex-row', 'justify-center', 'items-center']}>
-          <View tachyons={['mr2', 'mr4-l']}>
-            <Link to="/" style={{ textDecoration: 'none' }}>
+      <View backgroundColor="light" css={{ padding: '20px' }}>
+        <View tagName="header" css={css.inner}>
+          <View css={css.link}>
+            <Link to="/">
               <Text tagName="span" color="gray8" colorHover="primary">
                 Home
               </Text>
             </Link>
           </View>
-          <View tachyons={['mr2', 'mr4-l']}>
-            <Link to="/about" style={{ textDecoration: 'none' }}>
+          <View css={css.link}>
+            <Link
+              to={{
+                pathname: '/about',
+                state: { abc: 'sdf' },
+              }}
+            >
               <Text tagName="span" color="gray8" colorHover="primary">
                 About
               </Text>
             </Link>
           </View>
-          <View tachyons={['flex', 'items-center', 'mr2', 'mr4-l']}>
-            <Text color="gray8" tachyons="mr2">
+          <View css={[css.link, { display: 'flex', alignItems: 'center' }]}>
+            <Text color="gray8" css={{ marginRight: '5px' }}>
               NightMode
             </Text>
             <Switch checked={nightMode} onValueChange={_handleNightMode} nightModeBlacklist="all" />
           </View>
-          <View tachyons={['flex', 'items-center']}>
-            <Text color="gray8" tachyons="mr2">
+          <View css={{ display: 'flex', alignItems: 'center' }}>
+            <Text color="gray8" css={{ marginRight: '5px' }}>
               RTL
             </Text>
             <Switch checked={direction === 'rtl'} onValueChange={_handleDirection} nightModeBlacklist="all" />

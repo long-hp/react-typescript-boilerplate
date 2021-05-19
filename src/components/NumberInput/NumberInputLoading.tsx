@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { View } from 'wiloke-react-core';
+import * as css from './styles';
+
 export interface NumberInputLoadingProps {}
 
 const NumberInputLoading: FC<NumberInputLoadingProps> = () => {
-  return <View width={60} height={28} backgroundColor="gray5" radius={5} />;
+  return <View css={css.loadingContainer} />;
 };
 
 export default NumberInputLoading;

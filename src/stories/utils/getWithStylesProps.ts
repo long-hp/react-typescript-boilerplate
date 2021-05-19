@@ -1,5 +1,5 @@
 import { select, optionsKnob, number, boolean } from '@storybook/addon-knobs';
-import { BorderStyle, BorderWidth, defaultColors, WithStylesProps } from 'wiloke-react-core';
+import { BorderStyle, defaultColors, WithStylesProps } from 'wiloke-react-core';
 import getOptions from './getOptions';
 
 export const borderStyleGroup = 'Border Style';
@@ -23,7 +23,7 @@ const getWithStylesProps = (): WithStylesProps & { radiusType: string; borderEna
     radiusType === 'css style'
       ? select(
           'Radius',
-          getOptions<WithStylesProps['radius'][]>(['round', 'pill', 'square']),
+          getOptions<WithStylesProps['radius'][]>(['pill', 'square']),
           'square',
           generalGroup,
         )
@@ -49,19 +49,7 @@ const getWithStylesProps = (): WithStylesProps & { radiusType: string; borderEna
         undefined,
         borderStyleGroup,
       );
-  const borderWidth = borderEnalbed
-    ? select(
-        'Border Width',
-        getOptions<BorderWidth[]>(['1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-        '2/6',
-        borderStyleGroup,
-      )
-    : select(
-        'Border Width ',
-        getOptions<BorderWidth[]>(['1/6', '2/6', '3/6', '4/6', '5/6', '6/6']),
-        undefined,
-        borderStyleGroup,
-      );
+  const borderWidth = borderEnalbed ? number('Border Width', 2) : undefined;
   return {
     backgroundColor,
     backgroundColorHover,

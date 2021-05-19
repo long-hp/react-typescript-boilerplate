@@ -13,7 +13,7 @@ const RadioButton: FC<RadioButtonProps> = props => {
     rest.disabled = props.disabled || (stateContext.disabled as boolean);
     rest.block = props.block || (stateContext.block as boolean);
   }
-  return <Radio {...rest} type="button"></Radio>;
+  return <Radio {...rest} variant="button" />;
 };
 
 export default RadioButton;

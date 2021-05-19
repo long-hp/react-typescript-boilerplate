@@ -1,9 +1,9 @@
 import React, { memo, ReactNode, useEffect, useState } from 'react';
-import { ActivityIndicator, ColorNames, Size, View, ViewProps, WithTachyonsProps } from 'wiloke-react-core';
+import { ActivityIndicator, ColorNames, Size, View, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './Switch.module.scss';
+import * as css from './styles';
 
-export interface SwitchProps extends WithTachyonsProps, Pick<ViewProps, 'nightModeBlacklist' | 'radius'> {
+export interface SwitchProps extends Pick<ViewProps, 'nightModeBlacklist' | 'radius' | 'className'> {
   /** status active của component */
   checked?: boolean;
   /** default status active cuả component */
@@ -26,7 +26,7 @@ export interface SwitchProps extends WithTachyonsProps, Pick<ViewProps, 'nightMo
   onChange?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   /** sự kiện onChange click vào component và nhận được value */
   onValueChange?: (value: boolean) => void;
-  children?: ((value: boolean) => ReactNode) | ReactNode;
+  renderAfter?: (value: boolean) => ReactNode;
 }
 
 const getLoadingSize = (size: Size) => {
@@ -55,17 +55,13 @@ const Switch = ({
   inactiveColor = 'gray4',
   onChange,
   onValueChange,
-  children,
+  renderAfter,
   className,
   nightModeBlacklist,
   ...rest
 }: SwitchProps) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
-  const containerCheckedClassName = checkedState ? styles.checked : '';
-  const disableClassName = disabled ? 'ui-disabled' : '';
-  const sizeClassName = styles[size];
   const loadingSize = getLoadingSize(size);
-  const containerClassName = classNames(sizeClassName, styles.container, containerCheckedClassName, disableClassName, className);
 
   const _handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (loading || disabled) {
@@ -81,16 +77,10 @@ const Switch = ({
       return null;
     }
 
-    const innerCheckedClassName = checkedState ? styles.innerChecked : styles.innerUnChecked;
     const innerContent = checkedState ? CheckedChildren : UnCheckedChildren;
 
     return (
-      <View
-        color="light"
-        className={classNames(styles.inner, innerCheckedClassName)}
-        tachyons={['tr', 'db', 'absolute', 'flex', 'ma0']}
-        nightModeBlacklist={nightModeBlacklist}
-      >
+      <View color="light" className="Inner-container" css={css.inner(size)} nightModeBlacklist={nightModeBlacklist}>
         {innerContent}
       </View>
     );
@@ -99,23 +89,15 @@ const Switch = ({
   const _renderLoading = () => {
     return (
       <View
-        className={classNames(styles.handle)}
-        radius="pill"
-        tachyons={['absolute', 'flex', 'justify-center', 'items-center']}
+        className="Hanlde-container"
+        css={css.handle(size, checkedState)}
         backgroundColor="light"
         color="gray7"
         nightModeBlacklist={nightModeBlacklist}
       >
-        {loading && <ActivityIndicator size={loadingSize} className={styles.handleLoadingIcon} nightModeBlacklist={nightModeBlacklist} />}
+        {loading && <ActivityIndicator size={loadingSize} className="handleLoadingIcon" nightModeBlacklist={nightModeBlacklist} />}
       </View>
     );
-  };
-
-  const _renderChildren = () => {
-    if (typeof children === 'function') {
-      return children(checkedState);
-    }
-    return children;
   };
 
   useEffect(() => {
@@ -128,16 +110,15 @@ const Switch = ({
       <View
         {...rest}
         backgroundColor={checkedState ? activeColor : inactiveColor}
-        className={containerClassName}
-        radius="pill"
-        tachyons={['relative', 'dib', 'v-mid', 'pointer', 'outline-0']}
+        className={classNames(className, 'Switch-container')}
+        css={[css.container(size), css.disabled(disabled)]}
         onClick={_handleClick}
         nightModeBlacklist={nightModeBlacklist}
       >
         {_renderInnerContent()}
         {_renderLoading()}
       </View>
-      {_renderChildren()}
+      {renderAfter?.(checkedState)}
     </>
   );
 };

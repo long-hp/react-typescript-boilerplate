@@ -5,7 +5,7 @@ import { View, defaultColors } from 'wiloke-react-core';
 import TextUnderline from 'components/TextUnderline';
 
 export default {
-  title: 'Components/TextUnderline',
+  title: 'General/TextUnderline',
   component: TextUnderline,
 };
 
@@ -18,7 +18,7 @@ export const Default = () => {
   const children = text('Children', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit');
   return (
     <View>
-      <TextUnderline size={size} lineSize={lineSize} lineBottomSpace={lineBottomSpace} lineColor={lineColor} color={colorProps}>
+      <TextUnderline textSize={size} lineSize={lineSize} lineBottomSpace={lineBottomSpace} lineColor={lineColor} textColor={colorProps}>
         {children}
       </TextUnderline>
     </View>

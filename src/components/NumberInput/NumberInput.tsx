@@ -1,15 +1,15 @@
 import React, { FC, InputHTMLAttributes, useEffect } from 'react';
-import { Size, View, WithStylesProps } from 'wiloke-react-core';
+import { Size, useStyleSheet, View, ViewProps } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
 import Action from './Actions';
-import styles from './NumberInput.module.scss';
 import NumberInputLoading from './NumberInputLoading';
+import * as css from './styles';
 import useCount from './useCount';
 
 type InputType = 'number' | 'phone';
-export interface NumberInputProps extends WithStylesProps {
+export interface NumberInputProps extends ViewProps {
   /** Size của input */
-  sizeInput?: Size;
+  sizeInput?: Exclude<Size, 'extra-small'>;
   /** Bật lên input sẽ rộng 100% */
   block?: boolean;
   /** Kiểu đầu vào của input */
@@ -45,15 +45,13 @@ const NumberInput: FC<NumberInputProps> & {
   color = 'gray8',
   backgroundColor = 'light',
   borderColor = 'gray5',
-  borderWidth = '1/6',
+  borderWidth = 1,
   borderStyle = 'solid',
   onValueChange,
   onChange,
   ...rest
 }) => {
-  const blockClassName = block ? styles.block : '';
-  const disableClassName = disabled ? 'ui-disabled' : '';
-  const generalSetting = { className: classNames(styles.container, className, styles[sizeInput], blockClassName, disableClassName) };
+  const { styles } = useStyleSheet();
 
   const { count, decrement, increment, setCount } = useCount({
     min: min,
@@ -78,18 +76,27 @@ const NumberInput: FC<NumberInputProps> & {
   return (
     <View
       {...rest}
-      {...generalSetting}
-      tachyons={['relative', 'overflow-hidden']}
+      className={classNames(className, 'NumberInput-container')}
+      css={css.container(sizeInput, block, disabled)}
       color={color}
       backgroundColor={backgroundColor}
       borderColor={borderColor}
       borderWidth={borderWidth}
       borderStyle={borderStyle}
     >
-      <input className={styles.numberInput} type={type} min={min} max={max} step={step} value={count} disabled={disabled} onChange={_handleChange} />
+      <input
+        className={styles(css.input(sizeInput))}
+        type={type}
+        min={min}
+        max={max}
+        step={step}
+        value={count}
+        disabled={disabled}
+        onChange={_handleChange}
+      />
 
-      <View tachyons={['absolute', 'top-0', 'right-0', 'h-100']} backgroundColor="transparent">
-        <Action increment={_onIncrement} decrement={_onDecrement} />
+      <View css={css.actions} backgroundColor="transparent">
+        <Action increment={_onIncrement} decrement={_onDecrement} size={sizeInput} />
       </View>
     </View>
   );

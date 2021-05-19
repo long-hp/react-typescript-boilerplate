@@ -1,15 +1,15 @@
 import React, { FC, Fragment, InputHTMLAttributes, ReactNode, useEffect, useState } from 'react';
-import { BorderStyle, BorderWidth, ColorNames, LineAwesome, Radius, Size, Text, View } from 'wiloke-react-core';
-import { classNames, memoization } from 'wiloke-react-core/utils';
-import styles from './Checkbox.module.scss';
+import { ColorNames, LineAwesome, Size, Text, TextProps, useStyleSheet, View } from 'wiloke-react-core';
+import { memoization } from 'wiloke-react-core/utils';
 import CheckboxLoading from './CheckboxLoading';
+import * as css from './styles';
 
-export interface CheckboxProps {
-  /** Kich thuoc checkbox */
+export interface CheckboxProps extends Pick<TextProps, 'borderWidth' | 'borderStyle' | 'borderColor' | 'radius' | 'className'> {
+  /** Kích thước của checkbox */
   size?: Size;
-  /** Trang thai cua checkbox */
+  /** Trạng thái của checkbox */
   checked?: boolean;
-  /** Trang thai default cua checkbox */
+  /** Trạng thái default của checkbox */
   defaultChecked?: boolean;
   /** Disabled Checkbox */
   disabled?: boolean;
@@ -17,18 +17,8 @@ export interface CheckboxProps {
   activeColor?: ColorNames;
   /** Color icon ben trong checkbox */
   iconActiveColor?: ColorNames;
-  /** Classname */
-  className?: string;
   /** Icon ben trong checkbox */
   Icon?: ReactNode;
-  /** Màu border được lấy màu từ ThemeProvider */
-  borderColor?: ColorNames;
-  /** Kiểu của border */
-  borderStyle?: BorderStyle;
-  /** Border width css */
-  borderWidth?: BorderWidth;
-  /** Border radius css */
-  radius?: Radius;
   /** Sự kiện khi bấm vào checkbox và nhận được event */
   onChange?: InputHTMLAttributes<HTMLInputElement>['onChange'];
   /** Sự kiện khi bấm vào checkbox và nhận được value */
@@ -45,11 +35,10 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   defaultChecked = false,
   disabled = false,
   children,
-  className,
   Icon,
   borderColor = 'gray5',
   radius = 5,
-  borderWidth = '2/6',
+  borderWidth = 2,
   borderStyle = 'solid',
   activeColor = 'primary',
   iconActiveColor = 'light',
@@ -57,9 +46,7 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   onValueChange,
 }) => {
   const [checkedState, setCheckedState] = useState(defaultChecked);
-  const sizeClassName = styles[size];
-  const disabledClassName = disabled ? styles.disabled : '';
-  const containerClasses = classNames(styles.container, disabledClassName, sizeClassName, className);
+  const { styles } = useStyleSheet();
 
   const defaultIconMapping: Record<Size, ReactNode> = {
     'extra-small': <LineAwesome name="check" size={12} />,
@@ -84,15 +71,7 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   }, [checked]);
 
   const _renderCheckboxNative = () => {
-    return (
-      <input
-        disabled={disabled}
-        className={classNames('absolute', 'absolute--fill', 'z-1', 'o-0')}
-        checked={checkedState}
-        type="checkbox"
-        onChange={_handleChange}
-      />
-    );
+    return <input disabled={disabled} className={styles(css.input)} checked={checkedState} type="checkbox" onChange={_handleChange} />;
   };
 
   const _renderCheckboxIcon = () => {
@@ -102,21 +81,15 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
         radius={radius}
         borderColor={borderColor}
         borderStyle={borderStyle}
-        borderWidth={checkedState ? '0/6' : borderWidth}
-        tachyons={['relative', 'top-0', 'left-0', 'db', 'overflow-hidden', 'flex', 'justify-center', 'items-center']}
-        className={styles.control}
+        borderWidth={checkedState ? 0 : borderWidth}
+        css={css.control(size)}
       >
         {checkedState && (
           <Fragment>
-            <Text
-              color={iconActiveColor}
-              nightModeBlacklist="color"
-              tagName="span"
-              tachyons={['relative', 'z-1', 'flex', 'justify-center', 'items-center']}
-            >
+            <Text color={iconActiveColor} nightModeBlacklist="color" tagName="span" css={css.icon}>
               {Icon || defaultIconMapping[size]}
             </Text>
-            <View tachyons={['absolute', 'absolute--fill']} backgroundColor={activeColor} />
+            <View css={css.bgIcon} backgroundColor={activeColor} />
           </Fragment>
         )}
       </Text>
@@ -124,13 +97,13 @@ const Checkbox: FC<CheckboxProps> & CheckboxStatic = ({
   };
 
   return (
-    <Text tagName="label" className={containerClasses} tachyons="pointer">
-      <Text tagName="span" tachyons={['relative', 'dib', 'v-mid']} className={classNames(styles.checkbox, sizeClassName, disabledClassName)}>
+    <Text tagName="label" css={css.container(disabled, size)}>
+      <Text tagName="span" css={css.innerWrap}>
         {_renderCheckboxNative()}
         {_renderCheckboxIcon()}
       </Text>
       {!!children && (
-        <Text tachyons={['ml2', 'dib', 'v-mid']} tagName="span">
+        <Text css={css.text} tagName="span">
           {children}
         </Text>
       )}

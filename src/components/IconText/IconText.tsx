@@ -1,5 +1,6 @@
 import React, { FC, memo } from 'react';
 import { LineAwesome, View, Text, LineAwesomeName } from 'wiloke-react-core';
+import * as css from './styles';
 
 export interface IconTextProps {
   iconColor?: string;
@@ -10,12 +11,12 @@ export interface IconTextProps {
 
 const IconText: FC<IconTextProps> = ({ iconColor = '#FD9B9B', iconName, title, text }) => {
   return (
-    <View radius="round" backgroundColor="light" tachyons="pa4">
-      <View tachyons={['flex', 'justify-center', 'items-center', 'br-pill', 'overflow-hidden', 'relative', 'z-5', 'w3', 'h3', 'mb3']}>
-        <View tachyons={['absolute', 'absolute--fill', 'z-0', 'o-20']} style={{ backgroundColor: iconColor }} />
-        <LineAwesome name={iconName} size={34} style={{ color: iconColor }} />
+    <View radius={15} backgroundColor="light" css={css.container}>
+      <View radius="pill" css={css.icon}>
+        <View css={css.iconBackground(iconColor)} />
+        <LineAwesome name={iconName} size={34} css={{ color: iconColor }} />
       </View>
-      <Text tagName="h2" tachyons={['mb2', 'f4']}>
+      <Text tagName="h2" size={16} css={{ marginBottom: '8px' }}>
         {title}
       </Text>
       <Text>{text}</Text>

@@ -4,10 +4,13 @@ import { ColorNames, defaultColors, Size } from 'wiloke-react-core';
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import Radio from 'components/Radio';
+import RadioButton from 'components/Radio/RadioButton';
+import RadioGroup from 'components/Radio/RadioGroup';
 
 export default {
-  title: 'Components/Radio',
-  component: Radio,
+  title: 'Fields/Radio',
+  component: (Radio as any).type,
+  subcomponents: { 'Radio.Button': RadioButton, 'Radio.Group': (RadioGroup as any).type },
 };
 
 const optionsWithDisabled = [
@@ -57,10 +60,7 @@ export const WithRadioDefault = () => {
 };
 
 export const WithRadioButtonGroup = () => {
-  const [valueState, setValueState] = useState('');
-
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValueState(event.target.value);
     action('onChange')(event);
   };
 
@@ -69,7 +69,7 @@ export const WithRadioButtonGroup = () => {
   };
 
   return (
-    <Radio.Group {...getRadioButtonGroupProps()} value={valueState} defaultValue={3} onChange={_handleChange} onChangeValue={_handleChangeValue}>
+    <Radio.Group {...getRadioButtonGroupProps()} defaultValue={2} onChange={_handleChange} onChangeValue={_handleChangeValue}>
       <Radio.Button value={1}>Hello1</Radio.Button>
       <Radio.Button value={2}>Hello2</Radio.Button>
       <Radio.Button disabled value={3}>
@@ -80,10 +80,7 @@ export const WithRadioButtonGroup = () => {
 };
 
 export const WithRadioDefaultGroup = () => {
-  const [valueState, setValueState] = useState('');
-
   const _handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValueState(event.target.value);
     action('onChange')(event);
   };
 
@@ -92,7 +89,7 @@ export const WithRadioDefaultGroup = () => {
   };
 
   return (
-    <Radio.Group {...getRadioDefaultProps()} value={valueState} onChange={_handleChange} onChangeValue={_handleChangeValue}>
+    <Radio.Group {...getRadioDefaultProps()} onChange={_handleChange} onChangeValue={_handleChangeValue}>
       <Radio value="value1">Value1</Radio>
       <Radio value="value2">Value2</Radio>
       <Radio value="value3">Value3</Radio>

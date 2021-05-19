@@ -1,12 +1,5 @@
 import { ComponentType } from 'react';
-
-export interface HomePageLocationState {}
-export interface AboutPageLocationState {}
-
-export interface LocationStates {
-  '/'?: HomePageLocationState;
-  '/about': AboutPageLocationState;
-}
+import { LocationStates } from './LocationStates';
 
 export type PathName = keyof LocationStates;
 

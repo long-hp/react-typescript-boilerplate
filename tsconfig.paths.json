@@ -1,10 +1,18 @@
 {
   "compilerOptions": {
-    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+    "plugins": [
+      { "name": "typescript-plugin-css-modules" },
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "validProperties": ["debug"]
+        }
+      }
+    ],
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "isolatedModules": false,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": "./src",
     "paths": {
       "*": ["./@types/*", "*"]

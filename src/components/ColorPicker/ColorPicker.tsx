@@ -1,11 +1,15 @@
 import React, { FC, ReactNode, useState } from 'react';
-import { ChromePicker, Color, ColorResult, PhotoshopPicker, SketchPicker } from 'react-color';
+import { ChromePicker, ColorChangeHandler, PhotoshopPicker, RGBColor, SketchPicker } from 'react-color';
 import { createPortal } from 'react-dom';
 import { Manager, Popper, Reference } from 'react-popper';
-import { OuterTrigger, Radius, View } from 'wiloke-react-core';
+import { OuterTrigger, Radius, useStyleSheet, View } from 'wiloke-react-core';
 import { classNames } from 'wiloke-react-core/utils';
-import styles from './ColorPicker.module.scss';
+// import styles from './ColorPicker.module.scss';
 import ColorPickerLoading from './ColorPickerLoading';
+import hexToRgb from './hexToRgb';
+import rgbaObjectToString from './utils/rgbaObjectToString';
+import rgbaStringToObject from './utils/rgbaStringToObject';
+import * as css from './styles';
 
 export type ColorPickerType = 'chrome' | 'sketch' | 'photoshop';
 export type PresetColor = { color: string; title: string } | string;
@@ -23,17 +27,13 @@ export type Placement =
   | 'left-start'
   | 'left-end';
 
-export type Strategy = 'absolute';
-
-export type FunctionColorChange = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => void;
+export type Strategy = 'absolute' | 'fixed';
 
 export interface ColorPickerProps {
   /** Giao diện của color picker platform: 'chrome' | 'sketch' | 'photoshop' | 'material' | 'compact' | 'swatches' */
   pickerType?: ColorPickerType;
-  /** Đầu vào cùa color: hex | hsl | rgb */
-  color?: Color;
-  /** Background picker */
-  colorPicker?: ColorResult['rgb'];
+  /** Đầu vào cùa color */
+  color?: string;
   /** Thuộc tính disable alpha của các platform: 'chrome' | 'sketch */
   disableAlpha?: boolean;
   /** bảng màu ở phía dưới của platform: sketch */
@@ -51,10 +51,23 @@ export interface ColorPickerProps {
   /** True thì Tạo color picker board ngoài root */
   isPortal?: boolean;
   /** Sự kiện onChange */
-  onChange?: FunctionColorChange;
+  onChange?: (color: string) => void;
   /** Sự kiện onChangeComplete */
-  onChangeComplete?: FunctionColorChange;
+  onChangeComplete?: (color: string) => void;
+  /** Render component đằng sau ColorPicker */
+  renderAfter?: (color: string) => ReactNode;
 }
+
+const getColor = (color: string, defaultColor = 'rgba(0,0,0,1)') => {
+  if (color.includes('rgba')) {
+    return color;
+  }
+  if (color.includes('#')) {
+    const { r, g, b } = hexToRgb(color);
+    return `rgba(${r},${g},${b},1)`;
+  }
+  return defaultColor;
+};
 
 const ColorPicker: FC<ColorPickerProps> & {
   Loading: typeof ColorPickerLoading;
@@ -65,16 +78,17 @@ const ColorPicker: FC<ColorPickerProps> & {
   placement = 'bottom-start',
   strategy = 'absolute',
   radius = 5,
-  color,
+  color = 'rgba(0,0,0,1)',
   isPortal = false,
   className,
-  colorPicker,
   presetColor,
   onChange,
   onChangeComplete,
+  renderAfter,
 }) => {
+  const [colorState, setColorState] = useState<RGBColor>(rgbaStringToObject(getColor(color)));
   const [showPicker, setShowPicker] = useState(false);
-  const combineProps = { className: classNames(styles.pickerPallte, className) };
+  const { styles } = useStyleSheet();
 
   const _handleOnClick = () => {
     setShowPicker(!showPicker);
@@ -84,32 +98,34 @@ const ColorPicker: FC<ColorPickerProps> & {
     setShowPicker(false);
   };
 
+  const _handleChange: ColorChangeHandler = color => {
+    setColorState(color.rgb);
+    onChange?.(rgbaObjectToString(color.rgb));
+  };
+
+  const _handleChangeComplete: ColorChangeHandler = color => {
+    setColorState(color.rgb);
+    onChangeComplete?.(rgbaObjectToString(color.rgb));
+  };
+
+  const combineProps = {
+    className: classNames(styles(css.container), className),
+    color: colorState,
+    onChange: _handleChange,
+    onChangeComplete: _handleChangeComplete,
+  };
+
   const mappingColorPicker: Record<ColorPickerType, ReactNode> = {
-    chrome: <ChromePicker {...combineProps} color={color} disableAlpha={disableAlpha} onChange={onChange} onChangeComplete={onChangeComplete} />,
-    photoshop: <PhotoshopPicker {...combineProps} color={color} className={className} onChange={onChange} onChangeComplete={onChangeComplete} />,
-    sketch: (
-      <SketchPicker
-        {...combineProps}
-        color={color}
-        disableAlpha={disableAlpha}
-        className={className}
-        presetColors={presetColor}
-        onChange={onChange}
-        onChangeComplete={onChangeComplete}
-      />
-    ),
+    chrome: <ChromePicker {...combineProps} disableAlpha={disableAlpha} />,
+    photoshop: <PhotoshopPicker {...combineProps} />,
+    sketch: <SketchPicker {...combineProps} disableAlpha={disableAlpha} presetColors={presetColor} />,
   };
 
   const targetPicker = (
     <Reference>
       {({ ref }) => (
-        <View ref={ref} className={styles.pickerColor} onClick={_handleOnClick}>
-          <View
-            className={styles.bgFade}
-            radius={radius}
-            tachyons={['absolute', 'absolute--fill']}
-            style={{ backgroundColor: `rgba(${colorPicker?.r}, ${colorPicker?.g}, ${colorPicker?.b}, ${colorPicker?.a})` }}
-          ></View>
+        <View ref={ref} className="TargetPicker" css={css.targetPicker} onClick={_handleOnClick}>
+          <View radius={radius} css={css.targetBackground} style={{ backgroundColor: rgbaObjectToString(colorState) }}></View>
         </View>
       )}
     </Reference>
@@ -119,9 +135,9 @@ const ColorPicker: FC<ColorPickerProps> & {
     <Popper strategy={strategy} placement={placement}>
       {popperProps => {
         return (
-          <View ref={popperProps.ref} style={popperProps.style} className={[styles[placement]].join(' ')}>
-            <View className={styles.popperInner}>{mappingColorPicker[pickerType]}</View>
-            <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} tachyons="absolute" />
+          <View ref={popperProps.ref} style={popperProps.style} className="Placement-container" css={css.placement(placement)}>
+            <View>{mappingColorPicker[pickerType]}</View>
+            <View ref={popperProps.arrowProps.ref} style={popperProps.arrowProps.style} css={{ position: 'absolute' }} />
           </View>
         );
       }}
@@ -133,18 +149,21 @@ const ColorPicker: FC<ColorPickerProps> & {
   const _renderPickerPortal = () => showPicker && createPortal(pickerBoard, document.body);
 
   return (
-    <OuterTrigger onClick={_handleOnClose}>
-      <View tachyons={['relative']}>
-        {onlyShowColorBoard ? (
-          mappingColorPicker[pickerType]
-        ) : (
-          <Manager>
-            {targetPicker}
-            {isPortal ? _renderPickerPortal() : _renderColorPicker()}
-          </Manager>
-        )}
-      </View>
-    </OuterTrigger>
+    <>
+      <OuterTrigger onClick={_handleOnClose}>
+        <View css={{ position: 'relative' }}>
+          {onlyShowColorBoard ? (
+            mappingColorPicker[pickerType]
+          ) : (
+            <Manager>
+              {targetPicker}
+              {isPortal ? _renderPickerPortal() : _renderColorPicker()}
+            </Manager>
+          )}
+        </View>
+      </OuterTrigger>
+      {renderAfter?.(rgbaObjectToString(colorState))}
+    </>
   );
 };
 

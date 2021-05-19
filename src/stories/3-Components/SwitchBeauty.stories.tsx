@@ -3,22 +3,21 @@ import SwitchBeauty from 'components/SwitchBeauty';
 import getWithStylesProps from 'stories/utils/getWithStylesProps';
 import getOptions from 'stories/utils/getOptions';
 import { ColorNames, defaultColors, Size } from 'wiloke-react-core';
-import { boolean, number, select, text } from '@storybook/addon-knobs';
+import { boolean, select, text } from '@storybook/addon-knobs';
 
 export default {
-  title: 'Components/SwitchBeauty',
+  title: 'Fields/SwitchBeauty',
   component: SwitchBeauty,
 };
 
 const getRadioDefaultProps = () => ({
-  size: select(
+  size: select<Size>(
     'Size',
     getOptions<Size[]>(['extra-small', 'small', 'medium', 'large']),
-    'medium',
+    'large',
   ),
   checked: boolean('Checked', false),
   disabled: boolean('Disabled', false),
-  fontSize: number('Font Size', undefined as any),
   disableText: text('Disable Text', 'Disabled'),
   enableText: text('Enable Text', 'Enable'),
   loading: boolean('Loading', false),

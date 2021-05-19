@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
 import { View } from 'wiloke-react-core';
+import * as css from './styles';
+
 export interface ColorPickerLoadingProps {}
 
 const ColorPickerLoading: FC<ColorPickerLoadingProps> = () => {
-  return <View width={50} height={23} backgroundColor="gray5" radius={6} />;
+  return <View css={css.loadingContainer} />;
 };
 
 export default ColorPickerLoading;

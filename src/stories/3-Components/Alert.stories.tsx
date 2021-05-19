@@ -3,10 +3,10 @@ import { number, optionsKnob, select, text, boolean } from '@storybook/addon-kno
 import getOptions from 'stories/utils/getOptions';
 import { action } from '@storybook/addon-actions';
 import { Radius } from 'wiloke-react-core';
-import Alert, { AlertProps } from 'components/Alert/Alert';
+import Alert, { AlertProps } from 'components/Alert';
 
 export default {
-  title: 'Components/Alert',
+  title: 'General/Alert',
   component: Alert,
 };
 
@@ -23,7 +23,6 @@ export const WithProps = () => {
   );
   const closable = boolean('Closable', true);
   const showIcon = boolean('ShowIcon', true);
-  const disableBorder = boolean('Border Disabled', false);
   const radiusType = optionsKnob('Radius Type', getOptions(['css style', 'number']), 'css style', {
     display: 'inline-radio',
   });
@@ -31,7 +30,7 @@ export const WithProps = () => {
     radiusType === 'css style'
       ? select(
           'Radius',
-          getOptions<Radius[]>(['pill', 'round', 'square']),
+          getOptions<Radius[]>(['pill', 'square']),
           'square',
         )
       : number('Radius', 0, { range: true, min: 0, max: 100 });
@@ -48,7 +47,6 @@ export const WithProps = () => {
       description={description}
       closable={closable}
       showIcon={showIcon}
-      disableBorder={disableBorder}
       radius={radius}
       size={size}
       onClose={action('onClose')}

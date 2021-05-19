@@ -14,7 +14,7 @@ export const Default = () => {
         maxWidth={800}
         minWidth={400}
         children={(size, ref) => (
-          <View borderWidth="1/6" borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={ref}>
+          <View borderWidth={1} borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={ref}>
             <Text color="gray9" size={size(100)}>
               Text Responsive
             </Text>
@@ -26,7 +26,7 @@ export const Default = () => {
         maxWidth={800}
         minWidth={400}
         children={(size, ref) => (
-          <View borderWidth="1/6" borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={ref}>
+          <View borderWidth={1} borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={ref}>
             <Text color="gray9" size={size(100)}>
               Text Responsive
             </Text>
@@ -42,12 +42,12 @@ export const UseResponsive = () => {
 
   return (
     <View>
-      <View borderWidth="1/6" borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={element1.ref}>
+      <View borderWidth={1} borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={element1.ref}>
         <Text color="gray9" size={element1.size(100)}>
           Text Responsive 1
         </Text>
       </View>
-      <View borderWidth="1/6" borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={element2.ref}>
+      <View borderWidth={1} borderColor="gray9" borderStyle="solid" backgroundColor="primary" ref={element2.ref}>
         <Text color="gray9" size={element2.size(80)}>
           Text Responsive 2
         </Text>

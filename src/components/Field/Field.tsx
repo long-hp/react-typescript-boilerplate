@@ -1,31 +1,27 @@
-import React, { CSSProperties, FC, ReactNode } from 'react';
-import { Text, View, withStyles, WithStylesProps } from 'wiloke-react-core';
-import { classNames } from 'wiloke-react-core/utils';
-import styles from './Field.module.scss';
+import React, { FC, ReactNode } from 'react';
+import { Text, View, withStyles, ViewProps } from 'wiloke-react-core';
+import * as css from './styles';
 
-export interface FieldProps extends WithStylesProps {
+export interface FieldProps extends ViewProps {
   children: ReactNode;
   /** Label của field có thể có hoặc không */
   label?: ReactNode;
-  /** style inline field */
-  style?: CSSProperties;
   /** Font-size của label */
   fontSize?: number;
   /** Note của Field */
   note?: string;
 }
 
-const FieldComponent: FC<FieldProps> = ({ label, children, style, className, color, fontSize = 14, note, ...rest }) => {
-  const combineProps = { style, className: classNames(styles.container, className) };
+const FieldComponent: FC<FieldProps> = ({ label, children, color = 'gray9', fontSize = 14, note, ...rest }) => {
   return (
-    <View {...rest} {...combineProps}>
+    <View {...rest} css={css.container}>
       {!!label && (
-        <Text color={color} size={fontSize} tagName="p" className={styles.label} tachyons={['mb2', 'mt0']}>
+        <Text color={color} size={fontSize} tagName="p" css={css.label}>
           {label}
         </Text>
       )}
       {children}
-      <Text tagName="p" className={styles.note} tachyons={['mb0', 'mt1']}>
+      <Text tagName="p" css={css.note}>
         {note}
       </Text>
     </View>

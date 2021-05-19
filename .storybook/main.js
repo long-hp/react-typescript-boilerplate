@@ -57,11 +57,11 @@ module.exports = {
 
     config.resolve.extensions.push('.ts', '.tsx', '.mdx');
 
-    config.resolve.modules = [
-      ...(config.resolve.modules || []),
-      path.resolve(__dirname, "../"),
-      path.resolve(__dirname, "../src")
-    ];
+    config.resolve.modules = [...(config.resolve.modules || []), path.resolve(__dirname, '../'), path.resolve(__dirname, '../src')];
+
+    config.node = {
+      fs: 'empty',
+    };
 
     return config;
   },
